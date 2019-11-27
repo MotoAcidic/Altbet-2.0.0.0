@@ -66,15 +66,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += beacond
+  bin_PROGRAMS += altbetd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += beacon-cli beacon-tx
+  bin_PROGRAMS += altbet-cli altbet-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# beacon core #
+# altbet core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -201,7 +201,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between beacond and beacon-qt
+# server: shared between altbetd and altbet-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -249,7 +249,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between beacond and beacon-qt, but only linked
+# wallet: shared between altbetd and altbet-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -357,7 +357,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between beacond, and beacon-qt and non-server tools
+# common: shared between altbetd, and altbet-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -422,7 +422,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between beacon-cli and beacon-qt
+# cli: shared between altbet-cli and altbet-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -432,16 +432,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# beacond binary #
-beacond_SOURCES = beacond.cpp
-beacond_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-beacond_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-beacond_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# altbetd binary #
+altbetd_SOURCES = altbetd.cpp
+altbetd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+altbetd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+altbetd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-beacond_SOURCES += beacond-res.rc
+altbetd_SOURCES += altbetd-res.rc
 endif
-beacond_LDADD = \
+altbetd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -455,38 +455,38 @@ beacond_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-beacond_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+altbetd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# beacon-cli binary #
-beacon_cli_SOURCES = beacon-cli.cpp
-beacon_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-beacon_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-beacon_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# altbet-cli binary #
+altbet_cli_SOURCES = altbet-cli.cpp
+altbet_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+altbet_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+altbet_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-beacon_cli_SOURCES += beacon-cli-res.rc
+altbet_cli_SOURCES += altbet-cli-res.rc
 endif
 
-beacon_cli_LDADD = \
+altbet_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-beacon_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+altbet_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# beacon-tx binary #
-beacon_tx_SOURCES = beacon-tx.cpp
-beacon_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-beacon_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-beacon_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# altbet-tx binary #
+altbet_tx_SOURCES = altbet-tx.cpp
+altbet_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+altbet_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+altbet_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-beacon_tx_SOURCES += beacon-tx-res.rc
+altbet_tx_SOURCES += altbet-tx-res.rc
 endif
 
-beacon_tx_LDADD = \
+altbet_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -494,7 +494,7 @@ beacon_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-beacon_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+altbet_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
@@ -549,12 +549,12 @@ CLEANFILES += obj/build.h
 EXTRA_DIST =
 
 
-config/beacon-config.h: config/stamp-h1
+config/altbet-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/beacon-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/altbet-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/beacon-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/beacon-config.h.in
+$(top_srcdir)/$(subdir)/config/altbet-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/altbet-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

@@ -62,12 +62,12 @@
         <translation>Alıcı Adres</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Bunlar ödemeleri göndermek için olan BECN adreslerinizdir.Coinleri göndermeden önce her zaman gönderilen miktarı ve adresi kontrol edin</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Bunlar ödemeleri göndermek için olan ABET adreslerinizdir.Coinleri göndermeden önce her zaman gönderilen miktarı ve adresi kontrol edin</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Bunlar ödemeleri almak için olan BECN adreslerinizdirHer işlem için yeni bir adres kullanmanız önerilir.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Bunlar ödemeleri almak için olan ABET adreslerinizdirHer işlem için yeni bir adres kullanmanız önerilir.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,15 +176,15 @@
         <translation>cüzdan şifrelemesini onayla</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>BECN şifreleme işlemini tamamlamak için şimdi kapanacaktır. Cüzdanınızı şifrelemenin, BECN'lerinizi bilgisayarınıza bulaşan kötücül yazılımlar tarafından çalınmasına tamamen engelleyemediğini unutmayın</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>ABET şifreleme işlemini tamamlamak için şimdi kapanacaktır. Cüzdanınızı şifrelemenin, ABET'lerinizi bilgisayarınıza bulaşan kötücül yazılımlar tarafından çalınmasına tamamen engelleyemediğini unutmayın</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Cüzdanınızı şifrelemek istediğinizden emin misiniz?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
         <translation>Dikkat! Eğer cüzdanınızı şifrelerseniz ve şifrenizi unutursanız &lt;b&gt;Tüm Pıvlerinizi kaybedersiniz&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -254,12 +254,12 @@
         <translation>adres</translation>
     </message>
     <message>
-        <source>Enter a BECN Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>BIP 38 ile şifrelemek isteğiniz BECN Adresini giriniz. Ortadaki kutucuğa bir parola giriniz. Şifrelenmiş özel anahtarı hesaplamak için şifrele tuşuna basınız. </translation>
+        <source>Enter a ABET Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>BIP 38 ile şifrelemek isteğiniz ABET Adresini giriniz. Ortadaki kutucuğa bir parola giriniz. Şifrelenmiş özel anahtarı hesaplamak için şifrele tuşuna basınız. </translation>
     </message>
     <message>
-        <source>The BECN address to encrypt</source>
-        <translation>Şifrelenecek BECN adresi</translation>
+        <source>The ABET address to encrypt</source>
+        <translation>Şifrelenecek ABET adresi</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Geçerli imzayı sistem panosuna kopyala</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this BECN address</source>
-        <translation>Bu BECN adresinin özel anahtarını şifreleyin</translation>
+        <source>Encrypt the private key for this ABET address</source>
+        <translation>Bu ABET adresinin özel anahtarını şifreleyin</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>İşlem geçmişini ara</translation>
     </message>
     <message>
-        <source>Privacy Actions for zBECN</source>
-        <translation>Gizlilik Aksiyonları zBECN</translation>
+        <source>Privacy Actions for zABET</source>
+        <translation>Gizlilik Aksiyonları zABET</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -645,15 +645,15 @@
         <translation>Sekme tablosu</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN CORE</translation>
+        <source>Altbet</source>
+        <translation>ABET CORE</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Koinleri BECN adresine gönder</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Koinleri ABET adresine gönder</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
         <translation>Ödeme talep etme (QR kodları ve pivx üretir: URI'ler)</translation>
     </message>
     <message>
@@ -669,24 +669,24 @@
         <translation>Masternodları ara</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
+        <source>&amp;About Altbet</source>
         <translation>Pıvx core Hakkında</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
+        <source>Show information about Altbet</source>
         <translation>Pıvx Core hakkında bilgi göster</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>BECN için yapılandırma seçeneklerini değiştirin</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>ABET için yapılandırma seçeneklerini değiştirin</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
-        <translation>Sahip olduğunuzu kanıtlamak için mesajlarınızı BECN adresleriyle imzalayın</translation>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
+        <translation>Sahip olduğunuzu kanıtlamak için mesajlarınızı ABET adresleriyle imzalayın</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Belirtilen BECN adresleriyle imzalanmış olduklarından emin olmak için iletileri doğrulayın</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Belirtilen ABET adresleriyle imzalanmış olduklarından emin olmak için iletileri doğrulayın</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -717,8 +717,8 @@
         <translation>Açık Masternode yapılandırma dosyası</translation>
     </message>
     <message>
-        <source>Open a BECN: URI or payment request</source>
-        <translation>Bir BECN: URI veya ödeme isteği açın</translation>
+        <source>Open a ABET: URI or payment request</source>
+        <translation>Bir ABET: URI veya ödeme isteği açın</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -729,12 +729,12 @@
         <translation>Kaşif penceresini engelle</translation>
     </message>
     <message>
-        <source>Show the Beacon help message to get a list with possible BECN command-line options</source>
-        <translation>Olası BECN komut satırı seçeneklerine sahip bir liste almak için Beacon yardım mesajını gösterin</translation>
+        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <translation>Olası ABET komut satırı seçeneklerine sahip bir liste almak için Altbet yardım mesajını gösterin</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>Beacon istemci</translation>
+        <source>Altbet client</source>
+        <translation>Altbet istemci</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -872,8 +872,8 @@ Adres: %4
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (beacon.conf).</source>
-        <translation>Tüm işlemler gösterilmez. Tüm işlemleri görmek için yapılandırma dosyasında txindex = 1 ayarlamanız gerekir (beacon.conf).
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
+        <translation>Tüm işlemler gösterilmez. Tüm işlemleri görmek için yapılandırma dosyasında txindex = 1 ayarlamanız gerekir (altbet.conf).
 </translation>
     </message>
 </context>
@@ -1162,8 +1162,8 @@ Adres: %4
         <translation>Gönderen adresini düzenle</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid BECN address.</source>
-        <translation>Girilen "%1" adresi geçerli bir BECN adresi değil.</translation>
+        <source>The entered address "%1" is not a valid ABET address.</source>
+        <translation>Girilen "%1" adresi geçerli bir ABET adresi değil.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1219,16 +1219,16 @@ Adres: %4
         <translation>versiyon</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN CORE</translation>
+        <source>Altbet</source>
+        <translation>ABET CORE</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Beacon</source>
-        <translation>hakkında Beacon</translation>
+        <source>About Altbet</source>
+        <translation>hakkında Altbet</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1274,16 +1274,16 @@ Adres: %4
         <translation>Hoşgeldiniz</translation>
     </message>
     <message>
-        <source>Welcome to Beacon.</source>
-        <translation>Beacon'a hoşgeldiniz.</translation>
+        <source>Welcome to Altbet.</source>
+        <translation>Altbet'a hoşgeldiniz.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Beacon will store its data.</source>
-        <translation>Program ilk başlatıldığında Beacon'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
+        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <translation>Program ilk başlatıldığında Altbet'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
     </message>
     <message>
-        <source>Beacon will download and store a copy of the BECN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Beacon, BECN blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecek. Cüzdan ayrıca bu dizinde saklanır.</translation>
+        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Altbet, ABET blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecek. Cüzdan ayrıca bu dizinde saklanır.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1294,8 +1294,8 @@ Adres: %4
         <translation>Özel bir veri dizini kullanın:</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN CORE</translation>
+        <source>Altbet</source>
+        <translation>ABET CORE</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1436,12 +1436,12 @@ Adres: %4
         <translation>Gönderim adresi girin</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BECN addresses after it matures.
-To Add: enter percentage to give and BECN address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other ABET addresses after it matures.
+To Add: enter percentage to give and ABET address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>ÇokluGönderi, olgunlaştıktan sonra diğer BECN adreslerinin bir listesine staking ya da masternode ödülünüzün 100% 'ünü otomatik olarak göndermenize olanak tanır.
-Eklemek için: Verilecek yüzdeyi ve ÇokluGönderi vektörüne eklemek için BECN adresi girin.
+        <translation>ÇokluGönderi, olgunlaştıktan sonra diğer ABET adreslerinin bir listesine staking ya da masternode ödülünüzün 100% 'ünü otomatik olarak göndermenize olanak tanır.
+Eklemek için: Verilecek yüzdeyi ve ÇokluGönderi vektörüne eklemek için ABET adresi girin.
 Silme: Silinecek adresi girin ve silmek için basın.
 ÇokluGönderi, Etkinleştir'i tıklamadığınız sürece etkinleştirilmeyecektir</translation>
     </message>
@@ -1663,8 +1663,8 @@ Unutmayın, cüzdan, yeni adresi içeren işlemleri bulmak için blok zinciri ye
         <translation>Address /miktar:</translation>
     </message>
     <message>
-        <source>Add destinations to send BECN to</source>
-        <translation>BECN göndermek için varış yerleri ekleyin</translation>
+        <source>Add destinations to send ABET to</source>
+        <translation>ABET göndermek için varış yerleri ekleyin</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1797,8 +1797,8 @@ Unutmayın, cüzdan, yeni adresi içeren işlemleri bulmak için blok zinciri ye
         <translation>Doğrulanmamış değişikliğin harcamasını devre dışı bırakırsanız, bir işlemdeki değişiklik&lt;br/&gt;Bu işlem en az bir onay alıncaya kadar kullanılamaz.&lt;br/&gt;Bu aynı zamanda bakiyenizin nasıl hesaplandığını etkiler.</translation>
     </message>
     <message>
-        <source>Automatically open the BECN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Yönelticideki BECN istemci bağlantı noktasını otomatik olarak açın. Bu, yalnızca yönlendiriciniz UPnP'yi destekliyorsa ve etkinleştirilmişse çalışır.</translation>
+        <source>Automatically open the ABET client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Yönelticideki ABET istemci bağlantı noktasını otomatik olarak açın. Bu, yalnızca yönlendiriciniz UPnP'yi destekliyorsa ve etkinleştirilmişse çalışır.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1817,12 +1817,12 @@ Unutmayın, cüzdan, yeni adresi içeren işlemleri bulmak için blok zinciri ye
         <translation>Uzman</translation>
     </message>
     <message>
-        <source>Automatically start BECN after logging in to the system.</source>
-        <translation>Sisteme giriş yaptıktan sonra otomatik olarak BECN'i başlatın.</translation>
+        <source>Automatically start ABET after logging in to the system.</source>
+        <translation>Sisteme giriş yaptıktan sonra otomatik olarak ABET'i başlatın.</translation>
     </message>
     <message>
-        <source>&amp;Start BECN on system login</source>
-        <translation>&amp; Sistem oturum açma işleminde BECN'i başlat</translation>
+        <source>&amp;Start ABET on system login</source>
+        <translation>&amp; Sistem oturum açma işleminde ABET'i başlat</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1849,8 +1849,8 @@ Unutmayın, cüzdan, yeni adresi içeren işlemleri bulmak için blok zinciri ye
         <translation>&amp;ağ</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
-        <translation>Kullanıcı arabirimi dili burada ayarlanabilir. Bu ayar, BECN yeniden başlatıldıktan sonra geçerli olur.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting ABET.</source>
+        <translation>Kullanıcı arabirimi dili burada ayarlanabilir. Bu ayar, ABET yeniden başlatıldıktan sonra geçerli olur.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1863,32 +1863,32 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BECN units to zBECN</source>
-        <translation>BECN birimlerinin zBECN'e otomatik basımını ektinleştir</translation>
+        <source>Enable automatic minting of ABET units to zABET</source>
+        <translation>ABET birimlerinin zABET'e otomatik basımını ektinleştir</translation>
     </message>
     <message>
-        <source>Enable zBECN Automint</source>
-        <translation>zBECN Otomatik basımı etkinleştir</translation>
+        <source>Enable zABET Automint</source>
+        <translation>zABET Otomatik basımı etkinleştir</translation>
     </message>
     <message>
-        <source>Percentage of incoming BECN which get automatically converted to zBECN via Zerocoin Protocol (min: 10%)</source>
-        <translation>Zerocoin Protokolü üzerinden otomatik olarak zBECN'ye dönüştürülen gelen BECN yüzdesi (dakika: 10%)</translation>
+        <source>Percentage of incoming ABET which get automatically converted to zABET via Zerocoin Protocol (min: 10%)</source>
+        <translation>Zerocoin Protokolü üzerinden otomatik olarak zABET'ye dönüştürülen gelen ABET yüzdesi (dakika: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zBECN</source>
-        <translation>Otomatikleştirilmiş zBECN yüzdesi</translation>
+        <source>Percentage of autominted zABET</source>
+        <translation>Otomatikleştirilmiş zABET yüzdesi</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BECN for this denomination is available</source>
-        <translation>Bu mezhebi için yeterli BECN bulunana kadar Zerocoin'e otomatik dönüşümle birlikte bekleyin</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough ABET for this denomination is available</source>
+        <translation>Bu mezhebi için yeterli ABET bulunana kadar Zerocoin'e otomatik dönüşümle birlikte bekleyin</translation>
     </message>
     <message>
-        <source>Preferred Automint zBECN Denomination</source>
-        <translation>Tercih edilen Automint zBECN Nominal değeri</translation>
+        <source>Preferred Automint zABET Denomination</source>
+        <translation>Tercih edilen Automint zABET Nominal değeri</translation>
     </message>
     <message>
-        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
-        <translation>Bir SOCKS5 proxy vasıtasıyla BECN ağına bağlanın.</translation>
+        <source>Connect to the ABET network through a SOCKS5 proxy.</source>
+        <translation>Bir SOCKS5 proxy vasıtasıyla ABET ağına bağlanın.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2038,8 +2038,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Toplam Bakiye, mevcut olmayan tüm paralar dahil.</translation>
     </message>
     <message>
-        <source>BECN Balance</source>
-        <translation>BECN Bakiyesi</translation>
+        <source>ABET Balance</source>
+        <translation>ABET Bakiyesi</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -2062,18 +2062,18 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Mevcut kilitli bakiye sadece görüntülenebilir adreslerde.</translation>
     </message>
     <message>
-        <source>Your current BECN balance, unconfirmed and immature transactions included</source>
-        <translation>Güncel BECN bakiyeniz, onaylanmamış ve olgunlaşmamış işlemler dahil</translation>
+        <source>Your current ABET balance, unconfirmed and immature transactions included</source>
+        <translation>Güncel ABET bakiyeniz, onaylanmamış ve olgunlaşmamış işlemler dahil</translation>
     </message>
     <message>
-        <source>zBECN Balance</source>
-        <translation>zBECN Bakiyesi</translation>
+        <source>zABET Balance</source>
+        <translation>zABET Bakiyesi</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zBECN are spendable.</source>
+These zABET are spendable.</source>
         <translation>Olgun: basılmış olduktan sonra 20'den fazla onay alınmış ve aynı ölçü biriminden 1 kereden fazla basılmış.
-Bu zBECN ler harcanabilir.</translation>
+Bu zABET ler harcanabilir.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2082,8 +2082,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Olgunlaşmamış: onaylandı, ancak basıldıktan sonra aynı ölçü biriminden 1 taneden daha az basım bulunmakta.</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>Görüntülenen bilgiler güncelliğini yitirmiş olabilir. Bir bağlantı kurulduktan sonra M-cüzdanınız otomatik olarak BECN şebekesiyle senkronize edilir, ancak bu işlem henüz tamamlanmadı.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>Görüntülenen bilgiler güncelliğini yitirmiş olabilir. Bir bağlantı kurulduktan sonra M-cüzdanınız otomatik olarak ABET şebekesiyle senkronize edilir, ancak bu işlem henüz tamamlanmadı.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2126,8 +2126,8 @@ Olgunlaşmamış: onaylandı, ancak basıldıktan sonra aynı ölçü biriminden
         <translation>Harcanabilir:</translation>
     </message>
     <message>
-        <source>Locked BECN or Masternode collaterals. These are excluded from zBECN minting.</source>
-        <translation>Kilitli BECN veya Masternode teminatları. Bunlar zBECN matlaştırmadan çıkarılır.</translation>
+        <source>Locked ABET or Masternode collaterals. These are excluded from zABET minting.</source>
+        <translation>Kilitli ABET veya Masternode teminatları. Bunlar zABET matlaştırmadan çıkarılır.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2138,8 +2138,8 @@ Olgunlaşmamış: onaylandı, ancak basıldıktan sonra aynı ölçü biriminden
         <translation>onaylanmamış:</translation>
     </message>
     <message>
-        <source>Your current zBECN balance, unconfirmed and immature zBECN included.</source>
-        <translation>Güncel zBECN bakiyeniz, onaylanmamış ve olgunlaşmamış zBECN'ler dahil.</translation>
+        <source>Your current zABET balance, unconfirmed and immature zABET included.</source>
+        <translation>Güncel zABET bakiyeniz, onaylanmamış ve olgunlaşmamış zABET'ler dahil.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2150,10 +2150,10 @@ Olgunlaşmamış: onaylandı, ancak basıldıktan sonra aynı ölçü biriminden
         <translation>senkronizasyon dışı</translation>
     </message>
     <message>
-        <source>Current percentage of zBECN.
+        <source>Current percentage of zABET.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Mevcut zBECN yüzdesi.
+        <translation>Mevcut zABET yüzdesi.
 AutoMint etkinleştirilirse, bu yüzde, yapılandırılmış AutoMint yüzdesi etrafında düzelir (varsayılan = 10%).
 </translation>
     </message>
@@ -2162,14 +2162,14 @@ AutoMint etkinleştirilirse, bu yüzde, yapılandırılmış AutoMint yüzdesi e
         <translation>AutoMint şu anda etkinleştirilmiş ve</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in beacon.conf.</source>
-        <translation>AutoMint kapatmak için ekle  'enablezeromint=0'  beacon.conf. dosyasına</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
+        <translation>AutoMint kapatmak için ekle  'enablezeromint=0'  altbet.conf. dosyasına</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
         <translation>AutoMint şu anda aktif değil.
- AutoMint aktive etmek için  değiştir 'enablezeromint=0' yazan kısmı 'enablezeromint=1' şeklinde beacon.conf dosyasında</translation>
+ AutoMint aktive etmek için  değiştir 'enablezeromint=0' yazan kısmı 'enablezeromint=1' şeklinde altbet.conf dosyasında</translation>
     </message>
 </context>
 <context>
@@ -2195,12 +2195,12 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>Geçersiz ödeme adresi %1</translation>
     </message>
     <message>
-        <source>Cannot start becn: click-to-pay handler</source>
-        <translation>Beacon başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
+        <source>Cannot start abet: click-to-pay handler</source>
+        <translation>Altbet başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid BECN address or malformed URI parameters.</source>
-        <translation>URI ayrıştırılamaz! Bunun nedeni, geçersiz bir BECN adresi veya hatalı biçimlendirilmiş URI parametrelerinden kaynaklanabilir.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid ABET address or malformed URI parameters.</source>
+        <translation>URI ayrıştırılamaz! Bunun nedeni, geçersiz bir ABET adresi veya hatalı biçimlendirilmiş URI parametrelerinden kaynaklanabilir.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2285,8 +2285,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>Zerocoin Actions:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>Görüntülenen bilgiler güncelliğini yitirmiş olabilir. Bir bağlantı kurulduktan sonra M-cüzdanınız otomatik olarak BECN şebekesiyle senkronize edilir, ancak bu işlem henüz tamamlanmadı.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>Görüntülenen bilgiler güncelliğini yitirmiş olabilir. Bir bağlantı kurulduktan sonra M-cüzdanınız otomatik olarak ABET şebekesiyle senkronize edilir, ancak bu işlem henüz tamamlanmadı.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2297,8 +2297,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2325,11 +2325,11 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>GİZLİLİK</translation>
     </message>
     <message>
-        <source>zBECN Control</source>
-        <translation>zBECN Kontrolü</translation>
+        <source>zABET Control</source>
+        <translation>zABET Kontrolü</translation>
     </message>
     <message>
-        <source>zBECN Selected:</source>
+        <source>zABET Selected:</source>
         <translation>zPiv Seçildi:</translation>
     </message>
     <message>
@@ -2345,32 +2345,32 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>Harca Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zBECN for spending</source>
-        <translation>Mevcut (olgun ve harcanabilir) harcama için zBECN</translation>
+        <source>Available (mature and spendable) zABET for spending</source>
+        <translation>Mevcut (olgun ve harcanabilir) harcama için zABET</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Kullanılabilir Bakiye:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zBECN for spending
+        <source>Available (mature and spendable) zABET for spending
 
-zBECN are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Mevcut (olgun ve harcanabilir) harcama için zBECN
+zABET are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Mevcut (olgun ve harcanabilir) harcama için zABET
 
-zBECN, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezhepten 2 kat fazla darphane çekilir.</translation>
+zABET, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezhepten 2 kat fazla darphane çekilir.</translation>
     </message>
     <message>
-        <source>0 zBECN</source>
-        <translation>0 zBECN</translation>
+        <source>0 zABET</source>
+        <translation>0 zABET</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
         <translation>şuna öde:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>Ödemeyi göndermek için BECN adresi. Boş olduğunda kendinize yerel ödeme oluşturur.</translation>
+        <source>The ABET address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>Ödemeyi göndermek için ABET adresi. Boş olduğunda kendinize yerel ödeme oluşturur.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2421,8 +2421,8 @@ zBECN, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezhe
         <translation>Zerocoin durumu:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zBECN</source>
-        <translation>Doğrulanmamış ve olgunlaşmamış zBECN dahil toplam bakiye</translation>
+        <source>Total Balance including unconfirmed and immature zABET</source>
+        <translation>Doğrulanmamış ve olgunlaşmamış zABET dahil toplam bakiye</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2581,12 +2581,12 @@ Please be patient...</source>
 Lütfen sabırlı olun...</translation>
     </message>
     <message>
-        <source>zBECN is currently disabled due to maintenance.</source>
-        <translation>zBECN bakım nedeniyle şu an kullanıma kapalı.</translation>
+        <source>zABET is currently disabled due to maintenance.</source>
+        <translation>zABET bakım nedeniyle şu an kullanıma kapalı.</translation>
     </message>
     <message>
-        <source>zBECN is currently undergoing maintenance.</source>
-        <translation>zBECN halen bakım alıyor.</translation>
+        <source>zABET is currently undergoing maintenance.</source>
+        <translation>zABET halen bakım alıyor.</translation>
     </message>
     <message>
         <source>AutoMint Status:</source>
@@ -2611,8 +2611,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Sağlanan 'Ödeme Yapmak İçin' adresi yok, yerel ödeme oluşturun</translation>
     </message>
     <message>
-        <source>Invalid Beacon Address</source>
-        <translation>Geçersiz Beacon Adresi</translation>
+        <source>Invalid Altbet Address</source>
+        <translation>Geçersiz Altbet Adresi</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2685,8 +2685,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Miktar</translation>
     </message>
     <message>
-        <source>Enter a BECN address (e.g. %1)</source>
-        <translation>Gir bir BECN addres (e.g. %1)</translation>
+        <source>Enter a ABET address (e.g. %1)</source>
+        <translation>Gir bir ABET addres (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2729,8 +2729,8 @@ Lütfen sabırlı olun...</translation>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN CORE</translation>
+        <source>Altbet</source>
+        <translation>ABET CORE</translation>
     </message>
     </context>
 <context>
@@ -2827,8 +2827,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Block chain</translation>
     </message>
     <message>
-        <source>Open the BECN debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Geçerli veri dizininden BECN hata ayıklama günlük dosyasını açın. Bu, büyük günlük dosyaları için birkaç saniye sürebilir.</translation>
+        <source>Open the ABET debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Geçerli veri dizininden ABET hata ayıklama günlük dosyasını açın. Bu, büyük günlük dosyaları için birkaç saniye sürebilir.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3011,8 +3011,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Dışa:</translation>
     </message>
     <message>
-        <source>Welcome to the BECN RPC console.</source>
-        <translation>BECN RPC konsola hoşgeldiniz</translation>
+        <source>Welcome to the ABET RPC console.</source>
+        <translation>ABET RPC konsola hoşgeldiniz</translation>
     </message>
     <message>
         <source>This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.&lt;br /&gt;&lt;br /&gt;</source>
@@ -3098,12 +3098,12 @@ Lütfen sabırlı olun...</translation>
         <translation>Miktar:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Talep açıldığında görüntülenecek ödeme isteğine eklemek için isteğe bağlı bir mesaj. Not: Mesaj, ödemenin BECN şebekesi üzerinden gönderilmeyecektir.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Talep açıldığında görüntülenecek ödeme isteğine eklemek için isteğe bağlı bir mesaj. Not: Mesaj, ödemenin ABET şebekesi üzerinden gönderilmeyecektir.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Talep açıldığında görüntülenecek, ödeme isteğine eklemek için isteğe bağlı bir mesaj.&lt;br&gt;Not: Mesaj, ödemenin BECN şebekesi üzerinden gönderilmeyecektir.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Talep açıldığında görüntülenecek, ödeme isteğine eklemek için isteğe bağlı bir mesaj.&lt;br&gt;Not: Mesaj, ödemenin ABET şebekesi üzerinden gönderilmeyecektir.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3331,8 +3331,8 @@ Lütfen sabırlı olun...</translation>
         <translation>UTXO Boyutu:</translation>
     </message>
     <message>
-        <source>0 BECN</source>
-        <translation>0 BECN</translation>
+        <source>0 ABET</source>
+        <translation>0 ABET</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3387,16 +3387,16 @@ Lütfen sabırlı olun...</translation>
         <translation>Koinler otomatik seçildi</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uBECNs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBECNs in fee,&lt;br /&gt;while "at least" pays 1000 uBECNs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Özel ücret 1000 uBECN olarak ayarlanmış ve işlem sadece 250 bayt ise, "kilobayt başına" ücret karşılığında yalnızca 250 uBECN öder,&lt;br /&gt;"en az" ise 1000 uBECN öder. Bir kilobayttan daha büyük işlemler için kilobayt ödersiniz.</translation>
+        <source>If the custom fee is set to 1000 uABETs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uABETs in fee,&lt;br /&gt;while "at least" pays 1000 uABETs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Özel ücret 1000 uABET olarak ayarlanmış ve işlem sadece 250 bayt ise, "kilobayt başına" ücret karşılığında yalnızca 250 uABET öder,&lt;br /&gt;"en az" ise 1000 uABET öder. Bir kilobayttan daha büyük işlemler için kilobayt ödersiniz.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uBECNs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBECNs in fee,&lt;br /&gt;while "total at least" pays 1000 uBECNs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Özel ücret 1000 uBECN olarak ayarlanırsa ve işlem sadece 250 bayt ise, "kilobayt başına" ücret karşılığında yalnızca 250 uBECN ücreti verilir,&lt;br /&gt;"toplam en az" ise 1000 uBECN ödüyor. Bir kilobayttan daha büyük işlemler için kilobayt ödersiniz.</translation>
+        <source>If the custom fee is set to 1000 uABETs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uABETs in fee,&lt;br /&gt;while "total at least" pays 1000 uABETs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Özel ücret 1000 uABET olarak ayarlanırsa ve işlem sadece 250 bayt ise, "kilobayt başına" ücret karşılığında yalnızca 250 uABET ücreti verilir,&lt;br /&gt;"toplam en az" ise 1000 uABET ödüyor. Bir kilobayttan daha büyük işlemler için kilobayt ödersiniz.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for BECN transactions than the network can process.</source>
-        <translation>Yalnızca minimum ücreti ödemek, işlem hacmi bloklardaki alana göre daha az olduğu sürece iyidir.&lt;br /&gt;Ancak, bunun, BECN işlemleri için ağın işleyebileceğinden daha fazla talep olması durumunda, onaylama işleminde asla sonuçlanamayacağına dikkat edin.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for ABET transactions than the network can process.</source>
+        <translation>Yalnızca minimum ücreti ödemek, işlem hacmi bloklardaki alana göre daha az olduğu sürece iyidir.&lt;br /&gt;Ancak, bunun, ABET işlemleri için ağın işleyebileceğinden daha fazla talep olması durumunda, onaylama işleminde asla sonuçlanamayacağına dikkat edin.</translation>
     </message>
     <message>
         <source>normal</source>
@@ -3443,8 +3443,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Alıcı ekle</translation>
     </message>
     <message>
-        <source>Anonymized BECN</source>
-        <translation>anonim edilmiş BECN</translation>
+        <source>Anonymized ABET</source>
+        <translation>anonim edilmiş ABET</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -3491,8 +3491,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Bloğu böl aygıtı multipl adresle çalışmaz Tekrar deneyin</translation>
     </message>
     <message>
-        <source>Warning: Invalid BECN address</source>
-        <translation>Uyarı: Geçersiz BECN adresi</translation>
+        <source>Warning: Invalid ABET address</source>
+        <translation>Uyarı: Geçersiz ABET adresi</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -3586,8 +3586,8 @@ Lütfen sabırlı olun...</translation>
         <translation>şuna öde:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to</source>
-        <translation>Ödemeyi göndermek için BECN adresi</translation>
+        <source>The ABET address to send the payment to</source>
+        <translation>Ödemeyi göndermek için ABET adresi</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3626,8 +3626,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Mesaj:</translation>
     </message>
     <message>
-        <source>A message that was attached to the BECN: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the BECN network.</source>
-        <translation>BECN e eklenmiş olan bir mesaj: İşleminizle beraber saklanacak olan URI hatırlamanız için. Not: Bu mesaj BECN ağında yayınlanmayacak.</translation>
+        <source>A message that was attached to the ABET: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the ABET network.</source>
+        <translation>ABET e eklenmiş olan bir mesaj: İşleminizle beraber saklanacak olan URI hatırlamanız için. Not: Bu mesaj ABET ağında yayınlanmayacak.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -3653,8 +3653,8 @@ Lütfen sabırlı olun...</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Beacon is shutting down...</source>
-        <translation>Beacon kapanıyor ...</translation>
+        <source>Altbet is shutting down...</source>
+        <translation>Altbet kapanıyor ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3676,8 +3676,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Sahip olduğunuzu kanıtlamak için adreslerinizle mesaj imzalayabilirsiniz. Kimlik avı saldırıları sizi kimliğini onlara yazmaya kandırmaya çalışabilir, çünkü belirsiz bir şey imzalamamaya dikkat edin. Kabul ettiğiniz tamamen ayrıntılı ifadeleri yalnızca imzalayın.</translation>
     </message>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>Ile mesaj imzalamak için BECN adresi</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>Ile mesaj imzalamak için ABET adresi</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3708,16 +3708,16 @@ Lütfen sabırlı olun...</translation>
         <translation>Geçerli imzayı sistem panosuna kopyala</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Bu BECN adresinin sahibi olduğunuzu kanıtlamak için mesajı imzala</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Bu ABET adresinin sahibi olduğunuzu kanıtlamak için mesajı imzala</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>Mesajın imzalandığı BECN adresi</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>Mesajın imzalandığı ABET adresi</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Belirtilen BECN adresi ile imzalanmış olduğundan emin olmak için iletiyi doğrulayın</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Belirtilen ABET adresi ile imzalanmış olduğundan emin olmak için iletiyi doğrulayın</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -3803,8 +3803,8 @@ Lütfen sabırlı olun...</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>BECN CORE</translation>
+        <source>Altbet</source>
+        <translation>ABET CORE</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4339,8 +4339,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Koinleri göder</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 BECN.</source>
-        <translation>SwiftX yüksek değerler göndermeyi desteklemiyor. İşlemler şu anda %1 BECN ile sınırlıdır.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 ABET.</source>
+        <translation>SwiftX yüksek değerler göndermeyi desteklemiyor. İşlemler şu anda %1 ABET ile sınırlıdır.</translation>
     </message>
 </context>
 <context>
@@ -4377,8 +4377,8 @@ Lütfen sabırlı olun...</translation>
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4412,8 +4412,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Hesaplanan akümülatör kontrol noktası, blok indeksiyle kaydedilen kontrol noktası değildir.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Beacon is probably already running.</source>
-        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. Beacon muhtemelen zaten çalışıyor.</translation>
+        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
+        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. Altbet muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4464,12 +4464,12 @@ Lütfen sabırlı olun...</translation>
         <translation>En iyi blok değiştirildiğinde komutu yürütün (cmd'deki %s yerine blok karması verilir)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Bundan daha küçük ücretler (BECN / Kb cinsinden), aktarma için sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Bundan daha küçük ücretler (ABET / Kb cinsinden), aktarma için sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Bundan daha küçük ücretler (BECN / Kb cinsinden), işlem yaratmada sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Bundan daha küçük ücretler (ABET / Kb cinsinden), işlem yaratmada sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>

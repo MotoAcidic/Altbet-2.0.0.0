@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/beacon-config.h"
+#include "config/altbet-config.h"
 #endif
 
 #include "net.h"
@@ -1155,7 +1155,7 @@ void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "BECN " + FormatFullVersion();
+        std::string strDesc = "ABET " + FormatFullVersion();
 
         try {
             while (true) {
@@ -1616,7 +1616,7 @@ bool BindListenPort(const CService& addrBind, std::string& strError, bool fWhite
     if (::bind(hListenSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to %s on this computer. BECN Core is probably already running."), addrBind.ToString());
+            strError = strprintf(_("Unable to bind to %s on this computer. ABET Core is probably already running."), addrBind.ToString());
         else
             strError = strprintf(_("Unable to bind to %s on this computer (bind returned error %s)"), addrBind.ToString(), NetworkErrorString(nErr));
         LogPrintf("%s\n", strError);

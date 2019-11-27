@@ -62,12 +62,12 @@
         <translation>Vastaanottavat osoitteet</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Nämä ovat sinun BECN osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Nämä ovat sinun ABET osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Nämä ovat sinun BECN osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Nämä ovat sinun ABET osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,16 +172,16 @@
         <translation>Vahvista lompakon salaus</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>BECN sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella BECNien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>ABET sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella ABETien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Oletko varma että tahdot salata lompakkosi?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
-        <translation>Varoitus: Jos salaat lompakkosi ja unohdat salausavaimesi, &lt;b&gt;menetät kaikki BECNisi&lt;/b&gt;</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
+        <translation>Varoitus: Jos salaat lompakkosi ja unohdat salausavaimesi, &lt;b&gt;menetät kaikki ABETisi&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -565,16 +565,16 @@
         <translation>&amp;Apua</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ydin</translation>
+        <source>Altbet</source>
+        <translation>ABET Ydin</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Lähetä kolikkoja BECN osoitteeseen</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Lähetä kolikkoja ABET osoitteeseen</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
-        <translation>Pyydä maksuja (Generoi QR koodeja ja becn: URIja)</translation>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
+        <translation>Pyydä maksuja (Generoi QR koodeja ja abet: URIja)</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -585,24 +585,24 @@
         <translation>Selaa masternodeja</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
-        <translation>Beacon &amp;ytimestä</translation>
+        <source>&amp;About Altbet</source>
+        <translation>Altbet &amp;ytimestä</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
-        <translation>Näytä tietoja BECN Ytimestä</translation>
+        <source>Show information about Altbet</source>
+        <translation>Näytä tietoja ABET Ytimestä</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>Muokkaa konfiguraatio vaihtoehtoja BECN:lle</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>Muokkaa konfiguraatio vaihtoehtoja ABET:lle</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
         <translation>Allekirjoita viestejä todistaaksesi, että omistat ne.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Vahvista viestit varmistaaksesi, että ne allekirjoitettiin tietyllä BECN osoiteella.</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Vahvista viestit varmistaaksesi, että ne allekirjoitettiin tietyllä ABET osoiteella.</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -633,8 +633,8 @@
         <translation>Avaa Masternode konfiguraatiotiedosto</translation>
     </message>
     <message>
-        <source>Open a BECN: URI or payment request</source>
-        <translation>Avaa BECN: URI tai pyydä maksua</translation>
+        <source>Open a ABET: URI or payment request</source>
+        <translation>Avaa ABET: URI tai pyydä maksua</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -645,12 +645,12 @@
         <translation>Lohkon tutkija näkymä</translation>
     </message>
     <message>
-        <source>Show the Beacon help message to get a list with possible BECN command-line options</source>
-        <translation>Näytä BECN Ydin apuviesti saadaksesi lista mahdollisista BECN komentolinja komennoista.</translation>
+        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <translation>Näytä ABET Ydin apuviesti saadaksesi lista mahdollisista ABET komentolinja komennoista.</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>BECN Ydin asiakasohjelma</translation>
+        <source>Altbet client</source>
+        <translation>ABET Ydin asiakasohjelma</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -919,8 +919,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ydin</translation>
+        <source>Altbet</source>
+        <translation>ABET Ydin</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -938,12 +938,12 @@
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to Beacon.</source>
-        <translation>Tervetuloa BECN Ytimeen.</translation>
+        <source>Welcome to Altbet.</source>
+        <translation>Tervetuloa ABET Ytimeen.</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ydin</translation>
+        <source>Altbet</source>
+        <translation>ABET Ydin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1129,12 +1129,12 @@
         <translation>Ekspertti</translation>
     </message>
     <message>
-        <source>Automatically start BECN after logging in to the system.</source>
-        <translation>Automaattisesti käynnistä BECN kun kirjaudut sisään.</translation>
+        <source>Automatically start ABET after logging in to the system.</source>
+        <translation>Automaattisesti käynnistä ABET kun kirjaudut sisään.</translation>
     </message>
     <message>
-        <source>&amp;Start BECN on system login</source>
-        <translation>&amp;Aloita BECN järjestelmän kirjautumisessa</translation>
+        <source>&amp;Start ABET on system login</source>
+        <translation>&amp;Aloita ABET järjestelmän kirjautumisessa</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -1153,12 +1153,12 @@
         <translation>&amp;Verkko</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting ABET.</source>
         <translation>Käyttöliittymän kielen voi säätää täällä. Tämä asetus tulee voimaan uudelleenkäynnistettyäsi lompakon.</translation>
     </message>
     <message>
-        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
-        <translation>Yhdistä BECN verkkoon SOCKS5 proxyn kautta</translation>
+        <source>Connect to the ABET network through a SOCKS5 proxy.</source>
+        <translation>Yhdistä ABET verkkoon SOCKS5 proxyn kautta</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1391,8 +1391,8 @@
         <translation>Määrä</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ydin</translation>
+        <source>Altbet</source>
+        <translation>ABET Ydin</translation>
     </message>
     </context>
 <context>
@@ -1449,8 +1449,8 @@
         <translation>Lohko ketju</translation>
     </message>
     <message>
-        <source>Open the BECN debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Avaa BECN debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
+        <source>Open the ABET debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Avaa ABET debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -1561,8 +1561,8 @@
         <translation>Ulos:</translation>
     </message>
     <message>
-        <source>Welcome to the BECN RPC console.</source>
-        <translation>Tervetuloa BECN RPC konsoliin.</translation>
+        <source>Welcome to the ABET RPC console.</source>
+        <translation>Tervetuloa ABET RPC konsoliin.</translation>
     </message>
     <message>
         <source>never</source>
@@ -1604,12 +1604,12 @@
         <translation>M&amp;äärä:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Vaihtoehtoinen viesti joka liitetään maksupyyntöön, joka näytetään kun pyyntö avataan. Huomio: Viestiä ei lähetetä maksun mukana BECN verkolle.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Vaihtoehtoinen viesti joka liitetään maksupyyntöön, joka näytetään kun pyyntö avataan. Huomio: Viestiä ei lähetetä maksun mukana ABET verkolle.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Vaihtoehtoinen viesti, joka liitetään maksupyyntöö, joka näytetään kun pyyntö avataan. &lt;br&gt; Huomio: Tätä viestiä ei lähetetä maksun mukana BECN  verkolle.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Vaihtoehtoinen viesti, joka liitetään maksupyyntöö, joka näytetään kun pyyntö avataan. &lt;br&gt; Huomio: Tätä viestiä ei lähetetä maksun mukana ABET  verkolle.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -1809,8 +1809,8 @@
         <translation>Muutos:</translation>
     </message>
     <message>
-        <source>0 BECN</source>
-        <translation>0 BECN</translation>
+        <source>0 ABET</source>
+        <translation>0 ABET</translation>
     </message>
     <message>
         <source>Choose...</source>
@@ -1885,8 +1885,8 @@
         <translation>Kopioi taksa</translation>
     </message>
     <message>
-        <source>Warning: Invalid BECN address</source>
-        <translation>Varoitus: Virheellinen BECN osoite</translation>
+        <source>Warning: Invalid ABET address</source>
+        <translation>Varoitus: Virheellinen ABET osoite</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -1936,8 +1936,8 @@
         <translation>Tämä on normaali maksu.</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to</source>
-        <translation>BECN osoite johon maksu lähetetään</translation>
+        <source>The ABET address to send the payment to</source>
+        <translation>ABET osoite johon maksu lähetetään</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1979,8 +1979,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Beacon is shutting down...</source>
-        <translation>BECN core sammuu...</translation>
+        <source>Altbet is shutting down...</source>
+        <translation>ABET core sammuu...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1998,8 +1998,8 @@
         <translation>Voit allekirjoittaa viestejä osoitteillasi todistaaksesi, että omistat ne. Ole varovainen ettet allekirjoita mitään kummallista, sillä kalasteluyritykset saattavat yrittää huijata sinut luovuttamaan tietoja. Allekirjoita vain täysin yksityiskohtaisia sanomia, jotka hyväksyt.</translation>
     </message>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>BECN osoite, jolla viesti allekirjoitetaan</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>ABET osoite, jolla viesti allekirjoitetaan</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2030,16 +2030,16 @@
         <translation>Kopioi nykyinen allekirjoitus järjestelmän leikepöydälle</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Allekirjoita viesti todistaaksesi, että omistat tämän BECN osoitteen</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Allekirjoita viesti todistaaksesi, että omistat tämän ABET osoitteen</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>BECN osoite, jolla viesti allekirjoitettiin</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>ABET osoite, jolla viesti allekirjoitettiin</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Vahvista että viesti on allekirjoitettu kyseessä olevalla BECN osoitteella.</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Vahvista että viesti on allekirjoitettu kyseessä olevalla ABET osoitteella.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2121,8 +2121,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ydin</translation>
+        <source>Altbet</source>
+        <translation>ABET Ydin</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -2138,7 +2138,7 @@
     </message>
     <message>
         <source>The PIVX Core developers</source>
-        <translation>BECN core kehittäjät</translation>
+        <translation>ABET core kehittäjät</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2486,8 +2486,8 @@
         <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko korruptoitunut</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Beacon</source>
-        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version Beaconsta</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version Altbetsta</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>

@@ -265,11 +265,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop BECN server.");
+            "\nStop ABET server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "BECN server stopping";
+    return "ABET server stopping";
 }
 
 
@@ -362,35 +362,35 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
-        /* Beacon features */
-        {"beacon", "listmasternodes", &listmasternodes, true, true, false},
-        {"beacon", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"beacon", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"beacon", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"beacon", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"beacon", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"beacon", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"beacon", "masternodedebug", &masternodedebug, true, true, false},
-        {"beacon", "startmasternode", &startmasternode, true, true, false},
-        {"beacon", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"beacon", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"beacon", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"beacon", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"beacon", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"beacon", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"beacon", "preparebudget", &preparebudget, true, true, false},
-        {"beacon", "submitbudget", &submitbudget, true, true, false},
-        {"beacon", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"beacon", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"beacon", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"beacon", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"beacon", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"beacon", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"beacon", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"beacon", "checkbudgets", &checkbudgets, true, true, false},
-        {"beacon", "mnsync", &mnsync, true, true, false},
-        {"beacon", "spork", &spork, true, true, false},
-        {"beacon", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* Altbet features */
+        {"altbet", "listmasternodes", &listmasternodes, true, true, false},
+        {"altbet", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"altbet", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"altbet", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"altbet", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"altbet", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"altbet", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"altbet", "masternodedebug", &masternodedebug, true, true, false},
+        {"altbet", "startmasternode", &startmasternode, true, true, false},
+        {"altbet", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"altbet", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"altbet", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"altbet", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"altbet", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"altbet", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"altbet", "preparebudget", &preparebudget, true, true, false},
+        {"altbet", "submitbudget", &submitbudget, true, true, false},
+        {"altbet", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"altbet", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"altbet", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"altbet", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"altbet", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"altbet", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"altbet", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"altbet", "checkbudgets", &checkbudgets, true, true, false},
+        {"altbet", "mnsync", &mnsync, true, true, false},
+        {"altbet", "spork", &spork, true, true, false},
+        {"altbet", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -630,7 +630,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> beacon-cli " + methodname + " " + args + "\n";
+    return "> altbet-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

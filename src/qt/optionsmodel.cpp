@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/beacon-config.h"
+#include "config/altbet-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -62,7 +62,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::BECN);
+        settings.setValue("nDisplayUnit", BitcoinUnits::ABET);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -171,8 +171,8 @@ void OptionsModel::Init()
         SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
     if (settings.contains("nPreferredDenom"))
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-    if (settings.contains("nAnonymizeBeaconAmount"))
-        SoftSetArg("-anonymizepivxamount", settings.value("nAnonymizeBeaconAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeAltbetAmount"))
+        SoftSetArg("-anonymizepivxamount", settings.value("nAnonymizeAltbetAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }

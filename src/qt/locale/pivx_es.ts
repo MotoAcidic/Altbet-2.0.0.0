@@ -62,12 +62,12 @@
         <translation>Direcciones de recepción</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas son sus direcciones BECN para realizar pagos. Verifique siempre la cantidad y la dirección de recepción antes de enviar monedas.</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Estas son sus direcciones ABET para realizar pagos. Verifique siempre la cantidad y la dirección de recepción antes de enviar monedas.</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estas son sus direcciones BECN para recibir pagos. Es recomendable usar una nueva dirección de recepción para cada transacción.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Estas son sus direcciones ABET para recibir pagos. Es recomendable usar una nueva dirección de recepción para cada transacción.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,16 +176,16 @@
         <translation>Confirme el cifrado del monedero</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>BECN se cerrará para finalizar el proceso de cifrado. Recuerde que cifrar su monedero no garantiza que sus BECNs no sean robados mediante malware de su ordenador.</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>ABET se cerrará para finalizar el proceso de cifrado. Recuerde que cifrar su monedero no garantiza que sus ABETs no sean robados mediante malware de su ordenador.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>¿Está seguro de que desea cifrar su monedero?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
-        <translation>Atención: Si cifra su monedero y pierde su contraseña, perderá &lt;b&gt; TODOS SUS BECN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
+        <translation>Atención: Si cifra su monedero y pierde su contraseña, perderá &lt;b&gt; TODOS SUS ABET&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -254,12 +254,12 @@
         <translation>Dirección:</translation>
     </message>
     <message>
-        <source>Enter a BECN Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Introduzca la dirección BECN que querría cifrar usando BIP 38. Introduzca una contraseña en el campo central. Haga clic en cifrar para generar la clave privada cifrada.</translation>
+        <source>Enter a ABET Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Introduzca la dirección ABET que querría cifrar usando BIP 38. Introduzca una contraseña en el campo central. Haga clic en cifrar para generar la clave privada cifrada.</translation>
     </message>
     <message>
-        <source>The BECN address to encrypt</source>
-        <translation>La dirección BECN a cifrar</translation>
+        <source>The ABET address to encrypt</source>
+        <translation>La dirección ABET a cifrar</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Copiar la firma actual al portapapeles del sistema</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this BECN address</source>
-        <translation>Cifrar la llave privada para esta dirección BECN</translation>
+        <source>Encrypt the private key for this ABET address</source>
+        <translation>Cifrar la llave privada para esta dirección ABET</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>Navegar por el historial de transacciones</translation>
     </message>
     <message>
-        <source>Privacy Actions for zBECN</source>
-        <translation>Acciones de privacidad para zBECN</translation>
+        <source>Privacy Actions for zABET</source>
+        <translation>Acciones de privacidad para zABET</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -645,15 +645,15 @@
         <translation>Herramienta de pestañas</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Enviar monedas a una dirección BECN</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Enviar monedas a una dirección ABET</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
         <translation>Solicitud de pago (genera un código QR y URIs)</translation>
     </message>
     <message>
@@ -669,24 +669,24 @@
         <translation>Explorar masternodes</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
-        <translation>&amp;Sobre Beacon</translation>
+        <source>&amp;About Altbet</source>
+        <translation>&amp;Sobre Altbet</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
-        <translation>Mostrar información sobre Beacon</translation>
+        <source>Show information about Altbet</source>
+        <translation>Mostrar información sobre Altbet</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>Modificar las opciones de configuración de BECN</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>Modificar las opciones de configuración de ABET</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
-        <translation>Firmar mensajes con sus direcciones BECN para demostrar que le pertenecen</translation>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
+        <translation>Firmar mensajes con sus direcciones ABET para demostrar que le pertenecen</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Verificar mensajes para asegurar que están firmados con la dirección BECN especificada</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Verificar mensajes para asegurar que están firmados con la dirección ABET especificada</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -717,8 +717,8 @@
         <translation>Abrir fichero de Configuración de masternodes</translation>
     </message>
     <message>
-        <source>Open a BECN: URI or payment request</source>
-        <translation>Abrir un BECN: URI o solicitud de pago</translation>
+        <source>Open a ABET: URI or payment request</source>
+        <translation>Abrir un ABET: URI o solicitud de pago</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -729,12 +729,12 @@
         <translation>Ventana del explorador de bloques</translation>
     </message>
     <message>
-        <source>Show the Beacon help message to get a list with possible BECN command-line options</source>
-        <translation>Mostrar la ayuda de Beacon para obtener una lista de posibles opciones en línea de comandos</translation>
+        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <translation>Mostrar la ayuda de Altbet para obtener una lista de posibles opciones en línea de comandos</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>Cliente Beacon</translation>
+        <source>Altbet client</source>
+        <translation>Cliente Altbet</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -872,8 +872,8 @@ MultiEnvío: %1</translation>
         <translation>EtiquetaDeTexto</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (beacon.conf).</source>
-        <translation>No se muestran todas las transacciones. Para ver todas las transacciones introduzca la línea "txindex=1" en el archivo de configuración (beacon.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
+        <translation>No se muestran todas las transacciones. Para ver todas las transacciones introduzca la línea "txindex=1" en el archivo de configuración (altbet.conf).</translation>
     </message>
 </context>
 <context>
@@ -1165,8 +1165,8 @@ MultiEnvío: %1</translation>
         <translation>Editar dirección de envío</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid BECN address.</source>
-        <translation>La dirección introducida "%1" no es una dirección BECN válida.</translation>
+        <source>The entered address "%1" is not a valid ABET address.</source>
+        <translation>La dirección introducida "%1" no es una dirección ABET válida.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1222,16 +1222,16 @@ MultiEnvío: %1</translation>
         <translation>versión</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Beacon</source>
-        <translation>Acerca de Beacon</translation>
+        <source>About Altbet</source>
+        <translation>Acerca de Altbet</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1277,16 +1277,16 @@ MultiEnvío: %1</translation>
         <translation>Bienvenido/a</translation>
     </message>
     <message>
-        <source>Welcome to Beacon.</source>
-        <translation>Bienvenido/a a Beacon.</translation>
+        <source>Welcome to Altbet.</source>
+        <translation>Bienvenido/a a Altbet.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Beacon will store its data.</source>
-        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará Beacon sus datos.</translation>
+        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará Altbet sus datos.</translation>
     </message>
     <message>
-        <source>Beacon will download and store a copy of the BECN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Beacon descargará y guardará una copia de la cadena de bloques BECN. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. El monedero también se guardará en esta carpeta.</translation>
+        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Altbet descargará y guardará una copia de la cadena de bloques ABET. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. El monedero también se guardará en esta carpeta.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1297,8 +1297,8 @@ MultiEnvío: %1</translation>
         <translation>Usar una carpeta de datos personalizada:</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1439,12 +1439,12 @@ MultiEnvío: %1</translation>
         <translation>Introduzca Dirección a la cual Enviar</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BECN addresses after it matures.
-To Add: enter percentage to give and BECN address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other ABET addresses after it matures.
+To Add: enter percentage to give and ABET address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiEnvío le permite enviar automáticamente hasta el 100% de recompensa de participación o de nodo maestro a una lista de otras direcciones BECN después de su maduración.
-Para Añadir: introduzca porcentaje a enviar y las direcciones BECN a añadir al vector MultiEnvío.
+        <translation>MultiEnvío le permite enviar automáticamente hasta el 100% de recompensa de participación o de nodo maestro a una lista de otras direcciones ABET después de su maduración.
+Para Añadir: introduzca porcentaje a enviar y las direcciones ABET a añadir al vector MultiEnvío.
 Para Eliminar: Introduzca la dirección a eliminar y pulse la tecla delete.
 MultiEnvío no se activará a menos que haga usted click en Activar</translation>
     </message>
@@ -1678,8 +1678,8 @@ Por favor, tenga paciencia después de hacer clic en importar.</translation>
         <translation>Dirección / Cantidad:</translation>
     </message>
     <message>
-        <source>Add destinations to send BECN to</source>
-        <translation>Agregue los destinos para enviar BECN</translation>
+        <source>Add destinations to send ABET to</source>
+        <translation>Agregue los destinos para enviar ABET</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1812,8 +1812,8 @@ Por favor, tenga paciencia después de hacer clic en importar.</translation>
         <translation>Si deselecciona el gasto de cambio no confirmado, las entradas de una transacción&lt;br/&gt;no podrán ser usadas hasta que esa transacción tenga al menos una confirmación.&lt;br/&gt;Esto también afecta a cómo se calcula su balance actual.</translation>
     </message>
     <message>
-        <source>Automatically open the BECN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto del cliente BECN en el enrutador. Ésto sólo funciona si su enrutador soporta UPnP y esta función está activada.</translation>
+        <source>Automatically open the ABET client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente el puerto del cliente ABET en el enrutador. Ésto sólo funciona si su enrutador soporta UPnP y esta función está activada.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1832,12 +1832,12 @@ Por favor, tenga paciencia después de hacer clic en importar.</translation>
         <translation>Experto</translation>
     </message>
     <message>
-        <source>Automatically start BECN after logging in to the system.</source>
-        <translation>Arrancar BECN automáticamente después de identificarse en el sistema.</translation>
+        <source>Automatically start ABET after logging in to the system.</source>
+        <translation>Arrancar ABET automáticamente después de identificarse en el sistema.</translation>
     </message>
     <message>
-        <source>&amp;Start BECN on system login</source>
-        <translation>&amp;Arrancar BECN al inicio del sistema</translation>
+        <source>&amp;Start ABET on system login</source>
+        <translation>&amp;Arrancar ABET al inicio del sistema</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1864,8 +1864,8 @@ Por favor, tenga paciencia después de hacer clic en importar.</translation>
         <translation>&amp;Red</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
-        <translation>El idioma de interface de usuario puede seleccionarse aquí. Este ajuste tomará efecto después de reiniciar BECN.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting ABET.</source>
+        <translation>El idioma de interface de usuario puede seleccionarse aquí. Este ajuste tomará efecto después de reiniciar ABET.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1878,36 +1878,36 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Mapear un puerto utilizando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BECN units to zBECN</source>
-        <translation>Activar el minting automática de unidades BECN a zBECN</translation>
+        <source>Enable automatic minting of ABET units to zABET</source>
+        <translation>Activar el minting automática de unidades ABET a zABET</translation>
     </message>
     <message>
-        <source>Enable zBECN Automint</source>
-        <translation>Activar zBECN Automint</translation>
+        <source>Enable zABET Automint</source>
+        <translation>Activar zABET Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming BECN which get automatically converted to zBECN via Zerocoin Protocol (min: 10%)</source>
-        <translation>Porcentaje de BECN entrantes que serán automáticamente convertidos a zBECN a través del Protocolo Zerocoin (mín: 10%)</translation>
+        <source>Percentage of incoming ABET which get automatically converted to zABET via Zerocoin Protocol (min: 10%)</source>
+        <translation>Porcentaje de ABET entrantes que serán automáticamente convertidos a zABET a través del Protocolo Zerocoin (mín: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zBECN</source>
-        <translation>Porcentaje de zBECN autogenerados</translation>
+        <source>Percentage of autominted zABET</source>
+        <translation>Porcentaje de zABET autogenerados</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BECN for this denomination is available</source>
-        <translation>Esperar con la conversión automática a Zerocoin hasta que hayan suficientes BECN disponibles para este tamaño de billete</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough ABET for this denomination is available</source>
+        <translation>Esperar con la conversión automática a Zerocoin hasta que hayan suficientes ABET disponibles para este tamaño de billete</translation>
     </message>
     <message>
-        <source>Preferred Automint zBECN Denomination</source>
-        <translation>Tamaño de billete zBECN preferido en la creación automática de dinero</translation>
+        <source>Preferred Automint zABET Denomination</source>
+        <translation>Tamaño de billete zABET preferido en la creación automática de dinero</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Parte limite de stake:</translation>
     </message>
     <message>
-        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
-        <translation>Conectar a la red BECN mediante un proxy SOCKS5.</translation>
+        <source>Connect to the ABET network through a SOCKS5 proxy.</source>
+        <translation>Conectar a la red ABET mediante un proxy SOCKS5.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2057,8 +2057,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Balance Total, incluidas todas las monedas no disponibles.</translation>
     </message>
     <message>
-        <source>BECN Balance</source>
-        <translation>Balance BECN</translation>
+        <source>ABET Balance</source>
+        <translation>Balance ABET</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -2081,18 +2081,18 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Saldo bloqueado actual en direcciones solo de lectura</translation>
     </message>
     <message>
-        <source>Your current BECN balance, unconfirmed and immature transactions included</source>
-        <translation>Su balance BECN actual, transacciones no confirmadas e inmaduras incluidas</translation>
+        <source>Your current ABET balance, unconfirmed and immature transactions included</source>
+        <translation>Su balance ABET actual, transacciones no confirmadas e inmaduras incluidas</translation>
     </message>
     <message>
-        <source>zBECN Balance</source>
-        <translation>Balance zBECN</translation>
+        <source>zABET Balance</source>
+        <translation>Balance zABET</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zBECN are spendable.</source>
+These zABET are spendable.</source>
         <translation>Maduración: más de 20 confirmaciones y más de 1 acuñación de la misma denominación después de acuñarse.
-Estas zBECN son utilizables.</translation>
+Estas zABET son utilizables.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2101,8 +2101,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Inmaduro: confirmado, pero menos de 1 acuñación de la misma denominación después de ser acuñado</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red BECN después de establecer una conexión, pero este proceso aún no se ha completado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red ABET después de establecer una conexión, pero este proceso aún no se ha completado.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2145,8 +2145,8 @@ Inmaduro: confirmado, pero menos de 1 acuñación de la misma denominación desp
         <translation>Disponible:</translation>
     </message>
     <message>
-        <source>Locked BECN or Masternode collaterals. These are excluded from zBECN minting.</source>
-        <translation>BECN bloqueado o Masternode colaterales. Estos están excluidos de minting zBECN.</translation>
+        <source>Locked ABET or Masternode collaterals. These are excluded from zABET minting.</source>
+        <translation>ABET bloqueado o Masternode colaterales. Estos están excluidos de minting zABET.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2157,8 +2157,8 @@ Inmaduro: confirmado, pero menos de 1 acuñación de la misma denominación desp
         <translation>Sin confirmar:</translation>
     </message>
     <message>
-        <source>Your current zBECN balance, unconfirmed and immature zBECN included.</source>
-        <translation>Su balance zBECN actual, zBECN inmaduro e inmaduro incluido.</translation>
+        <source>Your current zABET balance, unconfirmed and immature zABET included.</source>
+        <translation>Su balance zABET actual, zABET inmaduro e inmaduro incluido.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2169,10 +2169,10 @@ Inmaduro: confirmado, pero menos de 1 acuñación de la misma denominación desp
         <translation>desincronizado</translation>
     </message>
     <message>
-        <source>Current percentage of zBECN.
+        <source>Current percentage of zABET.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Porcentaje actual de zBECN.
+        <translation>Porcentaje actual de zABET.
 Si AutoMint está habilitado, este porcentaje se establecerá alrededor del porcentaje de AutoMint configurado (predeterminado = 10%).
 </translation>
     </message>
@@ -2181,14 +2181,14 @@ Si AutoMint está habilitado, este porcentaje se establecerá alrededor del porc
         <translation>AutoMint está actualmente habilitado y configurado en</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in beacon.conf.</source>
-        <translation>Para desactivar AutoMint agrega 'enablezeromint=0' en beacon.conf.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
+        <translation>Para desactivar AutoMint agrega 'enablezeromint=0' en altbet.conf.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
         <translation>AutoMint está actualmente desactivado.
-Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en beacon.conf</translation>
+Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en altbet.conf</translation>
     </message>
 </context>
 <context>
@@ -2214,12 +2214,12 @@ Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en be
         <translation>Dirección de pago inválida %1</translation>
     </message>
     <message>
-        <source>Cannot start becn: click-to-pay handler</source>
-        <translation>No se puede iniciar becn: módulo click-to-pay</translation>
+        <source>Cannot start abet: click-to-pay handler</source>
+        <translation>No se puede iniciar abet: módulo click-to-pay</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid BECN address or malformed URI parameters.</source>
-        <translation>¡El identificador de la dirección no puede ser analizado! Esto puede ser causado por una dirección BECN inválida o parámetros del identificador malformados.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid ABET address or malformed URI parameters.</source>
+        <translation>¡El identificador de la dirección no puede ser analizado! Esto puede ser causado por una dirección ABET inválida o parámetros del identificador malformados.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2304,8 +2304,8 @@ Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en be
         <translation>Acciones Zerocoin:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red BECN después de establecer una conexión, pero este proceso aún no se ha completado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red ABET después de establecer una conexión, pero este proceso aún no se ha completado.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2316,8 +2316,8 @@ Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en be
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2344,12 +2344,12 @@ Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en be
         <translation>PRIVACIDAD</translation>
     </message>
     <message>
-        <source>zBECN Control</source>
-        <translation>Control zBECN</translation>
+        <source>zABET Control</source>
+        <translation>Control zABET</translation>
     </message>
     <message>
-        <source>zBECN Selected:</source>
-        <translation>zBECN Seleccionados:</translation>
+        <source>zABET Selected:</source>
+        <translation>zABET Seleccionados:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2364,32 +2364,32 @@ Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en be
         <translation>Gastar Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zBECN for spending</source>
-        <translation>zBECN disponible (maduro y gastable) para gastar</translation>
+        <source>Available (mature and spendable) zABET for spending</source>
+        <translation>zABET disponible (maduro y gastable) para gastar</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Balance disponible:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zBECN for spending
+        <source>Available (mature and spendable) zABET for spending
 
-zBECN are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>zBECN disponible (maduro y gastable) para gastar
+zABET are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>zABET disponible (maduro y gastable) para gastar
 
-zBECN son maduros cuando tienen más de 20 confirmaciones Y más de 2 mints de la misma denominación después que ellos fueron minted</translation>
+zABET son maduros cuando tienen más de 20 confirmaciones Y más de 2 mints de la misma denominación después que ellos fueron minted</translation>
     </message>
     <message>
-        <source>0 zBECN</source>
-        <translation>0 zBECN</translation>
+        <source>0 zABET</source>
+        <translation>0 zABET</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
         <translation>Pagar &amp;A:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>La dirección BECN a la que enviar el pago. Si se deja en blanco, crea un pago a usted mismo.</translation>
+        <source>The ABET address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>La dirección ABET a la que enviar el pago. Si se deja en blanco, crea un pago a usted mismo.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2440,8 +2440,8 @@ zBECN son maduros cuando tienen más de 20 confirmaciones Y más de 2 mints de l
         <translation>Estadísticas Zerocoin:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zBECN</source>
-        <translation>Balance total incluyendo zBECN no confirmado e inmaduro</translation>
+        <source>Total Balance including unconfirmed and immature zABET</source>
+        <translation>Balance total incluyendo zABET no confirmado e inmaduro</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2462,24 +2462,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Inmaduro: confirmado, pero menos de 1 acuñación de la misma denominación después de ser acuñado</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zBECN minting.
+        <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to beacon.conf
-- disable: add 'enablezeromint=0' to beacon.conf
+- enable: add 'enablezeromint=1' to altbet.conf
+- disable: add 'enablezeromint=0' to altbet.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBECN
+- menu Settings-&gt;Options-&gt;Percentage of autominted zABET
 
 </source>
-        <translation>Muestra el estado actual de zBECN minting automática.
+        <translation>Muestra el estado actual de zABET minting automática.
 
 Para cambiar el estado (reinicio requerido):
-- activar: añade 'enablezeromint = 1' en beacon.conf
-- desctivar: añade 'enablezeromint = 0' en beacon.conf
+- activar: añade 'enablezeromint = 1' en altbet.conf
+- desctivar: añade 'enablezeromint = 0' en altbet.conf
 
 Para cambiar el porcentaje (no se requiere reiniciar):
-- menú Configuración-&gt;Opciones-&gt;Porcentaje de zBECN automint
+- menú Configuración-&gt;Opciones-&gt;Porcentaje de zABET automint
 </translation>
     </message>
     <message>
@@ -2653,12 +2653,12 @@ Please be patient...</source>
 Por favor espere...</translation>
     </message>
     <message>
-        <source>zBECN Spend #: </source>
-        <translation>Gastar zBECN #: </translation>
+        <source>zABET Spend #: </source>
+        <translation>Gastar zABET #: </translation>
     </message>
     <message>
-        <source>zBECN Mint</source>
-        <translation>Acuñar zBECN</translation>
+        <source>zABET Mint</source>
+        <translation>Acuñar zABET</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2673,12 +2673,12 @@ Por favor espere...</translation>
         <translation>Porcentaje objetivo configurado:</translation>
     </message>
     <message>
-        <source>zBECN is currently disabled due to maintenance.</source>
-        <translation>zBECN actualmente está desactivado debido al mantenimiento.</translation>
+        <source>zABET is currently disabled due to maintenance.</source>
+        <translation>zABET actualmente está desactivado debido al mantenimiento.</translation>
     </message>
     <message>
-        <source>zBECN is currently undergoing maintenance.</source>
-        <translation>zBECN se encuentra actualmente en mantenimiento.</translation>
+        <source>zABET is currently undergoing maintenance.</source>
+        <translation>zABET se encuentra actualmente en mantenimiento.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2767,8 +2767,8 @@ Por favor espere...</translation>
         <translation>No se especificó drección 'Pagar A', por lo que asumimos un pago local</translation>
     </message>
     <message>
-        <source>Invalid Beacon Address</source>
-        <translation>Dirección BECN Inválida</translation>
+        <source>Invalid Altbet Address</source>
+        <translation>Dirección ABET Inválida</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2845,8 +2845,8 @@ Por favor espere...</translation>
         <translation>Cantidad</translation>
     </message>
     <message>
-        <source>Enter a BECN address (e.g. %1)</source>
-        <translation>Introduzca una dirección BECN (p.e. %1)</translation>
+        <source>Enter a ABET address (e.g. %1)</source>
+        <translation>Introduzca una dirección ABET (p.e. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2889,8 +2889,8 @@ Por favor espere...</translation>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
@@ -2987,8 +2987,8 @@ Por favor espere...</translation>
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Open the BECN debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Abrir el fichero de depuración BECN en el directorio actual de datos. Esto puede llevar unos segundos para ficheros de depuración grandes.</translation>
+        <source>Open the ABET debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Abrir el fichero de depuración ABET en el directorio actual de datos. Esto puede llevar unos segundos para ficheros de depuración grandes.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3123,8 +3123,8 @@ Por favor espere...</translation>
         <translation>Ruta personalizada de la copia de seguridad:</translation>
     </message>
     <message>
-        <source>Custom zBECN Backup Path:</source>
-        <translation>Ruta personalizada de la copia de seguridad zBECN:</translation>
+        <source>Custom zABET Backup Path:</source>
+        <translation>Ruta personalizada de la copia de seguridad zABET:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3203,8 +3203,8 @@ Por favor espere...</translation>
         <translation>Fuera:</translation>
     </message>
     <message>
-        <source>Welcome to the BECN RPC console.</source>
-        <translation>Bienvenido a la consola RPC de BECN.</translation>
+        <source>Welcome to the ABET RPC console.</source>
+        <translation>Bienvenido a la consola RPC de ABET.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3330,16 +3330,16 @@ Por favor espere...</translation>
         <translation>Cantidad:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Un mensaje opcional a adjuntar a la solicitud de pago, que será mostrado cuando se abra la solicitud. Nota: El mensaje no se envía junto al pago por la red BECN.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Un mensaje opcional a adjuntar a la solicitud de pago, que será mostrado cuando se abra la solicitud. Nota: El mensaje no se envía junto al pago por la red ABET.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
         <translation>RECIBIR</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Un mensaje opcional a adjuntar a la solicitud de pago, que será mostrado cuando se abra la solicitud. &lt;br&gt;Nota: El mensaje no se envía junto al pago por la red BECN.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Un mensaje opcional a adjuntar a la solicitud de pago, que será mostrado cuando se abra la solicitud. &lt;br&gt;Nota: El mensaje no se envía junto al pago por la red ABET.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3571,8 +3571,8 @@ Por favor espere...</translation>
         <translation>Tamaño de UTXO:</translation>
     </message>
     <message>
-        <source>0 BECN</source>
-        <translation>0 BECN</translation>
+        <source>0 ABET</source>
+        <translation>0 ABET</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3627,16 +3627,16 @@ Por favor espere...</translation>
         <translation>Monedas seleccionadas automáticamente</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uBECNs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBECNs in fee,&lt;br /&gt;while "at least" pays 1000 uBECNs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Si la comisión personalizada se fija en 1000 uBECNs y la transacción necesita sólo 250 bytes, entonces la opción "por kilobyte" sólo pagará 250 uBECNs de comisión,&lt;br/&gt;mientras "por lo menos" pagará 1000 uBECNs. Para transacciones que midan más de un kilobyte ambas pagan por kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uABETs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uABETs in fee,&lt;br /&gt;while "at least" pays 1000 uABETs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Si la comisión personalizada se fija en 1000 uABETs y la transacción necesita sólo 250 bytes, entonces la opción "por kilobyte" sólo pagará 250 uABETs de comisión,&lt;br/&gt;mientras "por lo menos" pagará 1000 uABETs. Para transacciones que midan más de un kilobyte ambas pagan por kilobyte.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uBECNs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBECNs in fee,&lt;br /&gt;while "total at least" pays 1000 uBECNs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Si la comisión personalizada se fija en 1000 uBECNs y la transacción necesita sólo 250 bytes, entonces la opción "por kilobyte" sólo pagará 250 uBECNs de comisión,&lt;br/&gt;mientras "por lo menos" pagará 1000 uBECNs. Para transacciones que midan más de un kilobyte ambas pagan por kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uABETs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uABETs in fee,&lt;br /&gt;while "total at least" pays 1000 uABETs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Si la comisión personalizada se fija en 1000 uABETs y la transacción necesita sólo 250 bytes, entonces la opción "por kilobyte" sólo pagará 250 uABETs de comisión,&lt;br/&gt;mientras "por lo menos" pagará 1000 uABETs. Para transacciones que midan más de un kilobyte ambas pagan por kilobyte.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for BECN transactions than the network can process.</source>
-        <translation>Pagar sólo la comisión mínima está bien mientras haya menos volumen de transacciones que espacio en los bloques.&lt;br/&gt;Pero tenga en cuenta que esto podría acabar en una transacción que nunca se confirme si hay más demanda de transacciones BECN de las que la red puede procesar.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for ABET transactions than the network can process.</source>
+        <translation>Pagar sólo la comisión mínima está bien mientras haya menos volumen de transacciones que espacio en los bloques.&lt;br/&gt;Pero tenga en cuenta que esto podría acabar en una transacción que nunca se confirme si hay más demanda de transacciones ABET de las que la red puede procesar.</translation>
     </message>
     <message>
         <source>normal</source>
@@ -3683,8 +3683,8 @@ Por favor espere...</translation>
         <translation>Añadir Destinatario</translation>
     </message>
     <message>
-        <source>Anonymized BECN</source>
-        <translation>BECN anonimizados</translation>
+        <source>Anonymized ABET</source>
+        <translation>ABET anonimizados</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -3731,8 +3731,8 @@ Por favor espere...</translation>
         <translation>La herramienta de división de bloques no funciona con varias direcciones. Inténtelo otra vez.</translation>
     </message>
     <message>
-        <source>Warning: Invalid BECN address</source>
-        <translation>Advertencia: Direcciones BECN inválidas</translation>
+        <source>Warning: Invalid ABET address</source>
+        <translation>Advertencia: Direcciones ABET inválidas</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -3830,8 +3830,8 @@ Por favor espere...</translation>
         <translation>Pagar &amp;A:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to</source>
-        <translation>La dirección BECN a la cual enviar el pago</translation>
+        <source>The ABET address to send the payment to</source>
+        <translation>La dirección ABET a la cual enviar el pago</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3870,8 +3870,8 @@ Por favor espere...</translation>
         <translation>Mensaje:</translation>
     </message>
     <message>
-        <source>A message that was attached to the BECN: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the BECN network.</source>
-        <translation>Un mensaje adjunto al BECN: En recurso web especificado será guardado junto a la transacción para su referencia. Nota: Este mensaje no se enviará por la red BECN.</translation>
+        <source>A message that was attached to the ABET: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the ABET network.</source>
+        <translation>Un mensaje adjunto al ABET: En recurso web especificado será guardado junto a la transacción para su referencia. Nota: Este mensaje no se enviará por la red ABET.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -3897,8 +3897,8 @@ Por favor espere...</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Beacon is shutting down...</source>
-        <translation>El programa BECN se está cerrando...</translation>
+        <source>Altbet is shutting down...</source>
+        <translation>El programa ABET se está cerrando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3920,8 +3920,8 @@ Por favor espere...</translation>
         <translation>Usted puede firmar mensajes con su dirección para probar que son auténticos. Tenga cuidado con firmar algo corto o vago como "hola", pues los ataques de phising pueden engañarle para que firme su identidad para ellos. Sólo firme textos detallados con los que esté de acuerdo.</translation>
     </message>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>La dirección BECN con la que desee firmar el mensaje</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>La dirección ABET con la que desee firmar el mensaje</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3952,16 +3952,16 @@ Por favor espere...</translation>
         <translation>Copiar la firma actual al portapapeles del sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Firme el mensaje para demostrar que eres el propietario de esta dirección BECN</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Firme el mensaje para demostrar que eres el propietario de esta dirección ABET</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>La dirección BECN con la que se firmó el mensaje</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>La dirección ABET con la que se firmó el mensaje</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Verifica el mensaje para asegurar que fue firmado con la dirección BECN especificada</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Verifica el mensaje para asegurar que fue firmado con la dirección ABET especificada</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -4047,8 +4047,8 @@ Por favor espere...</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4064,7 +4064,7 @@ Por favor espere...</translation>
     </message>
     <message>
         <source>The PIVX Core developers</source>
-        <translation>Los desarrolladores de Beacon</translation>
+        <translation>Los desarrolladores de Altbet</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4327,12 +4327,12 @@ Por favor espere...</translation>
         <translation>Recibido por medio de Ofuscación</translation>
     </message>
     <message>
-        <source>BECN Stake</source>
-        <translation>Stake BECN</translation>
+        <source>ABET Stake</source>
+        <translation>Stake ABET</translation>
     </message>
     <message>
-        <source>zBECN Stake</source>
-        <translation>Stake zBECN</translation>
+        <source>zABET Stake</source>
+        <translation>Stake zABET</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4351,32 +4351,32 @@ Por favor espere...</translation>
         <translation>Ofuscación Crea Billetes</translation>
     </message>
     <message>
-        <source>Converted BECN to zBECN</source>
-        <translation>BECN convertidos a zBECN</translation>
+        <source>Converted ABET to zABET</source>
+        <translation>ABET convertidos a zABET</translation>
     </message>
     <message>
-        <source>Spent zBECN</source>
-        <translation>Gastar zBECN</translation>
+        <source>Spent zABET</source>
+        <translation>Gastar zABET</translation>
     </message>
     <message>
-        <source>Received BECN from zBECN</source>
-        <translation>BECN recibidos desde zBECN</translation>
+        <source>Received ABET from zABET</source>
+        <translation>ABET recibidos desde zABET</translation>
     </message>
     <message>
-        <source>Minted Change as zBECN from zBECN Spend</source>
-        <translation>Cambio de acuñación en zBECN al Gastar zBECN</translation>
+        <source>Minted Change as zABET from zABET Spend</source>
+        <translation>Cambio de acuñación en zABET al Gastar zABET</translation>
     </message>
     <message>
-        <source>Converted zBECN to BECN</source>
-        <translation>zBECN convertidos a BECN</translation>
+        <source>Converted zABET to ABET</source>
+        <translation>zABET convertidos a ABET</translation>
     </message>
     <message>
-        <source>Anonymous (zBECN Transaction)</source>
-        <translation>Anónimo (Transacción zBECN)</translation>
+        <source>Anonymous (zABET Transaction)</source>
+        <translation>Anónimo (Transacción zABET)</translation>
     </message>
     <message>
-        <source>Anonymous (zBECN Stake)</source>
-        <translation>Anónimo (Stake zBECN)</translation>
+        <source>Anonymous (zABET Stake)</source>
+        <translation>Anónimo (Stake zABET)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4586,12 +4586,12 @@ Por favor espere...</translation>
         <translation>Exportación Correcta</translation>
     </message>
     <message>
-        <source>Received BECN from zBECN</source>
-        <translation>BECN recibidos desde zBECN</translation>
+        <source>Received ABET from zABET</source>
+        <translation>ABET recibidos desde zABET</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zBECN</source>
-        <translation>Gastar Zerocoin, Cambio en zBECN</translation>
+        <source>Zerocoin Spend, Change in zABET</source>
+        <translation>Gastar Zerocoin, Cambio en zABET</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4627,8 +4627,8 @@ Por favor espere...</translation>
         <translation>Enviar Monedas</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 BECN.</source>
-        <translation>SwiftTX no soporta el envío de importes tan altos todavía. Las transacciones están actualmente limitadas a %1 BECN.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 ABET.</source>
+        <translation>SwiftTX no soporta el envío de importes tan altos todavía. Las transacciones están actualmente limitadas a %1 ABET.</translation>
     </message>
 </context>
 <context>
@@ -4661,8 +4661,8 @@ Por favor espere...</translation>
 <context>
     <name>ZPivControlDialog</name>
     <message>
-        <source>Select zBECN to Spend</source>
-        <translation>Selecciona zBECN para Gastar</translation>
+        <source>Select zABET to Spend</source>
+        <translation>Selecciona zABET para Gastar</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4673,8 +4673,8 @@ Por favor espere...</translation>
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4708,8 +4708,8 @@ Por favor espere...</translation>
         <translation>El punto de chequeo del acumulador que hemos calculado no coincide con lo guardado en el índice de bloques</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Beacon is probably already running.</source>
-        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Beacon esta probablemente en ejecución.</translation>
+        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
+        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Altbet esta probablemente en ejecución.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4736,16 +4736,16 @@ Por favor espere...</translation>
         <translation>Distribuido bajo licencia MIT software license, ver el archivo adjunto COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;</translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zBECN minting (0-1, default: %u)</source>
-        <translation>Habilite copias de seguridad automáticas del monedero que se activan después de cada acuñación zBECN (0-1, predeterminado: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zABET minting (0-1, default: %u)</source>
+        <translation>Habilite copias de seguridad automáticas del monedero que se activan después de cada acuñación zABET (0-1, predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for BECN inputs (0-1, default: %u)</source>
-        <translation>Habilitar o deshabilitar la funcionalidad de staking para las entradas BECN (0-1, predeterminado: %u)</translation>
+        <source>Enable or disable staking functionality for ABET inputs (0-1, default: %u)</source>
+        <translation>Habilitar o deshabilitar la funcionalidad de staking para las entradas ABET (0-1, predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zBECN inputs (0-1, default: %u)</source>
-        <translation>Habilitar o deshabilitar la funcionalidad de staking para las entradas zBECN (0-1, predeterminado: %u)</translation>
+        <source>Enable or disable staking functionality for zABET inputs (0-1, default: %u)</source>
+        <translation>Habilitar o deshabilitar la funcionalidad de staking para las entradas zABET (0-1, predeterminado: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -4780,12 +4780,12 @@ Por favor espere...</translation>
         <translation>Ejecutar comando cuando el mejor bloque cambie (%s en cmd es reemplazado por el block hash)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Comisiones (en BECN/Kb) menores a esta son consideradas gratuitas para la propagación de la transacción (default: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Comisiones (en ABET/Kb) menores a esta son consideradas gratuitas para la propagación de la transacción (default: %s)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Comisiones (en BECN/Kb) menores a esta son consideradas gratuitas para la creación de la transacción (default: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Comisiones (en ABET/Kb) menores a esta son consideradas gratuitas para la creación de la transacción (default: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -4880,20 +4880,20 @@ Por favor espere...</translation>
         <translation>Este producto incluye software desarrollado por el Proyecto OpenSSL para uso en OpenSSL Toolkit &lt;https://www.openssl.org/&gt; y software de cifrado escrito por Eric Young y software de UPnP escrito por Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Beacon is probably already running.</source>
-        <translation>Imposible conectar a %s en esta computadora. Es probable que Beacon ya este corriendo.</translation>
+        <source>Unable to bind to %s on this computer. Altbet is probably already running.</source>
+        <translation>Imposible conectar a %s en esta computadora. Es probable que Altbet ya este corriendo.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
         <translation>Imposible localizar suficientes fondos denominados de Ofuscación para esta transacción.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 1000 BECN.</source>
-        <translation>Imposible localizar suficientes fondos no-denominados de Ofuscación para esta transacción que no es igual a 1000 BECN.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 1000 ABET.</source>
+        <translation>Imposible localizar suficientes fondos no-denominados de Ofuscación para esta transacción que no es igual a 1000 ABET.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 BECN.</source>
-        <translation>Imposible localizar fondos suficientes para esta transacción que no es igual a 1000 BECN.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 ABET.</source>
+        <translation>Imposible localizar fondos suficientes para esta transacción que no es igual a 1000 ABET.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4908,8 +4908,8 @@ Por favor espere...</translation>
         <translation>Advertencia: -paytxfee esta muy alta! Esta es la comisión de transacción que pagarás si envías una transacción.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Beacon will not work properly.</source>
-        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Beacon no funcionará adecuadamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Altbet will not work properly.</source>
+        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Altbet no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5120,8 +5120,8 @@ Por favor espere...</translation>
         <translation>Error al cargar wallet.dat: Monedero dañado</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Beacon</source>
-        <translation>Error al cargar wallet.dat: El monedero requiere una nueva versión del Beacon</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <translation>Error al cargar wallet.dat: El monedero requiere una nueva versión del Altbet</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5176,8 +5176,8 @@ Por favor espere...</translation>
         <translation>Falló al leer el bloque</translation>
     </message>
     <message>
-        <source>Fee (in BECN/kB) to add to transactions you send (default: %s)</source>
-        <translation>Comisión (en BECN/kB) para agregar a la transacción que envías (predeterminado: %s)</translation>
+        <source>Fee (in ABET/kB) to add to transactions you send (default: %s)</source>
+        <translation>Comisión (en ABET/kB) para agregar a la transacción que envías (predeterminado: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -5216,8 +5216,8 @@ Por favor espere...</translation>
         <translation>Información</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Beacon is shutting down.</source>
-        <translation>La prueba de salud de inicialización ha fallado. Beacon se cerrará.</translation>
+        <source>Initialization sanity check failed. Altbet is shutting down.</source>
+        <translation>La prueba de salud de inicialización ha fallado. Altbet se cerrará.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5280,8 +5280,8 @@ Por favor espere...</translation>
         <translation>Porcentaje de Zerocoin creadas automáticamente (10-100, por defecto: %u)</translation>
     </message>
     <message>
-        <source>Reindex the BECN and zBECN money supply statistics</source>
-        <translation>Reindexar as estatísticas de fornecimento de dinheiro BECN e zBECN</translation>
+        <source>Reindex the ABET and zABET money supply statistics</source>
+        <translation>Reindexar as estatísticas de fornecimento de dinheiro ABET e zABET</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5320,8 +5320,8 @@ Por favor espere...</translation>
 </translation>
     </message>
     <message>
-        <source>Disable all BECN specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Desabilitar toda la funcionalidad especifica BECN (Masternodes, Obfuscation, SwiftTX, Budgeting) (0-1, predeterminado: %u)</translation>
+        <source>Disable all ABET specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Desabilitar toda la funcionalidad especifica ABET (Masternodes, Obfuscation, SwiftTX, Budgeting) (0-1, predeterminado: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5356,8 +5356,8 @@ Por favor espere...</translation>
         <translation>Denominación preferida para acuñado automatico de Zerocoin (1/5/10/50/100/500/1000/5000), 0 para ninguna preferencia. predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zBECN backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Especifique la ruta de copia de seguridad personalizada para agregar una copia de cualquier copia de seguridad zBECN automática. Si se establece como directorio, cada copia de seguridad genera un archivo con marcas de tiempo. Si se establece como archivo, se reescribirá en ese archivo cada copia de seguridad. Si también se establece backuppath, se realizarán 4 copias de seguridad</translation>
+        <source>Specify custom backup path to add a copy of any automatic zABET backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Especifique la ruta de copia de seguridad personalizada para agregar una copia de cualquier copia de seguridad zABET automática. Si se establece como directorio, cada copia de seguridad genera un archivo con marcas de tiempo. Si se establece como archivo, se reescribirá en ese archivo cada copia de seguridad. Si también se establece backuppath, se realizarán 4 copias de seguridad</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -5768,8 +5768,8 @@ Por favor espere...</translation>
         <translation>Sincronizando con la red... </translation>
     </message>
     <message>
-        <source>Syncing zBECN wallet...</source>
-        <translation>Sincronizando el monedero zBECN...</translation>
+        <source>Syncing zABET wallet...</source>
+        <translation>Sincronizando el monedero zABET...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -5876,8 +5876,8 @@ Por favor espere...</translation>
         <translation>Nombre de usuario para conexiones JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zBECN</source>
-        <translation>El valor está por debajo de la denominación más pequeña disponible (= 1) de zBECN</translation>
+        <source>Value is below the smallest available denomination (= 1) of zABET</source>
+        <translation>El valor está por debajo de la denominación más pequeña disponible (= 1) de zABET</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -5892,8 +5892,8 @@ Por favor espere...</translation>
         <translation>El monedero %s esta ubicada fuera del directorio de datos %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Beacon to complete</source>
-        <translation>El Monedero necesita ser reescrito: reinicie Beacon para completar</translation>
+        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
+        <translation>El Monedero necesita ser reescrito: reinicie Altbet para completar</translation>
     </message>
     <message>
         <source>Wallet options:</source>

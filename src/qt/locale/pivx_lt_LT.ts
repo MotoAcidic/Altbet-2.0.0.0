@@ -62,12 +62,12 @@
         <translation>Gavimo adresai</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tai jūsų BECN adresai mokėjimų išsiuntimams. Visada patikrinkite sumą ir gavėjo adresą prieš siųsdami monetas.</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Tai jūsų ABET adresai mokėjimų išsiuntimams. Visada patikrinkite sumą ir gavėjo adresą prieš siųsdami monetas.</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Tai jūsų BECN adresai mokėjimų gavimams. Rekomenduojama naudoti naują adresą kiekvienam pavedimui.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Tai jūsų ABET adresai mokėjimų gavimams. Rekomenduojama naudoti naują adresą kiekvienam pavedimui.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,16 +176,16 @@
         <translation>Patvirtinkite piniginės užšifravimą.</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>Dabar BECN išsijungs, kad būtų užbaigtas šifravimo procesas. Atminkite, kad jūsų piniginės užšifravimas negali visiškai apsaugoti jūsų BECN nuo kenkėjiškų programų, užkrėsto jūsų kompiuterio.</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>Dabar ABET išsijungs, kad būtų užbaigtas šifravimo procesas. Atminkite, kad jūsų piniginės užšifravimas negali visiškai apsaugoti jūsų ABET nuo kenkėjiškų programų, užkrėsto jūsų kompiuterio.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Ar tikrai norite užšifruoti savo piniginę?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
-        <translation>Įspėjimas: jei užšifruosite savo piniginę ir prarasite slaptafrazę, jūs &lt;b&gt;PRARASITE VISUS SAVO BECN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
+        <translation>Įspėjimas: jei užšifruosite savo piniginę ir prarasite slaptafrazę, jūs &lt;b&gt;PRARASITE VISUS SAVO ABET&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -254,12 +254,12 @@
         <translation>Adresas:</translation>
     </message>
     <message>
-        <source>Enter a BECN Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Įveskite Beacon adresą, kurį norėtumėte užšifruoti naudojant BIP 38. Vidiniame laukelyje įrašykite slaptą frazę. Paspauskite užšifruoti, jei norite gauti užšifruotą privatųjį raktą.</translation>
+        <source>Enter a ABET Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Įveskite Altbet adresą, kurį norėtumėte užšifruoti naudojant BIP 38. Vidiniame laukelyje įrašykite slaptą frazę. Paspauskite užšifruoti, jei norite gauti užšifruotą privatųjį raktą.</translation>
     </message>
     <message>
-        <source>The BECN address to encrypt</source>
-        <translation>BECN adresas, kurį norite užšifruoti</translation>
+        <source>The ABET address to encrypt</source>
+        <translation>ABET adresas, kurį norite užšifruoti</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Kopijuoti dabartinį parašą</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this BECN address</source>
-        <translation>Užšifruoti šio BECN adreso privatų raktą</translation>
+        <source>Encrypt the private key for this ABET address</source>
+        <translation>Užšifruoti šio ABET adreso privatų raktą</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>Naršyti pavedimų istoriją</translation>
     </message>
     <message>
-        <source>Privacy Actions for zBECN</source>
-        <translation>zBECN Saugumo Veiksmai </translation>
+        <source>Privacy Actions for zABET</source>
+        <translation>zABET Saugumo Veiksmai </translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -641,15 +641,15 @@
         <translation>Skirtukų įrankių juosta</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Siųsti monetas į BECN adresą</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Siųsti monetas į ABET adresą</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
         <translation>Prašyti mokėjimų (sugeneruoja QR kodus ir pivx URI)</translation>
     </message>
     <message>
@@ -665,24 +665,24 @@
         <translation>Naršyti masternod'us</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
-        <translation>&amp;Apie Beacon</translation>
+        <source>&amp;About Altbet</source>
+        <translation>&amp;Apie Altbet</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
-        <translation>Rodyti informaciją apie Beacon</translation>
+        <source>Show information about Altbet</source>
+        <translation>Rodyti informaciją apie Altbet</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>Keisti BECN konfigūravimo parinktis</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>Keisti ABET konfigūravimo parinktis</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
-        <translation>Pasirašykite pranešimus naudodami savo BECN adresus, kad įrodytumėte, kad juos turite</translation>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
+        <translation>Pasirašykite pranešimus naudodami savo ABET adresus, kad įrodytumėte, kad juos turite</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Patvirtinkite pranešimus, kad jie būtų pasirašyti su nurodytais BECN adresais</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Patvirtinkite pranešimus, kad jie būtų pasirašyti su nurodytais ABET adresais</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -713,8 +713,8 @@
         <translation>Atidaryti Masternod'o konfigūracijos failą</translation>
     </message>
     <message>
-        <source>Open a BECN: URI or payment request</source>
-        <translation>Atidaryti BECN: URI arba mokėjimo prašymą</translation>
+        <source>Open a ABET: URI or payment request</source>
+        <translation>Atidaryti ABET: URI arba mokėjimo prašymą</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -725,12 +725,12 @@
         <translation>Blokų naršyklės langas</translation>
     </message>
     <message>
-        <source>Show the Beacon help message to get a list with possible BECN command-line options</source>
-        <translation>Rodyti Beacon žinyną, kad gautumėte sąrašą su galimomis BECN komandinės eilutės parinktimis</translation>
+        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <translation>Rodyti Altbet žinyną, kad gautumėte sąrašą su galimomis ABET komandinės eilutės parinktimis</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>Beacon piniginė</translation>
+        <source>Altbet client</source>
+        <translation>Altbet piniginė</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -868,8 +868,8 @@ MultiSend: %1</translation>
         <translation>Teksto etiketė</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (beacon.conf).</source>
-        <translation>Ne visi pavedimai bus rodomi. Norėdami peržiūrėti visus pavedimus, reikia nustatyti txindex = 1 konfigūracijos faile (beacon.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
+        <translation>Ne visi pavedimai bus rodomi. Norėdami peržiūrėti visus pavedimus, reikia nustatyti txindex = 1 konfigūracijos faile (altbet.conf).</translation>
     </message>
 </context>
 <context>
@@ -1153,8 +1153,8 @@ MultiSend: %1</translation>
         <translation>Keisti siuntimo adresą</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid BECN address.</source>
-        <translation>Įvestas adresas "%1" nėra galiojantis BECN adresas.</translation>
+        <source>The entered address "%1" is not a valid ABET address.</source>
+        <translation>Įvestas adresas "%1" nėra galiojantis ABET adresas.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1210,16 +1210,16 @@ MultiSend: %1</translation>
         <translation>versija</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bitai)</translation>
     </message>
     <message>
-        <source>About Beacon</source>
-        <translation>Apie Beacon</translation>
+        <source>About Altbet</source>
+        <translation>Apie Altbet</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1265,16 +1265,16 @@ MultiSend: %1</translation>
         <translation>Sveiki</translation>
     </message>
     <message>
-        <source>Welcome to Beacon.</source>
-        <translation>Sveiki atvykę į Beacon</translation>
+        <source>Welcome to Altbet.</source>
+        <translation>Sveiki atvykę į Altbet</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Beacon will store its data.</source>
-        <translation>Kadangi programa paleista pirmą kartą, galite pasirinkti kur Beacon saugos savo duomenis.</translation>
+        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <translation>Kadangi programa paleista pirmą kartą, galite pasirinkti kur Altbet saugos savo duomenis.</translation>
     </message>
     <message>
-        <source>Beacon will download and store a copy of the BECN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Beacon atsisiųs ir saugos BECN blockchain'o kopiją. Šiame kataloge bus saugomas ne mažesnis kaip %1GB duomenų kiekis, kuris laikui bėgant augs. Piniginė taip pat bus saugoma šiame kataloge.</translation>
+        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Altbet atsisiųs ir saugos ABET blockchain'o kopiją. Šiame kataloge bus saugomas ne mažesnis kaip %1GB duomenų kiekis, kuris laikui bėgant augs. Piniginė taip pat bus saugoma šiame kataloge.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1285,8 +1285,8 @@ MultiSend: %1</translation>
         <translation>Naudoti pasirinktą duomenų katalogą:</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1427,12 +1427,12 @@ MultiSend: %1</translation>
         <translation>Įveskite adresą kuriam norite siųsti</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BECN addresses after it matures.
-To Add: enter percentage to give and BECN address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other ABET addresses after it matures.
+To Add: enter percentage to give and ABET address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiSend leidžia automatiškai išsiųsti iki 100% jūsų stake'inimo ar masternod'ų atlygio į kitus BECN adresus.
-Norėdami pridėti: įveskite pateiktą procentą ir BECN adresą, kurį norite pridėti prie MultiSend sąrašo.
+        <translation>MultiSend leidžia automatiškai išsiųsti iki 100% jūsų stake'inimo ar masternod'ų atlygio į kitus ABET adresus.
+Norėdami pridėti: įveskite pateiktą procentą ir ABET adresą, kurį norite pridėti prie MultiSend sąrašo.
 Norėdami ištrinti: įveskite adresą, kurį norite ištrinti, ir paspauskite ištrinti
 MultiSend nebus aktyvuotas, nebent paspausite "Įjungti"</translation>
     </message>
@@ -1604,8 +1604,8 @@ MultiSend nebus aktyvuotas, nebent paspausite "Įjungti"</translation>
         <translation>Adresas / Suma:</translation>
     </message>
     <message>
-        <source>Add destinations to send BECN to</source>
-        <translation>Pridėkite vietas, kurioms norite siųsti BECN</translation>
+        <source>Add destinations to send ABET to</source>
+        <translation>Pridėkite vietas, kurioms norite siųsti ABET</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1730,12 +1730,12 @@ MultiSend nebus aktyvuotas, nebent paspausite "Įjungti"</translation>
         <translation>Ekspertas</translation>
     </message>
     <message>
-        <source>Automatically start BECN after logging in to the system.</source>
-        <translation>Automatiškai paleisti BECN prisijungus prie sistemos.</translation>
+        <source>Automatically start ABET after logging in to the system.</source>
+        <translation>Automatiškai paleisti ABET prisijungus prie sistemos.</translation>
     </message>
     <message>
-        <source>&amp;Start BECN on system login</source>
-        <translation>&amp;Paleisti BECN sistemai įsijungiant</translation>
+        <source>&amp;Start ABET on system login</source>
+        <translation>&amp;Paleisti ABET sistemai įsijungiant</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1762,8 +1762,8 @@ MultiSend nebus aktyvuotas, nebent paspausite "Įjungti"</translation>
         <translation>&amp;Tinklas</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
-        <translation>Čia galite nustatyti vartotojo sąsajos kalbą. Šis nustatymas įsigalios iš naujo paleidus "BECN".</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting ABET.</source>
+        <translation>Čia galite nustatyti vartotojo sąsajos kalbą. Šis nustatymas įsigalios iš naujo paleidus "ABET".</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1776,28 +1776,28 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Įrašyti prievadą naudojant &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BECN units to zBECN</source>
-        <translation>Įgalinti automatinį konvertavimą iš BECN į zBECN</translation>
+        <source>Enable automatic minting of ABET units to zABET</source>
+        <translation>Įgalinti automatinį konvertavimą iš ABET į zABET</translation>
     </message>
     <message>
-        <source>Enable zBECN Automint</source>
-        <translation>Įgalinti zBECN Automatinį nukaldinima</translation>
+        <source>Enable zABET Automint</source>
+        <translation>Įgalinti zABET Automatinį nukaldinima</translation>
     </message>
     <message>
-        <source>Percentage of incoming BECN which get automatically converted to zBECN via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procentas gauto BECN, kuris automatiškai bus konvertuotas į zBECN naudojant Zerocoin Protokolą (min: 10%)</translation>
+        <source>Percentage of incoming ABET which get automatically converted to zABET via Zerocoin Protocol (min: 10%)</source>
+        <translation>Procentas gauto ABET, kuris automatiškai bus konvertuotas į zABET naudojant Zerocoin Protokolą (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zBECN</source>
-        <translation>Automatiškai sukurtų zBECN procentas</translation>
+        <source>Percentage of autominted zABET</source>
+        <translation>Automatiškai sukurtų zABET procentas</translation>
     </message>
     <message>
-        <source>Preferred Automint zBECN Denomination</source>
-        <translation>Pageidautinas zBECN Automatinio Nukaldinimo Nominalas</translation>
+        <source>Preferred Automint zABET Denomination</source>
+        <translation>Pageidautinas zABET Automatinio Nukaldinimo Nominalas</translation>
     </message>
     <message>
-        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
-        <translation>Jungtis prie BECN tinklo naudojant SOCKS5 tarpinį serverį.</translation>
+        <source>Connect to the ABET network through a SOCKS5 proxy.</source>
+        <translation>Jungtis prie ABET tinklo naudojant SOCKS5 tarpinį serverį.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1915,8 +1915,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Bendras balansas, įskaitant visas nepasiekiamas monetas.</translation>
     </message>
     <message>
-        <source>BECN Balance</source>
-        <translation>BECN Balansas</translation>
+        <source>ABET Balance</source>
+        <translation>ABET Balansas</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -1939,18 +1939,18 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Dabartinis bendras užrakintas balansas tik žiūrėjimo adresuose</translation>
     </message>
     <message>
-        <source>Your current BECN balance, unconfirmed and immature transactions included</source>
-        <translation>Jūsų dabartinis BECN balansas, įskaitant nepatvirtintus ir nesubrendusius sandorius</translation>
+        <source>Your current ABET balance, unconfirmed and immature transactions included</source>
+        <translation>Jūsų dabartinis ABET balansas, įskaitant nepatvirtintus ir nesubrendusius sandorius</translation>
     </message>
     <message>
-        <source>zBECN Balance</source>
-        <translation>zBECN Balansas</translation>
+        <source>zABET Balance</source>
+        <translation>zABET Balansas</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zBECN are spendable.</source>
+These zABET are spendable.</source>
         <translation>Subrendę: daugiau nei 20 patvirtinimų ir daugiau nei 1 konvertacija to pačio nominalo, kai jis jau buvo konvertuotas.
-Šiuos zBECN galima išleisti.</translation>
+Šiuos zABET galima išleisti.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -1959,8 +1959,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo po to, kai buvo konvertuotas.</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su BECN tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su ABET tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2003,8 +2003,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Prienamas išleidimui:</translation>
     </message>
     <message>
-        <source>Locked BECN or Masternode collaterals. These are excluded from zBECN minting.</source>
-        <translation>Užrakinti BECN arba Masternode užstatai. Jie yra neįtraukti į zBECN kalimą.</translation>
+        <source>Locked ABET or Masternode collaterals. These are excluded from zABET minting.</source>
+        <translation>Užrakinti ABET arba Masternode užstatai. Jie yra neįtraukti į zABET kalimą.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2027,8 +2027,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>AutoMint šiuo metu įgalintas ir nustatytas</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in beacon.conf.</source>
-        <translation>Norėdami išjungti Automatinį Kalimą pridėkite 'enablezeromint=0' beacon.conf faile.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
+        <translation>Norėdami išjungti Automatinį Kalimą pridėkite 'enablezeromint=0' altbet.conf faile.</translation>
     </message>
     </context>
 <context>
@@ -2042,8 +2042,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Netinkamas mokėjimo adresas %1</translation>
     </message>
     <message>
-        <source>Cannot start becn: click-to-pay handler</source>
-        <translation>Nepavyksta paleisti becn: apdorojimo "spustelėjimo ir apmokėjimo" funkcijos klaida</translation>
+        <source>Cannot start abet: click-to-pay handler</source>
+        <translation>Nepavyksta paleisti abet: apdorojimo "spustelėjimo ir apmokėjimo" funkcijos klaida</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2096,8 +2096,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Zerocoin Veiksmai:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su BECN tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su ABET tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2108,8 +2108,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -2128,12 +2128,12 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>PRIVATUMAS</translation>
     </message>
     <message>
-        <source>zBECN Control</source>
+        <source>zABET Control</source>
         <translation>zPiv Kontrolė</translation>
     </message>
     <message>
-        <source>zBECN Selected:</source>
-        <translation>Pasirinkta zBECN:</translation>
+        <source>zABET Selected:</source>
+        <translation>Pasirinkta zABET:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2152,8 +2152,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Prieinamas Balansas: </translation>
     </message>
     <message>
-        <source>0 zBECN</source>
-        <translation>0 zBECN</translation>
+        <source>0 zABET</source>
+        <translation>0 zABET</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2192,8 +2192,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Zerocoin Statistika:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zBECN</source>
-        <translation>Bendras balansas, įskaitant nepatvirtintą ir nesubrendusį zBECN</translation>
+        <source>Total Balance including unconfirmed and immature zABET</source>
+        <translation>Bendras balansas, įskaitant nepatvirtintą ir nesubrendusį zABET</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2362,12 +2362,12 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Konvertavimo Statusas: Geras</translation>
     </message>
     <message>
-        <source>zBECN Spend #: </source>
-        <translation>zBECN Išleidimas #:</translation>
+        <source>zABET Spend #: </source>
+        <translation>zABET Išleidimas #:</translation>
     </message>
     <message>
-        <source>zBECN Mint</source>
-        <translation>zBECN Konvertavimas</translation>
+        <source>zABET Mint</source>
+        <translation>zABET Konvertavimas</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2446,8 +2446,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Nomin. &lt;b&gt;5000&lt;/b&gt;:</translation>
     </message>
     <message>
-        <source>Invalid Beacon Address</source>
-        <translation>Netinkamas Beacon Adresas</translation>
+        <source>Invalid Altbet Address</source>
+        <translation>Netinkamas Altbet Adresas</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2488,8 +2488,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Suma</translation>
     </message>
     <message>
-        <source>Enter a BECN address (e.g. %1)</source>
-        <translation>Įveskite BECN adresą (pvz. %1)</translation>
+        <source>Enter a ABET address (e.g. %1)</source>
+        <translation>Įveskite ABET adresą (pvz. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2524,8 +2524,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>N/A</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
@@ -2670,8 +2670,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Iš:</translation>
     </message>
     <message>
-        <source>Welcome to the BECN RPC console.</source>
-        <translation>Sveiki atvykę į BECN RPC konsolę.</translation>
+        <source>Welcome to the ABET RPC console.</source>
+        <translation>Sveiki atvykę į ABET RPC konsolę.</translation>
     </message>
     <message>
         <source>never</source>
@@ -2850,8 +2850,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Pasirinktinio pakeitimo adresas</translation>
     </message>
     <message>
-        <source>0 BECN</source>
-        <translation>0 BECN</translation>
+        <source>0 ABET</source>
+        <translation>0 ABET</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3007,8 +3007,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>BECN adresas, kuriuo pasirašyti žinute</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>ABET adresas, kuriuo pasirašyti žinute</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3031,16 +3031,16 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Kopijuoti dabartinį parašą</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Pažymėkite žinutę, kad įrodytumėte, jog jūs šio BECN adreso savininkas</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Pažymėkite žinutę, kad įrodytumėte, jog jūs šio ABET adreso savininkas</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>BECN adresas, kurio buvo pasirašyta žinutė</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>ABET adresas, kurio buvo pasirašyta žinutė</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Patikrinkite pranešimą, kad jis būtų pasirašytas su nurodytu BECN adresu</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Patikrinkite pranešimą, kad jis būtų pasirašytas su nurodytu ABET adresu</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -3078,8 +3078,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
@@ -3304,8 +3304,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     </context>
 <context>
@@ -3335,8 +3335,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Klaida kraunant wallet.dat: Piniginė yra sugadinta</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Beacon</source>
-        <translation>Klaida kraunant wallet.dat: Piniginė reikalauja naujesnės Beacon versijos</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <translation>Klaida kraunant wallet.dat: Piniginė reikalauja naujesnės Altbet versijos</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -3511,8 +3511,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Piniginė %s yra ne duomenų kataloge %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Beacon to complete</source>
-        <translation>Piniginę reikia perrašyti: paleiskite Beacon iš naujo</translation>
+        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
+        <translation>Piniginę reikia perrašyti: paleiskite Altbet iš naujo</translation>
     </message>
     <message>
         <source>Wallet options:</source>

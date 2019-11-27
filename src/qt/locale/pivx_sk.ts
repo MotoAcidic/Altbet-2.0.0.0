@@ -62,12 +62,12 @@
         <translation>Prijímacia adresa</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto sú vaše BECN adresy na odosielanie platieb. Pred odoslaním vždy skontrolujte výšku a adresu prijemcu.</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto sú vaše ABET adresy na odosielanie platieb. Pred odoslaním vždy skontrolujte výšku a adresu prijemcu.</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto sú vaše BECN adresy na prijímanie platieb. Pre každú transakciu sa odporúča použiť novú prijímaciu adresu.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto sú vaše ABET adresy na prijímanie platieb. Pre každú transakciu sa odporúča použiť novú prijímaciu adresu.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,16 +172,16 @@
         <translation>Potvrďte šifrovanie peňaženky</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>BECN sa teraz ukončí, aby dokončil proces šifrovania. Nezabudnite, že šifrovanie peňaženky nemôže úplne ochrániť vaše BECN pred odcudzením škodlivým softvérom, ktorý infikuje váš počítač.</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>ABET sa teraz ukončí, aby dokončil proces šifrovania. Nezabudnite, že šifrovanie peňaženky nemôže úplne ochrániť vaše ABET pred odcudzením škodlivým softvérom, ktorý infikuje váš počítač.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Naozaj chcete zašifrovať svoju peňaženku?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
-        <translation>Upozornenie: Ak zašifrujete svoju peňaženku a stratíte svoju prístupovú frázu, &lt;b&gt; PRÍDETE O VŠETKY BECN &lt;/ b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
+        <translation>Upozornenie: Ak zašifrujete svoju peňaženku a stratíte svoju prístupovú frázu, &lt;b&gt; PRÍDETE O VŠETKY ABET &lt;/ b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -378,7 +378,7 @@
     </message>
     <message>
         <source>Show general overview of wallet</source>
-        <translation>Zobraziť všeobecný prehľad peňaženky</translation>
+        <translation>Zobraziť všeoabetý prehľad peňaženky</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -569,16 +569,16 @@
         <translation>Panel nástrojov Záložky</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Odoslať mince na adresu BECN</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Odoslať mince na adresu ABET</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
-        <translation>Vyžiadať platby (generuje QR kódy a becn: identifikátory URI)</translation>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
+        <translation>Vyžiadať platby (generuje QR kódy a abet: identifikátory URI)</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -589,24 +589,24 @@
         <translation>Prezrieť masternody</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
-        <translation>O Beacon</translation>
+        <source>&amp;About Altbet</source>
+        <translation>O Altbet</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
-        <translation>Zobraziť informácie o Beacon</translation>
+        <source>Show information about Altbet</source>
+        <translation>Zobraziť informácie o Altbet</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>Zmeňte možnosti konfigurácie pre BECN</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>Zmeňte možnosti konfigurácie pre ABET</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
-        <translation>Podpíšte správy pomocou adresy BECN, aby ste preukázali, že ich vlastníte</translation>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
+        <translation>Podpíšte správy pomocou adresy ABET, aby ste preukázali, že ich vlastníte</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Overte správy, aby sa zabezpečilo, že boli podpísané zadanými BECN adresami</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Overte správy, aby sa zabezpečilo, že boli podpísané zadanými ABET adresami</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -637,8 +637,8 @@
         <translation>Otvoriť konfiguračný súbor masternodu</translation>
     </message>
     <message>
-        <source>Open a BECN: URI or payment request</source>
-        <translation>Otvorte BECN: URI alebo žiadosť o platbu</translation>
+        <source>Open a ABET: URI or payment request</source>
+        <translation>Otvorte ABET: URI alebo žiadosť o platbu</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -649,12 +649,12 @@
         <translation>Okno blockchain prehliadača</translation>
     </message>
     <message>
-        <source>Show the Beacon help message to get a list with possible BECN command-line options</source>
-        <translation>Zobraziť pomocnú správu programu Beacon a získajte zoznam možností príkazového riadka BECN</translation>
+        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <translation>Zobraziť pomocnú správu programu Altbet a získajte zoznam možností príkazového riadka ABET</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>Beacon klient</translation>
+        <source>Altbet client</source>
+        <translation>Altbet klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -776,8 +776,8 @@ MultiSend: %1</translation>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (beacon.conf).</source>
-        <translation>Nie všetky transakcie sa zobrazia. Ak chcete zobraziť všetky transakcie, musíte v konfiguračnom súbore (beacon.conf) nastaviť txindex = 1.</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
+        <translation>Nie všetky transakcie sa zobrazia. Ak chcete zobraziť všetky transakcie, musíte v konfiguračnom súbore (altbet.conf) nastaviť txindex = 1.</translation>
     </message>
 </context>
 <context>
@@ -870,15 +870,15 @@ MultiSend: %1</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Error</source>
@@ -982,8 +982,8 @@ MultiSend: %1</translation>
         <translation>Suma</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
@@ -1117,8 +1117,8 @@ MultiSend: %1</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>Adresa BECN, ktorou chcete správu podpísať</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>Adresa ABET, ktorou chcete správu podpísať</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1141,16 +1141,16 @@ MultiSend: %1</translation>
         <translation>Skopírujte aktuálny podpis do schránky</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Podpíšte správu, aby ste preukázali, že ste vlastníkom tejto BECN adresy</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Podpíšte správu, aby ste preukázali, že ste vlastníkom tejto ABET adresy</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>BECN adresa, ktorou bola správa podpísaná</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>ABET adresa, ktorou bola správa podpísaná</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Skontrolujte správu, aby ste sa uistili, že bola podpísaná zadanou BECN adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Skontrolujte správu, aby ste sa uistili, že bola podpísaná zadanou ABET adresou</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -1188,8 +1188,8 @@ MultiSend: %1</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BECN_QT_PROPOSALFRAME_H
-#define BECN_QT_PROPOSALFRAME_H
+#ifndef ABET_QT_PROPOSALFRAME_H
+#define ABET_QT_PROPOSALFRAME_H
 
 #include <QFrame>
 #include <QLabel>
@@ -51,4 +51,4 @@ private Q_SLOTS:
     void proposalLink_clicked(const QString &link);
 };
 
-#endif //BECN_QT_PROPOSALFRAME_H
+#endif //ABET_QT_PROPOSALFRAME_H

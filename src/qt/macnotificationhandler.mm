@@ -14,7 +14,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.pivx.Beacon-Qt";
+        return @"io.pivx.Altbet-Qt";
     } else {
         return [self __bundleIdentifier];
     }

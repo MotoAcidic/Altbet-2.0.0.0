@@ -6,7 +6,7 @@
 #include "random.h"
 #include "scheduler.h"
 #if defined(HAVE_CONFIG_H)
-#include "config/beacon-config.h"
+#include "config/altbet-config.h"
 #else
 #define HAVE_WORKING_BOOST_SLEEP_FOR
 #endif

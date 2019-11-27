@@ -62,12 +62,12 @@
         <translation>Endereços de recebimento</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Esses são seus endereços BECN para envio de pagamentos. Sempre verifique a quantia e os endereços de recebimento antes de enviar moedas.</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Esses são seus endereços ABET para envio de pagamentos. Sempre verifique a quantia e os endereços de recebimento antes de enviar moedas.</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Esses são seus endereços BECN para recebimento de pagamentos. É recomendado usar um novo endereço para cada transação.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Esses são seus endereços ABET para recebimento de pagamentos. É recomendado usar um novo endereço para cada transação.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,16 +176,16 @@
         <translation>Confirmar criptografia de carteira</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>BECN vai fechar agora para finalizar o processo de criptografia. Lembre-se que encriptar sua carteira não pode proteger totalmente suas BECNs de serem roubadas por malwares infectando seu computador.</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>ABET vai fechar agora para finalizar o processo de criptografia. Lembre-se que encriptar sua carteira não pode proteger totalmente suas ABETs de serem roubadas por malwares infectando seu computador.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Você tem certeza que deseja criptografar sua carteira?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
-        <translation>Aviso: se você criptografar sua carteira e perder sua senha você &lt;b&gt;PERDERÁ TODAS AS SUAS BECN&lt;b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
+        <translation>Aviso: se você criptografar sua carteira e perder sua senha você &lt;b&gt;PERDERÁ TODAS AS SUAS ABET&lt;b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -254,7 +254,7 @@
         <translation>Endereço:</translation>
     </message>
     <message>
-        <source>Enter a BECN Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <source>Enter a ABET Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
         <translation>Insira um endereço que você deseja criptografar usando a BIP 38. Insira a palavra-chave na caixa do meio. Pressione criptografar para computar a chave privada criptografada.</translation>
     </message>
     <message>
@@ -409,8 +409,8 @@
         <translation>Olhar histórico de transação</translation>
     </message>
     <message>
-        <source>Privacy Actions for zBECN</source>
-        <translation>Ações privadas para zBECN</translation>
+        <source>Privacy Actions for zABET</source>
+        <translation>Ações privadas para zABET</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -613,16 +613,16 @@
         <translation>Ferramentas de abas</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Enviar moedas para um endereço BECN</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Enviar moedas para um endereço ABET</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
-        <translation>Requisitar pagamentos (gera códigos QR e becn: URIs)</translation>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
+        <translation>Requisitar pagamentos (gera códigos QR e abet: URIs)</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
@@ -637,24 +637,24 @@
         <translation>Procurar masternodes</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
-        <translation>&amp;Sobre o Beacon</translation>
+        <source>&amp;About Altbet</source>
+        <translation>&amp;Sobre o Altbet</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
-        <translation>Mostra informação sobre o Beacon</translation>
+        <source>Show information about Altbet</source>
+        <translation>Mostra informação sobre o Altbet</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>Modificar opções de configuração para BECN</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>Modificar opções de configuração para ABET</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
-        <translation>Assine mensagens com seus endereços BECN para provar que você os detém</translation>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
+        <translation>Assine mensagens com seus endereços ABET para provar que você os detém</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Verifique as mensagens para ter certeza que estão assinadas com os endereços BECN especificados</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Verifique as mensagens para ter certeza que estão assinadas com os endereços ABET especificados</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -685,8 +685,8 @@
         <translation>Abrir arquivo de configuração de Masternode</translation>
     </message>
     <message>
-        <source>Open a BECN: URI or payment request</source>
-        <translation>Abrir um BECN: URI ou requisição de pagamento</translation>
+        <source>Open a ABET: URI or payment request</source>
+        <translation>Abrir um ABET: URI ou requisição de pagamento</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -697,12 +697,12 @@
         <translation>Janela de exploração de blocos</translation>
     </message>
     <message>
-        <source>Show the Beacon help message to get a list with possible BECN command-line options</source>
-        <translation>Mostra a ajuda da Beacon para receber uma lista com possíveis opções de linha de comando BECN</translation>
+        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <translation>Mostra a ajuda da Altbet para receber uma lista com possíveis opções de linha de comando ABET</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>Cliente Core BECN</translation>
+        <source>Altbet client</source>
+        <translation>Cliente Core ABET</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -837,8 +837,8 @@ MultiSend: %1</translation>
         <translation>Rótulo</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (beacon.conf).</source>
-        <translation>Nem todas as transações serão exibidas. Para visualizar todas as transações você precisa definir txindex=1 no arquivo de configuração (beacon.conf). </translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
+        <translation>Nem todas as transações serão exibidas. Para visualizar todas as transações você precisa definir txindex=1 no arquivo de configuração (altbet.conf). </translation>
     </message>
 </context>
 <context>
@@ -1118,8 +1118,8 @@ MultiSend: %1</translation>
         <translation>Editar endereço remetente</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid BECN address.</source>
-        <translation>O endereço que você selecionou, "%1" , não é um endereço válido de BECN</translation>
+        <source>The entered address "%1" is not a valid ABET address.</source>
+        <translation>O endereço que você selecionou, "%1" , não é um endereço válido de ABET</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1175,16 +1175,16 @@ MultiSend: %1</translation>
         <translation>versão</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Beacon</source>
-        <translation>Sobre o Beacon</translation>
+        <source>About Altbet</source>
+        <translation>Sobre o Altbet</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1226,16 +1226,16 @@ MultiSend: %1</translation>
         <translation>Bem-vindo</translation>
     </message>
     <message>
-        <source>Welcome to Beacon.</source>
-        <translation>Bem-vindo ao Beacon.</translation>
+        <source>Welcome to Altbet.</source>
+        <translation>Bem-vindo ao Altbet.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Beacon will store its data.</source>
-        <translation>Como essa é a primeira vez que o programa é utilizado, você pode escolher onde Beacon vai armazenar os seus dados.</translation>
+        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <translation>Como essa é a primeira vez que o programa é utilizado, você pode escolher onde Altbet vai armazenar os seus dados.</translation>
     </message>
     <message>
-        <source>Beacon will download and store a copy of the BECN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Beacon vai baixar e armazenar uma cópia da blockchain BECN. Pelo menos %1GB de informação será armazenado neste diretório e irá aumentar com o tempo. A carteira também será armazenada neste diretório.</translation>
+        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Altbet vai baixar e armazenar uma cópia da blockchain ABET. Pelo menos %1GB de informação será armazenado neste diretório e irá aumentar com o tempo. A carteira também será armazenada neste diretório.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1246,8 +1246,8 @@ MultiSend: %1</translation>
         <translation>Usar um diretório personalizado de dados:</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1577,8 +1577,8 @@ MultiSend: %1</translation>
         <translation>C&amp;arteira</translation>
     </message>
     <message>
-        <source>Automatically open the BECN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automaticamente a porta do cliente BECN no roteador. Isto somente funciona quando seu roteador suporta UPnP e este esteja habilitado.</translation>
+        <source>Automatically open the ABET client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automaticamente a porta do cliente ABET no roteador. Isto somente funciona quando seu roteador suporta UPnP e este esteja habilitado.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1597,12 +1597,12 @@ MultiSend: %1</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start BECN after logging in to the system.</source>
-        <translation>Iniciar automaticamente BECN depois de logar no sistema.</translation>
+        <source>Automatically start ABET after logging in to the system.</source>
+        <translation>Iniciar automaticamente ABET depois de logar no sistema.</translation>
     </message>
     <message>
-        <source>&amp;Start BECN on system login</source>
-        <translation>&amp;Iniciar BECN ao logar no sistema</translation>
+        <source>&amp;Start ABET on system login</source>
+        <translation>&amp;Iniciar ABET ao logar no sistema</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -1617,8 +1617,8 @@ MultiSend: %1</translation>
         <translation>&amp;Rede</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
-        <translation>A linguagem da interface pode ser definida aqui. Está configuração terá efeito após reinício do BECN.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting ABET.</source>
+        <translation>A linguagem da interface pode ser definida aqui. Está configuração terá efeito após reinício do ABET.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1627,8 +1627,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
 https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
     <message>
-        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
-        <translation>Conectar à rede BECN através de um proxy SOCKS5</translation>
+        <source>Connect to the ABET network through a SOCKS5 proxy.</source>
+        <translation>Conectar à rede ABET através de um proxy SOCKS5</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1758,8 +1758,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Imaturo:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede BECN após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede ABET após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
@@ -1855,16 +1855,16 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Ações Zerocoin:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede BECN após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede ABET após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
     </message>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -1883,8 +1883,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Pagar &amp;Para:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>O endereço BECN para enviar o pagamento. Cria um pagamento local para si mesmo quando vazio.</translation>
+        <source>The ABET address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>O endereço ABET para enviar o pagamento. Cria um pagamento local para si mesmo quando vazio.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1923,8 +1923,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Estatísticas zerocoin:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zBECN</source>
-        <translation>Balanço Total incluindo não confirmadas e imaturas zBECN</translation>
+        <source>Total Balance including unconfirmed and immature zABET</source>
+        <translation>Balanço Total incluindo não confirmadas e imaturas zABET</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2045,8 +2045,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Quantidade</translation>
     </message>
     <message>
-        <source>Enter a BECN address (e.g. %1)</source>
-        <translation>Insira um endereço BECN (e.g. %1)</translation>
+        <source>Enter a ABET address (e.g. %1)</source>
+        <translation>Insira um endereço ABET (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2085,8 +2085,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
@@ -2307,8 +2307,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>saída:</translation>
     </message>
     <message>
-        <source>Welcome to the BECN RPC console.</source>
-        <translation>Bem-vindo ao console da BECN RPC</translation>
+        <source>Welcome to the ABET RPC console.</source>
+        <translation>Bem-vindo ao console da ABET RPC</translation>
     </message>
     <message>
         <source>Do you want to continue?.&lt;br /&gt;</source>
@@ -2567,8 +2567,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Tamanho UTXO:</translation>
     </message>
     <message>
-        <source>0 BECN</source>
-        <translation>0 BECN</translation>
+        <source>0 ABET</source>
+        <translation>0 ABET</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -2611,12 +2611,12 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Tempo de confirmação:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uBECNs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBECNs in fee,&lt;br /&gt;while "at least" pays 1000 uBECNs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Se a taxa padrão estiver definida para 1000 uBECNs e a transação for somente de 250 bytes, então "por kilobyte" pagará somente 250 uBECNs em taxa,&lt;br /&gt; pagará pelo menos 1000 uBECNs. Para transações maiores que um kilobyte ambas pagam por kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uABETs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uABETs in fee,&lt;br /&gt;while "at least" pays 1000 uABETs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Se a taxa padrão estiver definida para 1000 uABETs e a transação for somente de 250 bytes, então "por kilobyte" pagará somente 250 uABETs em taxa,&lt;br /&gt; pagará pelo menos 1000 uABETs. Para transações maiores que um kilobyte ambas pagam por kilobyte.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for BECN transactions than the network can process.</source>
-        <translation>Pagar a taxa mínima é aceitável desde que existe menos volume de transações que espaço nos blocos. &lt;br/&gt; Mas fique atento que isso pode acabar em uma transação que nunca será confirmada caso haja mais demanda por transações de BECN do que a rede pode processar.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for ABET transactions than the network can process.</source>
+        <translation>Pagar a taxa mínima é aceitável desde que existe menos volume de transações que espaço nos blocos. &lt;br/&gt; Mas fique atento que isso pode acabar em uma transação que nunca será confirmada caso haja mais demanda por transações de ABET do que a rede pode processar.</translation>
     </message>
     <message>
         <source>normal</source>
@@ -2663,8 +2663,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Adicionar &amp;Recipiente</translation>
     </message>
     <message>
-        <source>Anonymized BECN</source>
-        <translation>BECN anonimizadas</translation>
+        <source>Anonymized ABET</source>
+        <translation>ABET anonimizadas</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -2699,8 +2699,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Copiar troco</translation>
     </message>
     <message>
-        <source>Warning: Invalid BECN address</source>
-        <translation>Aviso: endereço BECN inválido</translation>
+        <source>Warning: Invalid ABET address</source>
+        <translation>Aviso: endereço ABET inválido</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -2786,8 +2786,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Pagar &amp;Para:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to</source>
-        <translation>O endereço BECN para enviar o pagamento</translation>
+        <source>The ABET address to send the payment to</source>
+        <translation>O endereço ABET para enviar o pagamento</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2849,8 +2849,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Beacon is shutting down...</source>
-        <translation>Beacon está desligando...</translation>
+        <source>Altbet is shutting down...</source>
+        <translation>Altbet está desligando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2868,8 +2868,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>&amp;Assinar mensagem</translation>
     </message>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>O endereço BECN para assinar a mensagem</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>O endereço ABET para assinar a mensagem</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2900,16 +2900,16 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Copia a assinatura atual do sistema de transferência</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Assine a mensagem para provar que você possui este endereço BECN</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Assine a mensagem para provar que você possui este endereço ABET</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>O endereço BECN que assinou a mensagem</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>O endereço ABET que assinou a mensagem</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Verifique a mensagem para ter certeza que foi assinada com o endereço BECN especificado.</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Verifique a mensagem para ter certeza que foi assinada com o endereço ABET especificado.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2991,8 +2991,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -3008,7 +3008,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
     <message>
         <source>The PIVX Core developers</source>
-        <translation>Os desenvolvedores do Beacon</translation>
+        <translation>Os desenvolvedores do Altbet</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -3525,8 +3525,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -3552,12 +3552,12 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Executar o comando quando uma transação da carteira mudar (%s no cmd será substituído pela TxID)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Taxas (em BECN/Kb) menores que isso serão consideradas taxa zero para propagação (padrão: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Taxas (em ABET/Kb) menores que isso serão consideradas taxa zero para propagação (padrão: %s)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Taxas (em BECN/Kb) menores que isso serão consideradas taxa zero para a criação da transação (padrão: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Taxas (em ABET/Kb) menores que isso serão consideradas taxa zero para a criação da transação (padrão: %s)</translation>
     </message>
     <message>
         <source>In this mode -genproclimit controls how many blocks are generated immediately.</source>
@@ -3576,8 +3576,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Define o tamanho máximo de transações de alta prioridade/taxa baixa em bytes (padrão: %d)</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 BECN.</source>
-        <translation>Incapaz de localizar fundos para esta transação que não são iguais a 1000 BECN.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 ABET.</source>
+        <translation>Incapaz de localizar fundos para esta transação que não são iguais a 1000 ABET.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -3592,8 +3592,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Aviso: -paytxfee está definido como muito alto! Está e a taxa de transação que você irá pagar se enviar uma transação.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Beacon will not work properly.</source>
-        <translation>Aviso: Favor verificar se o horário e data de seu computador estão corretos! Se o seu relógio estiver errado o Core BECN não vai funcionar corretamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Altbet will not work properly.</source>
+        <translation>Aviso: Favor verificar se o horário e data de seu computador estão corretos! Se o seu relógio estiver errado o Core ABET não vai funcionar corretamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -3661,7 +3661,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
     <message>
         <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
-        <translation>Todos os direitos reservados (C) 2015-%i aos Desenvolvedores do Beacon</translation>
+        <translation>Todos os direitos reservados (C) 2015-%i aos Desenvolvedores do Altbet</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -3712,8 +3712,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Erro no carregamento da wallet.dat: Carteira corrompida</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Beacon</source>
-        <translation>Erro ao carregar wallet.dat: A Carteira requer uma nova versão da Beacon</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <translation>Erro ao carregar wallet.dat: A Carteira requer uma nova versão da Altbet</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -3752,8 +3752,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Falhou em ler o bloco</translation>
     </message>
     <message>
-        <source>Fee (in BECN/kB) to add to transactions you send (default: %s)</source>
-        <translation>Taxa (em BECN/kB) a adicionar em transações que você enviar (padrão: %s)</translation>
+        <source>Fee (in ABET/kB) to add to transactions you send (default: %s)</source>
+        <translation>Taxa (em ABET/kB) a adicionar em transações que você enviar (padrão: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -4066,8 +4066,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Verificando carteira...</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Beacon to complete</source>
-        <translation>A carteira precisa ser reescrita: reinicia o Beacon para completar</translation>
+        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
+        <translation>A carteira precisa ser reescrita: reinicia o Altbet para completar</translation>
     </message>
     <message>
         <source>Wallet options:</source>

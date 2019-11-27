@@ -347,7 +347,7 @@ void AddressTableModel::updateEntry(const QString& address,
     const QString& purpose,
     int status)
 {
-    // Update address book model from Beacon core
+    // Update address book model from Altbet core
     priv->updateEntry(address, label, isMine, purpose, status);
 }
 

@@ -62,12 +62,12 @@
         <translation>Adrese za primanje</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To su vaše BECN adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To su vaše ABET adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To su vaše BECN adrese za primanje uplata. Preporuča se upotreba nove adrese primanja za svaku transakciju.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To su vaše ABET adrese za primanje uplata. Preporuča se upotreba nove adrese primanja za svaku transakciju.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,16 +172,16 @@
         <translation>Potvrdite šifriranje novčanika</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>BECN se sada zatvara kako bi dovršio proces šifriranja. Ne zaboravite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše BECN od krađe zlonamjernog softvera koji zarazi vaše računalo.</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>ABET se sada zatvara kako bi dovršio proces šifriranja. Ne zaboravite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše ABET od krađe zlonamjernog softvera koji zarazi vaše računalo.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Jeste li sigurni da želite šifrirati svoj novčanik?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
-        <translation>Upozorenje: Ako šifrirate svoj novčanik i izgubite vašu zaporku, vi ćete1 IZGUBITI ĆE TE SAV VAŠ BECN1!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
+        <translation>Upozorenje: Ako šifrirate svoj novčanik i izgubite vašu zaporku, vi ćete1 IZGUBITI ĆE TE SAV VAŠ ABET1!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -409,8 +409,8 @@
         <translation>Pregledajte povijest transakcija</translation>
     </message>
     <message>
-        <source>Privacy Actions for zBECN</source>
-        <translation>Aktivnosti na privatnost za zBECN</translation>
+        <source>Privacy Actions for zABET</source>
+        <translation>Aktivnosti na privatnost za zABET</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -617,16 +617,16 @@
         <translation>Alatna traka kartica</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Pošaljite kovanice na BECN adresu</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Pošaljite kovanice na ABET adresu</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
-        <translation>Zahtjev za plaćanja (generira QR kodove i becn: URI)</translation>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
+        <translation>Zahtjev za plaćanja (generira QR kodove i abet: URI)</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
@@ -641,24 +641,24 @@
         <translation>Pregledajte masternode</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
-        <translation>&amp; O Beaconu</translation>
+        <source>&amp;About Altbet</source>
+        <translation>&amp; O Altbetu</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
-        <translation>Prikaz informacija o Beaconu</translation>
+        <source>Show information about Altbet</source>
+        <translation>Prikaz informacija o Altbetu</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>Izmijenite opcije konfiguracije za BECN</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>Izmijenite opcije konfiguracije za ABET</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
-        <translation>Potpišite poruke s vašim BECN adresama kako biste dokazali da ih posjedujete</translation>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
+        <translation>Potpišite poruke s vašim ABET adresama kako biste dokazali da ih posjedujete</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim BECN adresama</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim ABET adresama</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -685,8 +685,8 @@
         <translation>Otvori konfiguracijsku datoteku za Masternode</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>Beacon klijent</translation>
+        <source>Altbet client</source>
+        <translation>Altbet klijent</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -922,15 +922,15 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1058,8 +1058,8 @@
         <translation>N/A</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     </context>
 <context>
@@ -1244,8 +1244,8 @@
         <translation>Ostatak:</translation>
     </message>
     <message>
-        <source>0 BECN</source>
-        <translation>0 BECN</translation>
+        <source>0 ABET</source>
+        <translation>0 ABET</translation>
     </message>
     <message>
         <source>Confirmation time:</source>
@@ -1322,15 +1322,15 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Beacon is shutting down...</source>
-        <translation>Beacon se gasi...</translation>
+        <source>Altbet is shutting down...</source>
+        <translation>Altbet se gasi...</translation>
     </message>
     </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>BECN adresa za potpisivanje poruke s</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>ABET adresa za potpisivanje poruke s</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1353,16 +1353,16 @@
         <translation>Kopirajte trenutačni potpis u međuspremnik sustava</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove BECN adrese</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove ABET adrese</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>BECN adresa s kojom je potpisana poruka</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>ABET adresa s kojom je potpisana poruka</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Potvrdite poruku kako biste bili sigurni da je potpisan s navedenom BECN adresom</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Potvrdite poruku kako biste bili sigurni da je potpisan s navedenom ABET adresom</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -1408,8 +1408,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>Beacon</translation>
+        <source>Altbet</source>
+        <translation>Altbet</translation>
     </message>
     <message>
         <source>Version %1</source>

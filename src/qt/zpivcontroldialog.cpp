@@ -140,9 +140,9 @@ void ZPivControlDialog::updateList()
             if(nConfirmations < Params().Zerocoin_MintRequiredConfirmations())
                 strReason = strprintf("Needs %d more confirmations", Params().Zerocoin_MintRequiredConfirmations() - nConfirmations);
             else if (model->getEncryptionStatus() == WalletModel::EncryptionStatus::Locked)
-                strReason = "Your wallet is locked. Impossible to precompute or spend zBECN.";
+                strReason = "Your wallet is locked. Impossible to precompute or spend zABET.";
             else if (!mint.isSeedCorrect)
-                strReason = "The zBECN seed used to mint this zBECN is not the same as currently hold in the wallet";
+                strReason = "The zABET seed used to mint this zABET is not the same as currently hold in the wallet";
             else
                 strReason = strprintf("Needs %d more mints added to network", Params().Zerocoin_RequiredAccumulation());
 

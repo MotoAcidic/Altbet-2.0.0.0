@@ -7,7 +7,7 @@
 #define BITCOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/beacon-config.h"
+#include "config/altbet-config.h"
 #endif
 
 #include "amount.h"

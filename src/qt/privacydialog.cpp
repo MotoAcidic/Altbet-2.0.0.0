@@ -34,14 +34,14 @@ PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
     nDisplayUnit = 0; // just make sure it's not unitialized
     ui->setupUi(this);
 
-    // "Spending 999999 zBECN ought to be enough for anybody." - Bill Gates, 2017
-    ui->zBECNpayAmount->setValidator( new QDoubleValidator(0.0, 21000000.0, 20, this) );
+    // "Spending 999999 zABET ought to be enough for anybody." - Bill Gates, 2017
+    ui->zABETpayAmount->setValidator( new QDoubleValidator(0.0, 21000000.0, 20, this) );
     //ui->labelMintAmountValue->setValidator( new QIntValidator(0, 999999, this) );     // disable MINT
 
     // Default texts for (mini-) coincontrol
     //ui->labelCoinControlQuantity->setText (tr("Coins automatically selected"));       // disable MINT
     //ui->labelCoinControlAmount->setText (tr("Coins automatically selected"));         // disable MINT
-    ui->labelzBECNSyncStatus->setText("(" + tr("out of sync") + ")");
+    ui->labelzABETSyncStatus->setText("(" + tr("out of sync") + ")");
 
     // Sunken frame for minting messages
     ui->TEMintStatus->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
@@ -85,7 +85,7 @@ PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
     ui->labelZsupplyText1000->setText(tr("Denom. <b>1000</b>:"));
     ui->labelZsupplyText5000->setText(tr("Denom. <b>5000</b>:"));
 
-    // BECN settings
+    // ABET settings
     QSettings settings;
     if (!settings.contains("fMinimizeChange")){
         fMinimizeChange = false;
@@ -154,19 +154,19 @@ void PrivacyDialog::on_addressBookButton_clicked()
     dlg.setModel(walletModel->getAddressTableModel());
     if (dlg.exec()) {
         ui->payTo->setText(dlg.getReturnValue());
-        ui->zBECNpayAmount->setFocus();
+        ui->zABETpayAmount->setFocus();
     }
 }
 /* disable MINT
  *
-void PrivacyDialog::on_pushButtonMintzBECN_clicked()
+void PrivacyDialog::on_pushButtonMintzABET_clicked()
 {
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         QMessageBox::information(this, tr("Mint Zerocoin"),
-                                 tr("zBECN is currently undergoing maintenance."), QMessageBox::Ok,
+                                 tr("zABET is currently undergoing maintenance."), QMessageBox::Ok,
                                  QMessageBox::Ok);
         return;
     }
@@ -177,7 +177,7 @@ void PrivacyDialog::on_pushButtonMintzBECN_clicked()
     // Request unlock if wallet was locked or unlocked for mixing:
     WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
     if (encStatus == walletModel->Locked) {
-        WalletModel::UnlockContext ctx(walletModel->requestUnlock(AskPassphraseDialog::Context::Mint_zBECN, true));
+        WalletModel::UnlockContext ctx(walletModel->requestUnlock(AskPassphraseDialog::Context::Mint_zABET, true));
         if (!ctx.isValid()) {
             // Unlock wallet was cancelled
             ui->TEMintStatus->setPlainText(tr("Error: Your wallet is locked. Please enter the wallet passphrase first."));
@@ -194,7 +194,7 @@ void PrivacyDialog::on_pushButtonMintzBECN_clicked()
         return;
     }
 
-    ui->TEMintStatus->setPlainText(tr("Minting ") + ui->labelMintAmountValue->text() + " zBECN...");
+    ui->TEMintStatus->setPlainText(tr("Minting ") + ui->labelMintAmountValue->text() + " zABET...");
     ui->TEMintStatus->repaint ();
 
     int64_t nTime = GetTimeMillis();
@@ -212,7 +212,7 @@ void PrivacyDialog::on_pushButtonMintzBECN_clicked()
     double fDuration = (double)(GetTimeMillis() - nTime)/1000.0;
 
     // Minting successfully finished. Show some stats for entertainment.
-    QString strStatsHeader = tr("Successfully minted ") + ui->labelMintAmountValue->text() + tr(" zBECN in ") +
+    QString strStatsHeader = tr("Successfully minted ") + ui->labelMintAmountValue->text() + tr(" zABET in ") +
                              QString::number(fDuration) + tr(" sec. Used denominations:\n");
 
     // Clear amount to avoid double spending when accidentally clicking twice
@@ -270,7 +270,7 @@ void PrivacyDialog::on_pushButtonSpentReset_clicked()
     return;
 }
 
-void PrivacyDialog::on_pushButtonSpendzBECN_clicked()
+void PrivacyDialog::on_pushButtonSpendzABET_clicked()
 {
 
     if (!walletModel || !walletModel->getOptionsModel() || !pwalletMain)
@@ -278,24 +278,24 @@ void PrivacyDialog::on_pushButtonSpendzBECN_clicked()
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         QMessageBox::information(this, tr("Mint Zerocoin"),
-                                 tr("zBECN is currently undergoing maintenance."), QMessageBox::Ok, QMessageBox::Ok);
+                                 tr("zABET is currently undergoing maintenance."), QMessageBox::Ok, QMessageBox::Ok);
         return;
     }
 
     // Request unlock if wallet was locked or unlocked for mixing:
     WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
     if (encStatus == walletModel->Locked || encStatus == walletModel->UnlockedForAnonymizationOnly) {
-        WalletModel::UnlockContext ctx(walletModel->requestUnlock(AskPassphraseDialog::Context::Send_zBECN, true));
+        WalletModel::UnlockContext ctx(walletModel->requestUnlock(AskPassphraseDialog::Context::Send_zABET, true));
         if (!ctx.isValid()) {
             // Unlock wallet was cancelled
             return;
         }
-        // Wallet is unlocked now, sedn zBECN
-        sendzBECN();
+        // Wallet is unlocked now, sedn zABET
+        sendzABET();
         return;
     }
-    // Wallet already unlocked or not encrypted at all, send zBECN
-    sendzBECN();
+    // Wallet already unlocked or not encrypted at all, send zABET
+    sendzABET();
 }
 
 void PrivacyDialog::on_pushButtonZPivControl_clicked()
@@ -319,7 +319,7 @@ static inline int64_t roundint64(double d)
     return (int64_t)(d > 0 ? d + 0.5 : d - 0.5);
 }
 
-void PrivacyDialog::sendzBECN()
+void PrivacyDialog::sendzABET()
 {
     QSettings settings;
 
@@ -330,31 +330,31 @@ void PrivacyDialog::sendzBECN()
     }
     else{
         if (!address.IsValid()) {
-            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid Beacon Address"), QMessageBox::Ok, QMessageBox::Ok);
+            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid Altbet Address"), QMessageBox::Ok, QMessageBox::Ok);
             ui->payTo->setFocus();
             return;
         }
     }
 
     // Double is allowed now
-    double dAmount = ui->zBECNpayAmount->text().toDouble();
+    double dAmount = ui->zABETpayAmount->text().toDouble();
     CAmount nAmount = roundint64(dAmount* COIN);
 
     // Check amount validity
     if (!MoneyRange(nAmount) || nAmount <= 0.0) {
         QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid Send Amount"), QMessageBox::Ok, QMessageBox::Ok);
-        ui->zBECNpayAmount->setFocus();
+        ui->zABETpayAmount->setFocus();
         return;
     }
 
-    // Convert change to zBECN
+    // Convert change to zABET
     bool fMintChange = false;// ui->checkBoxMintChange->isChecked();
 
     // Persist minimize change setting
     fMinimizeChange = ui->checkBoxMinimizeChange->isChecked();
     settings.setValue("fMinimizeChange", fMinimizeChange);
 
-    // Warn for additional fees if amount is not an integer and change as zBECN is requested
+    // Warn for additional fees if amount is not an integer and change as zABET is requested
     bool fWholeNumber = floor(dAmount) == dAmount;
     double dzFee = 0.0;
 
@@ -363,7 +363,7 @@ void PrivacyDialog::sendzBECN()
 
     if(!fWholeNumber && fMintChange){
         QString strFeeWarning = "You've entered an amount with fractional digits and want the change to be converted to Zerocoin.<br /><br /><b>";
-        strFeeWarning += QString::number(dzFee, 'f', 8) + " BECN </b>will be added to the standard transaction fees!<br />";
+        strFeeWarning += QString::number(dzFee, 'f', 8) + " ABET </b>will be added to the standard transaction fees!<br />";
         QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm additional Fees"),
             strFeeWarning,
             QMessageBox::Yes | QMessageBox::Cancel,
@@ -371,7 +371,7 @@ void PrivacyDialog::sendzBECN()
 
         if (retval != QMessageBox::Yes) {
             // Sending canceled
-            ui->zBECNpayAmount->setFocus();
+            ui->zABETpayAmount->setFocus();
             return;
         }
     }
@@ -386,7 +386,7 @@ void PrivacyDialog::sendzBECN()
 
     // General info
     QString strQuestionString = tr("Are you sure you want to send?<br /><br />");
-    QString strAmount = "<b>" + QString::number(dAmount, 'f', 8) + " zBECN</b>";
+    QString strAmount = "<b>" + QString::number(dAmount, 'f', 8) + " zABET</b>";
     QString strAddress = tr(" to address ") + QString::fromStdString(address.ToString()) + strAddressLabel + " <br />";
 
     if(ui->payTo->text().isEmpty()){
@@ -411,7 +411,7 @@ void PrivacyDialog::sendzBECN()
     ui->TEMintStatus->setPlainText(tr("Spending Zerocoin.\nComputationally expensive, might need several minutes depending on your hardware.\nPlease be patient..."));
     ui->TEMintStatus->repaint();
 
-    // use mints from zBECN selector if applicable
+    // use mints from zABET selector if applicable
     std::vector<CMintMeta> vMintsToFetch;
     std::vector<CZerocoinMint> vMintsSelected;
     if (!ZPivControlDialog::setSelectedMints.empty()) {
@@ -428,7 +428,7 @@ void PrivacyDialog::sendzBECN()
         }
     }
 
-    // Spend zBECN
+    // Spend zABET
     CWalletTx wtxNew;
     CZerocoinSpendReceipt receipt;
     bool fSuccess = false;
@@ -445,7 +445,7 @@ void PrivacyDialog::sendzBECN()
     if (!fSuccess) {
         /*
         int nNeededSpends = receipt.GetNeededSpends(); // Number of spends we would need for this transaction
-        const int nMaxSpends = Params().Zerocoin_MaxSpendsPerTransaction(); // Maximum possible spends for one zBECN transaction
+        const int nMaxSpends = Params().Zerocoin_MaxSpendsPerTransaction(); // Maximum possible spends for one zABET transaction
         if (nNeededSpends > nMaxSpends) {
             QString strStatusMessage = tr("Too much inputs (") + QString::number(nNeededSpends, 10) + tr(") needed.\nMaximum allowed: ") + QString::number(nMaxSpends, 10);
             strStatusMessage += tr("\nEither mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.");
@@ -457,14 +457,14 @@ void PrivacyDialog::sendzBECN()
         QMessageBox::warning(this, tr("Spend Zerocoin"), receipt.GetStatusMessage().c_str(), QMessageBox::Ok, QMessageBox::Ok);
         ui->TEMintStatus->setPlainText(tr("Spend Zerocoin failed with status = ") +QString::number(receipt.GetStatus(), 10) + "\n" + "Message: " + QString::fromStdString(receipt.GetStatusMessage()));
         //}
-        ui->zBECNpayAmount->setFocus();
+        ui->zABETpayAmount->setFocus();
         ui->TEMintStatus->repaint();
         ui->TEMintStatus->verticalScrollBar()->setValue(ui->TEMintStatus->verticalScrollBar()->maximum()); // Automatically scroll to end of text
         return;
     }
 
     if (walletModel && walletModel->getAddressTableModel()) {
-        // If zBECN was spent successfully update the addressbook with the label
+        // If zABET was spent successfully update the addressbook with the label
         std::string labelText = ui->addAsLabel->text().toStdString();
         if (!labelText.empty())
             walletModel->updateAddressBookLabels(address.Get(), labelText, "send");
@@ -482,7 +482,7 @@ void PrivacyDialog::sendzBECN()
     CAmount nValueIn = 0;
     int nCount = 0;
     for (CZerocoinSpend spend : receipt.GetSpends()) {
-        strStats += tr("zBECN Spend #: ") + QString::number(nCount) + ", ";
+        strStats += tr("zABET Spend #: ") + QString::number(nCount) + ", ";
         strStats += tr("denomination: ") + QString::number(spend.GetDenomination()) + ", ";
         strStats += tr("serial: ") + spend.GetSerial().ToString().c_str() + "\n";
         strStats += tr("Spend is 1 of : ") + QString::number(spend.GetMintCount()) + " mints in the accumulator\n";
@@ -498,7 +498,7 @@ void PrivacyDialog::sendzBECN()
         strStats += tr("address: ");
         CTxDestination dest;
         if(txout.IsZerocoinMint())
-            strStats += tr("zBECN Mint");
+            strStats += tr("zABET Mint");
         else if(ExtractDestination(txout.scriptPubKey, dest))
             strStats += tr(CBitcoinAddress(dest).ToString().c_str());
         strStats += "\n";
@@ -513,7 +513,7 @@ void PrivacyDialog::sendzBECN()
     strReturn += strStats;
 
     // Clear amount to avoid double spending when accidentally clicking twice
-    ui->zBECNpayAmount->setText ("0");
+    ui->zABETpayAmount->setText ("0");
 
     ui->TEMintStatus->setPlainText(strReturn);
     ui->TEMintStatus->repaint();
@@ -673,7 +673,7 @@ void PrivacyDialog::setBalance(const CAmount& balance, const CAmount& unconfirme
 
         strDenomStats = strUnconfirmed + QString::number(mapDenomBalances.at(denom)) + " x " +
                         QString::number(nCoins) + " = <b>" +
-                        QString::number(nSumPerCoin) + " zBECN </b>";
+                        QString::number(nSumPerCoin) + " zABET </b>";
 
         switch (nCoins) {
             case libzerocoin::CoinDenomination::ZQ_ONE:
@@ -711,9 +711,9 @@ void PrivacyDialog::setBalance(const CAmount& balance, const CAmount& unconfirme
         nLockedBalance = walletModel->getLockedBalance();
     }
 
-    ui->labelzAvailableAmount->setText(QString::number(zerocoinBalance/COIN) + QString(" zBECN "));
-    ui->labelzAvailableAmount_2->setText(QString::number(matureZerocoinBalance/COIN) + QString(" zBECN "));
-    ui->labelzAvailableAmount_4->setText(QString::number(zerocoinBalance/COIN) + QString(" zBECN "));
+    ui->labelzAvailableAmount->setText(QString::number(zerocoinBalance/COIN) + QString(" zABET "));
+    ui->labelzAvailableAmount_2->setText(QString::number(matureZerocoinBalance/COIN) + QString(" zABET "));
+    ui->labelzAvailableAmount_4->setText(QString::number(zerocoinBalance/COIN) + QString(" zABET "));
 
     // Display AutoMint status
     updateAutomintStatus();
@@ -722,13 +722,13 @@ void PrivacyDialog::setBalance(const CAmount& balance, const CAmount& unconfirme
     updateSPORK16Status();
 
     // Display global supply
-    ui->labelZsupplyAmount->setText(QString::number(chainActive.Tip()->GetZerocoinSupply()/COIN) + QString(" <b>zBECN </b> "));
-    ui->labelZsupplyAmount_2->setText(QString::number(chainActive.Tip()->GetZerocoinSupply()/COIN) + QString(" <b>zBECN </b> "));
+    ui->labelZsupplyAmount->setText(QString::number(chainActive.Tip()->GetZerocoinSupply()/COIN) + QString(" <b>zABET </b> "));
+    ui->labelZsupplyAmount_2->setText(QString::number(chainActive.Tip()->GetZerocoinSupply()/COIN) + QString(" <b>zABET </b> "));
 
     for (auto denom : libzerocoin::zerocoinDenomList) {
         int64_t nSupply = chainActive.Tip()->mapZerocoinSupply.at(denom);
         QString strSupply = QString::number(nSupply) + " x " + QString::number(denom) + " = <b>" +
-                            QString::number(nSupply*denom) + " zBECN </b> ";
+                            QString::number(nSupply*denom) + " zABET </b> ";
         switch (denom) {
             case libzerocoin::CoinDenomination::ZQ_ONE:
                 ui->labelZsupplyAmount1->setText(strSupply);
@@ -774,7 +774,7 @@ void PrivacyDialog::updateDisplayUnit()
 
 void PrivacyDialog::showOutOfSyncWarning(bool fShow)
 {
-    ui->labelzBECNSyncStatus->setVisible(fShow);
+    ui->labelzABETSyncStatus->setVisible(fShow);
 }
 
 void PrivacyDialog::keyPressEvent(QKeyEvent* event)
@@ -805,24 +805,24 @@ void PrivacyDialog::updateAutomintStatus()
 void PrivacyDialog::updateSPORK16Status()
 {
     // Update/enable labels, buttons and tooltips depending on the current SPORK_16 status
-    //bool fButtonsEnabled =  ui->pushButtonMintzBECN->isEnabled();
+    //bool fButtonsEnabled =  ui->pushButtonMintzABET->isEnabled();
     bool fButtonsEnabled = false;
     bool fMaintenanceMode = GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE);
     if (fMaintenanceMode && fButtonsEnabled) {
-        // Mint zBECN
-        //ui->pushButtonMintzBECN->setEnabled(false);
-        //ui->pushButtonMintzBECN->setToolTip(tr("zBECN is currently disabled due to maintenance."));
+        // Mint zABET
+        //ui->pushButtonMintzABET->setEnabled(false);
+        //ui->pushButtonMintzABET->setToolTip(tr("zABET is currently disabled due to maintenance."));
 
-        // Spend zBECN
-        ui->pushButtonSpendzBECN->setEnabled(false);
-        ui->pushButtonSpendzBECN->setToolTip(tr("zBECN is currently disabled due to maintenance."));
+        // Spend zABET
+        ui->pushButtonSpendzABET->setEnabled(false);
+        ui->pushButtonSpendzABET->setToolTip(tr("zABET is currently disabled due to maintenance."));
     } else if (!fMaintenanceMode && !fButtonsEnabled) {
-        // Mint zBECN
-        //ui->pushButtonMintzBECN->setEnabled(true);
-        //ui->pushButtonMintzBECN->setToolTip(tr("PrivacyDialog", "Enter an amount of BECN to convert to zBECN", 0));
+        // Mint zABET
+        //ui->pushButtonMintzABET->setEnabled(true);
+        //ui->pushButtonMintzABET->setToolTip(tr("PrivacyDialog", "Enter an amount of ABET to convert to zABET", 0));
 
-        // Spend zBECN
-        ui->pushButtonSpendzBECN->setEnabled(true);
-        ui->pushButtonSpendzBECN->setToolTip(tr("Spend Zerocoin. Without 'Pay To:' address creates payments to yourself."));
+        // Spend zABET
+        ui->pushButtonSpendzABET->setEnabled(true);
+        ui->pushButtonSpendzABET->setToolTip(tr("Spend Zerocoin. Without 'Pay To:' address creates payments to yourself."));
     }
 }

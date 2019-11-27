@@ -62,12 +62,12 @@
         <translation>Получаващ адрес</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Това са вашите BECN адреси за изпращане на плащания. Винаги проверявайте количеството и адреса на получателя, преди да изпратите монети.</translation>
+        <source>These are your ABET addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Това са вашите ABET адреси за изпращане на плащания. Винаги проверявайте количеството и адреса на получателя, преди да изпратите монети.</translation>
     </message>
     <message>
-        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Това са вашите BECN адреси за получаване на плащания. Препоръчително е да използвате нови адреси за получаване за всяка транзакция.</translation>
+        <source>These are your ABET addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Това са вашите ABET адреси за получаване на плащания. Препоръчително е да използвате нови адреси за получаване за всяка транзакция.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,16 +176,16 @@
         <translation>Потвърдете шифрирането на портфейла</translation>
     </message>
     <message>
-        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
-        <translation>BECN сега ще се затвори, за да довърши процеса по шифриране. Запомнете, че шифрирането на вашия портфейл не може напълно да защити вашия BECN от това, да бъде откраднат чрез злонамерен софутуер, инфектирал вашия компютър.</translation>
+        <source>ABET will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ABETs from being stolen by malware infecting your computer.</source>
+        <translation>ABET сега ще се затвори, за да довърши процеса по шифриране. Запомнете, че шифрирането на вашия портфейл не може напълно да защити вашия ABET от това, да бъде откраднат чрез злонамерен софутуер, инфектирал вашия компютър.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Сигурни ли сте, че искате да шифрирате вашия портфейл?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BECN&lt;/b&gt;!</source>
-        <translation>&lt;b&gt;Внимание: Ако шифрирате вашия портфейл и загубите вашата парола, вие ще ЗАГУБИТЕ ВСИЧКИТЕ ВИ BECN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ABET&lt;/b&gt;!</source>
+        <translation>&lt;b&gt;Внимание: Ако шифрирате вашия портфейл и загубите вашата парола, вие ще ЗАГУБИТЕ ВСИЧКИТЕ ВИ ABET&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -254,12 +254,12 @@
         <translation>Адрес:</translation>
     </message>
     <message>
-        <source>Enter a BECN Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Въведете Beacon адрес, който искате да криптиране с BIP 38. Въведете парола в средното поле. Натиснете 'криптирай', за да се изчисли криптирания таен ключ. </translation>
+        <source>Enter a ABET Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Въведете Altbet адрес, който искате да криптиране с BIP 38. Въведете парола в средното поле. Натиснете 'криптирай', за да се изчисли криптирания таен ключ. </translation>
     </message>
     <message>
-        <source>The BECN address to encrypt</source>
-        <translation>BECN Адреса за криптиране</translation>
+        <source>The ABET address to encrypt</source>
+        <translation>ABET Адреса за криптиране</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Копирай сегашния подпис в системния буфер</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this BECN address</source>
-        <translation>Криптирай тайния ключ за този BECN адрес</translation>
+        <source>Encrypt the private key for this ABET address</source>
+        <translation>Криптирай тайния ключ за този ABET адрес</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>История на транзакциите</translation>
     </message>
     <message>
-        <source>Privacy Actions for zBECN</source>
-        <translation>Поверителни Действия за ZBECN</translation>
+        <source>Privacy Actions for zABET</source>
+        <translation>Поверителни Действия за ZABET</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -641,16 +641,16 @@
         <translation>Колан с инструменти</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ядро</translation>
+        <source>Altbet</source>
+        <translation>ABET Ядро</translation>
     </message>
     <message>
-        <source>Send coins to a BECN address</source>
-        <translation>Изпратете монети до BECN адрес</translation>
+        <source>Send coins to a ABET address</source>
+        <translation>Изпратете монети до ABET адрес</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and becn: URIs)</source>
-        <translation>Поискай плащане (генерира QR кодове и  BECN:URI)</translation>
+        <source>Request payments (generates QR codes and abet: URIs)</source>
+        <translation>Поискай плащане (генерира QR кодове и  ABET:URI)</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
@@ -665,24 +665,24 @@
         <translation>Разгледай мастърноудове</translation>
     </message>
     <message>
-        <source>&amp;About Beacon</source>
-        <translation>&amp;Относно BECN Ядрото</translation>
+        <source>&amp;About Altbet</source>
+        <translation>&amp;Относно ABET Ядрото</translation>
     </message>
     <message>
-        <source>Show information about Beacon</source>
-        <translation>Информациза за BECN Ядрото</translation>
+        <source>Show information about Altbet</source>
+        <translation>Информациза за ABET Ядрото</translation>
     </message>
     <message>
-        <source>Modify configuration options for BECN</source>
-        <translation>Промени BECN конфигурацията</translation>
+        <source>Modify configuration options for ABET</source>
+        <translation>Промени ABET конфигурацията</translation>
     </message>
     <message>
-        <source>Sign messages with your BECN addresses to prove you own them</source>
-        <translation>Подпишете съобщения със своте BECN адреси, за да докажете че са Ваши</translation>
+        <source>Sign messages with your ABET addresses to prove you own them</source>
+        <translation>Подпишете съобщения със своте ABET адреси, за да докажете че са Ваши</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified BECN addresses</source>
-        <translation>Проеврете съобщения, за да се убедите, че са подписани с указаните BECN адреси</translation>
+        <source>Verify messages to ensure they were signed with specified ABET addresses</source>
+        <translation>Проеврете съобщения, за да се убедите, че са подписани с указаните ABET адреси</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -713,8 +713,8 @@
         <translation>Отвори Мастърноуд конфигурационния файл</translation>
     </message>
     <message>
-        <source>Open a BECN: URI or payment request</source>
-        <translation>Отвори BECN:URI платежно нареждане</translation>
+        <source>Open a ABET: URI or payment request</source>
+        <translation>Отвори ABET:URI платежно нареждане</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -725,12 +725,12 @@
         <translation>Прозорец на блок сондата</translation>
     </message>
     <message>
-        <source>Show the Beacon help message to get a list with possible BECN command-line options</source>
-        <translation>Разкрийте Помощ за BECN Ядрото, за да видите списък с възможни писмени команди.</translation>
+        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <translation>Разкрийте Помощ за ABET Ядрото, за да видите списък с възможни писмени команди.</translation>
     </message>
     <message>
-        <source>Beacon client</source>
-        <translation>Клиент BECN Ядро</translation>
+        <source>Altbet client</source>
+        <translation>Клиент ABET Ядро</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -868,8 +868,8 @@ Address: %4
         <translation>ТекстовЕтикет</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (beacon.conf).</source>
-        <translation>Не всички преводи ще бъдат показани. За да разгледате всички преводи, трябва да зададете txindex=1 в конфигурационния файл (beacon.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
+        <translation>Не всички преводи ще бъдат показани. За да разгледате всички преводи, трябва да зададете txindex=1 в конфигурационния файл (altbet.conf).</translation>
     </message>
 </context>
 <context>
@@ -1161,8 +1161,8 @@ Address: %4
         <translation>Редактирай адрес за изпращане</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid BECN address.</source>
-        <translation>Зададения адрес "%1"не е валиден BECN адрес.</translation>
+        <source>The entered address "%1" is not a valid ABET address.</source>
+        <translation>Зададения адрес "%1"не е валиден ABET адрес.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1218,16 +1218,16 @@ Address: %4
         <translation>версия</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ядро</translation>
+        <source>Altbet</source>
+        <translation>ABET Ядро</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Beacon</source>
-        <translation>Относно BECN Ядрото</translation>
+        <source>About Altbet</source>
+        <translation>Относно ABET Ядрото</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1273,16 +1273,16 @@ Address: %4
         <translation>Привет</translation>
     </message>
     <message>
-        <source>Welcome to Beacon.</source>
-        <translation>Добре Дошли в BECN Ядрото</translation>
+        <source>Welcome to Altbet.</source>
+        <translation>Добре Дошли в ABET Ядрото</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Beacon will store its data.</source>
-        <translation>Тъй като това е първия път, в който стартирате програмата, имате възможността да изберете къде BECN Ядрото ще съхранява своите данни.</translation>
+        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <translation>Тъй като това е първия път, в който стартирате програмата, имате възможността да изберете къде ABET Ядрото ще съхранява своите данни.</translation>
     </message>
     <message>
-        <source>Beacon will download and store a copy of the BECN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>BECN Ядрото ще изтегли и запише копие на целия BECN блокчейн. Поне %1 гигабайта ще бъдат съхранявани в тази папка, като тенденцията е файла да расте. Портфейла също ще бъде запазен в тази папка.</translation>
+        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>ABET Ядрото ще изтегли и запише копие на целия ABET блокчейн. Поне %1 гигабайта ще бъдат съхранявани в тази папка, като тенденцията е файла да расте. Портфейла също ще бъде запазен в тази папка.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1293,8 +1293,8 @@ Address: %4
         <translation>Задай своя папка за данни:</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ядро</translation>
+        <source>Altbet</source>
+        <translation>ABET Ядро</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1435,12 +1435,12 @@ Address: %4
         <translation>Въведете адреса на Получателя</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BECN addresses after it matures.
-To Add: enter percentage to give and BECN address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other ABET addresses after it matures.
+To Add: enter percentage to give and ABET address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>МултиИзпращане Ви позволява автоматично да изпращате до 100% от вашите стейк или мастърноуд възнаграждения към списък от други BECN адреси.
-Да Добавите: въведете процент и задайте BECN адрес към вектора за МултиИзпращане
+        <translation>МултиИзпращане Ви позволява автоматично да изпращате до 100% от вашите стейк или мастърноуд възнаграждения към списък от други ABET адреси.
+Да Добавите: въведете процент и задайте ABET адрес към вектора за МултиИзпращане
 Да Прамахнете: Въведете адрес за изстриване и натиснете истрий (del).
 МултиИзпращането няма да бъде активирано докато не кликнете "Активирай"</translation>
     </message>
@@ -1628,8 +1628,8 @@ Please be patient after clicking import.</source>
         <translation>Адрес / Сума:</translation>
     </message>
     <message>
-        <source>Add destinations to send BECN to</source>
-        <translation>Добави получател на BECN</translation>
+        <source>Add destinations to send ABET to</source>
+        <translation>Добави получател на ABET</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1762,8 +1762,8 @@ Please be patient after clicking import.</source>
         <translation>Aко изключите харча на непотвърдено ресто, рестото от превод&lt;br/&gt;не може да се използва, докато превода не получи поне 1 потвърждение. &lt;br/&gt;Това влияе и на начина по който общите Ви средства се преизчисляват.</translation>
     </message>
     <message>
-        <source>Automatically open the BECN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматично отвори BECN порта в рутера. Това става само ако рутера Ви подържа UPnP и последния е включен.</translation>
+        <source>Automatically open the ABET client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматично отвори ABET порта в рутера. Това става само ако рутера Ви подържа UPnP и последния е включен.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1782,12 +1782,12 @@ Please be patient after clicking import.</source>
         <translation>Експерт</translation>
     </message>
     <message>
-        <source>Automatically start BECN after logging in to the system.</source>
-        <translation>Стартирай BECN автоматично след влизане в системата.</translation>
+        <source>Automatically start ABET after logging in to the system.</source>
+        <translation>Стартирай ABET автоматично след влизане в системата.</translation>
     </message>
     <message>
-        <source>&amp;Start BECN on system login</source>
-        <translation>&amp;Стартирай BECN заедно с операционната система</translation>
+        <source>&amp;Start ABET on system login</source>
+        <translation>&amp;Стартирай ABET заедно с операционната система</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1814,7 +1814,7 @@ Please be patient after clicking import.</source>
         <translation>&amp;Мрежа</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting ABET.</source>
         <translation>Промяна на езика. Настройката е активна след рестарт на портфейла.</translation>
     </message>
     <message>
@@ -1828,36 +1828,36 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Картографирай портовете използвайки &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BECN units to zBECN</source>
-        <translation>Включи автоматичното емитиране на BECN единици в zBECN</translation>
+        <source>Enable automatic minting of ABET units to zABET</source>
+        <translation>Включи автоматичното емитиране на ABET единици в zABET</translation>
     </message>
     <message>
-        <source>Enable zBECN Automint</source>
-        <translation>Включи Автоматично емитиране на zBECN</translation>
+        <source>Enable zABET Automint</source>
+        <translation>Включи Автоматично емитиране на zABET</translation>
     </message>
     <message>
-        <source>Percentage of incoming BECN which get automatically converted to zBECN via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент от входящите BECN, който автоматично да се конвертира в zBECN посредтвом Zerocoin Протокола (мин: 10%)</translation>
+        <source>Percentage of incoming ABET which get automatically converted to zABET via Zerocoin Protocol (min: 10%)</source>
+        <translation>Процент от входящите ABET, който автоматично да се конвертира в zABET посредтвом Zerocoin Протокола (мин: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zBECN</source>
-        <translation>Процент автоматично сечени zBECN</translation>
+        <source>Percentage of autominted zABET</source>
+        <translation>Процент автоматично сечени zABET</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BECN for this denomination is available</source>
-        <translation>Не бързай с автоматичното конвертиране в zBECN докато не се съберат достатъчно BECN за тази деноминация</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough ABET for this denomination is available</source>
+        <translation>Не бързай с автоматичното конвертиране в zABET докато не се съберат достатъчно ABET за тази деноминация</translation>
     </message>
     <message>
-        <source>Preferred Automint zBECN Denomination</source>
-        <translation>Предпочитани деноминации, в които да се сече автоматичен zBECN</translation>
+        <source>Preferred Automint zABET Denomination</source>
+        <translation>Предпочитани деноминации, в които да се сече автоматичен zABET</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Праг на споделеното съхранение:</translation>
     </message>
     <message>
-        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
-        <translation>Свържи се с BECN мрежата със SOCKS5 прокси.</translation>
+        <source>Connect to the ABET network through a SOCKS5 proxy.</source>
+        <translation>Свържи се с ABET мрежата със SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2007,8 +2007,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Обща Наличност, включително и неналичните монети.</translation>
     </message>
     <message>
-        <source>BECN Balance</source>
-        <translation>BECN Наличности</translation>
+        <source>ABET Balance</source>
+        <translation>ABET Наличности</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -2031,18 +2031,18 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Сегашния баланс по портфейли в режим на наблюдение само</translation>
     </message>
     <message>
-        <source>Your current BECN balance, unconfirmed and immature transactions included</source>
-        <translation>Вашите BECN наличности, включително непотвърдените и неузрели преводи</translation>
+        <source>Your current ABET balance, unconfirmed and immature transactions included</source>
+        <translation>Вашите ABET наличности, включително непотвърдените и неузрели преводи</translation>
     </message>
     <message>
-        <source>zBECN Balance</source>
-        <translation>zBECN Наличности</translation>
+        <source>zABET Balance</source>
+        <translation>zABET Наличности</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zBECN are spendable.</source>
+These zABET are spendable.</source>
         <translation>Узрели: повече от 20 потвърждения и повече от 1 емисии от същата деноминация след като е била емитирана.
-Тези zBECN могат да се похарчат.</translation>
+Тези zABET могат да се похарчат.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2051,8 +2051,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Неузрели: потвърдени, но с по-малко от 1 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с BECN мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с ABET мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2095,8 +2095,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Налични за харчене:</translation>
     </message>
     <message>
-        <source>Locked BECN or Masternode collaterals. These are excluded from zBECN minting.</source>
-        <translation>Заключен BECN или допълнителни гаранции в Главни Възли. Тези не са включени в zBECN емитирането.</translation>
+        <source>Locked ABET or Masternode collaterals. These are excluded from zABET minting.</source>
+        <translation>Заключен ABET или допълнителни гаранции в Главни Възли. Тези не са включени в zABET емитирането.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2107,8 +2107,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Непотвърден</translation>
     </message>
     <message>
-        <source>Your current zBECN balance, unconfirmed and immature zBECN included.</source>
-        <translation>Вашите zBECN наличности, включеително непотвърдените и неузрелите zBECN.</translation>
+        <source>Your current zABET balance, unconfirmed and immature zABET included.</source>
+        <translation>Вашите zABET наличности, включеително непотвърдените и неузрелите zABET.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2123,14 +2123,14 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>АвтоЕмисията е включена и настроена на</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in beacon.conf.</source>
-        <translation>Да изключите АвтоЕмисия добавете  'enablezeromint=0' в beacon.conf файла.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
+        <translation>Да изключите АвтоЕмисия добавете  'enablezeromint=0' в altbet.conf файла.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
         <translation>АвтоЕмисия е изключено.
-За да включите АвтоЕмисия сменете 'enablezeromint=0' на 'enablezeromint=1' в beacon.conf файла.</translation>
+За да включите АвтоЕмисия сменете 'enablezeromint=0' на 'enablezeromint=1' в altbet.conf файла.</translation>
     </message>
 </context>
 <context>
@@ -2156,12 +2156,12 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>Грешен адрес за плащане %1</translation>
     </message>
     <message>
-        <source>Cannot start becn: click-to-pay handler</source>
-        <translation>Провал при стартирането на becn: click-to-pay обработвател</translation>
+        <source>Cannot start abet: click-to-pay handler</source>
+        <translation>Провал при стартирането на abet: click-to-pay обработвател</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid BECN address or malformed URI parameters.</source>
-        <translation>URI не може да се парсне. Вероятна причина е невалиден BECN адрес или зле-форматирани URI Параметри.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid ABET address or malformed URI parameters.</source>
+        <translation>URI не може да се парсне. Вероятна причина е невалиден ABET адрес или зле-форматирани URI Параметри.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2246,8 +2246,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>Zerocoin Действия:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BECN network after a connection is established, but this process has not completed yet.</source>
-        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с BECN мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABET network after a connection is established, but this process has not completed yet.</source>
+        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с ABET мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2258,8 +2258,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2286,12 +2286,12 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>КОНФИДЕНЦИАЛНОСТ</translation>
     </message>
     <message>
-        <source>zBECN Control</source>
-        <translation>zBECN Контрол</translation>
+        <source>zABET Control</source>
+        <translation>zABET Контрол</translation>
     </message>
     <message>
-        <source>zBECN Selected:</source>
-        <translation>Избрани zBECN:</translation>
+        <source>zABET Selected:</source>
+        <translation>Избрани zABET:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2306,31 +2306,31 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.con
         <translation>Похарчи Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zBECN for spending</source>
-        <translation>Налични (узрели и готови за харчене) zBECN за употреба</translation>
+        <source>Available (mature and spendable) zABET for spending</source>
+        <translation>Налични (узрели и готови за харчене) zABET за употреба</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Налични:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zBECN for spending
+        <source>Available (mature and spendable) zABET for spending
 
-zBECN are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Налични (узрели и готови за харчене) zBECN за употреба
+zABET are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Налични (узрели и готови за харчене) zABET за употреба
 
-zBECN са узрели, тогава когато имат повече от 20 потвърждения И повече от 2 емисии от същата деноминация след като са биле емитирани</translation>
+zABET са узрели, тогава когато имат повече от 20 потвърждения И повече от 2 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>0 zBECN</source>
-        <translation>0 zBECN</translation>
+        <source>0 zABET</source>
+        <translation>0 zABET</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
         <translation>Плати На:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to. Creates local payment to yourself when empty.</source>
+        <source>The ABET address to send the payment to. Creates local payment to yourself when empty.</source>
         <translation>Адреса на който да изпратим плащането. Ако е празно - плащането е до себе си.</translation>
     </message>
     <message>
@@ -2363,7 +2363,7 @@ zBECN са узрели, тогава когато имат повече от 20
     </message>
     <message>
         <source>Convert Change to Zerocoin (might cost additional fees)</source>
-        <translation>Изсечи zBECN от рестото (ще струва допълнително заради таксите)</translation>
+        <translation>Изсечи zABET от рестото (ще струва допълнително заради таксите)</translation>
     </message>
     <message>
         <source>If checked, the wallet tries to minimize the returning change instead of minimizing the number of spent denominations.</source>
@@ -2382,8 +2382,8 @@ zBECN са узрели, тогава когато имат повече от 20
         <translation>Zerocoin статистика:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zBECN</source>
-        <translation>Обща Наличност включеително непотвърдените и неузрели zBECN</translation>
+        <source>Total Balance including unconfirmed and immature zABET</source>
+        <translation>Обща Наличност включеително непотвърдените и неузрели zABET</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2404,24 +2404,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Неузрели: потвърдени, но с по-малко от 1 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zBECN minting.
+        <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to beacon.conf
-- disable: add 'enablezeromint=0' to beacon.conf
+- enable: add 'enablezeromint=1' to altbet.conf
+- disable: add 'enablezeromint=0' to altbet.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBECN
+- menu Settings-&gt;Options-&gt;Percentage of autominted zABET
 
 </source>
-        <translation>Покажи състоянието на автоматичното zBECN емитиране.
+        <translation>Покажи състоянието на автоматичното zABET емитиране.
 
 За да пормените състоянието (изисква рестарт):
-- вклчване: добавете 'enablezeromint=1' в beacon.conf
-- изключване: добавете 'enablezeromint=0' в beacon.conf
+- вклчване: добавете 'enablezeromint=1' в altbet.conf
+- изключване: добавете 'enablezeromint=0' в altbet.conf
 
 За промяна в процентите (не изисква рестарт):
-- меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zBECN
+- меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zABET
 </translation>
     </message>
     <message>
@@ -2595,12 +2595,12 @@ Please be patient...</source>
 Моля изчакате...</translation>
     </message>
     <message>
-        <source>zBECN Spend #: </source>
-        <translation>zBECN Похарчени #:</translation>
+        <source>zABET Spend #: </source>
+        <translation>zABET Похарчени #:</translation>
     </message>
     <message>
-        <source>zBECN Mint</source>
-        <translation>Сечене на zBECN</translation>
+        <source>zABET Mint</source>
+        <translation>Сечене на zABET</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2615,12 +2615,12 @@ Please be patient...</source>
         <translation>Конфигуриран целеви процент: &lt;b&gt;</translation>
     </message>
     <message>
-        <source>zBECN is currently disabled due to maintenance.</source>
-        <translation>В момента zBECN не работи поради ремонт.</translation>
+        <source>zABET is currently disabled due to maintenance.</source>
+        <translation>В момента zABET не работи поради ремонт.</translation>
     </message>
     <message>
-        <source>zBECN is currently undergoing maintenance.</source>
-        <translation>В момента zBECN е в ремонт.</translation>
+        <source>zABET is currently undergoing maintenance.</source>
+        <translation>В момента zABET е в ремонт.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2709,8 +2709,8 @@ Please be patient...</source>
         <translation>Без 'Плати На' адрес, плащането е локално</translation>
     </message>
     <message>
-        <source>Invalid Beacon Address</source>
-        <translation>Невалиден BECN адрес</translation>
+        <source>Invalid Altbet Address</source>
+        <translation>Невалиден ABET адрес</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2787,8 +2787,8 @@ Please be patient...</source>
         <translation>Сума</translation>
     </message>
     <message>
-        <source>Enter a BECN address (e.g. %1)</source>
-        <translation>Задайте BECN адрес (например %1)</translation>
+        <source>Enter a ABET address (e.g. %1)</source>
+        <translation>Задайте ABET адрес (например %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2831,8 +2831,8 @@ Please be patient...</source>
         <translation>%1 милисек.</translation>
     </message>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ядро</translation>
+        <source>Altbet</source>
+        <translation>ABET Ядро</translation>
     </message>
     </context>
 <context>
@@ -2929,8 +2929,8 @@ Please be patient...</source>
         <translation>Блокчейн</translation>
     </message>
     <message>
-        <source>Open the BECN debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Отвори BECN дебъг лог файла от сегашната папка. Това може да отнеме известно време за по-дълги файлове.</translation>
+        <source>Open the ABET debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Отвори ABET дебъг лог файла от сегашната папка. Това може да отнеме известно време за по-дълги файлове.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3065,8 +3065,8 @@ Please be patient...</source>
         <translation>Персонален резервен път:</translation>
     </message>
     <message>
-        <source>Custom zBECN Backup Path:</source>
-        <translation>Персонализиран zBECN резервен път:</translation>
+        <source>Custom zABET Backup Path:</source>
+        <translation>Персонализиран zABET резервен път:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3145,8 +3145,8 @@ Please be patient...</source>
         <translation>Изходящи:</translation>
     </message>
     <message>
-        <source>Welcome to the BECN RPC console.</source>
-        <translation>Добре Дошли в RPC конзолата на BECN.</translation>
+        <source>Welcome to the ABET RPC console.</source>
+        <translation>Добре Дошли в RPC конзолата на ABET.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3272,16 +3272,16 @@ Please be patient...</source>
         <translation>Сума:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по BECN мрежата.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по ABET мрежата.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
         <translation>ПОЛУЧИ</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the BECN network.</source>
-        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. &lt;br&gt;Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по BECN мрежата.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the ABET network.</source>
+        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. &lt;br&gt;Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по ABET мрежата.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3513,8 +3513,8 @@ Please be patient...</source>
         <translation>Размер на UTXO:</translation>
     </message>
     <message>
-        <source>0 BECN</source>
-        <translation>0 BECN</translation>
+        <source>0 ABET</source>
+        <translation>0 ABET</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3569,15 +3569,15 @@ Please be patient...</source>
         <translation>Автоматично избрани монети</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uBECNs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBECNs in fee,&lt;br /&gt;while "at least" pays 1000 uBECNs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Ако собствената такса е настроена на 1000 uBECN и превода е само 250 байта, то тогава "за килобайт" само плаща 250 uBECN входяща такса, &lt;br /&gt;докато "минимална сума" плаща 1000 uBECN. За транзакции по-големи от килобайт, и двете плащат за килобайт.</translation>
+        <source>If the custom fee is set to 1000 uABETs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uABETs in fee,&lt;br /&gt;while "at least" pays 1000 uABETs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Ако собствената такса е настроена на 1000 uABET и превода е само 250 байта, то тогава "за килобайт" само плаща 250 uABET входяща такса, &lt;br /&gt;докато "минимална сума" плаща 1000 uABET. За транзакции по-големи от килобайт, и двете плащат за килобайт.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uBECNs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBECNs in fee,&lt;br /&gt;while "total at least" pays 1000 uBECNs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Ако собствената такса е настроена на 1000 uBECN и превода е само 250 байта, то тогава "за килобайт" само плаща 250 uBECN входяща такса,&lt;br /&gt; докато "минимална сума" плаща 1000 uBECN. За транзакции по-големи от килобайт, и двете плащат за килобайт.</translation>
+        <source>If the custom fee is set to 1000 uABETs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uABETs in fee,&lt;br /&gt;while "total at least" pays 1000 uABETs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Ако собствената такса е настроена на 1000 uABET и превода е само 250 байта, то тогава "за килобайт" само плаща 250 uABET входяща такса,&lt;br /&gt; докато "минимална сума" плаща 1000 uABET. За транзакции по-големи от килобайт, и двете плащат за килобайт.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for BECN transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for ABET transactions than the network can process.</source>
         <translation>Няма проблем да платите минималната такса, стига обема преводи да е по-малък от наличното място в блоковете. &lt;br /&gt;Но имайте впредвид, че това може да се окаже в превод, който никога не получава потвърждение ако заявките за преводи са повече от колкото мрежата може да понесе.</translation>
     </message>
     <message>
@@ -3625,8 +3625,8 @@ Please be patient...</source>
         <translation>Добави Получател</translation>
     </message>
     <message>
-        <source>Anonymized BECN</source>
-        <translation>Анонимизиран BECN</translation>
+        <source>Anonymized ABET</source>
+        <translation>Анонимизиран ABET</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -3673,8 +3673,8 @@ Please be patient...</source>
         <translation>Инструмента за разделяне на блока не работи, когато се изпраща до няколко адреса едновременно. Опитайте пак.</translation>
     </message>
     <message>
-        <source>Warning: Invalid BECN address</source>
-        <translation>Предупреждение: Невалиден BECN адрес</translation>
+        <source>Warning: Invalid ABET address</source>
+        <translation>Предупреждение: Невалиден ABET адрес</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -3772,8 +3772,8 @@ Please be patient...</source>
         <translation>Плати На:</translation>
     </message>
     <message>
-        <source>The BECN address to send the payment to</source>
-        <translation>BECN адреса - получател на плащането</translation>
+        <source>The ABET address to send the payment to</source>
+        <translation>ABET адреса - получател на плащането</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3812,8 +3812,8 @@ Please be patient...</source>
         <translation>Съобщение:</translation>
     </message>
     <message>
-        <source>A message that was attached to the BECN: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the BECN network.</source>
-        <translation>Съобщение, което е било прикачено към BECN:URI и което ще бъде запазено заедно с превода за ваша информация. Внимание: Това съобщение е само за Вас, то няма да бъде изпратено по BECN мрежата.</translation>
+        <source>A message that was attached to the ABET: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the ABET network.</source>
+        <translation>Съобщение, което е било прикачено към ABET:URI и което ще бъде запазено заедно с превода за ваша информация. Внимание: Това съобщение е само за Вас, то няма да бъде изпратено по ABET мрежата.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -3839,8 +3839,8 @@ Please be patient...</source>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Beacon is shutting down...</source>
-        <translation>Изключване на BECN Ядрото...</translation>
+        <source>Altbet is shutting down...</source>
+        <translation>Изключване на ABET Ядрото...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3862,8 +3862,8 @@ Please be patient...</source>
         <translation>Може да подписвате съобщения с Вашите адреси, за да докажете че сте техен притежател. Внимавайте да не подписвате нищо съмнително, тъй като има хакерски атаки, които целят да придобият вашата самоличност. Само подписвайте пълен и ясен текст, с който сте напълно съгласни.</translation>
     </message>
     <message>
-        <source>The BECN address to sign the message with</source>
-        <translation>BECN адреса, с който да подпишете съобщението</translation>
+        <source>The ABET address to sign the message with</source>
+        <translation>ABET адреса, с който да подпишете съобщението</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3894,16 +3894,16 @@ Please be patient...</source>
         <translation>Копирай сегашния подпис в системния буфер</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this BECN address</source>
-        <translation>Подпишете съобщението, за да докажете, че притежавате този BECN адрес</translation>
+        <source>Sign the message to prove you own this ABET address</source>
+        <translation>Подпишете съобщението, за да докажете, че притежавате този ABET адрес</translation>
     </message>
     <message>
-        <source>The BECN address the message was signed with</source>
-        <translation>BECN адреса, който е подписано съобщението</translation>
+        <source>The ABET address the message was signed with</source>
+        <translation>ABET адреса, който е подписано съобщението</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified BECN address</source>
-        <translation>Поверете съобщението, за да се уверите, че е подписано със зададения BECN адрес</translation>
+        <source>Verify the message to ensure it was signed with the specified ABET address</source>
+        <translation>Поверете съобщението, за да се уверите, че е подписано със зададения ABET адрес</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -3989,8 +3989,8 @@ Please be patient...</source>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Beacon</source>
-        <translation>BECN Ядро</translation>
+        <source>Altbet</source>
+        <translation>ABET Ядро</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4006,7 +4006,7 @@ Please be patient...</source>
     </message>
     <message>
         <source>The PIVX Core developers</source>
-        <translation>Beacon разработчици</translation>
+        <translation>Altbet разработчици</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4269,12 +4269,12 @@ Please be patient...</source>
         <translation>Получен посредством обфускация</translation>
     </message>
     <message>
-        <source>BECN Stake</source>
-        <translation>BECN Stake</translation>
+        <source>ABET Stake</source>
+        <translation>ABET Stake</translation>
     </message>
     <message>
-        <source>zBECN Stake</source>
-        <translation>zBECN Stake</translation>
+        <source>zABET Stake</source>
+        <translation>zABET Stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4293,32 +4293,32 @@ Please be patient...</source>
         <translation>Обфускация и направа на Деноминации</translation>
     </message>
     <message>
-        <source>Converted BECN to zBECN</source>
-        <translation>Конвертиран BECN във zBECN</translation>
+        <source>Converted ABET to zABET</source>
+        <translation>Конвертиран ABET във zABET</translation>
     </message>
     <message>
-        <source>Spent zBECN</source>
-        <translation>Похарчени zBECN</translation>
+        <source>Spent zABET</source>
+        <translation>Похарчени zABET</translation>
     </message>
     <message>
-        <source>Received BECN from zBECN</source>
-        <translation>Получен BECN от zBECN</translation>
+        <source>Received ABET from zABET</source>
+        <translation>Получен ABET от zABET</translation>
     </message>
     <message>
-        <source>Minted Change as zBECN from zBECN Spend</source>
-        <translation>Исечено ресто като zBECN от похарчените zBECN</translation>
+        <source>Minted Change as zABET from zABET Spend</source>
+        <translation>Исечено ресто като zABET от похарчените zABET</translation>
     </message>
     <message>
-        <source>Converted zBECN to BECN</source>
-        <translation>Конвертиран zBECN във BECN</translation>
+        <source>Converted zABET to ABET</source>
+        <translation>Конвертиран zABET във ABET</translation>
     </message>
     <message>
-        <source>Anonymous (zBECN Transaction)</source>
-        <translation>Анонимен (транзакция zBECN)</translation>
+        <source>Anonymous (zABET Transaction)</source>
+        <translation>Анонимен (транзакция zABET)</translation>
     </message>
     <message>
-        <source>Anonymous (zBECN Stake)</source>
-        <translation>Анонимен (zBECN Stake)</translation>
+        <source>Anonymous (zABET Stake)</source>
+        <translation>Анонимен (zABET Stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4528,12 +4528,12 @@ Please be patient...</source>
         <translation>Експортирането Успешно</translation>
     </message>
     <message>
-        <source>Received BECN from zBECN</source>
-        <translation>Получен BECN от zBECN</translation>
+        <source>Received ABET from zABET</source>
+        <translation>Получен ABET от zABET</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zBECN</source>
-        <translation>Харчене на Zerocoin, Ресто в zBECN</translation>
+        <source>Zerocoin Spend, Change in zABET</source>
+        <translation>Харчене на Zerocoin, Ресто в zABET</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4569,8 +4569,8 @@ Please be patient...</source>
         <translation>Изпрати Монети</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 BECN.</source>
-        <translation>SwiftTX не подържа изпращането на толкова големи суми. Превода е ограничен до %1 BECN.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 ABET.</source>
+        <translation>SwiftTX не подържа изпращането на толкова големи суми. Превода е ограничен до %1 ABET.</translation>
     </message>
 </context>
 <context>
@@ -4603,8 +4603,8 @@ Please be patient...</source>
 <context>
     <name>ZPivControlDialog</name>
     <message>
-        <source>Select zBECN to Spend</source>
-        <translation>Изберете zBECN за Изпращане</translation>
+        <source>Select zABET to Spend</source>
+        <translation>Изберете zABET за Изпращане</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4615,8 +4615,8 @@ Please be patient...</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zBECN</source>
-        <translation>zBECN</translation>
+        <source>zABET</source>
+        <translation>zABET</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4650,8 +4650,8 @@ Please be patient...</source>
         <translation>Изчисления чекпойнт на акумулатора не е същия като записания в блок индекса.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Beacon is probably already running.</source>
-        <translation>Не може да заключи папката с данни %s. BECN Портфейла вероятно вече е стартиран.</translation>
+        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
+        <translation>Не може да заключи папката с данни %s. ABET Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4678,16 +4678,16 @@ Please be patient...</source>
         <translation>Разпространява се пот MIT софтуерен лиценз, виж съпровождащия файл от &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zBECN minting (0-1, default: %u)</source>
-        <translation>Включи автоматичните бекъпи на портфейла след всяко zBECN емитиране (0-1, по подразбиране: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zABET minting (0-1, default: %u)</source>
+        <translation>Включи автоматичните бекъпи на портфейла след всяко zABET емитиране (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for BECN inputs (0-1, default: %u)</source>
-        <translation>Активиране или деактивиране на функцията за зареждане за BECN входове (0-1, по подразбиране: %u)</translation>
+        <source>Enable or disable staking functionality for ABET inputs (0-1, default: %u)</source>
+        <translation>Активиране или деактивиране на функцията за зареждане за ABET входове (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zBECN inputs (0-1, default: %u)</source>
-        <translation>Активиране или деактивиране на функцията за зареждане за zBECN входове (0-1, по подразбиране: %u)</translation>
+        <source>Enable or disable staking functionality for zABET inputs (0-1, default: %u)</source>
+        <translation>Активиране или деактивиране на функцията за зареждане за zABET входове (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -4722,12 +4722,12 @@ Please be patient...</source>
         <translation>Командата влиза в сила, когато най-добрия блок се промени (%s в cmd се замества от хаш на блока)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Такси (в BECN/Кб) по-малки от това се считат за нулеви при препращане (default: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Такси (в ABET/Кб) по-малки от това се считат за нулеви при препращане (default: %s)</translation>
     </message>
     <message>
-        <source>Fees (in BECN/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Такси (в BECN/Кб) по-малки от това се считат за нулеви при създаване на предовда (default: %s)</translation>
+        <source>Fees (in ABET/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Такси (в ABET/Кб) по-малки от това се считат за нулеви при създаване на предовда (default: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -4822,20 +4822,20 @@ Please be patient...</source>
         <translation>Този продукт включва софтуер разработен от OpenSSL Project &lt;https://www.openssl.org/&gt; и крипто софтуер написан от Ерик Юнг и UPnP софтуер от Томас Бернард.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Beacon is probably already running.</source>
-        <translation>Не може да се прикачи към %s на този компютър. BECN Портфейла вероятно вече е стартиран.</translation>
+        <source>Unable to bind to %s on this computer. Altbet is probably already running.</source>
+        <translation>Не може да се прикачи към %s на този компютър. ABET Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
         <translation>Не намираме достатъчно Обфускационно деноминирани средства за този превод.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 1000 BECN.</source>
-        <translation>Не можем да намерим достатъчно Обфускационно не-деноминирани средства за този превод, които да не са равни на 1000 BECN.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 1000 ABET.</source>
+        <translation>Не можем да намерим достатъчно Обфускационно не-деноминирани средства за този превод, които да не са равни на 1000 ABET.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 BECN.</source>
-        <translation>Не намираме достатъчно средства за този превод, които да не са равни на 1000 BECN.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 ABET.</source>
+        <translation>Не намираме достатъчно средства за този превод, които да не са равни на 1000 ABET.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4850,8 +4850,8 @@ Please be patient...</source>
         <translation>Внимание: -paytxfee е зададена твърде голяма! Това е преводната такса, която ще платите ако изпратите този превод.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Beacon will not work properly.</source>
-        <translation>Внимание: Проверете дали датата и часа на компютъра са верни! Ако Вашият часовник греши, BECN Портфейла няма да работи правилно.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Altbet will not work properly.</source>
+        <translation>Внимание: Проверете дали датата и часа на компютъра са верни! Ако Вашият часовник греши, ABET Портфейла няма да работи правилно.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4983,7 +4983,7 @@ Please be patient...</source>
     </message>
     <message>
         <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
-        <translation>Всички права запазени (c) 2015-%i Beacon разработчици</translation>
+        <translation>Всички права запазени (c) 2015-%i Altbet разработчици</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5062,7 +5062,7 @@ Please be patient...</source>
         <translation>Грешка в зареждането на wallet.dat: Портфейла е повреден</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Beacon</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
         <translation>Грешка в зареждането на wallet.dat: Портфейла изисква по-нова версия</translation>
     </message>
     <message>
@@ -5110,8 +5110,8 @@ Please be patient...</source>
         <translation>Неуспешно четене на блок</translation>
     </message>
     <message>
-        <source>Fee (in BECN/kB) to add to transactions you send (default: %s)</source>
-        <translation>Такса (в BECN/kB), която да се добави към изходящи преводи (по подразбиране: %s)</translation>
+        <source>Fee (in ABET/kB) to add to transactions you send (default: %s)</source>
+        <translation>Такса (в ABET/kB), която да се добави към изходящи преводи (по подразбиране: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -5150,7 +5150,7 @@ Please be patient...</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Beacon is shutting down.</source>
+        <source>Initialization sanity check failed. Altbet is shutting down.</source>
         <translation>Стартирането на проверка на здравословното състояние на портфейла се провали. Изключваме Портфейла.</translation>
     </message>
     <message>
@@ -5214,8 +5214,8 @@ Please be patient...</source>
         <translation>Процент автоматично емитирани Zerocoin (1-100, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Reindex the BECN and zBECN money supply statistics</source>
-        <translation>Индексирай наново BECN и zBECN данните по наличности</translation>
+        <source>Reindex the ABET and zABET money supply statistics</source>
+        <translation>Индексирай наново ABET и zABET данните по наличности</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5254,8 +5254,8 @@ Please be patient...</source>
 </translation>
     </message>
     <message>
-        <source>Disable all BECN specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Изключи BECN специфичната функционалност (Главни възли, Zerocoin, SwiftX, Бюджетиране) (0-1, po podrazbirane: %u)</translation>
+        <source>Disable all ABET specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Изключи ABET специфичната функционалност (Главни възли, Zerocoin, SwiftX, Бюджетиране) (0-1, po podrazbirane: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5290,8 +5290,8 @@ Please be patient...</source>
         <translation>Предпочитани деноминации за автоматично изсечените Zerocoin (1/5/10/50/100/500/1000/5000), 0 за каквито и да е. (По подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zBECN backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Посочете персонализиран път за архивиране, за да добавите копие на всяко автоматично архивиране zBECN. Ако е зададено като реж., Всеки архив генерира файл с времева маркировка. Ако е зададен като файл, ще пренапише към този файл всеки архив. Ако е зададено и резервно копие, ще се случат 4 архиви</translation>
+        <source>Specify custom backup path to add a copy of any automatic zABET backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Посочете персонализиран път за архивиране, за да добавите копие на всяко автоматично архивиране zABET. Ако е зададено като реж., Всеки архив генерира файл с времева маркировка. Ако е зададен като файл, ще пренапише към този файл всеки архив. Ако е зададено и резервно копие, ще се случат 4 архиви</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -5702,8 +5702,8 @@ Please be patient...</source>
         <translation>Синхронизиране на вилицо-лъжиците...</translation>
     </message>
     <message>
-        <source>Syncing zBECN wallet...</source>
-        <translation>Синхронизиране на zBECN портфейла ...</translation>
+        <source>Syncing zABET wallet...</source>
+        <translation>Синхронизиране на zABET портфейла ...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -5810,8 +5810,8 @@ Please be patient...</source>
         <translation>Потребителско име за JSON-RPC свръзките</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zBECN</source>
-        <translation>Стойността е под най-малката налична деноминация (= 1) в zBECN</translation>
+        <source>Value is below the smallest available denomination (= 1) of zABET</source>
+        <translation>Стойността е под най-малката налична деноминация (= 1) в zABET</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -5826,7 +5826,7 @@ Please be patient...</source>
         <translation>Портфейла %s е извън папката с данни %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Beacon to complete</source>
+        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
         <translation>Портфейла трябва да се пренапише: рестартирайте програмата за завършване на процеса</translation>
     </message>
     <message>

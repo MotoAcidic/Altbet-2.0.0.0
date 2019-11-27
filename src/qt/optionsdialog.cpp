@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/simplicity-config.h"
+#include "config/beacon-config.h"
 #endif
 
 #include "optionsdialog.h"
@@ -68,12 +68,12 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet) : QDialog(paren
     ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWindow));
 #endif
 
-    /* remove Wallet tab and zSpl options in case of -disablewallet */
+    /* remove Wallet tab and zPiv options in case of -disablewallet */
     if (!enableWallet) {
         ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWallet));
 
-        ui->verticalZsplOptionsWidget->hide();
-        ui->verticalZsplDisplayWidget->hide();
+        ui->verticalZpivOptionsWidget->hide();
+        ui->verticalZpivDisplayWidget->hide();
     }
 
     /* Display elements init */

@@ -6,7 +6,7 @@
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 
-#include "test/test_simplicity.h"
+#include "test/test_pivx.h"
 
 #include <stdint.h>
 

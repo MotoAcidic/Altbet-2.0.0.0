@@ -12,6 +12,9 @@
 #include "util.h"
 #include "utilstrencodings.h"
 
+#include <openssl/x509.h>
+#include <openssl/x509_vfy.h>
+
 #include <QFileOpenEvent>
 #include <QTemporaryFile>
 

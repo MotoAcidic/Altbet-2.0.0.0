@@ -12,7 +12,7 @@ from test_framework.util import connect_nodes_bi, p2p_port
 from fake_stake.util import TestNode
 
 
-class SIMPLICITY_RPCSporkTest(BitcoinTestFramework):
+class PIVX_RPCSporkTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -82,5 +82,5 @@ class SIMPLICITY_RPCSporkTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    SIMPLICITY_RPCSporkTest().main()
+    PIVX_RPCSporkTest().main()
 

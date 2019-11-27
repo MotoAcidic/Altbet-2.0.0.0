@@ -1,7 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,7 +34,7 @@ class TxViewDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
 public:
-    TxViewDelegate() : QAbstractItemDelegate(), unit(BitcoinUnits::SPL)
+    TxViewDelegate() : QAbstractItemDelegate(), unit(BitcoinUnits::BECN)
     {
     }
 
@@ -147,7 +146,7 @@ OverviewPage::~OverviewPage()
     delete ui;
 }
 
-void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBalance, QString& sSPLPercentage, QString& szSPLPercentage)
+void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBalance, QString& sBECNPercentage, QString& szBECNPercentage)
 {
     int nPrecision = 2;
     double dzPercentage = 0.0;
@@ -166,8 +165,8 @@ void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBala
 
     double dPercentage = 100.0 - dzPercentage;
 
-    szSPLPercentage = "(" + QLocale(QLocale::system()).toString(dzPercentage, 'f', nPrecision) + " %)";
-    sSPLPercentage = "(" + QLocale(QLocale::system()).toString(dPercentage, 'f', nPrecision) + " %)";
+    szBECNPercentage = "(" + QLocale(QLocale::system()).toString(dzPercentage, 'f', nPrecision) + " %)";
+    sBECNPercentage = "(" + QLocale(QLocale::system()).toString(dPercentage, 'f', nPrecision) + " %)";
 
 }
 
@@ -192,16 +191,16 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
         nWatchOnlyLockedBalance = pwalletMain->GetLockedWatchOnlyBalance();
     }
 
-    // SPL Balance
-    CAmount nTotalBalance = balance + unconfirmedBalance + immatureBalance; // add PoW immature balance
-    CAmount splAvailableBalance = balance /*- immatureBalance*/ - nLockedBalance; // subtract PoS immature balance
+    // BECN Balance
+    CAmount nTotalBalance = balance + unconfirmedBalance;
+    CAmount pivAvailableBalance = balance - immatureBalance - nLockedBalance;
     CAmount nUnlockedBalance = nTotalBalance - nLockedBalance;
 
-    // SPL Watch-Only Balance
+    // BECN Watch-Only Balance
     CAmount nTotalWatchBalance = watchOnlyBalance + watchUnconfBalance;
     CAmount nAvailableWatchBalance = watchOnlyBalance - watchImmatureBalance - nWatchOnlyLockedBalance;
 
-    // zSPL Balance
+    // zBECN Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
     // Percentages
@@ -209,11 +208,11 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     QString sPercentage = "";
     getPercentage(nUnlockedBalance, zerocoinBalance, sPercentage, szPercentage);
     // Combined balances
-    CAmount availableTotalBalance = splAvailableBalance + matureZerocoinBalance;
+    CAmount availableTotalBalance = pivAvailableBalance + matureZerocoinBalance;
     CAmount sumTotalBalance = nTotalBalance + zerocoinBalance;
 
-    // SPL labels
-    ui->labelBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, splAvailableBalance, false, BitcoinUnits::separatorAlways));
+    // BECN labels
+    ui->labelBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, pivAvailableBalance, false, BitcoinUnits::separatorAlways));
     ui->labelUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, BitcoinUnits::separatorAlways));
     ui->labelLockedBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nLockedBalance, false, BitcoinUnits::separatorAlways));
@@ -226,7 +225,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelWatchLocked->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nWatchOnlyLockedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nTotalWatchBalance, false, BitcoinUnits::separatorAlways));
 
-    // zSPL labels
+    // zBECN labels
     ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
     ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
     ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
@@ -237,19 +236,19 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelTotalz->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, sumTotalBalance, false, BitcoinUnits::separatorAlways));
 
     // Percentage labels
-    ui->labelSPLPercent->setText(sPercentage);
-    ui->labelzSPLPercent->setText(szPercentage);
+    ui->labelBECNPercent->setText(sPercentage);
+    ui->labelzBECNPercent->setText(szPercentage);
 
     // Adjust bubble-help according to AutoMint settings
-    QString automintHelp = tr("Current percentage of zSPL.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
+    QString automintHelp = tr("Current percentage of zBECN.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
     bool fEnableZeromint = GetBoolArg("-enablezeromint", true);
     int nZeromintPercentage = GetArg("-zeromintpercentage", 10);
     if (fEnableZeromint) {
         automintHelp += tr("AutoMint is currently enabled and set to ") + QString::number(nZeromintPercentage) + "%.\n";
-        automintHelp += tr("To disable AutoMint add 'enablezeromint=0' in simplicity.conf.");
+        automintHelp += tr("To disable AutoMint add 'enablezeromint=0' in beacon.conf.");
     }
     else {
-        automintHelp += tr("AutoMint is currently disabled.\nTo enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in simplicity.conf");
+        automintHelp += tr("AutoMint is currently disabled.\nTo enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in beacon.conf");
     }
 
     // Only show most balances if they are non-zero for the sake of simplicity
@@ -262,49 +261,49 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
 
     bool showWatchOnly = nTotalWatchBalance != 0;
 
-    // SPL Available
-    bool showSPLAvailable = settingShowAllBalances || splAvailableBalance != nTotalBalance;
-    bool showWatchOnlySPLAvailable = showSPLAvailable || nAvailableWatchBalance != nTotalWatchBalance;
-    ui->labelBalanceText->setVisible(showSPLAvailable || showWatchOnlySPLAvailable);
-    ui->labelBalance->setVisible(showSPLAvailable || showWatchOnlySPLAvailable);
-    ui->labelWatchAvailable->setVisible(showWatchOnlySPLAvailable && showWatchOnly);
+    // BECN Available
+    bool showBECNAvailable = settingShowAllBalances || pivAvailableBalance != nTotalBalance;
+    bool showWatchOnlyBECNAvailable = showBECNAvailable || nAvailableWatchBalance != nTotalWatchBalance;
+    ui->labelBalanceText->setVisible(showBECNAvailable || showWatchOnlyBECNAvailable);
+    ui->labelBalance->setVisible(showBECNAvailable || showWatchOnlyBECNAvailable);
+    ui->labelWatchAvailable->setVisible(showWatchOnlyBECNAvailable && showWatchOnly);
 
-    // SPL Pending
-    bool showSPLPending = settingShowAllBalances || unconfirmedBalance != 0;
-    bool showWatchOnlySPLPending = showSPLPending || watchUnconfBalance != 0;
-    ui->labelPendingText->setVisible(showSPLPending || showWatchOnlySPLPending);
-    ui->labelUnconfirmed->setVisible(showSPLPending || showWatchOnlySPLPending);
-    ui->labelWatchPending->setVisible(showWatchOnlySPLPending && showWatchOnly);
+    // BECN Pending
+    bool showBECNPending = settingShowAllBalances || unconfirmedBalance != 0;
+    bool showWatchOnlyBECNPending = showBECNPending || watchUnconfBalance != 0;
+    ui->labelPendingText->setVisible(showBECNPending || showWatchOnlyBECNPending);
+    ui->labelUnconfirmed->setVisible(showBECNPending || showWatchOnlyBECNPending);
+    ui->labelWatchPending->setVisible(showWatchOnlyBECNPending && showWatchOnly);
 
-    // SPL Immature
-    bool showSPLImmature = settingShowAllBalances || immatureBalance != 0;
-    bool showWatchOnlyImmature = showSPLImmature || watchImmatureBalance != 0;
-    ui->labelImmatureText->setVisible(showSPLImmature || showWatchOnlyImmature);
-    ui->labelImmature->setVisible(showSPLImmature || showWatchOnlyImmature); // for symmetry reasons also show immature label when the watch-only one is shown
+    // BECN Immature
+    bool showBECNImmature = settingShowAllBalances || immatureBalance != 0;
+    bool showWatchOnlyImmature = showBECNImmature || watchImmatureBalance != 0;
+    ui->labelImmatureText->setVisible(showBECNImmature || showWatchOnlyImmature);
+    ui->labelImmature->setVisible(showBECNImmature || showWatchOnlyImmature); // for symmetry reasons also show immature label when the watch-only one is shown
     ui->labelWatchImmature->setVisible(showWatchOnlyImmature && showWatchOnly); // show watch-only immature balance
 
-    // SPL Locked
-    bool showSPLLocked = settingShowAllBalances || nLockedBalance != 0;
-    bool showWatchOnlySPLLocked = showSPLLocked || nWatchOnlyLockedBalance != 0;
-    ui->labelLockedBalanceText->setVisible(showSPLLocked || showWatchOnlySPLLocked);
-    ui->labelLockedBalance->setVisible(showSPLLocked || showWatchOnlySPLLocked);
-    ui->labelWatchLocked->setVisible(showWatchOnlySPLLocked && showWatchOnly);
+    // BECN Locked
+    bool showBECNLocked = settingShowAllBalances || nLockedBalance != 0;
+    bool showWatchOnlyBECNLocked = showBECNLocked || nWatchOnlyLockedBalance != 0;
+    ui->labelLockedBalanceText->setVisible(showBECNLocked || showWatchOnlyBECNLocked);
+    ui->labelLockedBalance->setVisible(showBECNLocked || showWatchOnlyBECNLocked);
+    ui->labelWatchLocked->setVisible(showWatchOnlyBECNLocked && showWatchOnly);
 
-    // zSPL
-    bool showzSPLAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
-    bool showzSPLUnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
-    bool showzSPLImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
-    ui->labelzBalanceMature->setVisible(showzSPLAvailable);
-    ui->labelzBalanceMatureText->setVisible(showzSPLAvailable);
-    ui->labelzBalanceUnconfirmed->setVisible(showzSPLUnconfirmed);
-    ui->labelzBalanceUnconfirmedText->setVisible(showzSPLUnconfirmed);
-    ui->labelzBalanceImmature->setVisible(showzSPLImmature);
-    ui->labelzBalanceImmatureText->setVisible(showzSPLImmature);
+    // zBECN
+    bool showzBECNAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
+    bool showzBECNUnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
+    bool showzBECNImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
+    ui->labelzBalanceMature->setVisible(showzBECNAvailable);
+    ui->labelzBalanceMatureText->setVisible(showzBECNAvailable);
+    ui->labelzBalanceUnconfirmed->setVisible(showzBECNUnconfirmed);
+    ui->labelzBalanceUnconfirmedText->setVisible(showzBECNUnconfirmed);
+    ui->labelzBalanceImmature->setVisible(showzBECNImmature);
+    ui->labelzBalanceImmatureText->setVisible(showzBECNImmature);
 
     // Percent split
     bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
-    ui->labelSPLPercent->setVisible(showPercentages);
-    ui->labelzSPLPercent->setVisible(showPercentages);
+    ui->labelBECNPercent->setVisible(showPercentages);
+    ui->labelzBECNPercent->setVisible(showPercentages);
 
     static int cachedTxLocks = 0;
 
@@ -376,7 +375,7 @@ void OverviewPage::setWalletModel(WalletModel* model)
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
     }
 
-    // update the display unit, to not use the default ("SPL")
+    // update the display unit, to not use the default ("BECN")
     updateDisplayUnit();
 
     // Hide orphans

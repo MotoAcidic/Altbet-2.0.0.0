@@ -19,18 +19,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(SPL);
-    unitlist.append(mSPL);
-    unitlist.append(uSPL);
+    unitlist.append(BECN);
+    unitlist.append(mBECN);
+    unitlist.append(uBECN);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case SPL:
-    case mSPL:
-    case uSPL:
+    case BECN:
+    case mBECN:
+    case uBECN:
         return true;
     default:
         return false;
@@ -40,12 +40,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case SPL:
-        return QString("simplicity");
-    case mSPL:
-        return QString("msimplicity");
-    case uSPL:
-        return QString::fromUtf8("usimplicity");
+    case BECN:
+        return QString("pivx");
+    case mBECN:
+        return QString("mpivx");
+    case uBECN:
+        return QString::fromUtf8("upivx");
     default:
         return QString("???");
     }
@@ -55,23 +55,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case SPL:
-            return QString("SPL");
-        case mSPL:
-            return QString("mSPL");
-        case uSPL:
-            return QString::fromUtf8("μSPL");
+        case BECN:
+            return QString("BECN");
+        case mBECN:
+            return QString("mBECN");
+        case uBECN:
+            return QString::fromUtf8("μBECN");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case SPL:
-            return QString("tSPL");
-        case mSPL:
-            return QString("mtSPL");
-        case uSPL:
-            return QString::fromUtf8("μtSPL");
+        case BECN:
+            return QString("tBECN");
+        case mBECN:
+            return QString("mtBECN");
+        case uBECN:
+            return QString::fromUtf8("μtBECN");
         default:
             return QString("???");
         }
@@ -82,23 +82,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case SPL:
-            return QString("SPL");
-        case mSPL:
-            return QString("Milli-SPL (1 / 1" THIN_SP_UTF8 "000)");
-        case uSPL:
-            return QString("Micro-SPL (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case BECN:
+            return QString("BECN");
+        case mBECN:
+            return QString("Milli-BECN (1 / 1" THIN_SP_UTF8 "000)");
+        case uBECN:
+            return QString("Micro-BECN (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case SPL:
-            return QString("TestSPLs");
-        case mSPL:
-            return QString("Milli-TestSPL (1 / 1" THIN_SP_UTF8 "000)");
-        case uSPL:
-            return QString("Micro-TestSPL (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case BECN:
+            return QString("TestBECNs");
+        case mBECN:
+            return QString("Milli-TestBECN (1 / 1" THIN_SP_UTF8 "000)");
+        case uBECN:
+            return QString("Micro-TestBECN (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -108,11 +108,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case SPL:
+    case BECN:
         return 100000000;
-    case mSPL:
+    case mBECN:
         return 100000;
-    case uSPL:
+    case uBECN:
         return 100;
     default:
         return 100000000;
@@ -122,11 +122,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case SPL:
+    case BECN:
         return 8;
-    case mSPL:
+    case mBECN:
         return 5;
-    case uSPL:
+    case uBECN:
         return 2;
     default:
         return 0;

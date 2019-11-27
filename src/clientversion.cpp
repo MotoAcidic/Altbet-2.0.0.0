@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both simplicityd and simplicity-qt, to make it harder for attackers to
+ * for both beacond and pivx-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Simplicity");
+const std::string CLIENT_NAME("Beacon");
 
 /**
  * Client version number
@@ -42,11 +42,10 @@ const std::string CLIENT_NAME("Simplicity");
 #include "obj/build.h"
 #endif
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
-#define GIT_ARCHIVE 1
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. $Format:%n#define GIT_ARCHIVE 1$
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "ae655f0e3c31eabeef7fe1e5f0627aec997d8f5b"
-#define GIT_COMMIT_DATE "Mon, 18 Nov 2019 13:56:49 -0700"
+#define GIT_COMMIT_ID "$Format:%H$"
+#define GIT_COMMIT_DATE "$Format:%cD$"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \

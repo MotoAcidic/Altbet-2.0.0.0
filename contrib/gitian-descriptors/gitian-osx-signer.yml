@@ -1,5 +1,5 @@
 ---
-name: "simplicity-dmg-signer"
+name: "pivx-dmg-signer"
 distro: "ubuntu"
 suites:
 - "bionic"
@@ -8,10 +8,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/simplicity-project/simplicity-detached-sigs.git"
+- "url": "https://github.com/pivx-project/pivx-detached-sigs.git"
   "dir": "signature"
 files:
-- "simplicity-osx-unsigned.tar.gz"
+- "pivx-osx-unsigned.tar.gz"
 script: |
   set -e -o pipefail
 
@@ -30,8 +30,8 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=simplicity-osx-unsigned.tar.gz
-  SIGNED=simplicity-osx-signed.dmg
+  UNSIGNED=pivx-osx-unsigned.tar.gz
+  SIGNED=pivx-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"

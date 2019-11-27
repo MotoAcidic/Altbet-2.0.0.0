@@ -22,8 +22,11 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <openssl/aes.h>
+#include <openssl/sha.h>
 
 #include <univalue.h>
+
 
 void EnsureWalletIsUnlocked(bool fAllowAnonOnly);
 
@@ -78,12 +81,12 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 3)
         throw std::runtime_error(
-            "importprivkey \"simplicityprivkey\" ( \"label\" rescan )\n"
+            "importprivkey \"becnprivkey\" ( \"label\" rescan )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"simplicityprivkey\"   (string, required) The private key (see dumpprivkey)\n"
+            "1. \"becnprivkey\"   (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
 
@@ -181,7 +184,7 @@ UniValue importaddress(const UniValue& params, bool fHelp)
         std::vector<unsigned char> data(ParseHex(params[0].get_str()));
         script = CScript(data.begin(), data.end());
     } else {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address or script");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address or script");
     }
 
     std::string strLabel = "";
@@ -326,13 +329,13 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw std::runtime_error(
-            "dumpprivkey \"simplicityaddress\"\n"
-            "\nReveals the private key corresponding to 'simplicityaddress'.\n"
+            "dumpprivkey \"beaconaddress\"\n"
+            "\nReveals the private key corresponding to 'beaconaddress'.\n"
             "Then the importprivkey can be used with this output\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"   (string, required) The simplicity address for the private key\n"
+            "1. \"beaconaddress\"   (string, required) The beacon address for the private key\n"
 
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
@@ -347,7 +350,7 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
     std::string strAddress = params[0].get_str();
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -398,7 +401,7 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
 
     // produce output
-    file << strprintf("# Wallet dump created by Simplicity %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# Wallet dump created by BECN %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     file << strprintf("# * Best block at time of backup was %i (%s),\n", chainActive.Height(), chainActive.Tip()->GetBlockHash().ToString());
     file << strprintf("#   mined on %s\n", EncodeDumpTime(chainActive.Tip()->GetBlockTime()));
@@ -432,12 +435,12 @@ UniValue bip38encrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
-            "bip38encrypt \"simplicityaddress\" \"passphrase\"\n"
-            "\nEncrypts a private key corresponding to 'simplicityaddress'.\n" +
+            "bip38encrypt \"beaconaddress\" \"passphrase\"\n"
+            "\nEncrypts a private key corresponding to 'beaconaddress'.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"   (string, required) The simplicity address for the private key (you must hold the key already)\n"
+            "1. \"beaconaddress\"   (string, required) The beacon address for the private key (you must hold the key already)\n"
             "2. \"passphrase\"   (string, required) The passphrase you want the private key to be encrypted with - Valid special chars: !#$%&'()*+,-./:;<=>?`{|}~ \n"
 
             "\nResult:\n"
@@ -456,7 +459,7 @@ UniValue bip38encrypt(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -478,7 +481,7 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
-            "bip38decrypt \"simplicityaddress\" \"passphrase\"\n"
+            "bip38decrypt \"beaconaddress\" \"passphrase\"\n"
             "\nDecrypts and then imports password protected private key.\n" +
             HelpRequiringPassphrase() + "\n"
 

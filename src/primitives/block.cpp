@@ -1,7 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,22 +13,9 @@
 #include "utilstrencodings.h"
 #include "util.h"
 
-uint256 CBlockHeader::GetPoWHash() const
-{
-    if (GetAlgo(nVersion) == POW_SCRYPT_SQUARED)
-        return HashScryptSquared(BEGIN(nVersion), END(nNonce));
-    else
-        return HashQuark(BEGIN(nVersion), END(nNonce));
-}
-
 uint256 CBlockHeader::GetHash() const
 {
-    /*if (nVersion > 19)
-        return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
-    else*/ if (nVersion > 1)
-        return Hash(BEGIN(nVersion), END(nNonce));
-    else
-        return GetPoWHash();
+    return Hash(BEGIN(nVersion), END(nNonce));
 }
 
 uint256 CBlock::BuildMerkleTree(bool* fMutated) const
@@ -114,7 +100,7 @@ std::vector<uint256> CBlock::GetMerkleBranch(int nIndex) const
 uint256 CBlock::CheckMerkleBranch(uint256 hash, const std::vector<uint256>& vMerkleBranch, int nIndex)
 {
     if (nIndex == -1)
-        return uint256();
+		return uint256();
     for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
     {
         if (nIndex & 1)
@@ -129,13 +115,12 @@ uint256 CBlock::CheckMerkleBranch(uint256 hash, const std::vector<uint256>& vMer
 std::string CBlock::ToString() const
 {
     std::stringstream s;
-    s << strprintf("CBlock(hash=%s, ver=%d, hashPrevBlock=%s, hashMerkleRoot=%s, nTime=%u, nBits=%08x, nNonce=%u, nBlockType=%i, vtx=%u)\n",
+    s << strprintf("CBlock(hash=%s, ver=%d, hashPrevBlock=%s, hashMerkleRoot=%s, nTime=%u, nBits=%08x, nNonce=%u, vtx=%u)\n",
         GetHash().ToString(),
         nVersion,
         hashPrevBlock.ToString(),
         hashMerkleRoot.ToString(),
         nTime, nBits, nNonce,
-        GetAlgo(nVersion) == -1 ? IsProofOfWork() : GetAlgo(nVersion),
         vtx.size());
     for (unsigned int i = 0; i < vtx.size(); i++)
     {

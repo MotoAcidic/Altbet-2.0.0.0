@@ -1,6 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +7,6 @@
 #include "masternodeconfig.h"
 #include "util.h"
 #include "guiinterface.h"
-#include "spork.h"
 #include <base58.h>
 
 CMasternodeConfig masternodeConfig;
@@ -30,7 +28,7 @@ bool CMasternodeConfig::read(std::string& strErr)
         if (configFile != NULL) {
             std::string strHeader = "# Masternode config file\n"
                                     "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index\n"
-                                    "# Example: mn1 127.0.0.2:11957 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0\n";
+                                    "# Example: mn1 127.0.0.2:11115 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0\n";
             fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
             fclose(configFile);
         }
@@ -70,23 +68,22 @@ bool CMasternodeConfig::read(std::string& strErr)
             return false;
         }
 
-        if (IsSporkActive(SPORK_19_ENFORCE_DEFAULT_MN_PORT)) {
-            if (Params().NetworkID() == CBaseChainParams::MAIN) {
-                if (port != Params().GetDefaultPort()) {
-                    strErr = _("Invalid port detected in masternode.conf") + "\n" +
-                            strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
-                            _("(must be 11957 for mainnet)");
-                    streamConfig.close();
-                    return false;
-                }
-            } else if (port == 11957) {
+        if (Params().NetworkID() == CBaseChainParams::MAIN) {
+            if (port != 11115) {
                 strErr = _("Invalid port detected in masternode.conf") + "\n" +
-                        strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
-                        _("(11957 could be used only on mainnet)");
+                         strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
+                         _("(must be 11115 for mainnet)");
                 streamConfig.close();
                 return false;
             }
+        } else if (port == 11115) {
+            strErr = _("Invalid port detected in masternode.conf") + "\n" +
+                     strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
+                     _("(11115 could be used only on mainnet)");
+            streamConfig.close();
+            return false;
         }
+
 
         add(alias, ip, privKey, txHash, outputIndex);
     }

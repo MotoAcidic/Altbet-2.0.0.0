@@ -38,7 +38,7 @@ enum NumConnections {
     CONNECTIONS_ALL = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for Simplicity network client. */
+/** Model for BECN network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
@@ -55,6 +55,7 @@ public:
     int getNumConnections(unsigned int flags = CONNECTIONS_ALL) const;
     QString getMasternodeCountString() const;
     int getNumBlocks() const;
+    int getNumBlocksAtStartup();
 
     quint64 getTotalBytesRecv() const;
     quint64 getTotalBytesSent() const;

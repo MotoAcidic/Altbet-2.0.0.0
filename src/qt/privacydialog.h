@@ -46,7 +46,7 @@ public:
 
     void setModel(WalletModel* model);
     void showOutOfSyncWarning(bool fShow);
-    void setZSplControlLabels(int64_t nAmount, int nQuantity);
+    void setZPivControlLabels(int64_t nAmount, int nQuantity);
 
 public slots:
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance,
@@ -76,7 +76,7 @@ private:
 
     int nDisplayUnit;
     bool updateLabel(const QString& address);
-    void sendzSPL();
+    void sendzBECN();
 
 private slots:
     void on_payTo_textChanged(const QString& address);
@@ -96,11 +96,11 @@ private slots:
 //    void coinControlClipboardLowOutput();
 //    void coinControlClipboardChange();
 
-// MINT disabled    void on_pushButtonMintzSPL_clicked();
+// MINT disabled    void on_pushButtonMintzBECN_clicked();
     void on_pushButtonMintReset_clicked();
     void on_pushButtonSpentReset_clicked();
-    void on_pushButtonSpendzSPL_clicked();
-    void on_pushButtonZSplControl_clicked();
+    void on_pushButtonSpendzBECN_clicked();
+    void on_pushButtonZPivControl_clicked();
     void on_pushButtonHideDenoms_clicked();
     void on_pushButtonShowDenoms_clicked();
     void on_pasteButton_clicked();

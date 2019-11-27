@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,104 +16,103 @@
 
 #include <math.h>
 
-const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake)
+
+unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock)
 {
-    while (pindex && pindex->pprev && (pindex->IsProofOfStake() != fProofOfStake))
-        pindex = pindex->pprev;
-    return pindex;
-}
+    if (Params().NetworkID() == CBaseChainParams::REGTEST)
+        return pindexLast->nBits;
 
-const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, int algo)
-{
-    bool newDiff = pindex->nTime >= Params().BadScryptDiffTimeEnd();
-    while (pindex && pindex->pprev && (CBlockHeader::GetAlgo(pindex->nVersion) != algo || (newDiff && algo == POW_SCRYPT_SQUARED && pindex->nTime < Params().BadScryptDiffTimeEnd() && pindex->nTime >= Params().BadScryptDiffTimeStart())))
-        pindex = pindex->pprev;
-    return pindex;
-}
+    /* current difficulty formula, pivx - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
+    const CBlockIndex* BlockLastSolved = pindexLast;
+    const CBlockIndex* BlockReading = pindexLast;
+    int64_t nActualTimespan = 0;
+    int64_t LastBlockTime = 0;
+    int64_t PastBlocksMin = 24;
+    int64_t PastBlocksMax = 24;
+    int64_t CountBlocks = 0;
+    uint256 PastDifficultyAverage;
+    uint256 PastDifficultyAveragePrev;
 
-unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake)
-{
-    uint256 bnTargetLimit = fProofOfStake ? Params().ProofOfStakeLimit() : Params().ProofOfWorkLimit(pblock->nVersion >= Params().WALLET_UPGRADE_VERSION() ? CBlockHeader::GetAlgo(pblock->nVersion) : POW_QUARK);
-    //if (Params().NetworkID() != CBaseChainParams::MAIN && !fProofOfStake) return bnTargetLimit.GetCompact(); // for testing
-
-    if (pindexLast == NULL)
-        return bnTargetLimit.GetCompact(); // genesis block
-
-    const CBlockIndex* pindexPrev = pblock->nVersion >= Params().WALLET_UPGRADE_VERSION() ? GetLastBlockIndex(pindexLast, CBlockHeader::GetAlgo(pblock->nVersion)) : GetLastBlockIndex(pindexLast, fProofOfStake);
-    if (pindexPrev->pprev == NULL)
-        return bnTargetLimit.GetCompact(); // first block
-
-    const CBlockIndex* pindexPrevPrev = pblock->nVersion >= Params().WALLET_UPGRADE_VERSION() ? GetLastBlockIndex(pindexPrev->pprev, CBlockHeader::GetAlgo(pblock->nVersion)) : GetLastBlockIndex(pindexPrev->pprev, fProofOfStake);
-    if (pindexPrevPrev->pprev == NULL)
-        return bnTargetLimit.GetCompact(); // second block
-
-    int64_t nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime(); // difficulty for PoW and PoS are calculated separately
-
-    if (nActualSpacing <= 0)
-        nActualSpacing = 1;
-
-    // ppcoin: target change every block
-    // ppcoin: retarget with exponential moving toward target spacing
-    uint256 bnNew;
-    bnNew.SetCompact(pindexPrev->nBits);
-
-    if (!fProofOfStake) {
-        bnNew *= ((Params().Interval() - 1) * ((ALGO_COUNT-1) * 2 * Params().TargetSpacing()) + nActualSpacing + nActualSpacing);
-        bnNew /= ((Params().Interval() + 1) * ((ALGO_COUNT-1) * 2 * Params().TargetSpacing()));
-    } else {
-        bnNew *= ((Params().Interval() - 1) * (2 * Params().TargetSpacing()) + nActualSpacing + nActualSpacing);
-        bnNew /= ((Params().Interval() + 1) * (2 * Params().TargetSpacing())); // 160 second block time for PoW + 160 second block time for PoS = 80 second effective block time
+    if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || BlockLastSolved->nHeight < PastBlocksMin) {
+        return Params().ProofOfWorkLimit().GetCompact();
     }
 
-    /*if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        int height = pindexLast->nHeight + 1;
+    if (pindexLast->nHeight >= Params().LAST_POW_BLOCK()) {
+        uint256 bnTargetLimit = (~uint256(0) >> 24);
+        int64_t nTargetSpacing = 70;
+        int64_t nTargetTimespan = 70 * 40;
 
-        if (height < (Params().WALLET_UPGRADE_BLOCK()+10) && height >= Params().WALLET_UPGRADE_BLOCK())
-            bnNew *= (int)pow(4.0, 10.0+Params().WALLET_UPGRADE_BLOCK()-height); // slash difficulty and gradually ramp back up over 10 blocks
-    }*/
+        int64_t nActualSpacing = 0;
+        if (pindexLast->nHeight != 0)
+            nActualSpacing = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
 
-    if (bnNew <= 0 || bnNew > bnTargetLimit)
-        bnNew = bnTargetLimit;
+        if (nActualSpacing < 0)
+            nActualSpacing = 1;
+
+        // ppcoin: target change every block
+        // ppcoin: retarget with exponential moving toward target spacing
+        uint256 bnNew;
+        bnNew.SetCompact(pindexLast->nBits);
+
+        int64_t nInterval = nTargetTimespan / nTargetSpacing;
+        bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
+        bnNew /= ((nInterval + 1) * nTargetSpacing);
+
+        if (bnNew <= 0 || bnNew > bnTargetLimit)
+            bnNew = bnTargetLimit;
+
+        return bnNew.GetCompact();
+    }
+
+    for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
+        if (PastBlocksMax > 0 && i > PastBlocksMax) {
+            break;
+        }
+        CountBlocks++;
+
+        if (CountBlocks <= PastBlocksMin) {
+            if (CountBlocks == 1) {
+                PastDifficultyAverage.SetCompact(BlockReading->nBits);
+            } else {
+                PastDifficultyAverage = ((PastDifficultyAveragePrev * CountBlocks) + (uint256().SetCompact(BlockReading->nBits))) / (CountBlocks + 1);
+            }
+            PastDifficultyAveragePrev = PastDifficultyAverage;
+        }
+
+        if (LastBlockTime > 0) {
+            int64_t Diff = (LastBlockTime - BlockReading->GetBlockTime());
+            nActualTimespan += Diff;
+        }
+        LastBlockTime = BlockReading->GetBlockTime();
+
+        if (BlockReading->pprev == NULL) {
+            assert(BlockReading);
+            break;
+        }
+        BlockReading = BlockReading->pprev;
+    }
+
+    uint256 bnNew(PastDifficultyAverage);
+
+    int64_t _nTargetTimespan = CountBlocks * Params().TargetSpacing();
+
+    if (nActualTimespan < _nTargetTimespan / 3)
+        nActualTimespan = _nTargetTimespan / 3;
+    if (nActualTimespan > _nTargetTimespan * 3)
+        nActualTimespan = _nTargetTimespan * 3;
+
+    // Retarget
+    bnNew *= nActualTimespan;
+    bnNew /= _nTargetTimespan;
+
+    if (bnNew > Params().ProofOfWorkLimit()) {
+        bnNew = Params().ProofOfWorkLimit();
+    }
 
     return bnNew.GetCompact();
 }
 
-unsigned int GetLegacyNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake)
-{
-    int64_t nTargetSpacing = 80;
-    int64_t nTargetTimespan = 20 * 60;
-
-    uint256 bnTargetLimit = fProofOfStake ? Params().ProofOfStakeLimit() : Params().ProofOfWorkLimit(POW_QUARK);
-
-    if (pindexLast == NULL)
-        return bnTargetLimit.GetCompact(); // genesis block
-
-    const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfStake);
-    if (pindexPrev->pprev == NULL)
-        return bnTargetLimit.GetCompact(); // first block
-
-    const CBlockIndex* pindexPrevPrev = GetLastBlockIndex(pindexPrev->pprev, fProofOfStake);
-    if (pindexPrevPrev->pprev == NULL)
-        return bnTargetLimit.GetCompact(); // second block
-
-    int64_t nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
-
-    if (nActualSpacing < 0)
-        nActualSpacing = nTargetSpacing;
-
-    uint256 bnNew;
-    bnNew.SetCompact(pindexPrev->nBits);
-    int64_t nInterval = nTargetTimespan / nTargetSpacing;
-    bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
-    bnNew /= ((nInterval + 1) * nTargetSpacing);
-
-    if (bnNew <= 0 || bnNew > bnTargetLimit)
-        bnNew = bnTargetLimit;
-
-    return bnNew.GetCompact();
-}
-
-bool CheckProofOfWork(const CBlockHeader* pblock)
+bool CheckProofOfWork(uint256 hash, unsigned int nBits)
 {
     bool fNegative;
     bool fOverflow;
@@ -123,19 +121,14 @@ bool CheckProofOfWork(const CBlockHeader* pblock)
     if (Params().SkipProofOfWorkCheck())
         return true;
 
-    bnTarget.SetCompact(pblock->nBits, &fNegative, &fOverflow);
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
     // Check range
-    if (fNegative || bnTarget == 0 || fOverflow || bnTarget > Params().ProofOfWorkLimit(pblock->nVersion >= Params().WALLET_UPGRADE_VERSION() ? CBlockHeader::GetAlgo(pblock->nVersion) : POW_QUARK))
+    if (fNegative || bnTarget == 0 || fOverflow || bnTarget > Params().ProofOfWorkLimit())
         return error("CheckProofOfWork() : nBits below minimum work");
 
-    if (CBlockHeader::GetAlgo(pblock->nVersion) == POW_SCRYPT_SQUARED && pblock->nTime < Params().BadScryptDiffTimeEnd() && pblock->nTime >= Params().BadScryptDiffTimeStart()) {
-        LogPrintf("CheckProofOfWork() : skipping block %s affected by difficulty bug\n", pblock->GetHash().GetHex());
-        return true;
-    }
-    
     // Check proof of work matches claimed amount
-    if (pblock->GetPoWHash() > bnTarget) {
+    if (hash > bnTarget) {
         if (Params().MineBlocksOnDemand())
             return false;
         else

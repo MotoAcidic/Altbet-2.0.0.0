@@ -1,6 +1,5 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,13 +18,13 @@ const unsigned int WALLET_CRYPTO_SALT_SIZE = 8;
 /**
  * Private key encryption is done based on a CMasterKey,
  * which holds a salt and random encryption key.
- *
+ * 
  * CMasterKeys are encrypted using AES-256-CBC using a key
  * derived using derivation method nDerivationMethod
  * (0 == EVP_sha512()) and derivation iterations nDeriveIterations.
  * vchOtherDerivationParameters is provided for alternative algorithms
  * which may require more parameters (such as scrypt).
- *
+ * 
  * Wallet Private Keys are then encrypted using AES-256-CBC
  * with the double-sha256 of the public key as the IV, and the
  * master key's key as the encryption key (see keystore.[ch]).
@@ -62,27 +61,8 @@ public:
         // 25000 rounds is just under 0.1 seconds on a 1.86 GHz Pentium M
         // ie slightly lower than the lowest hardware we need bother supporting
         nDeriveIterations = 25000;
-        nDerivationMethod = 1;
+        nDerivationMethod = 0;
         vchOtherDerivationParameters = std::vector<unsigned char>(0);
-    }
-
-    CMasterKey(unsigned int nDerivationMethodIndex)
-    {
-        switch (nDerivationMethodIndex)
-        {
-            case 0: // sha512
-            default:
-                nDeriveIterations = 25000;
-                nDerivationMethod = 0;
-                vchOtherDerivationParameters = std::vector<unsigned char>(0);
-            break;
-
-            case 1: // scrypt+sha512
-                nDeriveIterations = 10000;
-                nDerivationMethod = 1;
-                vchOtherDerivationParameters = std::vector<unsigned char>(0);
-            break;
-        }
     }
 };
 
@@ -142,6 +122,8 @@ bool DecryptAES256(const SecureString& sKey, const std::string& sCiphertext, con
 class CCryptoKeyStore : public CBasicKeyStore
 {
 private:
+    CryptedKeyMap mapCryptedKeys;
+
     CKeyingMaterial vMasterKey;
 
     //! if fUseCrypto is true, mapKeys must be empty
@@ -158,8 +140,6 @@ protected:
     bool EncryptKeys(CKeyingMaterial& vMasterKeyIn);
 
     bool Unlock(const CKeyingMaterial& vMasterKeyIn);
-
-    CryptedKeyMap mapCryptedKeys;
 
 public:
     CCryptoKeyStore() : fUseCrypto(false), fDecryptionThoroughlyChecked(false)

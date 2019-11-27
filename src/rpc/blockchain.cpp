@@ -10,17 +10,16 @@
 #include "clientversion.h"
 #include "kernel.h"
 #include "main.h"
-#include "miner.h"
 #include "rpc/server.h"
 #include "sync.h"
 #include "txdb.h"
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zspl/accumulatormap.h"
-#include "zspl/accumulators.h"
+#include "zpiv/accumulatormap.h"
+#include "zpiv/accumulators.h"
 #include "wallet/wallet.h"
-#include "zspl/zsplmodule.h"
-#include "zsplchain.h"
+#include "zpiv/zpivmodule.h"
+#include "zpivchain.h"
 
 #include <stdint.h>
 #include <fstream>
@@ -43,7 +42,7 @@ static CUpdatedBlock latestblock;
 extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry);
 void ScriptPubKeyToJSON(const CScript& scriptPubKey, UniValue& out, bool fIncludeHex);
 
-double GetDifficulty(const CBlockIndex* blockindex, int algo)
+double GetDifficulty(const CBlockIndex* blockindex)
 {
     // Floating point number that is a multiple of the minimum difficulty,
     // minimum difficulty = 1.0.
@@ -52,11 +51,6 @@ double GetDifficulty(const CBlockIndex* blockindex, int algo)
             return 1.0;
         else
             blockindex = chainActive.Tip();
-
-        if (algo < POS || algo >= ALGO_COUNT)
-            algo = nCreateBlockAlgo;
-        while (blockindex && blockindex->pprev && (CBlockHeader::GetAlgo(blockindex->nVersion) != algo))
-            blockindex = blockindex->pprev;
     }
 
     int nShift = (blockindex->nBits >> 24) & 0xff;
@@ -76,33 +70,6 @@ double GetDifficulty(const CBlockIndex* blockindex, int algo)
     return dDiff;
 }
 
-/*double GetPoWHashPS(int algo = -1, int height = -1)
-{
-    int nPoWInterval = 72;
-    int64_t nTargetSpacingWorkMin = 30, nTargetSpacingWork = 30;
-
-    CBlockIndex* pindex = chainActive.Genesis();
-    CBlockIndex* pindexPrevWork = chainActive.Genesis();
-
-    if (algo < POS || algo >= ALGO_COUNT)
-        algo = nCreateBlockAlgo;
-    if (height <= 0 || height > chainActive.Height())
-        height = chainActive.Height();
-    bool postFork = height >= Params().WALLET_UPGRADE_BLOCK();
-
-    while (pindex && pindex->nHeight <= height) {
-        if ((postFork && CBlockHeader::GetAlgo(pindex->nVersion) == algo) || (!postFork && pindex->IsProofOfWork())) {
-            int64_t nActualSpacingWork = pindex->GetBlockTime() - pindexPrevWork->GetBlockTime();
-            nTargetSpacingWork = ((nPoWInterval - 1) * nTargetSpacingWork + nActualSpacingWork + nActualSpacingWork) / (nPoWInterval + 1);
-            nTargetSpacingWork = std::max(nTargetSpacingWork, nTargetSpacingWorkMin);
-            pindexPrevWork = pindex;
-        }
-        pindex = pindex->pnext;
-    }
-
-    return GetDifficulty(pindexPrevWork) * (postFork && algo == POW_SCRYPT_SQUARED ? 1024 : 1) * 4294967296 / nTargetSpacingWork; // 1024= standard scrypt work to scrypt^2
-}*/
-
 UniValue blockheaderToJSON(const CBlockIndex* blockindex)
 {
     UniValue result(UniValue::VOBJ);
@@ -121,7 +88,7 @@ UniValue blockheaderToJSON(const CBlockIndex* blockindex)
     result.push_back(Pair("bits", strprintf("%08x", blockindex->nBits)));
     result.push_back(Pair("difficulty", GetDifficulty(blockindex)));
     result.push_back(Pair("chainwork", blockindex->nChainWork.GetHex()));
-    //result.push_back(Pair("acc_checkpoint", blockindex->nAccumulatorCheckpoint.GetHex()));
+    result.push_back(Pair("acc_checkpoint", blockindex->nAccumulatorCheckpoint.GetHex()));
 
     if (blockindex->pprev)
         result.push_back(Pair("previousblockhash", blockindex->pprev->GetBlockHash().GetHex()));
@@ -144,7 +111,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
     result.push_back(Pair("height", blockindex->nHeight));
     result.push_back(Pair("version", block.nVersion));
     result.push_back(Pair("merkleroot", block.hashMerkleRoot.GetHex()));
-    //result.push_back(Pair("acc_checkpoint", block.nAccumulatorCheckpoint.GetHex()));
+    result.push_back(Pair("acc_checkpoint", block.nAccumulatorCheckpoint.GetHex()));
     UniValue txs(UniValue::VARR);
     for (const CTransaction& tx : block.vtx) {
         if (txDetails) {
@@ -168,18 +135,17 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
     if (pnext)
         result.push_back(Pair("nextblockhash", pnext->GetBlockHash().GetHex()));
 
-    result.push_back(Pair("type", blockindex->nVersion >= Params().WALLET_UPGRADE_VERSION() ? CBlockHeader::GetAlgo(blockindex->nVersion) : blockindex->IsProofOfWork()));
-    //result.push_back(Pair("modifier", strprintf("%016x", blockindex->nStakeModifier)));
+    result.push_back(Pair("modifier", strprintf("%016x", blockindex->nStakeModifier)));
     result.push_back(Pair("modifierV2", blockindex->nStakeModifierV2.GetHex()));
 
-    result.push_back(Pair("moneysupply", ValueFromAmount(blockindex->nMoneySupply)));
+    result.push_back(Pair("moneysupply",ValueFromAmount(blockindex->nMoneySupply)));
 
-    UniValue zsplObj(UniValue::VOBJ);
-    for (auto denom : libzerocoin::zerocoinDenomList) {
-        zsplObj.push_back(Pair(std::to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
-    }
-    zsplObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
-    result.push_back(Pair("zSPLsupply", zsplObj));
+//    UniValue zpivObj(UniValue::VOBJ);
+//    for (auto denom : libzerocoin::zerocoinDenomList) {
+//        zpivObj.push_back(Pair(std::to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
+//    }
+//    zpivObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
+//    result.push_back(Pair("zPIVsupply", zpivObj));
 
     //////////
     ////////// Coin stake data ////////////////
@@ -201,13 +167,9 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         stakeData.push_back(Pair("BlockFromHash", stake.get()->GetIndexFrom()->GetBlockHash().GetHex()));
         stakeData.push_back(Pair("BlockFromHeight", stake.get()->GetIndexFrom()->nHeight));
         stakeData.push_back(Pair("hashProofOfStake", hashProofOfStakeRet.GetHex()));
-        //stakeData.push_back(Pair("stakeModifierHeight", ((stake->IsZSPL()) ? "Not available" : std::to_string(
-                //stake->getStakeModifierHeight()))));
+        stakeData.push_back(Pair("stakeModifierHeight", ((stake->IsZPIV()) ? "Not available" : std::to_string(
+                stake->getStakeModifierHeight()))));
         result.push_back(Pair("CoinStake", stakeData));
-    } else {
-        UniValue workData(UniValue::VOBJ);
-        workData.push_back(Pair("hashProofOfWork", block.GetPoWHash().GetHex()));
-        result.push_back(Pair("Mined", workData));
     }
 
     return result;
@@ -246,18 +208,6 @@ UniValue getchecksumblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zSPLsupply\" :\n"
-            "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zSPL denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zSPL denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zSPL denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zSPL denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zSPL denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zSPL denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zSPL denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zSPL denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zSPL denominations\n"
-            "  }\n"
             "}\n"
 
             "\nResult (for verbose=false):\n"
@@ -333,14 +283,14 @@ UniValue getbestblockhash(const UniValue& params, bool fHelp)
     return chainActive.Tip()->GetBlockHash().GetHex();
 }
 
-void RPCNotifyBlockChange(bool initialSync, const CBlockIndex *pBlockIndex)
+void RPCNotifyBlockChange(const uint256 hashBlock)
 {
-    if (initialSync || !pBlockIndex)
-        return;
-    else {
+    CBlockIndex* pindex = nullptr;
+    pindex = mapBlockIndex.at(hashBlock);
+    if(pindex) {
         std::lock_guard<std::mutex> lock(cs_blockchange);
-        latestblock.hash = pBlockIndex->GetBlockHash();
-        latestblock.height = pBlockIndex->nHeight;
+        latestblock.hash = pindex->GetBlockHash();
+        latestblock.height = pindex->nHeight;
     }
     cond_blockchange.notify_all();
 }
@@ -477,14 +427,10 @@ UniValue waitforblockheight(const UniValue& params, bool fHelp)
 
 UniValue getdifficulty(const UniValue& params, bool fHelp)
 {
-    if (fHelp || params.size() > 1)
+    if (fHelp || params.size() != 0)
         throw std::runtime_error(
-            "getdifficulty ( algo )\n"
-            "\nReturns the proof-of-work difficulty on an algo as a multiple of the minimum difficulty.\n"
-            "POS = 0, POW_QUARK = 1, POW_SCRYPT_SQUARED = 2.\n"
-
-            "\nArguments:\n"
-            "1. algo         (numeric, optional) Set to the number of the algo to check difficulty.\n"
+            "getdifficulty\n"
+            "\nReturns the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
 
             "\nResult:\n"
             "n.nnn       (numeric) the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
@@ -492,12 +438,8 @@ UniValue getdifficulty(const UniValue& params, bool fHelp)
             "\nExamples:\n" +
             HelpExampleCli("getdifficulty", "") + HelpExampleRpc("getdifficulty", ""));
 
-    int algo = params.size() > 0 ? params[0].get_int() : -1;
-    if (params.size() > 0 && (algo < POS || algo >= ALGO_COUNT))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid algorithm");
-
     LOCK(cs_main);
-    return GetDifficulty(NULL, algo);
+    return GetDifficulty();
 }
 
 
@@ -564,7 +506,7 @@ UniValue getrawmempool(const UniValue& params, bool fHelp)
             "{                           (json object)\n"
             "  \"transactionid\" : {       (json object)\n"
             "    \"size\" : n,             (numeric) transaction size in bytes\n"
-            "    \"fee\" : n,              (numeric) transaction fee in simplicity\n"
+            "    \"fee\" : n,              (numeric) transaction fee in pivx\n"
             "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT\n"
             "    \"height\" : n,           (numeric) block height when transaction entered pool\n"
             "    \"startingpriority\" : n, (numeric) priority when transaction entered pool\n"
@@ -645,18 +587,6 @@ UniValue getblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zSPLsupply\" :\n"
-            "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zSPL denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zSPL denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zSPL denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zSPL denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zSPL denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zSPL denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zSPL denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zSPL denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zSPL denominations\n"
-            "  },\n"
             "  \"CoinStake\" :\n"
             "    \"BlockFromHash\" : \"hash\",      (string) Block hash of the coin stake input\n"
             "    \"BlockFromHeight\" : n,           (numeric) Block Height of the coin stake input\n"
@@ -814,8 +744,8 @@ UniValue gettxout(const UniValue& params, bool fHelp)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of simplicity addresses\n"
-            "     \"simplicityaddress\"         (string) simplicity address\n"
+            "     \"addresses\" : [          (array of string) array of beacon addresses\n"
+            "     \"beaconaddress\"   	 	(string) beacon address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"
@@ -975,10 +905,10 @@ UniValue getblockchaininfo(const UniValue& params, bool fHelp)
     obj.push_back(Pair("difficulty", (double)GetDifficulty()));
     obj.push_back(Pair("verificationprogress", Checkpoints::GuessVerificationProgress(chainActive.Tip())));
     obj.push_back(Pair("chainwork", chainActive.Tip()->nChainWork.GetHex()));
-    //CBlockIndex* tip = chainActive.Tip();
-    //UniValue softforks(UniValue::VARR);
-    //softforks.push_back(SoftForkDesc("bip65", 5, tip));
-    //obj.push_back(Pair("softforks", softforks));
+    CBlockIndex* tip = chainActive.Tip();
+    UniValue softforks(UniValue::VARR);
+    softforks.push_back(SoftForkDesc("bip65", 5, tip));
+    obj.push_back(Pair("softforks",             softforks));
     return obj;
 }
 
@@ -1215,10 +1145,12 @@ UniValue reconsiderblock(const UniValue& params, bool fHelp)
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Block not found");
 
         CBlockIndex* pblockindex = mapBlockIndex[hash];
-        ReconsiderBlock(pblockindex);
+        ReconsiderBlock(state, pblockindex);
     }
 
-    ActivateBestChain(state);
+    if (state.IsValid()) {
+        ActivateBestChain(state);
+    }
 
     if (!state.IsValid()) {
         throw JSONRPCError(RPC_DATABASE_ERROR, state.GetRejectReason());
@@ -1250,7 +1182,7 @@ UniValue findserial(const UniValue& params, bool fHelp)
     CBigNum bnSerial = 0;
     bnSerial.SetHex(strSerial);
     if (!bnSerial)
-    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid serial");
+	throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid serial");
 
     uint256 txid = 0;
     bool fSuccess = zerocoinDB->ReadCoinSpend(bnSerial, txid);
@@ -1336,7 +1268,7 @@ UniValue getaccumulatorwitness(const UniValue& params, bool fHelp)
     CZerocoinSpendReceipt receipt;
 
     if (!GenerateAccumulatorWitness(pubCoin, accumulator, witness, nMintsAdded, strFailReason)) {
-        receipt.SetStatus(_(strFailReason.c_str()), ZSPL_FAILED_ACCUMULATOR_INITIALIZATION);
+        receipt.SetStatus(_(strFailReason.c_str()), ZPIV_FAILED_ACCUMULATOR_INITIALIZATION);
         throw JSONRPCError(RPC_DATABASE_ERROR, receipt.GetStatusMessage());
     }
 
@@ -1512,7 +1444,7 @@ UniValue getserials(const UniValue& params, bool fHelp) {
                         }
                         libzerocoin::ZerocoinParams *params = Params().Zerocoin_Params(false);
                         PublicCoinSpend publicSpend(params);
-                        if (!ZSPLModule::parseCoinSpend(txin, tx, prevOut, publicSpend)) {
+                        if (!ZPIVModule::parseCoinSpend(txin, tx, prevOut, publicSpend)) {
                             throw JSONRPCError(RPC_INTERNAL_ERROR, "public zerocoin spend parse failed");
                         }
                         serial_str = publicSpend.getCoinSerialNumber().ToString(16);
@@ -1586,9 +1518,9 @@ UniValue getblockindexstats(const UniValue& params, bool fHelp) {
                 "        \"denom_5\": xxxx           (numeric) number of PUBLIC spends of denom_5 occurred over the block range\n"
                 "         ...                    ... number of PUBLIC spends of other denominations: ..., 10, 50, 100, 500, 1000, 5000\n"
                 "  }\n"
-                "  \"txbytes\": xxxxx                (numeric) Sum of the size of all txes (zSPL excluded) over block range\n"
-                "  \"ttlfee\": xxxxx                 (numeric) Sum of the fee amount of all txes (zSPL mints excluded) over block range\n"
-                "  \"ttlfee_all\": xxxxx             (numeric) Sum of the fee amount of all txes (zSPL mints included) over block range\n"
+                "  \"txbytes\": xxxxx                (numeric) Sum of the size of all txes (zBECN excluded) over block range\n"
+                "  \"ttlfee\": xxxxx                 (numeric) Sum of the fee amount of all txes (zBECN mints excluded) over block range\n"
+                "  \"ttlfee_all\": xxxxx             (numeric) Sum of the fee amount of all txes (zBECN mints included) over block range\n"
                 "  \"feeperkb\": xxxxx               (numeric) Average fee per kb (excluding zc txes)\n"
                 "}\n"
 

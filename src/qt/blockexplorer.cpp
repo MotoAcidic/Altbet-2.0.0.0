@@ -1,5 +1,4 @@
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,7 +20,7 @@
 #include <QMessageBox>
 #include <set>
 
-extern double GetDifficulty(const CBlockIndex* blockindex = NULL, int algo = -1);
+extern double GetDifficulty(const CBlockIndex* blockindex = NULL);
 
 inline std::string utostr(unsigned int n)
 {
@@ -49,7 +48,7 @@ static std::string ValueToString(CAmount nValue, bool AllowNegative = false)
     if (nValue < 0 && !AllowNegative)
         return "<span>" + _("unknown") + "</span>";
 
-    QString Str = BitcoinUnits::formatWithUnit(BitcoinUnits::SPL, nValue);
+    QString Str = BitcoinUnits::formatWithUnit(BitcoinUnits::BECN, nValue);
     if (AllowNegative && nValue > 0)
         Str = '+' + Str;
     return std::string("<span>") + Str.toUtf8().data() + "</span>";
@@ -227,33 +226,14 @@ std::string BlockToString(CBlockIndex* pBlock)
     TxContent += "</table>";
 
     CAmount Generated;
-    int height = pBlock->nHeight;
-    if (height == 0)
+    if (pBlock->nHeight == 0)
         Generated = OutVolume;
-    else {
-        uint64_t nCoinAge;
-        if (pBlock->IsProofOfWork() || !GetCoinAge(block.vtx[1], block.nTime, height, nCoinAge))
-            nCoinAge = 0;
-        Generated = GetBlockValue(height, pBlock->IsProofOfStake(), nCoinAge) + GetTreasuryAward(height);
-    }
-
-    std::string type = "";
-    int algo = block.nVersion >= Params().WALLET_UPGRADE_VERSION() ? CBlockHeader::GetAlgo(block.nVersion) : block.IsProofOfWork();
-    switch (algo) {
-        case POS:
-            type = "proof of stake";
-            break;
-        case POW_QUARK:
-            type = "proof of work - quark";
-            break;
-        case POW_SCRYPT_SQUARED:
-            type = "proof of work - scrypt²";
-            break;
-    }
+    else
+        Generated = GetBlockValue(pBlock->nHeight - 1);
 
     std::string BlockContentCells[] =
         {
-            _("Height"), itostr(height),
+            _("Height"), itostr(pBlock->nHeight),
             _("Size"), itostr(GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION)),
             _("Number of Transactions"), itostr(block.vtx.size()),
             _("Value Out"), ValueToString(OutVolume),
@@ -263,7 +243,7 @@ std::string BlockToString(CBlockIndex* pBlock)
             _("Difficulty"), strprintf("%.4f", GetDifficulty(pBlock)),
             _("Bits"), utostr(block.nBits),
             _("Nonce"), utostr(block.nNonce),
-            _("Type"), type,
+            _("Version"), itostr(block.nVersion),
             _("Hash"), "<pre>" + block.GetHash().GetHex() + "</pre>",
             _("Merkle Root"), "<pre>" + block.hashMerkleRoot.GetHex() + "</pre>",
             // _("Hash Whole Block"), "<pre>" + block.hashWholeBlock.GetHex() + "</pre>"
@@ -274,13 +254,13 @@ std::string BlockToString(CBlockIndex* pBlock)
 
     std::string Content;
     Content += "<h2><a class=\"nav\" href=";
-    Content += itostr(height - 1);
+    Content += itostr(pBlock->nHeight - 1);
     Content += ">◄&nbsp;</a>";
     Content += _("Block");
     Content += " ";
-    Content += itostr(height);
+    Content += itostr(pBlock->nHeight);
     Content += "<a class=\"nav\" href=";
-    Content += itostr(height + 1);
+    Content += itostr(pBlock->nHeight + 1);
     Content += ">&nbsp;►</a></h2>";
     Content += BlockContent;
     Content += "</br>";
@@ -458,7 +438,7 @@ BlockExplorer::BlockExplorer(QWidget* parent) : QMainWindow(parent),
     ui->setupUi(this);
 
     this->setStyleSheet(GUIUtil::loadStyleSheet());
-
+    
     connect(ui->pushSearch, SIGNAL(released()), this, SLOT(onSearch()));
     connect(ui->content, SIGNAL(linkActivated(const QString&)), this, SLOT(goTo(const QString&)));
     connect(ui->back, SIGNAL(released()), this, SLOT(back()));
@@ -497,8 +477,8 @@ void BlockExplorer::showEvent(QShowEvent*)
         updateNavButtons();
 
         if (!GetBoolArg("-txindex", true)) {
-            QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (simplicity.conf).");
-            QMessageBox::warning(this, "Simplicity Blockchain Explorer", Warning, QMessageBox::Ok);
+            QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (beacon.conf).");
+            QMessageBox::warning(this, "Beacon Blockchain Explorer", Warning, QMessageBox::Ok);
         }
     }
 }
@@ -574,7 +554,7 @@ void BlockExplorer::setBlock(CBlockIndex* pBlock)
 
 void BlockExplorer::setContent(const std::string& Content)
 {
-    QString CSS = "body {font-size:12px; color:#f8f6f6; bgcolor:#cc7a00;}\n a, span { font-family: monospace; }\n span.addr {color:#cc7a00; font-weight: bold;}\n table tr td {padding: 3px; border: 1px solid black; background-color: #cc7a00;}\n td.d0 {font-weight: bold; color:#f8f6f6;}\n h2, h3 { white-space:nowrap; color:#cc7a00;}\n a { color:#66f0ff; text-decoration:none; }\n a.nav {color:#cc7a00;}\n";
+    QString CSS = "body {font-size:12px; color:#f8f6f6; bgcolor:#5B4C7C;}\n a, span { font-family: monospace; }\n span.addr {color:#5B4C7C; font-weight: bold;}\n table tr td {padding: 3px; border: 1px solid black; background-color: #5B4C7C;}\n td.d0 {font-weight: bold; color:#f8f6f6;}\n h2, h3 { white-space:nowrap; color:#5B4C7C;}\n a { color:#88f6f6; text-decoration:none; }\n a.nav {color:#5B4C7C;}\n";
     QString FullContent = "<html><head><style type=\"text/css\">" + CSS + "</style></head>" + "<body>" + Content.c_str() + "</body></html>";
     // printf(FullContent.toUtf8());
 

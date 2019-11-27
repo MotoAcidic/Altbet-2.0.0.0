@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -79,12 +78,12 @@ UniValue getnetworkhashps(const UniValue& params, bool fHelp)
         throw std::runtime_error(
             "getnetworkhashps ( blocks height )\n"
             "\nReturns the estimated network hashes per second based on the last n blocks.\n"
-            /*"Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.\n"
+            "Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.\n"
             "Pass in [height] to estimate the network speed at the time when a certain block was found.\n"
 
             "\nArguments:\n"
             "1. blocks     (numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change.\n"
-            "2. height     (numeric, optional, default=-1) To estimate at the time of the given height.\n"*/
+            "2. height     (numeric, optional, default=-1) To estimate at the time of the given height.\n"
 
             "\nResult:\n"
             "x             (numeric) Hashes per second estimated\n"
@@ -102,7 +101,7 @@ UniValue getgenerate(const UniValue& params, bool fHelp)
         throw std::runtime_error(
             "getgenerate\n"
             "\nReturn if the server is set to generate coins or not. The default is false.\n"
-            "It is set with the command line argument -gen (or simplicity.conf setting gen)\n"
+            "It is set with the command line argument -gen (or beacon.conf setting gen)\n"
             "It can also be set with the setgenerate call.\n"
 
             "\nResult\n"
@@ -151,7 +150,7 @@ UniValue generate(const UniValue& params, bool fHelp)
     }
     unsigned int nExtraNonce = 0;
     UniValue blockHashes(UniValue::VARR);
-    bool fPoS = false; //nHeight >= Params().LAST_POW_BLOCK();
+    bool fPoS = nHeight >= Params().LAST_POW_BLOCK();
     while (nHeight < nHeightEnd)
     {
 
@@ -168,45 +167,19 @@ UniValue generate(const UniValue& params, bool fHelp)
                 IncrementExtraNonce(pblock, chainActive.Tip(), nExtraNonce);
             }
         }
-        while (!CheckProofOfWork(pblock)) {
+        while (!CheckProofOfWork(pblock->GetHash(), pblock->nBits)) {
             // Yes, there is a chance every nonce could fail to satisfy the -regtest
             // target -- 1 in 2^(2^32). That ain't gonna happen.
             ++pblock->nNonce;
         }
         CValidationState state;
-        if (!ProcessNewBlock(state, NULL, pblock, true, NULL))
+        if (!ProcessNewBlock(state, NULL, pblock))
             throw JSONRPCError(RPC_INTERNAL_ERROR, "ProcessNewBlock, block not accepted");
         ++nHeight;
-        // fPoS = nHeight >= Params().LAST_POW_BLOCK();
+        fPoS = nHeight >= Params().LAST_POW_BLOCK();
         blockHashes.push_back(pblock->GetHash().GetHex());
     }
     return blockHashes;
-}
-
-UniValue setminingalgo(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() < 1 || params.size() > 1)
-        throw std::runtime_error(
-            "setminingalgo algonum\n"
-            "\nSet 'algonum' to the number of the algo you'd like to mine.\n"
-            "POW_QUARK = 1, POW_SCRYPT_SQUARED = 2.\n"
-
-            "\nArguments:\n"
-            "1. algonum         (numeric, required) Set to the number of the algo to create blocks on.\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("setminingalgo", "1") +
-            HelpExampleCli("setminingalgo", "2") +
-            HelpExampleRpc("setminingalgo", "2"));
-
-    int algo = params[0].get_int();
-    if (algo <= POS || algo >= ALGO_COUNT)
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid algorithm");
-
-    LOCK(cs_main);
-    nCreateBlockAlgo = algo;
-
-    return NullUniValue;
 }
 
 UniValue setgenerate(const UniValue& params, bool fHelp)
@@ -239,8 +212,8 @@ UniValue setgenerate(const UniValue& params, bool fHelp)
     if (params.size() > 0)
         fGenerate = params[0].get_bool();
 
-    // if (fGenerate && (chainActive.Height() >= Params().LAST_POW_BLOCK()))
-        // throw JSONRPCError(RPC_INVALID_REQUEST, "Proof of Work phase has already ended");
+    if (fGenerate && (chainActive.Height() >= Params().LAST_POW_BLOCK()))
+        throw JSONRPCError(RPC_INVALID_REQUEST, "Proof of Work phase has already ended");
 
     int nGenProcLimit = -1;
     if (params.size() > 1) {
@@ -335,8 +308,8 @@ UniValue prioritisetransaction(const UniValue& params, bool fHelp)
             "1. \"txid\"       (string, required) The transaction id.\n"
             "2. priority delta (numeric, required) The priority to add or subtract.\n"
             "                  The transaction selection algorithm considers the tx as it would have a higher priority.\n"
-            "                  (priority of a transaction is calculated: coinage * value_in_uspl / txsize) \n"
-            "3. fee delta      (numeric, required) The fee value (in uspl) to add (or subtract, if negative).\n"
+            "                  (priority of a transaction is calculated: coinage * value_in_upiv / txsize) \n"
+            "3. fee delta      (numeric, required) The fee value (in upiv) to add (or subtract, if negative).\n"
             "                  The fee is not actually paid, only the algorithm for selecting transactions into a block\n"
             "                  considers the transaction as it would have paid a higher (or lower) fee.\n"
 
@@ -406,7 +379,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "             n                        (numeric) transactions before this one (by 1-based index in 'transactions' list) that must be present in the final block if this one is\n"
             "             ,...\n"
             "         ],\n"
-            "         \"fee\": n,                   (numeric) difference in value between transaction inputs and outputs (in uspl); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy); if key is not present, fee is unknown and clients MUST NOT assume there isn't one\n"
+            "         \"fee\": n,                   (numeric) difference in value between transaction inputs and outputs (in upiv); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy); if key is not present, fee is unknown and clients MUST NOT assume there isn't one\n"
             "         \"sigops\" : n,               (numeric) total number of SigOps, as counted for purposes of block limits; if key is not present, sigop count is unknown and clients MUST NOT assume there aren't any\n"
             "         \"required\" : true|false     (boolean) if provided and true, this transaction must be in the final block\n"
             "      }\n"
@@ -415,7 +388,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "  \"coinbaseaux\" : {                  (json object) data that should be included in the coinbase's scriptSig content\n"
             "      \"flags\" : \"flags\"            (string) \n"
             "  },\n"
-            "  \"coinbasevalue\" : n,               (numeric) maximum allowable input to coinbase transaction, including the generation award and transaction fees (in uspl)\n"
+            "  \"coinbasevalue\" : n,               (numeric) maximum allowable input to coinbase transaction, including the generation award and transaction fees (in upiv)\n"
             "  \"coinbasetxn\" : { ... },           (json object) information for coinbase transaction\n"
             "  \"target\" : \"xxxx\",               (string) The hash target\n"
             "  \"mintime\" : xxx,                   (numeric) The minimum timestamp appropriate for next block time in seconds since epoch (Jan 1 1970 GMT)\n"
@@ -490,11 +463,11 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     if (strMode != "template")
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
-    if (Params().MiningRequiresPeers() && vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Simplicity is not connected!");
+    if (vNodes.empty())
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "BECN is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Simplicity is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "BECN is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -569,7 +542,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     CBlock* pblock = &pblocktemplate->block; // pointer for convenience
 
     // Update nTime
-    UpdateTime(pblock, pindexPrev, false);
+    UpdateTime(pblock, pindexPrev);
     pblock->nNonce = 0;
 
     UniValue aCaps(UniValue::VARR); aCaps.push_back("proposal");
@@ -616,6 +589,8 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         aMutable.push_back("prevblock");
     }
 
+    UniValue aVotes(UniValue::VARR);
+
     UniValue result(UniValue::VOBJ);
     result.push_back(Pair("capabilities", aCaps));
     result.push_back(Pair("version", pblock->nVersion));
@@ -633,25 +608,23 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     result.push_back(Pair("curtime", pblock->GetBlockTime()));
     result.push_back(Pair("bits", strprintf("%08x", pblock->nBits)));
     result.push_back(Pair("height", (int64_t)(pindexPrev->nHeight + 1)));
+    result.push_back(Pair("votes", aVotes));
 
 
-    UniValue superblockObjArray(UniValue::VARR);
-    if(pblock->vtx[0].vout.size() > 1) {
-        for (const CTxOut& txout : pblock->vtx[0].vout) {
-            if(txout == pblock->vtx[0].vout[0])
-                continue;
-            UniValue entry(UniValue::VOBJ);
-            CTxDestination address1;
-            ExtractDestination(txout.scriptPubKey, address1);
-            CBitcoinAddress address2(address1);
-            entry.push_back(Pair("payee", address2.ToString().c_str()));
-            entry.push_back(Pair("script", HexStr(txout.scriptPubKey.begin(), txout.scriptPubKey.end())));
-            entry.push_back(Pair("amount", txout.nValue));
-            superblockObjArray.push_back(entry);
-        }
+    if (pblock->payee != CScript()) {
+        CTxDestination address1;
+        ExtractDestination(pblock->payee, address1);
+        CBitcoinAddress address2(address1);
+        result.push_back(Pair("payee", address2.ToString().c_str()));
+        result.push_back(Pair("payee_amount", (int64_t)pblock->vtx[0].vout[1].nValue));
+    } else {
+        result.push_back(Pair("payee", ""));
+        result.push_back(Pair("payee_amount", ""));
     }
-    result.push_back(Pair("superblock", superblockObjArray));
-    result.push_back(Pair("superblocks_enabled", true));
+
+    result.push_back(Pair("masternode_payments", pblock->nTime > Params().StartMasternodePayments()));
+    result.push_back(Pair("enforce_masternode_payments", true));
+
     return result;
 }
 
@@ -722,7 +695,7 @@ UniValue submitblock(const UniValue& params, bool fHelp)
     CValidationState state;
     submitblock_StateCatcher sc(block.GetHash());
     RegisterValidationInterface(&sc);
-    bool fAccepted = ProcessNewBlock(state, NULL, &block, true, NULL);
+    bool fAccepted = ProcessNewBlock(state, NULL, &block);
     UnregisterValidationInterface(&sc);
     if (fBlockPresent) {
         if (fAccepted && !sc.found)

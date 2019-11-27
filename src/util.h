@@ -13,7 +13,7 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/simplicity-config.h"
+#include "config/beacon-config.h"
 #endif
 
 #include "compat.h"
@@ -30,7 +30,7 @@
 #include <boost/thread/exceptions.hpp>
 #include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
 
-//Simplicity only features
+//PIVX only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
@@ -53,6 +53,7 @@ extern std::map<std::string, std::vector<std::string> > mapMultiArgs;
 extern bool fDebug;
 extern bool fPrintToConsole;
 extern bool fPrintToDebugLog;
+extern bool fServer;
 extern std::string strMiscWarning;
 extern bool fLogTimestamps;
 extern bool fLogIPs;
@@ -227,7 +228,7 @@ void RenameThread(const char* name);
 template <typename Callable>
 void TraceThread(const char* name, Callable func)
 {
-    std::string s = strprintf("simplicity-%s", name);
+    std::string s = strprintf("pivx-%s", name);
     RenameThread(s.c_str());
     try {
         LogPrintf("%s thread start\n", name);

@@ -50,7 +50,7 @@ public:
         ZeromintPrefDenom,   // int
         HideZeroBalances,    // bool
         HideOrphans,    // bool
-        AnonymizeSimplicityAmount, //int
+        AnonymizeBeaconAmount, //int
         ShowMasternodesTab,  // bool
         Listen,              // bool
         StakeSplitThreshold, // int
@@ -104,7 +104,7 @@ signals:
     void zeromintAddressesChanged(bool);
     void zeromintPercentageChanged(int);
     void preferredDenomChanged(int);
-    void anonymizeSimplicityAmountChanged(int);
+    void anonymizeBeaconAmountChanged(int);
     void coinControlFeaturesChanged(bool);
     void hideZeroBalancesChanged(bool);
     void hideOrphansChanged(bool);

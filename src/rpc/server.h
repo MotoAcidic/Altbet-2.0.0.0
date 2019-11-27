@@ -8,7 +8,7 @@
 #define BITCOIN_RPCSERVER_H
 
 #include "amount.h"
-#include "zspl/zerocoin.h"
+#include "zpiv/zerocoin.h"
 #include "rpc/protocol.h"
 #include "uint256.h"
 
@@ -129,7 +129,7 @@ public:
 };
 
 /**
- * Simplicity RPC command dispatcher.
+ * PIVX RPC command dispatcher.
  */
 class CRPCTable
 {
@@ -173,13 +173,13 @@ extern bool ParseBool(const UniValue& o, std::string strKey);
 extern int64_t nWalletUnlockTime;
 extern CAmount AmountFromValue(const UniValue& value);
 extern UniValue ValueFromAmount(const CAmount& amount);
-extern double GetDifficulty(const CBlockIndex* blockindex = NULL, int algo = -1);
+extern double GetDifficulty(const CBlockIndex* blockindex = NULL);
 extern std::string HelpRequiringPassphrase();
 extern std::string HelpExampleCli(std::string methodname, std::string args);
 extern std::string HelpExampleRpc(std::string methodname, std::string args);
 
 extern void EnsureWalletIsUnlocked(bool fAllowAnonOnly = false);
-extern UniValue DoZsplSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, std::vector<CZerocoinMint>& vMintsSelected, std::string address_str, bool isPublicSpend = true);
+extern UniValue DoZpivSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, std::vector<CZerocoinMint>& vMintsSelected, std::string address_str, bool isPublicSpend = true);
 
 extern UniValue getconnectioncount(const UniValue& params, bool fHelp); // in rpc/net.cpp
 extern UniValue getpeerinfo(const UniValue& params, bool fHelp);
@@ -201,7 +201,6 @@ extern UniValue bip38encrypt(const UniValue& params, bool fHelp);
 extern UniValue bip38decrypt(const UniValue& params, bool fHelp);
 
 extern UniValue getgenerate(const UniValue& params, bool fHelp); // in rpc/mining.cpp
-extern UniValue setminingalgo(const UniValue& params, bool fHelp);
 extern UniValue setgenerate(const UniValue& params, bool fHelp);
 extern UniValue generate(const UniValue& params, bool fHelp);
 extern UniValue getnetworkhashps(const UniValue& params, bool fHelp);
@@ -221,7 +220,6 @@ extern UniValue getaccount(const UniValue& params, bool fHelp);
 extern UniValue getaddressesbyaccount(const UniValue& params, bool fHelp);
 extern UniValue sendtoaddress(const UniValue& params, bool fHelp);
 extern UniValue sendtoaddressix(const UniValue& params, bool fHelp);
-extern UniValue burncoins(const UniValue& params, bool fHelp);
 extern UniValue signmessage(const UniValue& params, bool fHelp);
 extern UniValue getreceivedbyaddress(const UniValue& params, bool fHelp);
 extern UniValue getreceivedbyaccount(const UniValue& params, bool fHelp);
@@ -267,11 +265,11 @@ extern UniValue importzerocoins(const UniValue& params, bool fHelp);
 extern UniValue exportzerocoins(const UniValue& params, bool fHelp);
 extern UniValue reconsiderzerocoins(const UniValue& params, bool fHelp);
 extern UniValue getspentzerocoinamount(const UniValue& params, bool fHelp);
-extern UniValue setzsplseed(const UniValue& params, bool fHelp);
-extern UniValue getzsplseed(const UniValue& params, bool fHelp);
+extern UniValue setzpivseed(const UniValue& params, bool fHelp);
+extern UniValue getzpivseed(const UniValue& params, bool fHelp);
 extern UniValue generatemintlist(const UniValue& params, bool fHelp);
-extern UniValue searchdzspl(const UniValue& params, bool fHelp);
-extern UniValue dzsplstate(const UniValue& params, bool fHelp);
+extern UniValue searchdzpiv(const UniValue& params, bool fHelp);
+extern UniValue dzpivstate(const UniValue& params, bool fHelp);
 extern UniValue clearspendcache(const UniValue& params, bool fHelp);
 extern UniValue enableautomintaddress(const UniValue& params, bool fHelp);
 extern UniValue createautomintaddress(const UniValue& params, bool fHelp);
@@ -357,6 +355,6 @@ bool StartRPC();
 void InterruptRPC();
 void StopRPC();
 std::string JSONRPCExecBatch(const UniValue& vReq);
-void RPCNotifyBlockChange(bool initialSync, const CBlockIndex *pBlockIndex);
+void RPCNotifyBlockChange(const uint256 nHeight);
 
 #endif // BITCOIN_RPCSERVER_H

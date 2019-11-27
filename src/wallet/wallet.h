@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,15 +17,15 @@
 #include "main.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zspl/zerocoin.h"
+#include "zpiv/zerocoin.h"
 #include "guiinterface.h"
 #include "util.h"
 #include "validationinterface.h"
 #include "wallet/wallet_ismine.h"
 #include "wallet/walletdb.h"
-#include "zspl/zsplmodule.h"
-#include "zspl/zsplwallet.h"
-#include "zspl/zspltracker.h"
+#include "zpiv/zpivmodule.h"
+#include "zpiv/zpivwallet.h"
+#include "zpiv/zpivtracker.h"
 
 #include <algorithm>
 #include <map>
@@ -47,14 +46,14 @@ extern bool bSpendZeroConfChange;
 extern bool bdisableSystemnotifications;
 extern bool fSendFreeTransactions;
 extern bool fPayAtLeastCustomFee;
-extern bool fGlobalUnlockSpendCache; // Bool used for letting the precomputing thread know that zsplspends need to use the cs_spendcache
+extern bool fGlobalUnlockSpendCache; // Bool used for letting the precomputing thread know that zpivspends need to use the cs_spendcache
 
 //! -paytxfee default
 static const CAmount DEFAULT_TRANSACTION_FEE = 0;
 //! -paytxfee will warn if called with a higher fee than this amount (in satoshis) per KB
-static const CAmount nHighTransactionFeeWarning = 1000 * COIN; //0.1 * COIN;
+static const CAmount nHighTransactionFeeWarning = 0.1 * COIN;
 //! -maxtxfee default
-static const CAmount DEFAULT_TRANSACTION_MAXFEE = 10000 * COIN; //1 * COIN;
+static const CAmount DEFAULT_TRANSACTION_MAXFEE = 1 * COIN;
 //! -maxtxfee will warn if called with a higher fee than this amount (in satoshis)
 static const CAmount nHighTransactionMaxFeeWarning = 100 * nHighTransactionFeeWarning;
 //! Largest (in bytes) free transaction we're willing to create
@@ -88,31 +87,31 @@ enum WalletFeature {
 enum AvailableCoinsType {
     ALL_COINS = 1,
     ONLY_DENOMINATED = 2,
-    ONLY_NOTDEPOSITIFMN = 3,
-    ONLY_NONDENOMINATED_NOTDEPOSITIFMN = 4, // ONLY_NONDENOMINATED and not deposit SPL at the same time
-    ONLY_DEPOSIT = 5,                       // find masternode outputs including locked ones (use with caution)
-    STAKABLE_COINS = 6                      // UTXO's that are valid for staking
+    ONLY_NOT10000IFMN = 3,
+    ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 1000 BECN at the same time
+    ONLY_10000 = 5,                        // find masternode outputs including locked ones (use with caution)
+    STAKABLE_COINS = 6                          // UTXO's that are valid for staking
 };
 
-// Possible states for zSPL send
+// Possible states for zBECN send
 enum ZerocoinSpendStatus {
-    ZSPL_SPEND_OKAY = 0,                            // No error
-    ZSPL_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
-    ZSPL_WALLET_LOCKED = 2,                         // Wallet was locked
-    ZSPL_COMMIT_FAILED = 3,                         // Commit failed, reset status
-    ZSPL_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
-    ZSPL_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
-    ZSPL_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
-    ZSPL_TRX_CREATE = 7,                            // Everything related to create the transaction
-    ZSPL_TRX_CHANGE = 8,                            // Everything related to transaction change
-    ZSPL_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
-    ZSPL_INVALID_COIN = 10,                         // Selected mint coin is not valid
-    ZSPL_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
-    ZSPL_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
-    ZSPL_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    ZSPL_SPENT_USED_ZSPL = 14,                      // Coin has already been spend
-    ZSPL_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
-    ZSPL_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
+    ZPIV_SPEND_OKAY = 0,                            // No error
+    ZPIV_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
+    ZPIV_WALLET_LOCKED = 2,                         // Wallet was locked
+    ZPIV_COMMIT_FAILED = 3,                         // Commit failed, reset status
+    ZPIV_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
+    ZPIV_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
+    ZPIV_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
+    ZPIV_TRX_CREATE = 7,                            // Everything related to create the transaction
+    ZPIV_TRX_CHANGE = 8,                            // Everything related to transaction change
+    ZPIV_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
+    ZPIV_INVALID_COIN = 10,                         // Selected mint coin is not valid
+    ZPIV_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
+    ZPIV_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
+    ZPIV_BAD_SERIALIZATION = 13,                    // Transaction verification failed
+    ZPIV_SPENT_USED_ZBECN = 14,                      // Coin has already been spend
+    ZPIV_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
+    ZPIV_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
 };
 
 struct CompactTallyItem {
@@ -219,15 +218,15 @@ public:
     std::string ResetMintZerocoin();
     std::string ResetSpentZerocoin();
     void ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored, std::list<CDeterministicMint>& listDMintsRestored);
-    void ZSplBackupWallet();
+    void ZPivBackupWallet();
     bool GetZerocoinKey(const CBigNum& bnSerial, CKey& key);
-    bool CreateZSPLOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
+    bool CreateZPIVOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
     bool GetMint(const uint256& hashSerial, CZerocoinMint& mint);
     bool GetMintFromStakeHash(const uint256& hashStake, CZerocoinMint& mint);
     bool DatabaseMint(CDeterministicMint& dMint);
     bool SetMintUnspent(const CBigNum& bnSerial);
     bool UpdateMint(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom);
-    std::string GetUniqueWalletBackupName(bool fzsplAuto) const;
+    std::string GetUniqueWalletBackupName(bool fzpivAuto) const;
     void InitAutoConvertAddresses();
 
 
@@ -244,7 +243,7 @@ public:
      */
     mutable CCriticalSection cs_wallet;
 
-    CzSPLWallet* zwalletMain;
+    CzPIVWallet* zwalletMain;
 
     std::set<CBitcoinAddress> setAutoConvertAddresses;
 
@@ -252,7 +251,7 @@ public:
     bool fWalletUnlockAnonymizeOnly;
     std::string strWalletFile;
     bool fBackupMints;
-    std::unique_ptr<CzSPLTracker> zsplTracker;
+    std::unique_ptr<CzPIVTracker> zpivTracker;
 
     std::set<int64_t> setKeyPool;
     std::map<CKeyID, CKeyMetadata> mapKeyMetadata;
@@ -314,7 +313,7 @@ public:
 
         // Stake Settings
         nHashDrift = 45;
-        nStakeSplitThreshold = 999999;
+        nStakeSplitThreshold = 2000;
         nHashInterval = 22;
         nStakeSetUpdateTime = 300; // 5 minutes
 
@@ -337,20 +336,20 @@ public:
         return nZeromintPercentage;
     }
 
-    void setZWallet(CzSPLWallet* zwallet)
+    void setZWallet(CzPIVWallet* zwallet)
     {
         zwalletMain = zwallet;
-        zsplTracker = std::unique_ptr<CzSPLTracker>(new CzSPLTracker(strWalletFile));
+        zpivTracker = std::unique_ptr<CzPIVTracker>(new CzPIVTracker(strWalletFile));
     }
 
-    CzSPLWallet* getZWallet() { return zwalletMain; }
+    CzPIVWallet* getZWallet() { return zwalletMain; }
 
     bool isZeromintEnabled()
     {
         return fEnableZeromint || fEnableAutoConvert;
     }
 
-    void setZSplAutoBackups(bool fEnabled)
+    void setZPivAutoBackups(bool fEnabled)
     {
         fBackupMints = fEnabled;
     }
@@ -377,6 +376,8 @@ public:
     std::map<uint256, int> mapRequestCount;
 
     std::map<CTxDestination, CAddressBookData> mapAddressBook;
+
+    CPubKey vchDefaultKey;
 
     std::set<COutPoint> setLockedCoins;
 
@@ -474,7 +475,7 @@ public:
     void SyncTransaction(const CTransaction& tx, const CBlock* pblock);
     bool AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pblock, bool fUpdate);
     void EraseFromWallet(const uint256& hash);
-    int ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate = false, bool fromStartup = false);
+    int ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate = false);
     void ReacceptWalletTransactions();
     void ResendWalletTransactions();
     CAmount GetBalance() const;
@@ -627,6 +628,8 @@ public:
         return setKeyPool.size();
     }
 
+    bool SetDefaultKey(const CPubKey& vchPubKey);
+
     //! signify that a particular wallet feature is now used. this may change nWalletVersion and nWalletMaxVersion if those are lower
     bool SetMinVersion(enum WalletFeature, CWalletDB* pwalletdbIn = NULL, bool fExplicit = false);
 
@@ -664,8 +667,8 @@ public:
     /** MultiSig address added */
     boost::signals2::signal<void(bool fHaveMultiSig)> NotifyMultiSigChanged;
 
-    /** zSPL reset */
-    boost::signals2::signal<void()> NotifyzSPLReset;
+    /** zBECN reset */
+    boost::signals2::signal<void()> NotifyzPIVReset;
 
     /** notify wallet file backed up */
     boost::signals2::signal<void (const bool& fSuccess, const std::string& filename)> NotifyWalletBacked;

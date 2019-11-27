@@ -1,7 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -161,11 +160,10 @@ public:
     // proof-of-stake specific fields
     uint256 GetBlockTrust() const;
     uint64_t nStakeModifier;             // hash modifier for proof-of-stake
-    //unsigned int nStakeModifierChecksum; // checksum of index; in-memory only
-    //COutPoint prevoutStake;
-    //unsigned int nStakeTime;
-    //uint256 hashProofOfStake;
-    //uint256 hashProofOfWork;
+    unsigned int nStakeModifierChecksum; // checksum of index; in-memeory only
+    COutPoint prevoutStake;
+    unsigned int nStakeTime;
+    uint256 hashProofOfStake;
     int64_t nMint;
     int64_t nMoneySupply;
     uint256 nStakeModifierV2;
@@ -205,11 +203,9 @@ public:
         nFlags = 0;
         nStakeModifier = 0;
         nStakeModifierV2 = uint256();
-        //nStakeModifierChecksum = 0;
-        //prevoutStake.SetNull();
-        //nStakeTime = 0;
-        //hashProofOfStake = uint256();
-        //hashProofOfWork = uint256();
+        nStakeModifierChecksum = 0;
+        prevoutStake.SetNull();
+        nStakeTime = 0;
 
         nVersion = 0;
         hashMerkleRoot = uint256();
@@ -238,14 +234,13 @@ public:
         nTime = block.nTime;
         nBits = block.nBits;
         nNonce = block.nNonce;
-        //if (block.nVersion > 19)
-            //nAccumulatorCheckpoint = block.nAccumulatorCheckpoint;
+        if(block.nVersion > 3)
+            nAccumulatorCheckpoint = block.nAccumulatorCheckpoint;
 
         if (block.IsProofOfStake()) {
             SetProofOfStake();
-            //if (block.vtx.size())
-                //prevoutStake = block.vtx[1].vin[0].prevout;
-            //nStakeTime = block.nTime;
+            prevoutStake = block.vtx[1].vin[0].prevout;
+            nStakeTime = block.nTime;
         }
     }
 
@@ -280,9 +275,7 @@ public:
         block.nTime = nTime;
         block.nBits = nBits;
         block.nNonce = nNonce;
-        //block.nAccumulatorCheckpoint = nAccumulatorCheckpoint;
-        if (nVersion < Params().WALLET_UPGRADE_VERSION())
-            block.fPreForkPoS = IsProofOfStake();
+        block.nAccumulatorCheckpoint = nAccumulatorCheckpoint;
         return block;
     }
 
@@ -479,22 +472,19 @@ public:
 
         // v1/v2 modifier selection.
         if (!Params().IsStakeModifierV2(nHeight)) {
-            //READWRITE(nStakeModifier);
+            READWRITE(nStakeModifier);
         } else {
             READWRITE(nStakeModifierV2);
         }
 
-        /*if (IsProofOfStake()) {
+        if (IsProofOfStake()) {
             READWRITE(prevoutStake);
             READWRITE(nStakeTime);
-            //READWRITE(hashProofOfStake);
-            //const_cast<CDiskBlockIndex*>(this)->hashProofOfWork = uint256();
         } else {
-            //READWRITE(hashProofOfWork);
             const_cast<CDiskBlockIndex*>(this)->prevoutStake.SetNull();
             const_cast<CDiskBlockIndex*>(this)->nStakeTime = 0;
-            //const_cast<CDiskBlockIndex*>(this)->hashProofOfStake = uint256();
-        }*/
+            const_cast<CDiskBlockIndex*>(this)->hashProofOfStake = uint256();
+        }
 
         // block header
         READWRITE(this->nVersion);
@@ -504,11 +494,11 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
-        /*if (this->nVersion > 19) {
+        if(this->nVersion > 3) {
             READWRITE(nAccumulatorCheckpoint);
             READWRITE(mapZerocoinSupply);
             READWRITE(vMintDenominationsInBlock);
-        }*/
+        }
 
     }
 
@@ -521,7 +511,7 @@ public:
         block.nTime = nTime;
         block.nBits = nBits;
         block.nNonce = nNonce;
-        //block.nAccumulatorCheckpoint = nAccumulatorCheckpoint;
+        block.nAccumulatorCheckpoint = nAccumulatorCheckpoint;
         return block.GetHash();
     }
 

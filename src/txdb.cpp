@@ -1,7 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2016-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +9,7 @@
 #include "main.h"
 #include "pow.h"
 #include "uint256.h"
-#include "zspl/accumulators.h"
+#include "zpiv/accumulators.h"
 
 #include <stdint.h>
 
@@ -258,25 +257,22 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nMoneySupply = diskindex.nMoneySupply;
                 pindexNew->nFlags = diskindex.nFlags;
                 if (!Params().IsStakeModifierV2(pindexNew->nHeight)) {
-                    //pindexNew->nStakeModifier = diskindex.nStakeModifier;
+                    pindexNew->nStakeModifier = diskindex.nStakeModifier;
                 } else {
                     pindexNew->nStakeModifierV2 = diskindex.nStakeModifierV2;
                 }
-                //pindexNew->prevoutStake = diskindex.prevoutStake;
-                //pindexNew->nStakeTime = diskindex.nStakeTime;
-                //pindexNew->hashProofOfStake = diskindex.hashProofOfStake;
-                //pindexNew->hashProofOfWork = diskindex.hashProofOfWork;
+                pindexNew->prevoutStake = diskindex.prevoutStake;
+                pindexNew->nStakeTime = diskindex.nStakeTime;
+                pindexNew->hashProofOfStake = diskindex.hashProofOfStake;
 
-                // treat PoW and PoS blocks the same - don't waste time on redundant PoW checks that won't catch invalid PoS blocks anyway
-                if (pindexNew->GetBlockHash() != Params().HashGenesisBlock() && pindexNew->IsProofOfWork() && CBlockHeader::GetAlgo(pindexNew->nVersion) != POW_SCRYPT_SQUARED) {
-                    CBlockHeader header = pindexNew->GetBlockHeader();
-                    if (!CheckProofOfWork(&header))
+                if (pindexNew->nHeight <= Params().LAST_POW_BLOCK()) {
+                    if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits))
                         return error("LoadBlockIndex() : CheckProofOfWork failed: %s", pindexNew->ToString());
                 }
 
                 //populate accumulator checksum map in memory
                 if(pindexNew->nAccumulatorCheckpoint != 0 && pindexNew->nAccumulatorCheckpoint != nPreviousCheckpoint) {
-                    //Don't load any checkpoints that exist before v2 zspl. The accumulator is invalid for v1 and not used.
+                    //Don't load any checkpoints that exist before v2 zpiv. The accumulator is invalid for v1 and not used.
                     if (pindexNew->nHeight >= Params().Zerocoin_Block_V2_Start())
                         LoadAccumulatorValuesFromDB(pindexNew->nAccumulatorCheckpoint);
 

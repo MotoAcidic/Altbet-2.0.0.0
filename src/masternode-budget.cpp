@@ -1,6 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +14,6 @@
 #include "masternodeman.h"
 #include "obfuscation.h"
 #include "util.h"
-#include "utilmoneystr.h"
 #include <boost/filesystem.hpp>
 
 CBudgetManager budget;
@@ -52,8 +50,8 @@ bool IsBudgetCollateralValid(uint256 nTxCollateralHash, uint256 nExpectedHash, s
         }
         if (fBudgetFinalization) {
             // Collateral for budget finalization
-            // Note: there are still old valid budgets out there, but the check for the new 5 SPL finalization collateral
-            //       will also cover the old 50 SPL finalization collateral.
+            // Note: there are still old valid budgets out there, but the check for the new 5 BECN finalization collateral
+            //       will also cover the old 50 BECN finalization collateral.
             LogPrint("mnbudget", "Final Budget: o.scriptPubKey(%s) == findScript(%s) ?\n", o.scriptPubKey.ToString(), findScript.ToString());
             if (o.scriptPubKey == findScript) {
                 LogPrint("mnbudget", "Final Budget: o.nValue(%ld) >= BUDGET_FEE_TX(%ld) ?\n", o.nValue, BUDGET_FEE_TX);
@@ -529,7 +527,7 @@ void CBudgetManager::CheckAndRemove()
 
 }
 
-void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, bool fProofOfStake, CAmount& nBlockValue)
+void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, bool fProofOfStake)
 {
     LOCK(cs);
 
@@ -555,6 +553,8 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
         ++it;
     }
 
+    CAmount blockValue = GetBlockValue(pindexPrev->nHeight);
+
     if (fProofOfStake) {
         if (nHighestCount > 0) {
             unsigned int i = txNew.vout.size();
@@ -572,7 +572,7 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
         }
     } else {
         //miners get the full amount on these blocks
-        txNew.vout[0].nValue = nBlockValue;
+        txNew.vout[0].nValue = blockValue;
 
         if (nHighestCount > 0) {
             txNew.vout.resize(2);
@@ -588,36 +588,6 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
             LogPrint("mnbudget","CBudgetManager::FillBlockPayee - Budget payment to %s for %lld\n", address2.ToString(), nAmount);
         }
     }
-}
-
-void CBudgetManager::FillTreasuryBlockPayee(CMutableTransaction& txNew, CAmount nFees, bool fProofOfStake, CAmount& nBlockValue)
-{
-    CBlockIndex* pindexPrev = chainActive.Tip();
-    if (!pindexPrev) return;
-
-    int height = pindexPrev->nHeight + 1;
-    std::map<CScript, int> treasuryPayees = Params().GetTreasuryRewardScriptAtHeight(height);
-    CAmount treasuryPayment = GetTreasuryAward(height);
-    std::string strPayees;
-
-    for (const std::pair<CScript, int>& payee : treasuryPayees) {
-        unsigned int i = txNew.vout.size();
-        txNew.vout.resize(i + 1);
-        txNew.vout[i].scriptPubKey = payee.first;
-        txNew.vout[i].nValue = treasuryPayment * payee.second / 100;
-
-        CTxDestination address1;
-        ExtractDestination(payee.first, address1);
-        if (strPayees == "")
-            strPayees += CBitcoinAddress(address1).ToString() + "=" + FormatMoney(treasuryPayment * payee.second / 100).c_str();
-        else
-            strPayees += ", " + CBitcoinAddress(address1).ToString() + "=" + FormatMoney(treasuryPayment * payee.second / 100).c_str();
-    }
-
-    if (!fProofOfStake)
-        txNew.vout[0].nValue = nBlockValue;
-
-    LogPrint("mnbudget","CBudgetManager::FillTreasuryBlockPayee - Treasury payment to %s\n", strPayees.c_str());
 }
 
 CFinalizedBudget* CBudgetManager::FindFinalizedBudget(uint256 nHash)
@@ -936,13 +906,45 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
 {
     if (chainActive.Tip() == NULL) return 0;
 
-    CAmount nSubsidy = 0;
-    int endHeight = nHeight + Params().GetBudgetCycleBlocks();
-    for (int height = nHeight; height < endHeight; height++) {
-        nSubsidy += GetBlockValue(height, false, 0);
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        CAmount nSubsidy = 500 * COIN;
+        return ((nSubsidy / 100) * 10) * 146;
     }
 
-    return nSubsidy / 10; // 10% of PoW block reward
+    //get block value and calculate from that
+    CAmount nSubsidy = 0;
+    if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
+        nSubsidy = 50 * COIN;
+    } else if (nHeight <= 302399 && nHeight > Params().LAST_POW_BLOCK()) {
+        nSubsidy = 50 * COIN;
+    } else if (nHeight <= 345599 && nHeight >= 302400) {
+        nSubsidy = 45 * COIN;
+    } else if (nHeight <= 388799 && nHeight >= 345600) {
+        nSubsidy = 40 * COIN;
+    } else if (nHeight <= 431999 && nHeight >= 388800) {
+        nSubsidy = 35 * COIN;
+    } else if (nHeight <= 475199 && nHeight >= 432000) {
+        nSubsidy = 30 * COIN;
+    } else if (nHeight <= 518399 && nHeight >= 475200) {
+        nSubsidy = 25 * COIN;
+    } else if (nHeight <= 561599 && nHeight >= 518400) {
+        nSubsidy = 20 * COIN;
+    } else if (nHeight <= 604799 && nHeight >= 561600) {
+        nSubsidy = 15 * COIN;
+    } else if (nHeight <= 647999 && nHeight >= 604800) {
+        nSubsidy = 10 * COIN;
+    } else if (nHeight >= Params().Zerocoin_Block_V2_Start()) {
+        nSubsidy = 10 * COIN;
+    } else {
+        nSubsidy = 5 * COIN;
+    }
+
+    // Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
+    if (nHeight <= 172800) {
+        return 648000 * COIN;
+    } else {
+        return ((nSubsidy / 100) * 10) * 1440 * 30;
+    }
 }
 
 void CBudgetManager::NewBlock()
@@ -1477,7 +1479,7 @@ CBudgetProposal::CBudgetProposal(const CBudgetProposal& other)
 
 bool CBudgetProposal::IsValid(std::string& strError, bool fCheckCollateral)
 {
-    if (GetNays() - GetYeas() > (int)mnodeman.CountEnabled(ActiveProtocol()) / 10) {
+    if (GetNays() - GetYeas() > mnodeman.CountEnabled(ActiveProtocol()) / 10) {
         strError = "Proposal " + strProposalName + ": Active removal";
         return false;
     }
@@ -2141,7 +2143,7 @@ bool CFinalizedBudget::IsPaidAlready(uint256 nProposalHash, int nBlockHeight)
     int nPaidBlockHeight = 0;
     uint256 nOldProposalHash;
 
-    for (it = mapPayment_History.begin(); it != mapPayment_History.end(); /* No incrementation needed */ ) {
+    for(it = mapPayment_History.begin(); it != mapPayment_History.end(); /* No incrementation needed */ ) {
         nPaidBlockHeight = (*it).second;
         if((nPaidBlockHeight < GetBlockStart()) || (nPaidBlockHeight > GetBlockEnd())) {
             nOldProposalHash = (*it).first;
@@ -2182,7 +2184,7 @@ TrxValidationStatus CFinalizedBudget::IsTransactionValid(const CTransaction& txN
 
     bool paid = false;
 
-    for (const CTxOut& out : txNew.vout) {
+    for (CTxOut out : txNew.vout) {
         LogPrint("mnbudget","CFinalizedBudget::IsTransactionValid - nCurrentBudgetPayment=%d, payee=%s == out.scriptPubKey=%s, amount=%ld == out.nValue=%ld\n",
                  nCurrentBudgetPayment, vecBudgetPayments[nCurrentBudgetPayment].payee.ToString().c_str(), out.scriptPubKey.ToString().c_str(),
                  vecBudgetPayments[nCurrentBudgetPayment].nAmount, out.nValue);
@@ -2260,7 +2262,7 @@ CFinalizedBudgetBroadcast::CFinalizedBudgetBroadcast(const CFinalizedBudget& oth
 {
     strBudgetName = other.strBudgetName;
     nBlockStart = other.nBlockStart;
-    for (const CTxBudgetPayment& out : other.vecBudgetPayments)
+    for (CTxBudgetPayment out : other.vecBudgetPayments)
         vecBudgetPayments.push_back(out);
     mapVotes = other.mapVotes;
     nFeeTXHash = other.nFeeTXHash;
@@ -2270,7 +2272,7 @@ CFinalizedBudgetBroadcast::CFinalizedBudgetBroadcast(std::string strBudgetNameIn
 {
     strBudgetName = strBudgetNameIn;
     nBlockStart = nBlockStartIn;
-    for (CTxBudgetPayment& out : vecBudgetPaymentsIn)
+    for (CTxBudgetPayment out : vecBudgetPaymentsIn)
         vecBudgetPayments.push_back(out);
     mapVotes.clear();
     nFeeTXHash = nFeeTXHashIn;

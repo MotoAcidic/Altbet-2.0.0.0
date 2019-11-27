@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zspl/accumulators.h"
+#include "zpiv/accumulators.h"
 #include "chain.h"
-#include "zspl/deterministicmint.h"
+#include "zpiv/deterministicmint.h"
 #include "main.h"
 #include "stakeinput.h"
 #include "wallet/wallet.h"
 
-CZSplStake::CZSplStake(const libzerocoin::CoinSpend& spend)
+CZPivStake::CZPivStake(const libzerocoin::CoinSpend& spend)
 {
     this->nChecksum = spend.getAccumulatorChecksum();
     this->denom = spend.getDenomination();
@@ -18,7 +18,7 @@ CZSplStake::CZSplStake(const libzerocoin::CoinSpend& spend)
     fMint = false;
 }
 
-int CZSplStake::GetChecksumHeightFromMint()
+int CZPivStake::GetChecksumHeightFromMint()
 {
     int nHeightChecksum = chainActive.Height() - Params().Zerocoin_RequiredStakeDepth();
 
@@ -29,20 +29,20 @@ int CZSplStake::GetChecksumHeightFromMint()
     return GetChecksumHeight(nChecksum, denom);
 }
 
-int CZSplStake::GetChecksumHeightFromSpend()
+int CZPivStake::GetChecksumHeightFromSpend()
 {
     return GetChecksumHeight(nChecksum, denom);
 }
 
-uint32_t CZSplStake::GetChecksum()
+uint32_t CZPivStake::GetChecksum()
 {
     return nChecksum;
 }
 
-// The zSPL block index is the first appearance of the accumulator checksum that was used in the spend
+// The zBECN block index is the first appearance of the accumulator checksum that was used in the spend
 // note that this also means when staking that this checksum should be from a block that is beyond 60 minutes old and
 // 100 blocks deep.
-CBlockIndex* CZSplStake::GetIndexFrom()
+CBlockIndex* CZPivStake::GetIndexFrom()
 {
     if (pindexFrom)
         return pindexFrom;
@@ -64,14 +64,14 @@ CBlockIndex* CZSplStake::GetIndexFrom()
     return pindexFrom;
 }
 
-CAmount CZSplStake::GetValue()
+CAmount CZPivStake::GetValue()
 {
     return denom * COIN;
 }
 
 //Use the first accumulator checkpoint that occurs 60 minutes after the block being staked from
 // In case of regtest, next accumulator of 60 blocks after the block being staked from
-bool CZSplStake::GetModifier(uint64_t& nStakeModifier)
+bool CZPivStake::GetModifier(uint64_t& nStakeModifier)
 {
     CBlockIndex* pindex = GetIndexFrom();
     if (!pindex)
@@ -97,15 +97,15 @@ bool CZSplStake::GetModifier(uint64_t& nStakeModifier)
     }
 }
 
-CDataStream CZSplStake::GetUniqueness()
+CDataStream CZPivStake::GetUniqueness()
 {
-    //The unique identifier for a zSPL is a hash of the serial
+    //The unique identifier for a zBECN is a hash of the serial
     CDataStream ss(SER_GETHASH, 0);
     ss << hashSerial;
     return ss;
 }
 
-bool CZSplStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
+bool CZPivStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
 {
     CBlockIndex* pindexCheckpoint = GetIndexFrom();
     if (!pindexCheckpoint)
@@ -125,25 +125,25 @@ bool CZSplStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
     return true;
 }
 
-bool CZSplStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal)
+bool CZPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal)
 {
-    //Create an output returning the zSPL that was staked
+    //Create an output returning the zBECN that was staked
     CTxOut outReward;
     libzerocoin::CoinDenomination denomStaked = libzerocoin::AmountToZerocoinDenomination(this->GetValue());
     CDeterministicMint dMint;
-    if (!pwallet->CreateZSPLOutPut(denomStaked, outReward, dMint))
-        return error("%s: failed to create zSPL output", __func__);
+    if (!pwallet->CreateZPIVOutPut(denomStaked, outReward, dMint))
+        return error("%s: failed to create zBECN output", __func__);
     vout.emplace_back(outReward);
 
     //Add new staked denom to our wallet
     if (!pwallet->DatabaseMint(dMint))
-        return error("%s: failed to database the staked zSPL", __func__);
+        return error("%s: failed to database the staked zPIV", __func__);
 
     for (unsigned int i = 0; i < 3; i++) {
         CTxOut out;
         CDeterministicMint dMintReward;
-        if (!pwallet->CreateZSPLOutPut(libzerocoin::CoinDenomination::ZQ_ONE, out, dMintReward))
-            return error("%s: failed to create zSPL output", __func__);
+        if (!pwallet->CreateZPIVOutPut(libzerocoin::CoinDenomination::ZQ_ONE, out, dMintReward))
+            return error("%s: failed to create zBECN output", __func__);
         vout.emplace_back(out);
 
         if (!pwallet->DatabaseMint(dMintReward))
@@ -153,48 +153,48 @@ bool CZSplStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmou
     return true;
 }
 
-bool CZSplStake::GetTxFrom(CTransaction& tx)
+bool CZPivStake::GetTxFrom(CTransaction& tx)
 {
     return false;
 }
 
-bool CZSplStake::MarkSpent(CWallet *pwallet, const uint256& txid)
+bool CZPivStake::MarkSpent(CWallet *pwallet, const uint256& txid)
 {
-    CzSPLTracker* zsplTracker = pwallet->zsplTracker.get();
+    CzPIVTracker* zpivTracker = pwallet->zpivTracker.get();
     CMintMeta meta;
-    if (!zsplTracker->GetMetaFromStakeHash(hashSerial, meta))
+    if (!zpivTracker->GetMetaFromStakeHash(hashSerial, meta))
         return error("%s: tracker does not have serialhash", __func__);
 
-    zsplTracker->SetPubcoinUsed(meta.hashPubcoin, txid);
+    zpivTracker->SetPubcoinUsed(meta.hashPubcoin, txid);
     return true;
 }
 
-//!SPL Stake
-bool CSplStake::SetInput(CTransaction txPrev, unsigned int n)
+//!BECN Stake
+bool CPivStake::SetInput(CTransaction txPrev, unsigned int n)
 {
     this->txFrom = txPrev;
     this->nPosition = n;
     return true;
 }
 
-bool CSplStake::GetTxFrom(CTransaction& tx)
+bool CPivStake::GetTxFrom(CTransaction& tx)
 {
     tx = txFrom;
     return true;
 }
 
-bool CSplStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
+bool CPivStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
 {
     txIn = CTxIn(txFrom.GetHash(), nPosition);
     return true;
 }
 
-CAmount CSplStake::GetValue()
+CAmount CPivStake::GetValue()
 {
     return txFrom.vout[nPosition].nValue;
 }
 
-bool CSplStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal)
+bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal)
 {
     std::vector<valtype> vSolutions;
     txnouttype whichType;
@@ -204,59 +204,32 @@ bool CSplStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
         return false;
     }
 
-    if (whichType != TX_PUBKEY && whichType != TX_PUBKEYHASH && whichType != TX_SCRIPTHASH) {
-        LogPrintf("CreateCoinStake : %s stake output transactions are not supported\n", GetTxnOutputType(whichType));
-        return false; // only support p2pk, p2pkh, and p2sh
-    }
+    if (whichType != TX_PUBKEY && whichType != TX_PUBKEYHASH)
+        return false; // only support pay to public key and pay to address
 
     CScript scriptPubKey;
-    if (whichType == TX_PUBKEYHASH) { // p2pkh type
-        //convert to p2pk type
+    if (whichType == TX_PUBKEYHASH) // pay to address type
+    {
+        //convert to pay to public key type
         CKey key;
         CKeyID keyID = CKeyID(uint160(vSolutions[0]));
         if (!pwallet->GetKey(keyID, key))
             return false;
 
-        scriptPubKey = GetScriptForRawPubKey(key.GetPubKey());
-    } else if (whichType == TX_SCRIPTHASH) {
-        CScriptID scriptID = CScriptID(uint160(vSolutions[0]));
-        CScript subscript;
-        if (!pwallet->GetCScript(scriptID, subscript) || !Solver(subscript, whichType, vSolutions))
-            return false;
-        for (const valtype& pubkey : vSolutions) {
-            CPubKey key(pubkey);
-            CKeyID keyID = CPubKey(key).GetID();
-            if (pwallet->HaveKey(keyID)) {
-                scriptPubKey = GetScriptForRawPubKey(key);
-                break;
-            }
-        }
-        if (scriptPubKey.empty()) {
-            LogPrintf("CreateCoinStake : scriptPubKey empty\n");
-            return false;
-        }
+        scriptPubKey << key.GetPubKey() << OP_CHECKSIG;
     } else
         scriptPubKey = scriptPubKeyKernel;
 
     vout.emplace_back(CTxOut(0, scriptPubKey));
 
     // Calculate if we need to split the output
-    int nSplit = nTotal / (static_cast<CAmount>(pwallet->nStakeSplitThreshold * COIN));
-    if (nSplit > 1) {
-        // if nTotal is twice or more of the threshold; create more outputs
-        int txSizeMax = MAX_STANDARD_TX_SIZE >> 11; // limit splits to <10% of the max TX size (/2048)
-        if (nSplit > txSizeMax)
-            nSplit = txSizeMax;
-        for (int i = nSplit; i > 1; i--) {
-            LogPrintf("%s: StakeSplit: nTotal = %d; adding output %d of %d\n", __func__, nTotal, (nSplit-i)+2, nSplit);
-            vout.emplace_back(CTxOut(0, scriptPubKey));
-        }
-    }
+    if (nTotal / 2 > (CAmount)(pwallet->nStakeSplitThreshold * COIN))
+        vout.emplace_back(CTxOut(0, scriptPubKey));
 
     return true;
 }
 
-bool CSplStake::GetModifier(uint64_t& nStakeModifier)
+bool CPivStake::GetModifier(uint64_t& nStakeModifier)
 {
     if (this->nStakeModifier == 0) {
         // look for the modifier
@@ -271,16 +244,16 @@ bool CSplStake::GetModifier(uint64_t& nStakeModifier)
     return true;
 }
 
-CDataStream CSplStake::GetUniqueness()
+CDataStream CPivStake::GetUniqueness()
 {
-    //The unique identifier for a SPL stake is the outpoint
+    //The unique identifier for a BECN stake is the outpoint
     CDataStream ss(SER_NETWORK, 0);
     ss << nPosition << txFrom.GetHash();
     return ss;
 }
 
 //The block that the UTXO was added to the chain
-CBlockIndex* CSplStake::GetIndexFrom()
+CBlockIndex* CPivStake::GetIndexFrom()
 {
     if (pindexFrom)
         return pindexFrom;

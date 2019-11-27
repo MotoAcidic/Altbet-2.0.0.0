@@ -14,7 +14,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.simplicity.Simplicity-Qt";
+        return @"io.pivx.Beacon-Qt";
     } else {
         return [self __bundleIdentifier];
     }

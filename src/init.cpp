@@ -2,17 +2,16 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/simplicity-config.h"
+#include "config/beacon-config.h"
 #endif
 
 #include "init.h"
 
-#include "zspl/accumulators.h"
+#include "zpiv/accumulators.h"
 #include "activemasternode.h"
 #include "addrman.h"
 #include "amount.h"
@@ -40,8 +39,8 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #include "validationinterface.h"
-#include "zspl/accumulatorcheckpoints.h"
-#include "zsplchain.h"
+#include "zpiv/accumulatorcheckpoints.h"
+#include "zpivchain.h"
 
 #ifdef ENABLE_WALLET
 #include "wallet/db.h"
@@ -73,7 +72,7 @@
 
 #ifdef ENABLE_WALLET
 CWallet* pwalletMain = NULL;
-CzSPLWallet* zwalletMain = NULL;
+CzPIVWallet* zwalletMain = NULL;
 int nWalletBackups = 10;
 #endif
 volatile bool fFeeEstimatesInitialized = false;
@@ -196,7 +195,7 @@ void PrepareShutdown()
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("simplicity-shutoff");
+    RenameThread("pivx-shutoff");
     mempool.AddTransactionsUpdated(1);
     StopHTTPRPC();
     StopREST();
@@ -291,7 +290,7 @@ void Shutdown()
     StopTorControl();
     // Shutdown witness thread if it's enabled
     if (nLocalServices == NODE_BLOOM_LIGHT_ZC) {
-        lightWorker.StopLightZsplThread();
+        lightWorker.StopLightZpivThread();
     }
 #ifdef ENABLE_WALLET
     delete pwalletMain;
@@ -309,24 +308,13 @@ void Shutdown()
  */
 void HandleSIGTERM(int)
 {
-    StartShutdown();
+    fRequestShutdown = true;
 }
 
 void HandleSIGHUP(int)
 {
     fReopenDebugLog = true;
 }
-
-#ifndef WIN32
-static void registerSignalHandler(int signal, void(*handler)(int))
-{
-    struct sigaction sa;
-    sa.sa_handler = handler;
-    sigemptyset(&sa.sa_mask);
-    sa.sa_flags = 0;
-    sigaction(signal, &sa, nullptr);
-}
-#endif
 
 bool static InitError(const std::string& str)
 {
@@ -392,7 +380,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-blocknotify=<cmd>", _("Execute command when the best block changes (%s in cmd is replaced by block hash)"));
     strUsage += HelpMessageOpt("-blocksizenotify=<cmd>", _("Execute command when the best block changes and its size is over (%s in cmd is replaced by block hash, %d with the block size)"));
     strUsage += HelpMessageOpt("-checkblocks=<n>", strprintf(_("How many blocks to check at startup (default: %u, 0 = all)"), 500));
-    strUsage += HelpMessageOpt("-conf=<file>", strprintf(_("Specify configuration file (default: %s)"), "simplicity.conf"));
+    strUsage += HelpMessageOpt("-conf=<file>", strprintf(_("Specify configuration file (default: %s)"), "beacon.conf"));
     if (mode == HMM_BITCOIND) {
 #if !defined(WIN32)
         strUsage += HelpMessageOpt("-daemon", _("Run in the background as a daemon and accept commands"));
@@ -405,11 +393,11 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-maxorphantx=<n>", strprintf(_("Keep at most <n> unconnectable transactions in memory (default: %u)"), DEFAULT_MAX_ORPHAN_TRANSACTIONS));
     strUsage += HelpMessageOpt("-par=<n>", strprintf(_("Set the number of script verification threads (%u to %d, 0 = auto, <0 = leave that many cores free, default: %d)"), -(int)boost::thread::hardware_concurrency(), MAX_SCRIPTCHECK_THREADS, DEFAULT_SCRIPTCHECK_THREADS));
 #ifndef WIN32
-    strUsage += HelpMessageOpt("-pid=<file>", strprintf(_("Specify pid file (default: %s)"), "simplicityd.pid"));
+    strUsage += HelpMessageOpt("-pid=<file>", strprintf(_("Specify pid file (default: %s)"), "beacond.pid"));
 #endif
     strUsage += HelpMessageOpt("-reindex", _("Rebuild block chain index from current blk000??.dat files") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-reindexaccumulators", _("Reindex the accumulator database") + " " + _("on startup"));
-    strUsage += HelpMessageOpt("-reindexmoneysupply", _("Reindex the SPL and zSPL money supply statistics") + " " + _("on startup"));
+    strUsage += HelpMessageOpt("-reindexmoneysupply", _("Reindex the BECN and zBECN money supply statistics") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-resync", _("Delete blockchain folders and resync from scratch") + " " + _("on startup"));
 #if !defined(WIN32)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
@@ -420,7 +408,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageGroup(_("Connection options:"));
     strUsage += HelpMessageOpt("-addnode=<ip>", _("Add a node to connect to and attempt to keep the connection open"));
     strUsage += HelpMessageOpt("-banscore=<n>", strprintf(_("Threshold for disconnecting misbehaving peers (default: %u)"), 100));
-    strUsage += HelpMessageOpt("-bantime=<n>", strprintf(_("Number of seconds to keep misbehaving peers from reconnecting (default: %u)"), DEFAULT_MISBEHAVING_BANTIME));
+    strUsage += HelpMessageOpt("-bantime=<n>", strprintf(_("Number of seconds to keep misbehaving peers from reconnecting (default: %u)"), 86400));
     strUsage += HelpMessageOpt("-bind=<addr>", _("Bind to given address and always listen on it. Use [host]:port notation for IPv6"));
     strUsage += HelpMessageOpt("-connect=<ip>", _("Connect only to the specified node(s)"));
     strUsage += HelpMessageOpt("-discover", _("Discover own IP address (default: 1 when listening and no -externalip)"));
@@ -438,7 +426,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-permitbaremultisig", strprintf(_("Relay non-P2SH multisig (default: %u)"), 1));
     strUsage += HelpMessageOpt("-peerbloomfilters", strprintf(_("Support filtering of blocks and transaction with bloom filters (default: %u)"), DEFAULT_PEERBLOOMFILTERS));
     strUsage += HelpMessageOpt("-peerbloomfilterszc", strprintf(_("Support the zerocoin light node protocol (default: %u)"), DEFAULT_PEERBLOOMFILTERS_ZC));
-    strUsage += HelpMessageOpt("-port=<port>", strprintf(_("Listen for connections on <port> (default: %u or testnet: %u)"), 11957, 21957));
+    strUsage += HelpMessageOpt("-port=<port>", strprintf(_("Listen for connections on <port> (default: %u or testnet: %u)"), 11115, 51474));
     strUsage += HelpMessageOpt("-proxy=<ip:port>", _("Connect through SOCKS5 proxy"));
     strUsage += HelpMessageOpt("-proxyrandomize", strprintf(_("Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)"), 1));
     strUsage += HelpMessageOpt("-seednode=<ip>", _("Connect to a node to retrieve peer addresses, and disconnect"));
@@ -465,9 +453,9 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-disablewallet", _("Do not load the wallet and disable wallet RPC calls"));
     strUsage += HelpMessageOpt("-keypool=<n>", strprintf(_("Set key pool size to <n> (default: %u)"), 100));
     if (GetBoolArg("-help-debug", false))
-        strUsage += HelpMessageOpt("-mintxfee=<amt>", strprintf(_("Fees (in SPL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)"),
+        strUsage += HelpMessageOpt("-mintxfee=<amt>", strprintf(_("Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)"),
             FormatMoney(CWallet::minTxFee.GetFeePerK())));
-    strUsage += HelpMessageOpt("-paytxfee=<amt>", strprintf(_("Fee (in SPL/kB) to add to transactions you send (default: %s)"), FormatMoney(payTxFee.GetFeePerK())));
+    strUsage += HelpMessageOpt("-paytxfee=<amt>", strprintf(_("Fee (in PIV/kB) to add to transactions you send (default: %s)"), FormatMoney(payTxFee.GetFeePerK())));
     strUsage += HelpMessageOpt("-rescan", _("Rescan the block chain for missing wallet transactions") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-salvagewallet", _("Attempt to recover private keys from a corrupt wallet.dat") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-sendfreetransactions", strprintf(_("Send transactions as zero-fee transactions if possible (default: %u)"), 0));
@@ -511,7 +499,7 @@ std::string HelpMessage(HelpMessageMode mode)
         strUsage += HelpMessageOpt("-stopafterblockimport", strprintf(_("Stop running after importing blocks from disk (default: %u)"), 0));
         strUsage += HelpMessageOpt("-sporkkey=<privkey>", _("Enable spork administration functionality with the appropriate private key."));
     }
-    std::string debugCategories = "addrman, alert, bench, coindb, db, lock, rand, rpc, selectcoins, tor, mempool, net, proxy, http, libevent, simplicity, (obfuscation, swiftx, masternode, mnpayments, mnbudget, zero, precompute, staking)"; // Don't translate these and qt below
+    std::string debugCategories = "addrman, alert, bench, coindb, db, lock, rand, rpc, selectcoins, tor, mempool, net, proxy, http, libevent, pivx, (obfuscation, swiftx, masternode, mnpayments, mnbudget, zero, precompute, staking)"; // Don't translate these and qt below
     if (mode == HMM_BITCOIN_QT)
         debugCategories += ", qt";
     strUsage += HelpMessageOpt("-debug=<category>", strprintf(_("Output debugging information (default: %u, supplying <category> is optional)"), 0) + ". " +
@@ -531,7 +519,7 @@ std::string HelpMessage(HelpMessageMode mode)
         strUsage += HelpMessageOpt("-maxsigcachesize=<n>", strprintf(_("Limit size of signature cache to <n> entries (default: %u)"), 50000));
     }
     strUsage += HelpMessageOpt("-maxtipage=<n>", strprintf("Maximum tip age in seconds to consider node in initial block download (default: %u)", DEFAULT_MAX_TIP_AGE));
-    strUsage += HelpMessageOpt("-minrelaytxfee=<amt>", strprintf(_("Fees (in SPL/Kb) smaller than this are considered zero fee for relaying (default: %s)"), FormatMoney(::minRelayTxFee.GetFeePerK())));
+    strUsage += HelpMessageOpt("-minrelaytxfee=<amt>", strprintf(_("Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)"), FormatMoney(::minRelayTxFee.GetFeePerK())));
     strUsage += HelpMessageOpt("-printtoconsole", strprintf(_("Send trace/debug info to console instead of debug.log file (default: %u)"), 0));
     if (GetBoolArg("-help-debug", false)) {
         strUsage += HelpMessageOpt("-printpriority", strprintf(_("Log transaction priority and fee per kB when mining blocks (default: %u)"), 0));
@@ -542,13 +530,13 @@ std::string HelpMessage(HelpMessageMode mode)
     }
     strUsage += HelpMessageOpt("-shrinkdebugfile", _("Shrink debug.log file on client startup (default: 1 when no -debug)"));
     strUsage += HelpMessageOpt("-testnet", _("Use the test network"));
-    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all Simplicity specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)"), 0));
+    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all BECN specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)"), 0));
 
 #ifdef ENABLE_WALLET
     strUsage += HelpMessageGroup(_("Staking options:"));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), 1));
-    strUsage += HelpMessageOpt("-splstake=<n>", strprintf(_("Enable or disable staking functionality for SPL inputs (0-1, default: %u)"), 1));
-    strUsage += HelpMessageOpt("-zsplstake=<n>", strprintf(_("Enable or disable staking functionality for zSPL inputs (0-1, default: %u)"), 1));
+    strUsage += HelpMessageOpt("-pivstake=<n>", strprintf(_("Enable or disable staking functionality for BECN inputs (0-1, default: %u)"), 1));
+    strUsage += HelpMessageOpt("-zpivstake=<n>", strprintf(_("Enable or disable staking functionality for zBECN inputs (0-1, default: %u)"), 1));
     strUsage += HelpMessageOpt("-reservebalance=<amt>", _("Keep the specified amount available for spending at all times (default: 0)"));
     if (GetBoolArg("-help-debug", false)) {
         strUsage += HelpMessageOpt("-printstakemodifier", _("Display the stake modifier calculations in the debug.log file."));
@@ -561,7 +549,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-mnconf=<file>", strprintf(_("Specify masternode configuration file (default: %s)"), "masternode.conf"));
     strUsage += HelpMessageOpt("-mnconflock=<n>", strprintf(_("Lock masternodes from masternode configuration file (default: %u)"), 1));
     strUsage += HelpMessageOpt("-masternodeprivkey=<n>", _("Set the masternode private key"));
-    strUsage += HelpMessageOpt("-masternodeaddr=<n>", strprintf(_("Set external address:port to get to this masternode (example: %s)"), "128.127.106.235:11957"));
+    strUsage += HelpMessageOpt("-masternodeaddr=<n>", strprintf(_("Set external address:port to get to this masternode (example: %s)"), "128.127.106.235:11115"));
     strUsage += HelpMessageOpt("-budgetvotemode=<mode>", _("Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)"));
 
     strUsage += HelpMessageGroup(_("Zerocoin options:"));
@@ -570,10 +558,10 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-enableautoconvertaddress=<n>", strprintf(_("Enable automatic Zerocoin minting from specific addresses (0-1, default: %u)"), DEFAULT_AUTOCONVERTADDRESS));
     strUsage += HelpMessageOpt("-zeromintpercentage=<n>", strprintf(_("Percentage of automatically minted Zerocoin  (1-100, default: %u)"), 10));
     strUsage += HelpMessageOpt("-preferredDenom=<n>", strprintf(_("Preferred Denomination for automatically minted Zerocoin  (1/5/10/50/100/500/1000/5000), 0 for no preference. default: %u)"), 0));
-    strUsage += HelpMessageOpt("-backupzspl=<n>", strprintf(_("Enable automatic wallet backups triggered after each zSPL minting (0-1, default: %u)"), 1));
-    strUsage += HelpMessageOpt("-precompute=<n>", strprintf(_("Enable precomputation of zSPL spends and stakes (0-1, default %u)"), 1));
+    strUsage += HelpMessageOpt("-backupzpiv=<n>", strprintf(_("Enable automatic wallet backups triggered after each zBECN minting (0-1, default: %u)"), 1));
+    strUsage += HelpMessageOpt("-precompute=<n>", strprintf(_("Enable precomputation of zBECN spends and stakes (0-1, default %u)"), 1));
     strUsage += HelpMessageOpt("-precomputecachelength=<n>", strprintf(_("Set the number of included blocks to precompute per cycle. (minimum: %d) (maximum: %d) (default: %d)"), MIN_PRECOMPUTE_LENGTH, MAX_PRECOMPUTE_LENGTH, DEFAULT_PRECOMPUTE_LENGTH));
-    strUsage += HelpMessageOpt("-zsplbackuppath=<dir|file>", _("Specify custom backup path to add a copy of any automatic zSPL backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen"));
+    strUsage += HelpMessageOpt("-zpivbackuppath=<dir|file>", _("Specify custom backup path to add a copy of any automatic zBECN backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen"));
 #endif // ENABLE_WALLET
     strUsage += HelpMessageOpt("-reindexzerocoin=<n>", strprintf(_("Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)"), 0));
 
@@ -600,7 +588,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-rpccookiefile=<loc>", _("Location of the auth cookie (default: data dir)"));
     strUsage += HelpMessageOpt("-rpcuser=<user>", _("Username for JSON-RPC connections"));
     strUsage += HelpMessageOpt("-rpcpassword=<pw>", _("Password for JSON-RPC connections"));
-    strUsage += HelpMessageOpt("-rpcport=<port>", strprintf(_("Listen for JSON-RPC connections on <port> (default: %u or testnet: %u)"), 11958, 21958));
+    strUsage += HelpMessageOpt("-rpcport=<port>", strprintf(_("Listen for JSON-RPC connections on <port> (default: %u or testnet: %u)"), 11116, 51475));
     strUsage += HelpMessageOpt("-rpcallowip=<ip>", _("Allow JSON-RPC connections from specified source. Valid for <ip> are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times"));
     strUsage += HelpMessageOpt("-rpcthreads=<n>", strprintf(_("Set the number of threads to service RPC calls (default: %d)"), DEFAULT_HTTP_THREADS));
     if (GetBoolArg("-help-debug", false)) {
@@ -608,9 +596,9 @@ std::string HelpMessage(HelpMessageMode mode)
         strUsage += HelpMessageOpt("-rpcservertimeout=<n>", strprintf("Timeout during HTTP requests (default: %d)", DEFAULT_HTTP_SERVER_TIMEOUT));
     }
 
-    strUsage += HelpMessageOpt("-headerspamfilter=<n>", strprintf(_("Use header spam filter (default: %u)"), DEFAULT_HEADER_SPAM_FILTER));
-    strUsage += HelpMessageOpt("-headerspamfiltermaxsize=<n>", strprintf(_("Maximum size of the list of indexes in the header spam filter (default: %u)"), DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE));
-    strUsage += HelpMessageOpt("-headerspamfiltermaxavg=<n>", strprintf(_("Maximum average size of an index occurrence in the header spam filter (default: %u)"), DEFAULT_HEADER_SPAM_FILTER_MAX_AVG));
+    strUsage += HelpMessageOpt("-blockspamfilter=<n>", strprintf(_("Use block spam filter (default: %u)"), DEFAULT_BLOCK_SPAM_FILTER));
+    strUsage += HelpMessageOpt("-blockspamfiltermaxsize=<n>", strprintf(_("Maximum size of the list of indexes in the block spam filter (default: %u)"), DEFAULT_BLOCK_SPAM_FILTER_MAX_SIZE));
+    strUsage += HelpMessageOpt("-blockspamfiltermaxavg=<n>", strprintf(_("Maximum average size of an index occurrence in the block spam filter (default: %u)"), DEFAULT_BLOCK_SPAM_FILTER_MAX_AVG));
 
     return strUsage;
 }
@@ -623,8 +611,6 @@ std::string LicenseInfo()
            "\n" +
            FormatParagraph(strprintf(_("Copyright (C) 2015-%i The PIVX Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
-           FormatParagraph(strprintf(_("Copyright (C) 2018-%i The Simplicity Developers"), COPYRIGHT_YEAR)) + "\n" +
-           "\n" +
            FormatParagraph(_("This is experimental software.")) + "\n" +
            "\n" +
            FormatParagraph(_("Distributed under the MIT software license, see the accompanying file COPYING or <http://www.opensource.org/licenses/mit-license.php>.")) + "\n" +
@@ -633,14 +619,11 @@ std::string LicenseInfo()
            "\n";
 }
 
-static void BlockNotifyCallback(bool initialSync, const CBlockIndex *pBlockIndex)
+static void BlockNotifyCallback(const uint256& hashNewTip)
 {
-    if (initialSync || !pBlockIndex)
-        return;
-
     std::string strCmd = GetArg("-blocknotify", "");
 
-    boost::replace_all(strCmd, "%s", pBlockIndex->GetBlockHash().GetHex());
+    boost::replace_all(strCmd, "%s", hashNewTip.GetHex());
     boost::thread t(runCommand, strCmd); // thread runs free
 }
 
@@ -669,7 +652,7 @@ struct CImportingNow {
 
 void ThreadImport(std::vector<boost::filesystem::path> vImportFiles)
 {
-    RenameThread("simplicity-loadblk");
+    RenameThread("pivx-loadblk");
 
     // -reindex
     if (fReindex) {
@@ -727,7 +710,7 @@ void ThreadImport(std::vector<boost::filesystem::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that Simplicity is running in a usable environment with all
+ *  Ensure that BECN is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -760,20 +743,10 @@ bool AppInitServers()
     return true;
 }
 
-[[noreturn]] static void new_handler_terminate()
-{
-    // Rather than throwing std::bad-alloc if allocation fails, terminate
-    // immediately to (try to) avoid chain corruption.
-    // Since LogPrintf may itself allocate memory, set the handler directly
-    // to terminate first.
-    std::set_new_handler(std::terminate);
-    LogPrintf("Error: Out of memory. Terminating.\n");
-
-    // The log was successful, terminate now.
-    std::terminate();
-};
-
-bool AppInitBasicSetup()
+/** Initialize pivx.
+ *  @pre Parameters should be parsed and config file should be read.
+ */
+bool AppInit2()
 {
 // ********************************************************* Step 1: setup
 #ifdef _MSC_VER
@@ -813,30 +786,24 @@ bool AppInitBasicSetup()
     }
 
 
-    // Clean shutdown on SIGTERMx
-    registerSignalHandler(SIGTERM, HandleSIGTERM);
-    registerSignalHandler(SIGINT, HandleSIGTERM);
+    // Clean shutdown on SIGTERM
+    struct sigaction sa;
+    sa.sa_handler = HandleSIGTERM;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    sigaction(SIGTERM, &sa, NULL);
+    sigaction(SIGINT, &sa, NULL);
 
     // Reopen debug.log on SIGHUP
-    registerSignalHandler(SIGHUP, HandleSIGHUP);
+    struct sigaction sa_hup;
+    sa_hup.sa_handler = HandleSIGHUP;
+    sigemptyset(&sa_hup.sa_mask);
+    sa_hup.sa_flags = 0;
+    sigaction(SIGHUP, &sa_hup, NULL);
 
     // Ignore SIGPIPE, otherwise it will bring the daemon down if the client closes unexpectedly
     signal(SIGPIPE, SIG_IGN);
 #endif
-
-    std::set_new_handler(new_handler_terminate);
-
-    return true;
-}
-
-/** Initialize simplicity.
- *  @pre Parameters should be parsed and config file should be read.
- */
-bool AppInit2()
-{
-    // ********************************************************* Step 1: setup
-    if (!AppInitBasicSetup())
-        return false;
 
     // ********************************************************* Step 2: parameter interactions
     // Set this early so that parameter interactions go to console
@@ -960,6 +927,7 @@ bool AppInit2()
     else if (nScriptCheckThreads > MAX_SCRIPTCHECK_THREADS)
         nScriptCheckThreads = MAX_SCRIPTCHECK_THREADS;
 
+    fServer = GetBoolArg("-server", false);
     setvbuf(stdout, NULL, _IOLBF, 0); /// ***TODO*** do we still need this after -printtoconsole is gone?
 
     // Staking needs a CWallet instance, so make sure wallet is enabled
@@ -1057,7 +1025,7 @@ bool AppInit2()
 
     // Sanity check
     if (!InitSanityCheck())
-        return InitError(_("Initialization sanity check failed. Simplicity is shutting down."));
+        return InitError(_("Initialization sanity check failed. BECN Core is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 #ifdef ENABLE_WALLET
@@ -1065,7 +1033,7 @@ bool AppInit2()
     if (strWalletFile != boost::filesystem::basename(strWalletFile) + boost::filesystem::extension(strWalletFile))
         return InitError(strprintf(_("Wallet %s resides outside data directory %s"), strWalletFile, strDataDir));
 #endif
-    // Make sure only a single Simplicity process is using the data directory.
+    // Make sure only a single PIVX process is using the data directory.
     boost::filesystem::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fopen(pathLockFile.string().c_str(), "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -1073,7 +1041,7 @@ bool AppInit2()
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Simplicity is probably already running."), strDataDir));
+        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. BECN Core is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
@@ -1081,7 +1049,7 @@ bool AppInit2()
     if (GetBoolArg("-shrinkdebugfile", !fDebug))
         ShrinkDebugFile();
     LogPrintf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    LogPrintf("Simplicity version %s (%s)\n", FormatFullVersion(), CLIENT_DATE);
+    LogPrintf("Beacon version %s (%s)\n", FormatFullVersion(), CLIENT_DATE);
     LogPrintf("Using OpenSSL version %s\n", SSLeay_version(SSLEAY_VERSION));
 #ifdef ENABLE_WALLET
     LogPrintf("Using BerkeleyDB version %s\n", DbEnv::version(0, 0, 0));
@@ -1115,11 +1083,13 @@ bool AppInit2()
      * that the server is there and will be ready later).  Warmup mode will
      * be disabled when initialisation is finished.
      */
-    if (GetBoolArg("-server", false)) {
+    if (fServer) {
         uiInterface.InitMessage.connect(SetRPCWarmupStatus);
         if (!AppInitServers())
             return InitError(_("Unable to start HTTP server. See debug log for details."));
     }
+
+    int64_t nStart;
 
 // ********************************************************* Step 5: Backup wallet and verify wallet database integrity
 #ifdef ENABLE_WALLET
@@ -1413,7 +1383,7 @@ bool AppInit2()
 
     // ********************************************************* Step 7: load block chain
 
-    //Simplicity: Load Accumulator Checkpoints according to network (main/test/regtest)
+    //PIVX: Load Accumulator Checkpoints according to network (main/test/regtest)
     assert(AccumulatorCheckpoints::LoadCheckpoints(Params().NetworkIDString()));
 
     fReindex = GetBoolArg("-reindex", false);
@@ -1436,15 +1406,14 @@ bool AppInit2()
     nCoinCacheSize = nTotalCache / 300; // coins in memory require around 300 bytes
 
     bool fLoaded = false;
-    while (!fLoaded && !ShutdownRequested()) {
+    while (!fLoaded) {
         bool fReset = fReindex;
         std::string strLoadError;
 
         uiInterface.InitMessage(_("Loading block index..."));
 
+        nStart = GetTimeMillis();
         do {
-            const int64_t load_block_index_start_time = GetTimeMillis();
-
             try {
                 UnloadBlockIndex();
                 delete pcoinsTip;
@@ -1454,7 +1423,7 @@ bool AppInit2()
                 delete zerocoinDB;
                 delete pSporkDB;
 
-                //Simplicity specific: zerocoin and spork DB's
+                //PIVX specific: zerocoin and spork DB's
                 zerocoinDB = new CZerocoinDB(0, false, fReindex);
                 pSporkDB = new CSporkDB(0, false, false);
 
@@ -1466,17 +1435,13 @@ bool AppInit2()
                 if (fReindex)
                     pblocktree->WriteReindexing(true);
 
-                // End loop if shutdown was requested
-                if (ShutdownRequested()) break;
-
-                // Simplicity: load previous sessions sporks if we have them.
+                // PIVX: load previous sessions sporks if we have them.
                 uiInterface.InitMessage(_("Loading sporks..."));
                 LoadSporksFromDB();
 
                 uiInterface.InitMessage(_("Loading block index..."));
                 std::string strBlockIndexError = "";
                 if (!LoadBlockIndex(strBlockIndexError)) {
-                    if (ShutdownRequested()) break;
                     strLoadError = _("Error loading block database");
                     strLoadError = strprintf("%s : %s", strLoadError, strBlockIndexError);
                     break;
@@ -1515,18 +1480,53 @@ bool AppInit2()
                     }
                 }
 
-                // Recalculate money supply for blocks that are impacted by accounting issue after zerocoin activation
-                if (GetBoolArg("-reindexmoneysupply", false)) {
-                    if (chainActive.Height() > Params().Zerocoin_StartHeight()) {
-                        RecalculateZSPLMinted();
-                        RecalculateZSPLSpent();
+                // Wrapped serials inflation check
+                bool reindexDueWrappedSerials = false;
+                bool reindexZerocoin = false;
+                int chainHeight = chainActive.Height();
+                if(Params().NetworkID() == CBaseChainParams::MAIN && chainHeight > Params().Zerocoin_Block_EndFakeSerial()) {
+
+                    // Supply needs to be exactly GetSupplyBeforeFakeSerial + GetWrapppedSerialInflationAmount
+                    CBlockIndex* pblockindex = chainActive[Params().Zerocoin_Block_EndFakeSerial() + 1];
+                    CAmount zpivSupplyCheckpoint = Params().GetSupplyBeforeFakeSerial() + GetWrapppedSerialInflationAmount();
+
+                    if (pblockindex->GetZerocoinSupply() < zpivSupplyCheckpoint) {
+                        // Trigger reindex due wrapping serials
+                        LogPrintf("Current GetZerocoinSupply: %d vs %d\n", pblockindex->GetZerocoinSupply()/COIN , zpivSupplyCheckpoint/COIN);
+                        reindexDueWrappedSerials = true;
+                    } else if (pblockindex->GetZerocoinSupply() > zpivSupplyCheckpoint) {
+                        // Trigger global zBECN reindex
+                        reindexZerocoin = true;
+                        LogPrintf("Current GetZerocoinSupply: %d vs %d\n", pblockindex->GetZerocoinSupply()/COIN , zpivSupplyCheckpoint/COIN);
                     }
-                    RecalculateSPLSupply(1);
+
+                }
+
+                // Reindex only for wrapped serials inflation.
+                if (reindexDueWrappedSerials)
+                    AddWrappedSerialsInflation();
+
+                // Recalculate money supply for blocks that are impacted by accounting issue after zerocoin activation
+                if (GetBoolArg("-reindexmoneysupply", false) || reindexZerocoin) {
+                    if (chainHeight > Params().Zerocoin_StartHeight()) {
+                        RecalculateZPIVMinted();
+                        RecalculateZPIVSpent();
+                    }
+                    // Recalculate from the zerocoin activation or from scratch.
+                    RecalculatePIVSupply(reindexZerocoin ? Params().Zerocoin_StartHeight() : 1);
+                }
+
+                // Check Recalculation result
+                if(Params().NetworkID() == CBaseChainParams::MAIN && chainHeight > Params().Zerocoin_Block_EndFakeSerial()) {
+                    CBlockIndex* pblockindex = chainActive[Params().Zerocoin_Block_EndFakeSerial() + 1];
+                    CAmount zpivSupplyCheckpoint = Params().GetSupplyBeforeFakeSerial() + GetWrapppedSerialInflationAmount();
+                    if (pblockindex->GetZerocoinSupply() != zpivSupplyCheckpoint)
+                        return InitError(strprintf("ZerocoinSupply Recalculation failed: %d vs %d", pblockindex->GetZerocoinSupply()/COIN , zpivSupplyCheckpoint/COIN));
                 }
 
                 // Force recalculation of accumulators.
                 if (GetBoolArg("-reindexaccumulators", false)) {
-                    if (chainActive.Height() > Params().Zerocoin_Block_V2_Start()) {
+                    if (chainHeight > Params().Zerocoin_Block_V2_Start()) {
                         CBlockIndex *pindex = chainActive[Params().Zerocoin_Block_V2_Start()];
                         while (pindex->nHeight < chainActive.Height()) {
                             if (!count(listAccCheckpointsNoDB.begin(), listAccCheckpointsNoDB.end(),
@@ -1534,7 +1534,7 @@ bool AppInit2()
                                 listAccCheckpointsNoDB.emplace_back(pindex->nAccumulatorCheckpoint);
                             pindex = chainActive.Next(pindex);
                         }
-                        // Simplicity: recalculate Accumulator Checkpoints that failed to database properly
+                        // PIVX: recalculate Accumulator Checkpoints that failed to database properly
                         if (!listAccCheckpointsNoDB.empty()) {
                             uiInterface.InitMessage(_("Calculating missing accumulators..."));
                             LogPrintf("%s : finding missing checkpoints\n", __func__);
@@ -1555,7 +1555,7 @@ bool AppInit2()
                     {
                         LOCK(cs_main);
                         CBlockIndex *tip = chainActive[chainActive.Height()];
-                        RPCNotifyBlockChange(false, tip);
+                        RPCNotifyBlockChange(tip->GetBlockHash());
                         if (tip && tip->nTime > GetAdjustedTime() + 2 * 60 * 60) {
                             strLoadError = _("The block database contains a block which appears to be from the future. "
                                              "This may be due to your computer's date and time being set incorrectly. "
@@ -1565,7 +1565,7 @@ bool AppInit2()
                     }
 
                     // Zerocoin must check at level 4
-                    if (!CVerifyDB().VerifyDB(pcoinsdbview, 4, GetArg("-checkblocks", 100))) { //MIN_BLOCKS_TO_KEEP
+                    if (!CVerifyDB().VerifyDB(pcoinsdbview, 4, GetArg("-checkblocks", 100))) {
                         strLoadError = _("Corrupted block database detected");
                         fVerifyingBlocks = false;
                         break;
@@ -1580,10 +1580,9 @@ bool AppInit2()
 
             fVerifyingBlocks = false;
             fLoaded = true;
-            LogPrintf(" block index %15dms\n", GetTimeMillis() - load_block_index_start_time);
         } while (false);
 
-        if (!fLoaded && !ShutdownRequested()) {
+        if (!fLoaded) {
             // first suggest a reindex
             if (!fReset) {
                 bool fRet = uiInterface.ThreadSafeMessageBox(
@@ -1605,10 +1604,11 @@ bool AppInit2()
     // As LoadBlockIndex can take several minutes, it's possible the user
     // requested to kill the GUI during the last operation. If so, exit.
     // As the program has not fully started yet, Shutdown() is possibly overkill.
-    if (ShutdownRequested()) {
+    if (fRequestShutdown) {
         LogPrintf("Shutdown requested. Exiting.\n");
         return false;
     }
+    LogPrintf(" block index %15dms\n", GetTimeMillis() - nStart);
 
     boost::filesystem::path est_path = GetDataDir() / FEE_ESTIMATES_FILENAME;
     CAutoFile est_filein(fopen(est_path.string().c_str(), "rb"), SER_DISK, CLIENT_VERSION);
@@ -1644,7 +1644,7 @@ bool AppInit2()
         uiInterface.InitMessage(_("Loading wallet..."));
         fVerifyingBlocks = true;
 
-        const int64_t nWalletStartTime = GetTimeMillis();
+        nStart = GetTimeMillis();
         bool fFirstRun = true;
         pwalletMain = new CWallet(strWalletFile);
         DBErrors nLoadWalletRet = pwalletMain->LoadWallet(fFirstRun);
@@ -1656,9 +1656,9 @@ bool AppInit2()
                              " or address book entries might be missing or incorrect."));
                 InitWarning(msg);
             } else if (nLoadWalletRet == DB_TOO_NEW)
-                strErrors << _("Error loading wallet.dat: Wallet requires newer version of Simplicity") << "\n";
+                strErrors << _("Error loading wallet.dat: Wallet requires newer version of BECN Core") << "\n";
             else if (nLoadWalletRet == DB_NEED_REWRITE) {
-                strErrors << _("Wallet needed to be rewritten: restart Simplicity to complete") << "\n";
+                strErrors << _("Wallet needed to be rewritten: restart BECN Core to complete") << "\n";
                 LogPrintf("%s", strErrors.str());
                 return InitError(strErrors.str());
             } else
@@ -1684,19 +1684,18 @@ bool AppInit2()
             RandAddSeedPerfmon();
 
             CPubKey newDefaultKey;
-            // Top up the keypool
-            if (!pwalletMain->TopUpKeyPool()) {
-                // Error generating keys
-                InitError(_("Unable to generate initial key") += "\n");
-                return error("%s %s", __func__ , "Unable to generate initial key");
+            if (pwalletMain->GetKeyFromPool(newDefaultKey)) {
+                pwalletMain->SetDefaultKey(newDefaultKey);
+                if (!pwalletMain->SetAddressBook(pwalletMain->vchDefaultKey.GetID(), "", "receive"))
+                    strErrors << _("Cannot write default address") << "\n";
             }
 
             pwalletMain->SetBestChain(chainActive.GetLocator());
         }
 
-        LogPrintf("Init errors: %s\n", strErrors.str());
-        LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nWalletStartTime);
-        zwalletMain = new CzSPLWallet(pwalletMain->strWalletFile);
+        LogPrintf("%s", strErrors.str());
+        LogPrintf(" wallet      %15dms\n", GetTimeMillis() - nStart);
+        zwalletMain = new CzPIVWallet(pwalletMain->strWalletFile);
         pwalletMain->setZWallet(zwalletMain);
 
         RegisterValidationInterface(pwalletMain);
@@ -1715,11 +1714,9 @@ bool AppInit2()
         if (chainActive.Tip() && chainActive.Tip() != pindexRescan) {
             uiInterface.InitMessage(_("Rescanning..."));
             LogPrintf("Rescanning last %i blocks (from block %i)...\n", chainActive.Height() - pindexRescan->nHeight, pindexRescan->nHeight);
-            const int64_t nWalletRescanTime = GetTimeMillis();
-            if (pwalletMain->ScanForWalletTransactions(pindexRescan, true, true) == -1) {
-                return error("Shutdown requested over the txs scan. Exiting.");
-            }
-            LogPrintf("Rescan completed in %15dms\n", GetTimeMillis() - nWalletRescanTime);
+            nStart = GetTimeMillis();
+            pwalletMain->ScanForWalletTransactions(pindexRescan, true);
+            LogPrintf(" rescan      %15dms\n", GetTimeMillis() - nStart);
             pwalletMain->SetBestChain(chainActive.GetLocator());
             nWalletDBUpdated++;
 
@@ -1745,16 +1742,16 @@ bool AppInit2()
         }
         fVerifyingBlocks = false;
 
-        //Inititalize zSPLWallet
-        uiInterface.InitMessage(_("Syncing zSPL wallet..."));
+        //Inititalize zPIVWallet
+        uiInterface.InitMessage(_("Syncing zBECN wallet..."));
 
         pwalletMain->InitAutoConvertAddresses();
 
-        bool fEnableZSplBackups = GetBoolArg("-backupzspl", true);
-        pwalletMain->setZSplAutoBackups(fEnableZSplBackups);
+        bool fEnableZPivBackups = GetBoolArg("-backupzpiv", true);
+        pwalletMain->setZPivAutoBackups(fEnableZPivBackups);
 
         //Load zerocoin mint hashes to memory
-        pwalletMain->zsplTracker->Init();
+        pwalletMain->zpivTracker->Init();
         zwalletMain->LoadMintPoolFromDB();
         zwalletMain->SyncWithChain();
     }  // (!fDisableWallet)
@@ -1923,8 +1920,8 @@ bool AppInit2()
        is convertable to another.
 
        For example:
-       1SPL+1000 == (.1SPL+100)*10
-       10SPL+10000 == (1SPL+1000)*10
+       1PIV+1000 == (.1PIV+100)*10
+       10PIV+10000 == (1PIV+1000)*10
     */
     obfuScationDenominations.push_back((10000 * COIN) + 10000000);
     obfuScationDenominations.push_back((1000 * COIN) + 1000000);
@@ -1936,11 +1933,6 @@ bool AppInit2()
     obfuScationPool.InitCollateralAddress();
 
     threadGroup.create_thread(boost::bind(&ThreadCheckObfuScationPool));
-
-    if (ShutdownRequested()) {
-        LogPrintf("Shutdown requested. Exiting.\n");
-        return false;
-    }
 
     // ********************************************************* Step 11: start node
 
@@ -1968,7 +1960,7 @@ bool AppInit2()
 
     if (nLocalServices & NODE_BLOOM_LIGHT_ZC) {
         // Run a thread to compute witnesses
-        lightWorker.StartLightZsplThread(threadGroup);
+        lightWorker.StartLightZpivThread(threadGroup);
     }
 
 #ifdef ENABLE_WALLET
@@ -1991,7 +1983,7 @@ bool AppInit2()
         threadGroup.create_thread(boost::bind(&ThreadFlushWalletDB, boost::ref(pwalletMain->strWalletFile)));
 
         if (GetBoolArg("-precompute", false)) {
-            // Run a thread to precompute any zSPL spends
+            // Run a thread to precompute any zBECN spends
             threadGroup.create_thread(boost::bind(&ThreadPrecomputeSpends));
         }
 

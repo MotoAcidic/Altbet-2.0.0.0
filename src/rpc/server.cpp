@@ -265,11 +265,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop Simplicity server.");
+            "\nStop BECN server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "Simplicity server stopping";
+    return "BECN server stopping";
 }
 
 
@@ -335,7 +335,6 @@ static const CRPCCommand vRPCCommands[] =
         /* Coin generation */
         {"generating", "getgenerate", &getgenerate, true, false, false},
         {"generating", "gethashespersec", &gethashespersec, true, false, false},
-        {"generating", "setminingalgo", &setminingalgo, true, true, false},
         {"generating", "setgenerate", &setgenerate, true, true, false},
         {"generating", "generate", &generate, true, true, false},
 #endif
@@ -363,35 +362,35 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
-        /* Simplicity features */
-        {"simplicity", "listmasternodes", &listmasternodes, true, true, false},
-        {"simplicity", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"simplicity", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"simplicity", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"simplicity", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"simplicity", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"simplicity", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"simplicity", "masternodedebug", &masternodedebug, true, true, false},
-        {"simplicity", "startmasternode", &startmasternode, true, true, false},
-        {"simplicity", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"simplicity", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"simplicity", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"simplicity", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"simplicity", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"simplicity", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"simplicity", "preparebudget", &preparebudget, true, true, false},
-        {"simplicity", "submitbudget", &submitbudget, true, true, false},
-        {"simplicity", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"simplicity", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"simplicity", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"simplicity", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"simplicity", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"simplicity", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"simplicity", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"simplicity", "checkbudgets", &checkbudgets, true, true, false},
-        {"simplicity", "mnsync", &mnsync, true, true, false},
-        {"simplicity", "spork", &spork, true, true, false},
-        {"simplicity", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* Beacon features */
+        {"beacon", "listmasternodes", &listmasternodes, true, true, false},
+        {"beacon", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"beacon", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"beacon", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"beacon", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"beacon", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"beacon", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"beacon", "masternodedebug", &masternodedebug, true, true, false},
+        {"beacon", "startmasternode", &startmasternode, true, true, false},
+        {"beacon", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"beacon", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"beacon", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"beacon", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"beacon", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"beacon", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"beacon", "preparebudget", &preparebudget, true, true, false},
+        {"beacon", "submitbudget", &submitbudget, true, true, false},
+        {"beacon", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"beacon", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"beacon", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"beacon", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"beacon", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"beacon", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"beacon", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"beacon", "checkbudgets", &checkbudgets, true, true, false},
+        {"beacon", "mnsync", &mnsync, true, true, false},
+        {"beacon", "spork", &spork, true, true, false},
+        {"beacon", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -437,7 +436,6 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "sendmany", &sendmany, false, false, true},
         {"wallet", "sendtoaddress", &sendtoaddress, false, false, true},
         {"wallet", "sendtoaddressix", &sendtoaddressix, false, false, true},
-        {"wallet", "burncoins", &burncoins, false, false, true},
         {"wallet", "setaccount", &setaccount, true, false, true},
         {"wallet", "setstakesplitthreshold", &setstakesplitthreshold, false, false, true},
         {"wallet", "settxfee", &settxfee, true, false, true},
@@ -463,11 +461,11 @@ static const CRPCCommand vRPCCommands[] =
         {"zerocoin", "exportzerocoins", &exportzerocoins, false, false, true},
         {"zerocoin", "reconsiderzerocoins", &reconsiderzerocoins, false, false, true},
         {"zerocoin", "getspentzerocoinamount", &getspentzerocoinamount, false, false, false},
-        {"zerocoin", "getzsplseed", &getzsplseed, false, false, true},
-        {"zerocoin", "setzsplseed", &setzsplseed, false, false, true},
+        {"zerocoin", "getzpivseed", &getzpivseed, false, false, true},
+        {"zerocoin", "setzpivseed", &setzpivseed, false, false, true},
         {"zerocoin", "generatemintlist", &generatemintlist, false, false, true},
-        {"zerocoin", "searchdzspl", &searchdzspl, false, false, true},
-        {"zerocoin", "dzsplstate", &dzsplstate, false, false, true},
+        {"zerocoin", "searchdzpiv", &searchdzpiv, false, false, true},
+        {"zerocoin", "dzpivstate", &dzpivstate, false, false, true},
         {"zerocoin", "clearspendcache", &clearspendcache, false, false, true}
 
 #endif // ENABLE_WALLET
@@ -632,14 +630,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> simplicity-cli " + methodname + " " + args + "\n";
+    return "> beacon-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:11958/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:11116/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,7 +26,7 @@ struct CDNSSeedData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Simplicity system. There are three: the main network on which people trade goods
+ * PIVX system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -50,8 +49,8 @@ public:
     const MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
     int GetDefaultPort() const { return nDefaultPort; }
-    const uint256& ProofOfWorkLimit(unsigned int algo) const { return bnProofOfWorkLimit[algo]; }
-    const uint256& ProofOfStakeLimit() const { return bnProofOfWorkLimit[POS]; }
+    const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
+    int SubsidyHalvingInterval() const { return nSubsidyHalvingInterval; }
     /** Used to check majorities for block version upgrade */
     int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
     int RejectBlockOutdatedMajority() const { return nRejectBlockOutdatedMajority; }
@@ -73,9 +72,7 @@ public:
     bool SkipProofOfWorkCheck() const { return fSkipProofOfWorkCheck; }
     /** Make standard checks */
     bool RequireStandard() const { return fRequireStandard; }
-    int64_t TargetTimespan() const { return nTargetTimespan; }
     int64_t TargetSpacing() const { return nTargetSpacing; }
-    int64_t Interval() const { return nTargetTimespan / nTargetSpacing; }
 
     /** returns the coinbase maturity **/
     int COINBASE_MATURITY() const { return nMaturity; }
@@ -116,11 +113,6 @@ public:
     int64_t Budget_Fee_Confirmations() const { return nBudget_Fee_Confirmations; }
 
     CBaseChainParams::Network NetworkID() const { return networkID; }
-    CPubKey vDevFundPubKey1;
-    CPubKey vDevFundPubKey2;
-    std::string vCommunityFundWallet;
-    std::map<CScript, int> GetTreasuryRewardScriptAtHeight(int height) const;
-    //std::vector<std::string> vBurnAddresses;
 
     /** Zerocoin **/
     std::string Zerocoin_Modulus() const { return zerocoinModulus; }
@@ -131,33 +123,32 @@ public:
     int Zerocoin_MintRequiredConfirmations() const { return nMintRequiredConfirmations; }
     int Zerocoin_RequiredAccumulation() const { return nRequiredAccumulation; }
     int Zerocoin_DefaultSpendSecurity() const { return nDefaultSecurityLevel; }
-    //int Zerocoin_HeaderVersion() const { return nZerocoinHeaderVersion; }
+    int Zerocoin_HeaderVersion() const { return nZerocoinHeaderVersion; }
     int Zerocoin_RequiredStakeDepth() const { return nZerocoinRequiredStakeDepth; }
 
     /** Height or Time Based Activations **/
     int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
-    int WALLET_UPGRADE_BLOCK() const { return nMandatoryUpgradeBlock; }
-    int WALLET_UPGRADE_VERSION() const { return nUpgradeBlockVersion; }
-    uint32_t BadScryptDiffTimeStart() const { return nBadScryptDiffTimeStart; }
-    uint32_t BadScryptDiffTimeEnd() const { return nBadScryptDiffTimeEnd; }
+    int LAST_POW_BLOCK() const { return nLastPOWBlock; }
+    int BeaconBadBlockTime() const { return nBeaconBadBlockTime; }
+    int BeaconBadBlocknBits() const { return nBeaconBadBlocknBits; }
     int Zerocoin_StartHeight() const { return nZerocoinStartHeight; }
     int Zerocoin_Block_EnforceSerialRange() const { return nBlockEnforceSerialRange; }
     int Zerocoin_Block_RecalculateAccumulators() const { return nBlockRecalculateAccumulators; }
     int Zerocoin_Block_FirstFraudulent() const { return nBlockFirstFraudulent; }
     int Zerocoin_Block_LastGoodCheckpoint() const { return nBlockLastGoodCheckpoint; }
-    //int Zerocoin_StartTime() const { return nZerocoinStartTime; }
+    int Zerocoin_StartTime() const { return nZerocoinStartTime; }
     int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
     bool IsStakeModifierV2(const int nHeight) const { return nHeight >= nBlockStakeModifierlV2; }
-    int NewMNTiersHeight() const { return nMasternodeTiersStartHeight; }
 
-    CAmount InvalidAmountFiltered() const { return nInvalidAmountFiltered; }
+    // fake serial attack
+    int Zerocoin_Block_EndFakeSerial() const { return nFakeSerialBlockheightEnd; }
+    CAmount GetSupplyBeforeFakeSerial() const { return nSupplyBeforeFakeSerial; }
+
+    int Zerocoin_Block_Double_Accumulated() const { return nBlockDoubleAccumulated; }
+    CAmount InvalidAmountFiltered() const { return nInvalidAmountFiltered; };
 
     int Zerocoin_Block_Public_Spend_Enabled() const { return nPublicZCSpends; }
-
-    /** Treasury variables **/
-    int TreasuryStartBlock() const { return nStartTreasuryBlock; }
-    int TreasuryBlockStep() const { return nTreasuryBlockStep; }
 
 protected:
     CChainParams() {}
@@ -167,17 +158,16 @@ protected:
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
     int nDefaultPort;
-    uint256 bnProofOfWorkLimit[ALGO_COUNT];
+    uint256 bnProofOfWorkLimit;
     int nMaxReorganizationDepth;
+    int nSubsidyHalvingInterval;
     int nEnforceBlockUpgradeMajority;
     int nRejectBlockOutdatedMajority;
     int nToCheckBlockUpgradeMajority;
-    int64_t nTargetTimespan;
     int64_t nTargetSpacing;
-    int nMandatoryUpgradeBlock;
-    int nUpgradeBlockVersion;
-    uint32_t nBadScryptDiffTimeStart;
-    uint32_t nBadScryptDiffTimeEnd;
+    int nLastPOWBlock;
+    int64_t nBeaconBadBlockTime;
+    unsigned int nBeaconBadBlocknBits;
     int nMasternodeCountDrift;
     int nMaturity;
     int nStakeMinDepth;
@@ -217,10 +207,10 @@ protected:
     int nMintRequiredConfirmations;
     int nRequiredAccumulation;
     int nDefaultSecurityLevel;
-    //int nZerocoinHeaderVersion;
+    int nZerocoinHeaderVersion;
     int64_t nBudget_Fee_Confirmations;
     int nZerocoinStartHeight;
-    //int nZerocoinStartTime;
+    int nZerocoinStartTime;
     int nZerocoinRequiredStakeDepth;
     int64_t nProposalEstablishmentTime;
 
@@ -230,12 +220,13 @@ protected:
     int nBlockLastGoodCheckpoint;
     int nBlockEnforceInvalidUTXO;
     int nBlockZerocoinV2;
+    int nBlockDoubleAccumulated;
     int nPublicZCSpends;
     int nBlockStakeModifierlV2;
-    int nMasternodeTiersStartHeight;
 
-    int nStartTreasuryBlock;
-    int nTreasuryBlockStep;
+    // fake serial attack
+    int nFakeSerialBlockheightEnd = 0;
+    CAmount nSupplyBeforeFakeSerial = 0;
 };
 
 /**
@@ -248,6 +239,7 @@ class CModifiableParams
 {
 public:
     //! Published setters to allow changing values in unit test cases
+    virtual void setSubsidyHalvingInterval(int anSubsidyHalvingInterval) = 0;
     virtual void setEnforceBlockUpgradeMajority(int anEnforceBlockUpgradeMajority) = 0;
     virtual void setRejectBlockOutdatedMajority(int anRejectBlockOutdatedMajority) = 0;
     virtual void setToCheckBlockUpgradeMajority(int anToCheckBlockUpgradeMajority) = 0;

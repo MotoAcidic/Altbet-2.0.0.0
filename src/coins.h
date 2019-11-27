@@ -7,7 +7,6 @@
 #ifndef BITCOIN_COINS_H
 #define BITCOIN_COINS_H
 
-//#include "chainparams.h"
 #include "compressor.h"
 #include "script/standard.h"
 #include "serialize.h"
@@ -21,7 +20,7 @@
 
 /** 
 
-    ****Note - for Simplicity we added fCoinStake to the 2nd bit. Keep in mind when reading the following and adjust as needed.
+    ****Note - for PIVX we added fCoinStake to the 2nd bit. Keep in mind when reading the following and adjust as needed.
  * Pruned version of CTransaction: only retains metadata and unspent transaction outputs
  *
  * Serialized format:
@@ -129,7 +128,7 @@ public:
     void ClearUnspendable()
     {
         for (CTxOut& txout : vout) {
-            if (txout.scriptPubKey.IsUnspendable(/*nHeight >= Params().WALLET_UPGRADE_BLOCK()*/))
+            if (txout.scriptPubKey.IsUnspendable())
                 txout.SetNull();
         }
         Cleanup();
@@ -458,7 +457,7 @@ public:
     unsigned int GetCacheSize() const;
 
     /** 
-     * Amount of simplicity coming in to a transaction
+     * Amount of pivx coming in to a transaction
      * Note that lightweight clients may not know anything besides the hash of previous transactions,
      * so may not be able to calculate this.
      *

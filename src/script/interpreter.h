@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2009-2014 The Bitcoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -80,15 +80,7 @@ enum
     // Verify CHECKLOCKTIMEVERIFY
     //
     // See BIP65 for details.
-    SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 9),
-
-    // Require the argument of OP_IF/NOTIF to be exactly 0x01 or empty vector
-    //
-    SCRIPT_VERIFY_MINIMALIF = (1U << 13),
-
-    // Signature(s) must be empty vector if a CHECK(MULTI)SIG operation failed
-    //
-    SCRIPT_VERIFY_NULLFAIL = (1U << 14)
+    SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 9)
 };
 
 uint256 SignatureHash(const CScript &scriptCode, const CTransaction& txTo, unsigned int nIn, int nHashType);

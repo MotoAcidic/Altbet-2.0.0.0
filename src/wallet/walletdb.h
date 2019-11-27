@@ -11,10 +11,10 @@
 #include "wallet/db.h"
 #include "key.h"
 #include "keystore.h"
-#include "zspl/zerocoin.h"
+#include "zpiv/zerocoin.h"
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Denominations.h"
-#include "zspl/zspltracker.h"
+#include "zpiv/zpivtracker.h"
 
 #include <list>
 #include <stdint.h>
@@ -127,6 +127,8 @@ public:
     bool EraseMSDisabledAddresses(std::vector<std::string> vDisabledAddresses);
     bool WriteAutoCombineSettings(bool fEnable, CAmount nCombineThreshold);
 
+    bool WriteDefaultKey(const CPubKey& vchPubKey);
+
     bool ReadPool(int64_t nPool, CKeyPool& keypool);
     bool WritePool(int64_t nPool, const CKeyPool& keypool);
     bool ErasePool(int64_t nPool);
@@ -177,14 +179,14 @@ public:
     bool ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial);
     bool WriteCurrentSeedHash(const uint256& hashSeed);
     bool ReadCurrentSeedHash(uint256& hashSeed);
-    bool WriteZSPLSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed);
-    bool ReadZSPLSeed(const uint256& hashSeed, std::vector<unsigned char>& seed);
-    bool ReadZSPLSeed_deprecated(uint256& seed);
-    bool EraseZSPLSeed();
-    bool EraseZSPLSeed_deprecated();
+    bool WriteZPIVSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed);
+    bool ReadZPIVSeed(const uint256& hashSeed, std::vector<unsigned char>& seed);
+    bool ReadZPIVSeed_deprecated(uint256& seed);
+    bool EraseZPIVSeed();
+    bool EraseZPIVSeed_deprecated();
 
-    bool WriteZSPLCount(const uint32_t& nCount);
-    bool ReadZSPLCount(uint32_t& nCount);
+    bool WriteZPIVCount(const uint32_t& nCount);
+    bool ReadZPIVCount(uint32_t& nCount);
     std::map<uint256, std::vector<std::pair<uint256, uint32_t> > > MapMintPool();
     bool WriteMintPoolPair(const uint256& hashMasterSeed, const uint256& hashPubcoin, const uint32_t& nCount);
 

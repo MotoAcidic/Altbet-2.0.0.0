@@ -1,6 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -240,8 +239,7 @@ public:
     bool PropExists(uint256 nHash);
     TrxValidationStatus IsTransactionValid(const CTransaction& txNew, int nBlockHeight);
     std::string GetRequiredPaymentsString(int nBlockHeight);
-    void FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, bool fProofOfStake, CAmount& nBlockValue);
-    void FillTreasuryBlockPayee(CMutableTransaction& txNew, CAmount nFees, bool fProofOfStake, CAmount& nBlockValue);
+    void FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, bool fProofOfStake);
 
     void CheckOrphanVotes();
     void Clear()
@@ -367,7 +365,7 @@ public:
 
     // Verify and vote on finalized budget
     void CheckAndVote();
-    //total simplicity paid out by this budget
+    //total pivx paid out by this budget
     CAmount GetTotalPayout();
     //vote on this finalized budget as a masternode
     void SubmitVote();

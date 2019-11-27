@@ -11,7 +11,7 @@
 
 class CScheduler;
 class CWallet;
-class CzSPLWallet;
+class CzPIVWallet;
 
 namespace boost
 {
@@ -19,7 +19,7 @@ class thread_group;
 } // namespace boost
 
 extern CWallet* pwalletMain;
-extern CzSPLWallet* zwalletMain;
+extern CzPIVWallet* zwalletMain;
 
 void StartShutdown();
 bool ShutdownRequested();
@@ -28,12 +28,6 @@ void Interrupt();
 void Shutdown();
 void PrepareShutdown();
 bool AppInit2();
-
-/** Initialize Simplicity: Basic context setup.
- *  @note This can be done before daemonization. Do not call Shutdown() if this function fails.
- *  @pre Parameters should be parsed and config file should be read.
- */
-bool AppInitBasicSetup();
 
 /** The help message mode determines what help message to show */
 enum HelpMessageMode {

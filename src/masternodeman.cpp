@@ -1,7 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2017-2018 The XDNA Core developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +10,10 @@
 #include "obfuscation.h"
 #include "spork.h"
 #include "util.h"
+#include "collateral.h"
 #include <boost/filesystem.hpp>
+
+#define MN_WINNER_MINIMUM_AGE 8000    // Age in seconds. This should be > MASTERNODE_REMOVAL_SECONDS to avoid misconfigured new nodes in the list.
 
 /** Masternode manager */
 CMasternodeMan mnodeman;
@@ -197,32 +198,11 @@ CMasternodeMan::CMasternodeMan()
     nDsqCount = 0;
 }
 
-CValidationState CMasternodeMan::GetInputCheckingTx(const CTxIn& vin, CMutableTransaction& tx)
-{
-    CValidationState state;
-    CAmount          deposit;
-
-    if (!CMasternode::IsDepositCoins(vin, deposit)) {
-        state.Invalid(false, 0, "MN input checking tx: invalid vin amount");
-        return state;
-    }
-
-    CMutableTransaction chk_tx;
-
-    chk_tx.vin.push_back(vin);
-//    chk_tx.vout.push_back(CTxOut(9999.99 * COIN, obfuScationPool.collateralPubKey));
-    chk_tx.vout.push_back(CTxOut(deposit - 0.01 * COIN, obfuScationPool.collateralPubKey));
-
-    tx = chk_tx;
-
-    return state;
-}
-
-bool CMasternodeMan::Add(const CMasternode& mn)
+bool CMasternodeMan::Add(CMasternode& mn)
 {
     LOCK(cs);
 
-    if (!mn.IsEnabled(true))
+    if (!mn.IsEnabled())
         return false;
 
     CMasternode* pmn = Find(mn.vin);
@@ -245,7 +225,7 @@ void CMasternodeMan::AskForMN(CNode* pnode, CTxIn& vin)
 
     // ask for the mnb info once from the node that sent mnp
 
-    LogPrint("masternode", "CMasternodeMan::AskForMN - Asking node for missing entry to peer=%d ip=%s, vin: %s\n", pnode->id, pnode->addr.ToString().c_str(), vin.prevout.hash.ToString());
+    LogPrint("masternode", "CMasternodeMan::AskForMN - Asking node for missing entry, vin: %s\n", vin.prevout.hash.ToString());
     pnode->PushMessage("dseg", vin);
     int64_t askAgain = GetTime() + MASTERNODE_MIN_MNP_SECONDS;
     mWeAskedForMasternodeListEntry[vin.prevout] = askAgain;
@@ -334,26 +314,6 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
         }
     }
 
-    // check who's asked for the winner Masternode list
-    std::map<CNetAddr, int64_t>::iterator it5 = mAskedUsForWinnerMasternodeList.begin();
-    while (it5 != mAskedUsForWinnerMasternodeList.end()) {
-        if ((*it5).second < GetTime()) {
-            mAskedUsForWinnerMasternodeList.erase(it5++);
-        } else {
-            ++it5;
-        }
-    }
-
-    // check who we asked for the wineer Masternode list
-    it5 = mWeAskedForWinnerMasternodeList.begin();
-    while (it5 != mWeAskedForWinnerMasternodeList.end()) {
-        if ((*it5).second < GetTime()) {
-            mWeAskedForWinnerMasternodeList.erase(it5++);
-        } else {
-            ++it5;
-        }
-    }
-
     // remove expired mapSeenMasternodeBroadcast
     std::map<uint256, CMasternodeBroadcast>::iterator it3 = mapSeenMasternodeBroadcast.begin();
     while (it3 != mapSeenMasternodeBroadcast.end()) {
@@ -383,50 +343,30 @@ void CMasternodeMan::Clear()
     mAskedUsForMasternodeList.clear();
     mWeAskedForMasternodeList.clear();
     mWeAskedForMasternodeListEntry.clear();
-    mAskedUsForWinnerMasternodeList.clear();
-    mWeAskedForWinnerMasternodeList.clear();
     mapSeenMasternodeBroadcast.clear();
     mapSeenMasternodePing.clear();
     nDsqCount = 0;
 }
 
-int CMasternodeMan::size(unsigned mnlevel)
-{
-    bool check_level = mnlevel != CMasternode::LevelValue::UNSPECIFIED;
-
-    return std::count_if(vMasternodes.begin(), vMasternodes.end(), [=](CMasternode& mn) {
-
-        if (check_level && mnlevel != mn.Level())
-            return false;
-
-        return true;
-    });
-}
-
-int CMasternodeMan::stable_size(unsigned mnlevel)
+int CMasternodeMan::stable_size ()
 {
     int nStable_size = 0;
     int nMinProtocol = ActiveProtocol();
-    int64_t nMasternode_Min_Age = GetSporkValue(SPORK_20_MN_WINNER_MINIMUM_AGE);
+    int64_t nMasternode_Min_Age = MN_WINNER_MINIMUM_AGE;
     int64_t nMasternode_Age = 0;
 
-    bool check_level = mnlevel != CMasternode::LevelValue::UNSPECIFIED;
-
     for (CMasternode& mn : vMasternodes) {
-        if (mn.protocolVersion < nMinProtocol)
+        if (mn.protocolVersion < nMinProtocol) {
             continue; // Skip obsolete versions
-
-        if (check_level && mnlevel != mn.Level())
-            continue;
-
-        if (IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
+        }
+        if (IsSporkActive (SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
             nMasternode_Age = GetAdjustedTime() - mn.sigTime;
-            if (nMasternode_Age < nMasternode_Min_Age) {
+            if ((nMasternode_Age) < nMasternode_Min_Age) {
                 continue; // Skip masternodes younger than (default) 8000 sec (MUST be > MASTERNODE_REMOVAL_SECONDS)
             }
         }
-        mn.Check();
-        if (!mn.IsEnabled(false))
+        mn.Check ();
+        if (!mn.IsEnabled ())
             continue; // Skip not-enabled masternodes
 
         nStable_size++;
@@ -435,47 +375,18 @@ int CMasternodeMan::stable_size(unsigned mnlevel)
     return nStable_size;
 }
 
-unsigned CMasternodeMan::CountEnabled(unsigned mnlevel, int protocolVersion)
+int CMasternodeMan::CountEnabled(int protocolVersion)
 {
-    if (protocolVersion == -1)
-        protocolVersion = masternodePayments.GetMinMasternodePaymentsProto();
+    int i = 0;
+    protocolVersion = protocolVersion == -1 ? masternodePayments.GetMinMasternodePaymentsProto() : protocolVersion;
 
-    bool check_level = mnlevel != CMasternode::LevelValue::UNSPECIFIED;
-
-    return std::count_if(vMasternodes.begin(), vMasternodes.end(), [=](CMasternode& mn){
-
+    for (CMasternode& mn : vMasternodes) {
         mn.Check();
+        if (mn.protocolVersion < protocolVersion || !mn.IsEnabled()) continue;
+        i++;
+    }
 
-        if (check_level && mnlevel != mn.Level())
-            return false;
-
-        return mn.protocolVersion >= protocolVersion && mn.IsEnabled(false);
-    });
-}
-
-std::map<unsigned, int> CMasternodeMan::CountEnabledByLevels(int protocolVersion)
-{
-    if (protocolVersion == -1)
-        protocolVersion = masternodePayments.GetMinMasternodePaymentsProto();
-
-    std::map<unsigned, int> result;
-
-    for(unsigned l = CMasternode::LevelValue::MIN; l <= CMasternode::LevelValue::MAX; ++l)
-        result.emplace(l, 0);
-
-    for(CMasternode& mn : vMasternodes)
-    {
-        mn.Check();
-
-        bool enabled = mn.protocolVersion >= protocolVersion && mn.IsEnabled(false);
-
-        if(!enabled)
-            continue;
-
-        ++result[mn.Level()];
-    };
-
-    return result;
+    return i;
 }
 
 void CMasternodeMan::CountNetworks(int protocolVersion, int& ipv4, int& ipv6, int& onion)
@@ -503,7 +414,7 @@ void CMasternodeMan::CountNetworks(int protocolVersion, int& ipv4, int& ipv6, in
     }
 }
 
-bool CMasternodeMan::DsegUpdate(CNode* pnode)
+void CMasternodeMan::DsegUpdate(CNode* pnode)
 {
     LOCK(cs);
 
@@ -512,8 +423,8 @@ bool CMasternodeMan::DsegUpdate(CNode* pnode)
             std::map<CNetAddr, int64_t>::iterator it = mWeAskedForMasternodeList.find(pnode->addr);
             if (it != mWeAskedForMasternodeList.end()) {
                 if (GetTime() < (*it).second) {
-                    LogPrint("masternode", "dseg - we already asked peer=%i ip=%s for the list; skipping...\n", pnode->GetId(), pnode->addr.ToString().c_str());
-                    return false;
+                    LogPrint("masternode", "dseg - we already asked peer %i for the list; skipping...\n", pnode->GetId());
+                    return;
                 }
             }
         }
@@ -522,31 +433,6 @@ bool CMasternodeMan::DsegUpdate(CNode* pnode)
     pnode->PushMessage("dseg", CTxIn());
     int64_t askAgain = GetTime() + MASTERNODES_DSEG_SECONDS;
     mWeAskedForMasternodeList[pnode->addr] = askAgain;
-    return true;
-}
-
-bool CMasternodeMan::WinnersUpdate(CNode* node)
-{
-    TRY_LOCK(cs, locked);
-    if (!locked) return false;
-
-    if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (!(node->addr.IsRFC1918() || node->addr.IsLocal())) {
-            std::map<CNetAddr, int64_t>::iterator it = mWeAskedForWinnerMasternodeList.find(node->addr);
-            if (it != mWeAskedForWinnerMasternodeList.end()) {
-                if (GetTime() < (*it).second) {
-                    LogPrint("masternode", "mnget - we already asked peer=%i ip=%s for the winners list; skipping...\n", node->GetId(), node->addr.ToString().c_str());
-                    return false;
-                }
-            }
-        }
-    }
-
-    node->PushMessage("mnget", CountEnabled());
-    int64_t askAgain = GetTime() + MASTERNODES_DSEG_SECONDS;
-    mWeAskedForWinnerMasternodeList[node->addr] = askAgain;
-
-    return true;
 }
 
 CMasternode* CMasternodeMan::Find(const CScript& payee)
@@ -555,11 +441,11 @@ CMasternode* CMasternodeMan::Find(const CScript& payee)
     CScript payee2;
 
     for (CMasternode& mn : vMasternodes) {
-        payee2 = GetScriptForRawPubKey(mn.pubKeyCollateralAddress);
+        payee2 = GetScriptForDestination(mn.pubKeyCollateralAddress.GetID());
         if (payee2 == payee)
             return &mn;
     }
-    return nullptr;
+    return NULL;
 }
 
 CMasternode* CMasternodeMan::Find(const CTxIn& vin)
@@ -570,7 +456,7 @@ CMasternode* CMasternodeMan::Find(const CTxIn& vin)
         if (mn.vin.prevout == vin.prevout)
             return &mn;
     }
-    return nullptr;
+    return NULL;
 }
 
 
@@ -582,44 +468,29 @@ CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
         if (mn.pubKeyMasternode == pubKeyMasternode)
             return &mn;
     }
-    return nullptr;
-}
-
-CMasternode* CMasternodeMan::Find(const CService& service)
-{
-    LOCK(cs);
-
-    for(CMasternode& mn : vMasternodes) {
-        if (mn.addr == service)
-            return &mn;
-    }
-
-    return nullptr;
+    return NULL;
 }
 
 //
 // Deterministically select the oldest/best masternode to pay on the network
 //
-CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, unsigned mnlevel, bool fFilterSigTime, unsigned& nCount)
+CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount)
 {
     LOCK(cs);
 
-    CMasternode* pBestMasternode = nullptr;
+    CMasternode* pBestMasternode = NULL;
     std::vector<std::pair<int64_t, CTxIn> > vecMasternodeLastPaid;
 
     /*
         Make a vector with all of the last paid times
     */
 
-    int nMnCount = CountEnabled(mnlevel);
-
+    int nMnCount = CountEnabled();
     for (CMasternode& mn : vMasternodes) {
         mn.Check();
-        if (!mn.IsEnabled(false)) continue;
+        if (!mn.IsEnabled()) continue;
 
-        if (mn.Level() != mnlevel) continue;
-
-        //check protocol version
+        // //check protocol version
         if (mn.protocolVersion < masternodePayments.GetMinMasternodePaymentsProto()) continue;
 
         //it's in the list (up to 8 entries ahead of current block to allow propagation) -- so let's skip it
@@ -637,7 +508,7 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
     nCount = (int)vecMasternodeLastPaid.size();
 
     //when the network is in the process of upgrading, don't penalize nodes that recently restarted
-    if (fFilterSigTime && (int)nCount < nMnCount / 3) return GetNextMasternodeInQueueForPayment(nBlockHeight, mnlevel, false, nCount);
+    if (fFilterSigTime && nCount < nMnCount / 3) return GetNextMasternodeInQueueForPayment(nBlockHeight, false, nCount);
 
     // Sort them high to low
     sort(vecMasternodeLastPaid.rbegin(), vecMasternodeLastPaid.rend(), CompareLastPaid());
@@ -646,12 +517,12 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
     //  -- This doesn't look at who is being paid in the +8-10 blocks, allowing for double payments very rarely
     //  -- 1/100 payments should be a double payment on mainnet - (1/(3000/10))*2
     //  -- (chance per block * chances before IsScheduled will fire)
-    int nTenthNetwork = nMnCount / 10;
+    int nTenthNetwork = CountEnabled() / 10;
     int nCountTenth = 0;
     uint256 nHigh = 0;
     for (PAIRTYPE(int64_t, CTxIn) & s : vecMasternodeLastPaid) {
         CMasternode* pmn = Find(s.second);
-        if (!pmn) continue;
+        if (!pmn) break;
 
         uint256 n = pmn->CalculateScore(1, nBlockHeight - 100);
         if (n > nHigh) {
@@ -664,25 +535,22 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
     return pBestMasternode;
 }
 
-CMasternode* CMasternodeMan::FindRandomNotInVec(unsigned mnlevel, std::vector<CTxIn>& vecToExclude, int protocolVersion)
+CMasternode* CMasternodeMan::FindRandomNotInVec(std::vector<CTxIn>& vecToExclude, int protocolVersion)
 {
     LOCK(cs);
 
     protocolVersion = protocolVersion == -1 ? masternodePayments.GetMinMasternodePaymentsProto() : protocolVersion;
 
-    int nCountEnabled = CountEnabled(mnlevel, protocolVersion);
+    int nCountEnabled = CountEnabled(protocolVersion);
     LogPrint("masternode", "CMasternodeMan::FindRandomNotInVec - nCountEnabled - vecToExclude.size() %d\n", nCountEnabled - vecToExclude.size());
-    if (nCountEnabled - vecToExclude.size() < 1) return nullptr;
+    if (nCountEnabled - vecToExclude.size() < 1) return NULL;
 
     int rand = GetRandInt(nCountEnabled - vecToExclude.size());
     LogPrint("masternode", "CMasternodeMan::FindRandomNotInVec - rand %d\n", rand);
     bool found;
 
     for (CMasternode& mn : vMasternodes) {
-        if (mnlevel != CMasternode::LevelValue::UNSPECIFIED && mn.Level() != mnlevel)
-            continue;
-
-        if (mn.protocolVersion < protocolVersion || !mn.IsEnabled(false)) continue;
+        if (mn.protocolVersion < protocolVersion || !mn.IsEnabled()) continue;
         found = false;
         for (CTxIn& usedVin : vecToExclude) {
             if (mn.vin.prevout == usedVin.prevout) {
@@ -696,24 +564,18 @@ CMasternode* CMasternodeMan::FindRandomNotInVec(unsigned mnlevel, std::vector<CT
         }
     }
 
-    return nullptr;
+    return NULL;
 }
 
-CMasternode* CMasternodeMan::GetCurrentMasterNode(unsigned mnlevel, int mod, int64_t nBlockHeight, int minProtocol)
+CMasternode* CMasternodeMan::GetCurrentMasterNode(int mod, int64_t nBlockHeight, int minProtocol)
 {
     int64_t score = 0;
-    CMasternode* winner = nullptr;
-
-    bool check_mnlevel = mnlevel != CMasternode::LevelValue::UNSPECIFIED;
+    CMasternode* winner = NULL;
 
     // scan for winner
     for (CMasternode& mn : vMasternodes) {
         mn.Check();
-
-        if (check_mnlevel && mn.Level() != mnlevel)
-            continue;
-
-        if (mn.protocolVersion < minProtocol || !mn.IsEnabled(false)) continue;
+        if (mn.protocolVersion < minProtocol || !mn.IsEnabled()) continue;
 
         // calculate the score for each Masternode
         uint256 n = mn.CalculateScore(mod, nBlockHeight);
@@ -732,7 +594,7 @@ CMasternode* CMasternodeMan::GetCurrentMasterNode(unsigned mnlevel, int mod, int
 int CMasternodeMan::GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight, int minProtocol, bool fOnlyActive)
 {
     std::vector<std::pair<int64_t, CTxIn> > vecMasternodeScores;
-    int64_t nMasternode_Min_Age = GetSporkValue(SPORK_20_MN_WINNER_MINIMUM_AGE);
+    int64_t nMasternode_Min_Age = MN_WINNER_MINIMUM_AGE;
     int64_t nMasternode_Age = 0;
 
     //make sure we know about this block
@@ -749,13 +611,13 @@ int CMasternodeMan::GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight, in
         if (IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
             nMasternode_Age = GetAdjustedTime() - mn.sigTime;
             if ((nMasternode_Age) < nMasternode_Min_Age) {
-                if (fDebug) LogPrint("masternode","Skipping just activated Masternode. Age: %ld - %s\n", nMasternode_Age, mn.vin.prevout.hash.ToString());
+                if (fDebug) LogPrint("masternode","Skipping just activated Masternode. Age: %ld\n", nMasternode_Age);
                 continue;                                                   // Skip masternodes younger than (default) 1 hour
             }
         }
         if (fOnlyActive) {
             mn.Check();
-            if (!mn.IsEnabled(false)) continue;
+            if (!mn.IsEnabled()) continue;
         }
         uint256 n = mn.CalculateScore(1, nBlockHeight);
         int64_t n2 = n.GetCompact(false);
@@ -791,7 +653,7 @@ std::vector<std::pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int
 
         if (mn.protocolVersion < minProtocol) continue;
 
-        if (!mn.IsEnabled(false)) {
+        if (!mn.IsEnabled()) {
             vecMasternodeScores.push_back(std::make_pair(9999, mn));
             continue;
         }
@@ -822,7 +684,7 @@ CMasternode* CMasternodeMan::GetMasternodeByRank(int nRank, int64_t nBlockHeight
         if (mn.protocolVersion < minProtocol) continue;
         if (fOnlyActive) {
             mn.Check();
-            if (!mn.IsEnabled(false)) continue;
+            if (!mn.IsEnabled()) continue;
         }
 
         uint256 n = mn.CalculateScore(1, nBlockHeight);
@@ -841,7 +703,7 @@ CMasternode* CMasternodeMan::GetMasternodeByRank(int nRank, int64_t nBlockHeight
         }
     }
 
-    return nullptr;
+    return NULL;
 }
 
 void CMasternodeMan::ProcessMasternodeConnections()
@@ -871,18 +733,6 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         CMasternodeBroadcast mnb;
         vRecv >> mnb;
 
-        auto pmn = Find(mnb.addr);
-
-        if (pmn && pmn->vin != mnb.vin) {
-            pmn->Check(true);
-
-            if (pmn->IsEnabled(true)) {
-                LogPrint("masternode","mnb - More than one vin used for single IP address, new mnb.addr=%s, existing pmn->addr=%s\n", mnb.addr.ToString(), pmn->addr.ToString());
-                Misbehaving(pfrom->GetId(), 100);
-                return;
-            }
-        }
-
         if (mapSeenMasternodeBroadcast.count(mnb.GetHash())) { //seen
             masternodeSync.AddedMasternodeList(mnb.GetHash());
             return;
@@ -901,7 +751,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         // make sure the vout that was signed is related to the transaction that spawned the Masternode
         //  - this is expensive, so it's only done once per Masternode
         if (!obfuScationSigner.IsVinAssociatedWithPubkey(mnb.vin, mnb.pubKeyCollateralAddress)) {
-            LogPrint("masternode","CMasternodeMan::ProcessMessage() : mnb - Got mismatched pubkey and vin\n");
+            LogPrintf("CMasternodeMan::ProcessMessage() : mnb - Got mismatched pubkey and vin\n");
             Misbehaving(pfrom->GetId(), 33);
             return;
         }
@@ -915,10 +765,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         } else {
             LogPrint("masternode","mnb - Rejected Masternode entry %s\n", mnb.vin.prevout.hash.ToString());
 
-            if (nDoS > 0) {
+            if (nDoS > 0)
                 Misbehaving(pfrom->GetId(), nDoS);
-                return;
-            }
         }
     }
 
@@ -963,8 +811,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
                     int64_t t = (*i).second;
                     if (GetTime() < t) {
                         LogPrintf("CMasternodeMan::ProcessMessage() : dseg - peer already asked me for the list\n");
-                        TRY_LOCK(cs_main, locked);
-                        if (locked) Misbehaving(pfrom->GetId(), 34);
+                        Misbehaving(pfrom->GetId(), 34);
                         return;
                     }
                 }
@@ -979,10 +826,9 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         for (CMasternode& mn : vMasternodes) {
             if (mn.addr.IsRFC1918()) continue; //local network
 
-            if (mn.IsEnabled(true)) {
+            if (mn.IsEnabled()) {
+                LogPrint("masternode", "dseg - Sending Masternode entry - %s \n", mn.vin.prevout.hash.ToString());
                 if (vin == CTxIn() || vin == mn.vin) {
-                    LogPrint("masternode", "dseg - Sending Masternode entry to peer=%i ip=%s - %s \n", pfrom->GetId(), pfrom->addr.ToString().c_str(), mn.vin.prevout.hash.ToString());
-
                     CMasternodeBroadcast mnb = CMasternodeBroadcast(mn);
                     uint256 hash = mnb.GetHash();
                     pfrom->PushInventory(CInv(MSG_MASTERNODE_ANNOUNCE, hash));
@@ -1000,7 +846,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         if (vin == CTxIn()) {
             pfrom->PushMessage("ssc", MASTERNODE_SYNC_LIST, nInvCount);
-            LogPrint("masternode", "dseg - Sent %d Masternode entries to peer=%i ip=%s\n", nInvCount, pfrom->GetId(), pfrom->addr.ToString().c_str());
+            LogPrint("masternode", "dseg - Sent %d Masternode entries to peer %i\n", nInvCount, pfrom->GetId());
         }
     }
     /*
@@ -1008,8 +854,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
      * AFTER MIGRATION TO V12 IS DONE
      */
 
-    // Light version for OLD MASTERNODES - fake pings, no self-activation
-    else if (strCommand == "dsee" || strCommand == "dsee+") { //ObfuScation Election Entry
+    // Light version for OLD MASSTERNODES - fake pings, no self-activation
+    else if (strCommand == "dsee") { //ObfuScation Election Entry
 
         if (IsSporkActive(SPORK_10_MASTERNODE_PAY_UPDATED_NODES)) return;
 
@@ -1027,10 +873,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         int donationPercentage;
         std::string strMessage;
 
-        if (strCommand == "dsee")
-            vRecv >> vin >> addr >> vchSig >> sigTime >> pubkey >> pubkey2 >> count >> current >> lastUpdated >> protocolVersion;
-        else
-            vRecv >> vin >> addr >> vchSig >> sigTime >> pubkey >> pubkey2 >> count >> current >> lastUpdated >> protocolVersion >> donationAddress >> donationPercentage;
+        vRecv >> vin >> addr >> vchSig >> sigTime >> pubkey >> pubkey2 >> count >> current >> lastUpdated >> protocolVersion >> donationAddress >> donationPercentage;
 
         // make sure signature isn't in the future (past is OK)
         if (sigTime > GetAdjustedTime() + 60 * 60) {
@@ -1042,10 +885,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         std::string vchPubKey(pubkey.begin(), pubkey.end());
         std::string vchPubKey2(pubkey2.begin(), pubkey2.end());
 
-        if (strCommand == "dsee")
-            strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
-        else
-            strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion) + donationAddress.ToString() + std::to_string(donationPercentage);
+        strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion) + donationAddress.ToString() + std::to_string(donationPercentage);
 
         if (protocolVersion < masternodePayments.GetMinMasternodePaymentsProto()) {
             LogPrintf("CMasternodeMan::ProcessMessage() : dsee - ignoring outdated Masternode %s protocol version %d < %d\n", vin.prevout.hash.ToString(), protocolVersion, masternodePayments.GetMinMasternodePaymentsProto());
@@ -1053,19 +893,19 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             return;
         }
 
-        CScript addressScript = GetScriptForDestination(pubkey.GetID());
-        CScript pubkeyScript = GetScriptForRawPubKey(pubkey); //compressed
+        CScript pubkeyScript;
+        pubkeyScript = GetScriptForDestination(pubkey.GetID());
 
-        if (addressScript.size() != 25 || pubkeyScript.size() != 35) {
+        if (pubkeyScript.size() != 25) {
             LogPrintf("CMasternodeMan::ProcessMessage() : dsee - pubkey the wrong size\n");
             Misbehaving(pfrom->GetId(), 100);
             return;
         }
 
-        CScript addressScript2 = GetScriptForDestination(pubkey2.GetID());
-        //CScript pubkeyScript2 = GetScriptForRawPubKey(pubkey2); //uncompressed
+        CScript pubkeyScript2;
+        pubkeyScript2 = GetScriptForDestination(pubkey2.GetID());
 
-        if (addressScript2.size() != 25 /*|| pubkeyScript2.size() != 67*/) {
+        if (pubkeyScript2.size() != 25) {
             LogPrintf("CMasternodeMan::ProcessMessage() : dsee - pubkey2 the wrong size\n");
             Misbehaving(pfrom->GetId(), 100);
             return;
@@ -1084,30 +924,25 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             return;
         }
 
-        if (IsSporkActive(SPORK_19_ENFORCE_DEFAULT_MN_PORT)) {
-            if (Params().NetworkID() == CBaseChainParams::MAIN) {
-                if (addr.GetPort() != Params().GetDefaultPort()) return;
-            } else if (addr.GetPort() == 11957)
-                return;
-        }
+        if (Params().NetworkID() == CBaseChainParams::MAIN) {
+            if (addr.GetPort() != 11115) return;
+        } else if (addr.GetPort() == 11115)
+            return;
 
         //search existing Masternode list, this is where we update existing Masternodes with new dsee broadcasts
-        CMasternode* pmn = Find(vin);
+        CMasternode* pmn = this->Find(vin);
         if (pmn != NULL) {
             // count == -1 when it's a new entry
             //   e.g. We don't want the entry relayed/time updated when we're syncing the list
             // mn.pubkey = pubkey, IsVinAssociatedWithPubkey is validated once below,
             //   after that they just need to match
             if (count == -1 && pmn->pubKeyCollateralAddress == pubkey && (GetAdjustedTime() - pmn->nLastDsee > MASTERNODE_MIN_MNB_SECONDS)) {
-                if (pmn->protocolVersion >= SENDHEADERS_VERSION && sigTime - pmn->lastPing.sigTime < MASTERNODE_MIN_MNB_SECONDS) return;
+                if (pmn->protocolVersion > GETHEADERS_VERSION && sigTime - pmn->lastPing.sigTime < MASTERNODE_MIN_MNB_SECONDS) return;
                 if (pmn->nLastDsee < sigTime) { //take the newest entry
                     LogPrint("masternode", "dsee - Got updated entry for %s\n", vin.prevout.hash.ToString());
-                    if (pmn->protocolVersion < SENDHEADERS_VERSION) {
+                    if (pmn->protocolVersion < GETHEADERS_VERSION) {
                         pmn->pubKeyMasternode = pubkey2;
                         pmn->sigTime = sigTime;
-                        CAmount deposit = 0 * COIN;
-                        if (CMasternode::IsDepositCoins(pmn->vin, deposit))
-                            pmn->deposit = deposit;
                         pmn->sig = vchSig;
                         pmn->protocolVersion = protocolVersion;
                         pmn->addr = addr;
@@ -1116,17 +951,12 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
                     }
                     pmn->nLastDsee = sigTime;
                     pmn->Check();
-                    if (pmn->IsEnabled(false)) {
+                    if (pmn->IsEnabled()) {
                         TRY_LOCK(cs_vNodes, lockNodes);
                         if (!lockNodes) return;
-                        for (CNode* pnode : vNodes) {
-                            if (pnode->nVersion >= masternodePayments.GetMinMasternodePaymentsProto()) {
-                                if (strCommand == "dsee")
-                                    pnode->PushMessage("dsee", vin, addr, vchSig, sigTime, pubkey, pubkey2, count, current, lastUpdated, protocolVersion);
-                                else
-                                    pnode->PushMessage("dsee+", vin, addr, vchSig, sigTime, pubkey, pubkey2, count, current, lastUpdated, protocolVersion, donationAddress, donationPercentage);
-                            }
-                        }
+                        for (CNode* pnode : vNodes)
+                            if (pnode->nVersion >= masternodePayments.GetMinMasternodePaymentsProto())
+                                pnode->PushMessage("dsee", vin, addr, vchSig, sigTime, pubkey, pubkey2, count, current, lastUpdated, protocolVersion, donationAddress, donationPercentage);
                     }
                 }
             }
@@ -1156,7 +986,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut((GetMNCollateral(chainActive.Height())-0.01) * COIN, obfuScationPool.collateralPubKey);
+        CTxOut vout = CTxOut((CollateralRequired() - 0.01 * COIN), obfuScationPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 
@@ -1175,13 +1005,13 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             }
 
             // verify that sig time is legit in past
-            // should be at least not earlier than block when 200000 SPL tx got MASTERNODE_MIN_CONFIRMATIONS
+            // should be at least not earlier than block when 1000 PIVX tx got MASTERNODE_MIN_CONFIRMATIONS
             uint256 hashBlock = 0;
             CTransaction tx2;
             GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
             BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
             if (mi != mapBlockIndex.end() && (*mi).second) {
-                CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 10000 SPL tx -> 1 confirmation
+                CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 BECN tx -> 1 confirmation
                 CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
                 if (pConfIndex->GetBlockTime() > sigTime) {
                     LogPrint("masternode","mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",
@@ -1199,9 +1029,6 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             mn.vin = vin;
             mn.pubKeyCollateralAddress = pubkey;
             mn.sig = vchSig;
-            CAmount deposit = 0 * COIN;
-            if (CMasternode::IsDepositCoins(mn.vin, deposit))
-                mn.deposit = deposit;
             mn.sigTime = sigTime;
             mn.pubKeyMasternode = pubkey2;
             mn.protocolVersion = protocolVersion;
@@ -1209,56 +1036,28 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             mn.lastPing = CMasternodePing(vin);
             mn.Check(true);
             // add v11 masternodes, v12 should be added by mnb only
-            if (protocolVersion < SENDHEADERS_VERSION) {
+            if (protocolVersion < GETHEADERS_VERSION) {
                 LogPrint("masternode", "dsee - Accepted OLD Masternode entry %i %i\n", count, current);
                 Add(mn);
             }
-            if (mn.IsEnabled(false)) {
+            if (mn.IsEnabled()) {
                 TRY_LOCK(cs_vNodes, lockNodes);
                 if (!lockNodes) return;
-                for (CNode* pnode : vNodes) {
-                    if (pnode->nVersion >= masternodePayments.GetMinMasternodePaymentsProto()) {
-                        if (strCommand == "dsee")
-                            pnode->PushMessage("dsee", vin, addr, vchSig, sigTime, pubkey, pubkey2, count, current, lastUpdated, protocolVersion);
-                        else
-                            pnode->PushMessage("dsee+", vin, addr, vchSig, sigTime, pubkey, pubkey2, count, current, lastUpdated, protocolVersion, donationAddress, donationPercentage);
-                    }
-                }
+                for (CNode* pnode : vNodes)
+                    if (pnode->nVersion >= masternodePayments.GetMinMasternodePaymentsProto())
+                        pnode->PushMessage("dsee", vin, addr, vchSig, sigTime, pubkey, pubkey2, count, current, lastUpdated, protocolVersion, donationAddress, donationPercentage);
             }
         } else {
             LogPrint("masternode","dsee - Rejected Masternode entry %s\n", vin.prevout.hash.ToString());
 
             int nDoS = 0;
             if (state.IsInvalid(nDoS)) {
-                LogPrint("masternode","dsee - %s from %i %s was not accepted into the memory pool\n", tx.GetHash().ToString().c_str(), pfrom->GetId(), pfrom->cleanSubVer.c_str());
+                LogPrint("masternode","dsee - %s from %i %s was not accepted into the memory pool\n", tx.GetHash().ToString().c_str(),
+                    pfrom->GetId(), pfrom->cleanSubVer.c_str());
                 if (nDoS > 0)
                     Misbehaving(pfrom->GetId(), nDoS);
             }
         }
-    }
-
-    else if (strCommand == "mnget") { //Get winning Masternode list
-        int nCountNeeded;
-        vRecv >> nCountNeeded;
-
-        bool isLocal = (pfrom->addr.IsRFC1918() || pfrom->addr.IsLocal());
-
-        if (!isLocal && Params().NetworkID() == CBaseChainParams::MAIN) {
-            std::map<CNetAddr, int64_t>::iterator i = mAskedUsForWinnerMasternodeList.find(pfrom->addr);
-            if (i != mAskedUsForWinnerMasternodeList.end()) {
-                int64_t t = (*i).second;
-                if (GetTime() < t) {
-                    Misbehaving(pfrom->GetId(), 20);
-                    LogPrintf("mnget - peer=%i ip=%s already asked me for the list\n", pfrom->GetId(), pfrom->addr.ToString().c_str());
-                    return;
-                }
-            }
-            int64_t askAgain = GetTime() + MASTERNODES_DSEG_SECONDS;
-            mAskedUsForWinnerMasternodeList[pfrom->addr] = askAgain;
-        }
-
-        masternodePayments.Sync(pfrom, nCountNeeded);
-        LogPrint("mnpayments", "mnget - Sent Masternode winners to peer=%i ip=%s\n", pfrom->GetId(), pfrom->addr.ToString().c_str());
     }
 
     else if (strCommand == "dseep") { //ObfuScation Election Entry Ping
@@ -1292,7 +1091,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         }
 
         // see if we have this Masternode
-        CMasternode* pmn = Find(vin);
+        CMasternode* pmn = this->Find(vin);
         if (pmn != NULL && pmn->protocolVersion >= masternodePayments.GetMinMasternodePaymentsProto()) {
             // LogPrint("masternode","dseep - Found corresponding mn for vin: %s\n", vin.ToString().c_str());
             // take this only if it's newer
@@ -1307,10 +1106,10 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
                 }
 
                 // fake ping for v11 masternodes, ignore for v12
-                if (pmn->protocolVersion < SENDHEADERS_VERSION) pmn->lastPing = CMasternodePing(vin);
+                if (pmn->protocolVersion < GETHEADERS_VERSION) pmn->lastPing = CMasternodePing(vin);
                 pmn->nLastDseep = sigTime;
                 pmn->Check();
-                if (pmn->IsEnabled(false)) {
+                if (pmn->IsEnabled()) {
                     TRY_LOCK(cs_vNodes, lockNodes);
                     if (!lockNodes) return;
                     LogPrint("masternode", "dseep - relaying %s \n", vin.prevout.hash.ToString());
@@ -1353,7 +1152,7 @@ void CMasternodeMan::UpdateMasternodeList(CMasternodeBroadcast mnb)
     mapSeenMasternodeBroadcast.insert(std::make_pair(mnb.GetHash(), mnb));
     masternodeSync.AddedMasternodeList(mnb.GetHash());
 
-    LogPrint("masternode","CMasternodeMan::UpdateMasternodeList() -- masternode=%s  addr=%s\n", mnb.vin.prevout.ToStringShort(), mnb.addr.ToString());
+    LogPrint("masternode","CMasternodeMan::UpdateMasternodeList() -- masternode=%s\n", mnb.vin.prevout.ToString());
 
     CMasternode* pmn = Find(mnb.vin);
     if (pmn == NULL) {

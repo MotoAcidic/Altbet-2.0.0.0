@@ -15,7 +15,7 @@
 #include "util.h"
 #include "utiltime.h"
 #include "wallet/wallet.h"
-#include <zspl/deterministicmint.h>
+#include <zpiv/deterministicmint.h>
 
 #include <boost/filesystem.hpp>
 #include <boost/scoped_ptr.hpp>
@@ -282,6 +282,12 @@ bool CWalletDB::WriteAutoCombineSettings(bool fEnable, CAmount nCombineThreshold
     pSettings.first = fEnable;
     pSettings.second = nCombineThreshold;
     return Write(std::string("autocombinesettings"), pSettings, true);
+}
+
+bool CWalletDB::WriteDefaultKey(const CPubKey& vchPubKey)
+{
+    nWalletDBUpdated++;
+    return Write(std::string("defaultkey"), vchPubKey);
 }
 
 bool CWalletDB::ReadPool(int64_t nPool, CKeyPool& keypool)
@@ -637,14 +643,7 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
                 (keyMeta.nCreateTime < pwallet->nTimeFirstKey))
                 pwallet->nTimeFirstKey = keyMeta.nCreateTime;
         } else if (strType == "defaultkey") {
-            // We don't want or need the default key, but if there is one set,
-            // we want to make sure that it is valid so that we can detect corruption
-            CPubKey vchPubKey;
-            ssValue >> vchPubKey;
-            if (!vchPubKey.IsValid()) {
-                strErr = "Error reading wallet database: Default Key corrupt";
-                return false;
-            }
+            ssValue >> pwallet->vchDefaultKey;
         } else if (strType == "pool") {
             int64_t nIndex;
             ssKey >> nIndex;
@@ -660,8 +659,8 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
                 pwallet->mapKeyMetadata[keyid] = CKeyMetadata(keypool.nTime);
         } else if (strType == "version") {
             ssValue >> wss.nFileVersion;
-            // if (wss.nFileVersion == 10300)
-                // wss.nFileVersion = 300;
+            if (wss.nFileVersion == 10300)
+                wss.nFileVersion = 300;
         } else if (strType == "cscript") {
             uint160 hash;
             ssKey >> hash;
@@ -726,6 +725,7 @@ static bool IsKeyType(std::string strType)
 
 DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
 {
+    pwallet->vchDefaultKey = CPubKey();
     CWalletScanState wss;
     bool fNoncriticalErrors = false;
     DBErrors result = DB_LOAD_OK;
@@ -763,7 +763,7 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
             if (!ReadKeyValue(pwallet, ssKey, ssValue, wss, strType, strErr)) {
                 // losing keys is considered a catastrophic error, anything else
                 // we assume the user can live with:
-                if (IsKeyType(strType) || strType == "defaultkey")
+                if (IsKeyType(strType))
                     result = DB_CORRUPT;
                 else {
                     // Leave other errors alone, if we try to fix them we might make things worse.
@@ -824,6 +824,7 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
 
 DBErrors CWalletDB::FindWalletTx(CWallet* pwallet, std::vector<uint256>& vTxHash, std::vector<CWalletTx>& vWtx)
 {
+    pwallet->vchDefaultKey = CPubKey();
     bool fNoncriticalErrors = false;
     DBErrors result = DB_LOAD_OK;
 
@@ -901,7 +902,7 @@ DBErrors CWalletDB::ZapWalletTx(CWallet* pwallet, std::vector<CWalletTx>& vWtx)
 void ThreadFlushWalletDB(const std::string& strFile)
 {
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("simplicity-wallet");
+    RenameThread("pivx-wallet");
 
     static bool fOneThread;
     if (fOneThread)
@@ -1204,17 +1205,17 @@ bool CWalletDB::ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial)
 bool CWalletDB::WriteDeterministicMint(const CDeterministicMint& dMint)
 {
     uint256 hash = dMint.GetPubcoinHash();
-    return Write(std::make_pair(std::string("dzspl"), hash), dMint, true);
+    return Write(std::make_pair(std::string("dzpiv"), hash), dMint, true);
 }
 
 bool CWalletDB::ReadDeterministicMint(const uint256& hashPubcoin, CDeterministicMint& dMint)
 {
-    return Read(std::make_pair(std::string("dzspl"), hashPubcoin), dMint);
+    return Read(std::make_pair(std::string("dzpiv"), hashPubcoin), dMint);
 }
 
 bool CWalletDB::EraseDeterministicMint(const uint256& hashPubcoin)
 {
-    return Erase(std::make_pair(std::string("dzspl"), hashPubcoin));
+    return Erase(std::make_pair(std::string("dzpiv"), hashPubcoin));
 }
 
 bool CWalletDB::WriteZerocoinMint(const CZerocoinMint& zerocoinMint)
@@ -1274,7 +1275,7 @@ bool CWalletDB::ArchiveDeterministicOrphan(const CDeterministicMint& dMint)
     if (!Write(std::make_pair(std::string("dzco"), dMint.GetPubcoinHash()), dMint))
         return error("%s: write failed", __func__);
 
-    if (!Erase(std::make_pair(std::string("dzspl"), dMint.GetPubcoinHash())))
+    if (!Erase(std::make_pair(std::string("dzpiv"), dMint.GetPubcoinHash())))
         return error("%s: failed to erase", __func__);
 
     return true;
@@ -1319,7 +1320,7 @@ bool CWalletDB::ReadCurrentSeedHash(uint256& hashSeed)
     return Read(std::string("seedhash"), hashSeed);
 }
 
-bool CWalletDB::WriteZSPLSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed)
+bool CWalletDB::WriteZPIVSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed)
 {
     if (!WriteCurrentSeedHash(hashSeed))
         return error("%s: failed to write current seed hash", __func__);
@@ -1327,13 +1328,13 @@ bool CWalletDB::WriteZSPLSeed(const uint256& hashSeed, const std::vector<unsigne
     return Write(std::make_pair(std::string("dzs"), hashSeed), seed);
 }
 
-bool CWalletDB::EraseZSPLSeed()
+bool CWalletDB::EraseZPIVSeed()
 {
     uint256 hash;
     if(!ReadCurrentSeedHash(hash)){
         return error("Failed to read a current seed hash");
     }
-    if(!WriteZSPLSeed(hash, ToByteVector(base_uint<256>(0) << 256))) {
+    if(!WriteZPIVSeed(hash, ToByteVector(base_uint<256>(0) << 256))) {
         return error("Failed to write empty seed to wallet");
     }
     if(!WriteCurrentSeedHash(0)) {
@@ -1343,27 +1344,27 @@ bool CWalletDB::EraseZSPLSeed()
     return true;
 }
 
-bool CWalletDB::EraseZSPLSeed_deprecated()
+bool CWalletDB::EraseZPIVSeed_deprecated()
 {
     return Erase(std::string("dzs"));
 }
 
-bool CWalletDB::ReadZSPLSeed(const uint256& hashSeed, std::vector<unsigned char>& seed)
+bool CWalletDB::ReadZPIVSeed(const uint256& hashSeed, std::vector<unsigned char>& seed)
 {
     return Read(std::make_pair(std::string("dzs"), hashSeed), seed);
 }
 
-bool CWalletDB::ReadZSPLSeed_deprecated(uint256& seed)
+bool CWalletDB::ReadZPIVSeed_deprecated(uint256& seed)
 {
     return Read(std::string("dzs"), seed);
 }
 
-bool CWalletDB::WriteZSPLCount(const uint32_t& nCount)
+bool CWalletDB::WriteZPIVCount(const uint32_t& nCount)
 {
     return Write(std::string("dzc"), nCount);
 }
 
-bool CWalletDB::ReadZSPLCount(uint32_t& nCount)
+bool CWalletDB::ReadZPIVCount(uint32_t& nCount)
 {
     return Read(std::string("dzc"), nCount);
 }
@@ -1548,7 +1549,7 @@ std::list<CDeterministicMint> CWalletDB::ListDeterministicMints()
         // Read next record
         CDataStream ssKey(SER_DISK, CLIENT_VERSION);
         if (fFlags == DB_SET_RANGE)
-            ssKey << make_pair(std::string("dzspl"), uint256(0));
+            ssKey << make_pair(std::string("dzpiv"), uint256(0));
         CDataStream ssValue(SER_DISK, CLIENT_VERSION);
         int ret = ReadAtCursor(pcursor, ssKey, ssValue, fFlags);
         fFlags = DB_NEXT;
@@ -1563,7 +1564,7 @@ std::list<CDeterministicMint> CWalletDB::ListDeterministicMints()
         // Unserialize
         std::string strType;
         ssKey >> strType;
-        if (strType != "dzspl")
+        if (strType != "dzpiv")
             break;
 
         uint256 hashPubcoin;

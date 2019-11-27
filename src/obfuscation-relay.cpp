@@ -1,6 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -83,7 +82,7 @@ bool CObfuScationRelay::VerifyMessage(std::string strSharedKey)
 
 void CObfuScationRelay::Relay()
 {
-    int nCount = std::min(mnodeman.CountEnabled(CMasternode::LevelValue::UNSPECIFIED, ActiveProtocol()), 20u);
+    int nCount = std::min(mnodeman.CountEnabled(ActiveProtocol()), 20);
     int nRank1 = (rand() % nCount) + 1;
     int nRank2 = (rand() % nCount) + 1;
 

@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +9,7 @@
 #define BITCOIN_MAIN_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/simplicity-config.h"
+#include "config/beacon-config.h"
 #endif
 
 #include "amount.h"
@@ -21,8 +20,8 @@
 #include "pow.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zspl/zerocoin.h"
-#include "zspl/zsplmodule.h"
+#include "zpiv/zerocoin.h"
+#include "zpiv/zpivmodule.h"
 #include "script/script.h"
 #include "script/sigcache.h"
 #include "script/standard.h"
@@ -42,7 +41,7 @@
 #include <vector>
 
 #include "libzerocoin/CoinSpend.h"
-#include "lightzsplthread.h"
+#include "lightzpivthread.h"
 
 #include <boost/unordered_map.hpp>
 
@@ -59,18 +58,16 @@ class CValidationState;
 struct CBlockTemplate;
 struct CNodeStateStats;
 
-inline int64_t GetMNCollateral(int nHeight) { return 200000; }
-
 /** Default for -blockmaxsize and -blockminsize, which control the range of sizes the mining code will create **/
-static const unsigned int DEFAULT_BLOCK_MAX_SIZE = MAX_BLOCK_SIZE_CURRENT / 4;
+static const unsigned int DEFAULT_BLOCK_MAX_SIZE = 750000;
 static const unsigned int DEFAULT_BLOCK_MIN_SIZE = 0;
 /** Default for -blockprioritysize, maximum space for zero/low-fee transactions **/
 static const unsigned int DEFAULT_BLOCK_PRIORITY_SIZE = 50000;
 /** Default for accepting alerts from the P2P network. */
 static const bool DEFAULT_ALERTS = true;
 /** The maximum size for transactions we're willing to relay/mine */
-static const unsigned int MAX_STANDARD_TX_SIZE = 300000;
-static const unsigned int MAX_ZEROCOIN_TX_SIZE = MAX_STANDARD_TX_SIZE;
+static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
+static const unsigned int MAX_ZEROCOIN_TX_SIZE = 150000;
 /** The maximum allowed number of signature check operations in a block (network rule) */
 static const unsigned int MAX_BLOCK_SIGOPS_CURRENT = MAX_BLOCK_SIZE_CURRENT / 50;
 static const unsigned int MAX_BLOCK_SIGOPS_LEGACY = MAX_BLOCK_SIZE_LEGACY / 50;
@@ -87,7 +84,6 @@ static const unsigned int MAX_BLOCKFILE_SIZE = 0x8000000; // 128 MiB
 static const unsigned int BLOCKFILE_CHUNK_SIZE = 0x1000000; // 16 MiB
 /** The pre-allocation chunk size for rev?????.dat files (since 0.8) */
 static const unsigned int UNDOFILE_CHUNK_SIZE = 0x100000; // 1 MiB
-
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
 /** -par default (number of script-checking threads, 0 = auto) */
@@ -97,40 +93,31 @@ static const int MAX_BLOCKS_IN_TRANSIT_PER_PEER = 16;
 /** Timeout in seconds during which a peer must stall block download progress before being disconnected. */
 static const unsigned int BLOCK_STALLING_TIMEOUT = 2;
 /** Number of headers sent in one getheaders result. We rely on the assumption that if a peer sends
- *  less than this number, we reached its tip. Changing this value is a protocol upgrade. */
-static const unsigned int MAX_HEADERS_RESULTS = 4000;
+ *  less than this number, we reached their tip. Changing this value is a protocol upgrade. */
+static const unsigned int MAX_HEADERS_RESULTS = 2000;
 /** Size of the "block download window": how far ahead of our current height do we fetch?
  *  Larger windows tolerate larger download speed differences between peer, but increase the potential
  *  degree of disordering of blocks on disk (which make reindexing and in the future perhaps pruning
  *  harder). We'll probably want to make this a per-peer adaptive value at some point. */
 static const unsigned int BLOCK_DOWNLOAD_WINDOW = 1024;
-/** Time to wait (in seconds) between writing blocks/block index to disk. */
-static const unsigned int DATABASE_WRITE_INTERVAL = 60 * 60;
+/** Time to wait (in seconds) between writing blockchain state to disk. */
+static const unsigned int DATABASE_WRITE_INTERVAL = 3600;
 /** Maximum length of reject messages. */
 static const unsigned int MAX_REJECT_MESSAGE_LENGTH = 111;
-/** Block download timeout base, expressed in millionths of the block interval (i.e. 10 min) */
-static const int64_t BLOCK_DOWNLOAD_TIMEOUT_BASE = 1000000;
-/** Additional block download timeout per parallel downloading peer (i.e. 5 min) */
-static const int64_t BLOCK_DOWNLOAD_TIMEOUT_PER_PEER = 500000;
 
 /** Enable bloom filter */
-static const bool DEFAULT_PEERBLOOMFILTERS = true;
+ static const bool DEFAULT_PEERBLOOMFILTERS = true;
 static const bool DEFAULT_PEERBLOOMFILTERS_ZC = false;
 
 /** If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 static const int64_t DEFAULT_MAX_TIP_AGE = 24 * 60 * 60;
 
-/** Maximum number of headers to announce when relaying blocks with headers message.*/
-static const unsigned int MAX_BLOCKS_TO_ANNOUNCE = 8;
-/** Maximum number of unconnecting headers announcements before DoS score */
-static const unsigned int MAX_UNCONNECTING_HEADERS = 10;
-
-/** Default for -headerspamfilter, use header spam filter */
-static const bool DEFAULT_HEADER_SPAM_FILTER = true;
-/** Default for -headerspamfiltermaxsize, maximum size of the list of indexes in the header spam filter */
-static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE = 100;
-/** Default for -headerspamfiltermaxavg, maximum average size of an index occurrence in the header spam filter */
-static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_AVG = 10;
+/** Default for -blockspamfilter, use header spam filter */
+static const bool DEFAULT_BLOCK_SPAM_FILTER = true;
+/** Default for -blockspamfiltermaxsize, maximum size of the list of indexes in the block spam filter */
+static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_SIZE = 100;
+/** Default for -blockspamfiltermaxavg, maximum average size of an index occurrence in the block spam filter */
+static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_AVG = 10;
 
 /** "reject" message codes */
 static const unsigned char REJECT_MALFORMED = 0x01;
@@ -142,7 +129,7 @@ static const unsigned char REJECT_DUST = 0x41;
 static const unsigned char REJECT_INSUFFICIENTFEE = 0x42;
 static const unsigned char REJECT_CHECKPOINT = 0x43;
 
-/** zSPL precomputing variables
+/** zBECN precomputing variables
  * Set the number of included blocks to precompute per cycle. */
 static const int DEFAULT_PRECOMPUTE_LENGTH = 1000;
 static const int MIN_PRECOMPUTE_LENGTH = 500;
@@ -179,8 +166,6 @@ extern bool fClearSpendCache;
 extern bool fLargeWorkForkFound;
 extern bool fLargeWorkInvalidChainFound;
 
-extern unsigned int nStakeMinAge;
-extern unsigned int nStakeMaxAge;
 extern int64_t nLastCoinStakeSearchInterval;
 extern int64_t nLastCoinStakeSearchTime;
 extern int64_t nReserveBalance;
@@ -198,9 +183,6 @@ extern CLightWorker lightWorker;
 /** Minimum disk space required - used in CheckDiskSpace() */
 static const uint64_t nMinDiskSpace = 52428800;
 
-/** Block files containing a block-height within MIN_BLOCKS_TO_KEEP of chainActive.Tip() will not be pruned. */
-static const unsigned int MIN_BLOCKS_TO_KEEP = 2160; // number of blocks in 2 days
-
 /** Register with a network node to receive its signals */
 void RegisterNodeSignals(CNodeSignals& nodeSignals);
 /** Unregister a network node */
@@ -211,14 +193,13 @@ void UnregisterNodeSignals(CNodeSignals& nodeSignals);
  * block is made active. Note that it does not, however, guarantee that the
  * specific block passed to it has been checked for validity!
  *
- * @param[out]  state   This may be set to an Error state if any error occurred processing it, including during validation/connection/etc of otherwise unrelated blocks during reorganisation; or it may be set to an Invalid state if pblock is itself invalid (but this is not guaranteed even when the block is checked). If you want to *possibly* get feedback on whether pblock is valid, you must also install a CValidationInterface (see validationinterface.h) - this will have its BlockChecked method called whenever *any* block completes validation.
+ * @param[out]  state   This may be set to an Error state if any error occurred processing it, including during validation/connection/etc of otherwise unrelated blocks during reorganisation; or it may be set to an Invalid state if pblock is itself invalid (but this is not guaranteed even when the block is checked). If you want to *possibly* get feedback on whether pblock is valid, you must also install a CValidationInterface - this will have its BlockChecked method called whenever *any* block completes validation.
  * @param[in]   pfrom   The node which we are receiving the block from; it is added to mapBlockSource and may be penalised if the block is invalid.
  * @param[in]   pblock  The block we want to process.
- * @param[in]   fForceProcessing Process this block even if unrequested; used for non-network block sources and whitelisted peers.
  * @param[out]  dbp     If pblock is stored to disk (or already there), this will be set to its location.
  * @return True if state.IsValid()
  */
-bool ProcessNewBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, bool fForceProcessing, CDiskBlockPos *dbp);
+bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDiskBlockPos* dbp = NULL);
 /** Check whether enough disk space is available for an incoming block */
 bool CheckDiskSpace(uint64_t nAdditionalBytes = 0);
 /** Open a block file (blk?????.dat) */
@@ -261,12 +242,11 @@ bool GetOutput(const uint256& hash, unsigned int index, CValidationState& state,
 
 // ***TODO***
 double ConvertBitsToDouble(unsigned int nBits);
-int64_t GetMasternodePayment(int nHeight, int64_t blockValue, bool fProofOfStake, unsigned mnlevel, int nMasternodeCount, bool isZSPLStake);
+int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool isZPIVStake);
+unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake);
 
 bool ActivateBestChain(CValidationState& state, CBlock* pblock = NULL, bool fAlreadyChecked = false);
-CAmount GetBlockValue(int nHeight, bool fProofOfStake, uint64_t nCoinAge);
-bool IsTreasuryBlock(int nHeight);
-int64_t GetTreasuryAward(int nHeight);
+CAmount GetBlockValue(int nHeight);
 
 /** Create a new block index entry for a given block hash */
 CBlockIndex* InsertBlockIndex(uint256 hash);
@@ -286,7 +266,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
 bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransaction& tx, bool fLimitFree, bool* pfMissingInputs, bool fRejectInsaneFee = false, bool isDSTX = false);
 
 int GetInputAge(CTxIn& vin);
-bool GetCoinAge(const CTransaction& tx, unsigned int nTxTime, int nBestHeight, uint64_t& nCoinAge);
+int GetInputAgeIX(uint256 nTXHash, CTxIn& vin);
 int GetIXConfirmations(uint256 nTXHash);
 
 struct CNodeStateStats {
@@ -375,19 +355,23 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
 void UpdateCoins(const CTransaction& tx, CValidationState& state, CCoinsViewCache& inputs, CTxUndo& txundo, int nHeight);
 
 /** Context-independent validity checks */
-bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fRejectBadUTXO, CValidationState& state);
+bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fRejectBadUTXO, CValidationState& state, bool fFakeSerialAttack = false);
 bool CheckZerocoinMint(const uint256& txHash, const CTxOut& txout, CValidationState& state, bool fCheckOnly = false);
-bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidationState& state);
+bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidationState& state, bool fFakeSerialAttack = false);
 bool ContextualCheckZerocoinSpend(const CTransaction& tx, const libzerocoin::CoinSpend* spend, CBlockIndex* pindex, const uint256& hashBlock);
 bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const libzerocoin::CoinSpend* spend, CBlockIndex* pindex, const uint256& hashBlock);
 bool IsTransactionInChain(const uint256& txId, int& nHeightTx, CTransaction& tx);
 bool IsTransactionInChain(const uint256& txId, int& nHeightTx);
 bool IsBlockHashInChain(const uint256& hashBlock);
-bool ValidOutPoint(const COutPoint& out, int nHeight);
-void RecalculateZSPLSpent();
-void RecalculateZSPLMinted();
-bool RecalculateSPLSupply(int nHeightStart);
+bool ValidOutPoint(const COutPoint out, int nHeight);
+void AddWrappedSerialsInflation();
+void RecalculateZPIVSpent();
+void RecalculateZPIVMinted();
+bool RecalculatePIVSupply(int nHeightStart);
 bool ReindexAccumulators(std::list<uint256>& listMissingCheckpoints, std::string& strError);
+
+// Fake Serial attack Range
+bool isBlockBetweenFakeSerialAttackRange(int nHeight);
 
 // Public coin spend
 bool CheckPublicCoinSpendEnforced(int blockHeight, bool isPublicSpend);
@@ -435,21 +419,21 @@ class CScriptCheck
 {
 private:
     CScript scriptPubKey;
-    const CTransaction *ptxTo;
+    const CTransaction* ptxTo;
     unsigned int nIn;
     unsigned int nFlags;
     bool cacheStore;
     ScriptError error;
 
 public:
-    CScriptCheck(): ptxTo(0), nIn(0), nFlags(0), cacheStore(false), error(SCRIPT_ERR_UNKNOWN_ERROR) {}
-    CScriptCheck(const CCoins& txFromIn, const CTransaction& txToIn, unsigned int nInIn, unsigned int nFlagsIn, bool cacheIn) :
-        scriptPubKey(txFromIn.vout[txToIn.vin[nInIn].prevout.n].scriptPubKey),
-        ptxTo(&txToIn), nIn(nInIn), nFlags(nFlagsIn), cacheStore(cacheIn), error(SCRIPT_ERR_UNKNOWN_ERROR) { }
+    CScriptCheck() : ptxTo(0), nIn(0), nFlags(0), cacheStore(false), error(SCRIPT_ERR_UNKNOWN_ERROR) {}
+    CScriptCheck(const CCoins& txFromIn, const CTransaction& txToIn, unsigned int nInIn, unsigned int nFlagsIn, bool cacheIn) : scriptPubKey(txFromIn.vout[txToIn.vin[nInIn].prevout.n].scriptPubKey),
+                                                                                                                                ptxTo(&txToIn), nIn(nInIn), nFlags(nFlagsIn), cacheStore(cacheIn), error(SCRIPT_ERR_UNKNOWN_ERROR) {}
 
     bool operator()();
 
-    void swap(CScriptCheck& check) {
+    void swap(CScriptCheck& check)
+    {
         scriptPubKey.swap(check.scriptPubKey);
         std::swap(ptxTo, check.ptxTo);
         std::swap(nIn, check.nIn);
@@ -483,16 +467,21 @@ bool DisconnectBlocksAndReprocess(int blocks);
 bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex, CCoinsViewCache& coins, bool fJustCheck, bool fAlreadyChecked = false);
 
 /** Context-independent validity checks */
-bool CheckWork(const CBlockHeader& block, CBlockIndex* const pindexPrev);
 bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW = true);
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW = true, bool fCheckMerkleRoot = true, bool fCheckSig = true);
+bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev);
 
 /** Context-dependent validity checks */
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex* pindexPrev);
 bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindexPrev);
 
 /** Check a block is completely valid from start to finish (only works on top of our current best block, with cs_main held) */
-bool TestBlockValidity(CValidationState &state, const CBlock& block, CBlockIndex *pindexPrev, bool fCheckPOW = true, bool fCheckMerkleRoot = true);
+bool TestBlockValidity(CValidationState& state, const CBlock& block, CBlockIndex* pindexPrev, bool fCheckPOW = true, bool fCheckMerkleRoot = true);
+
+/** Store block on disk. If dbp is provided, the file is known to already reside on disk */
+bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** pindex, CDiskBlockPos* dbp = NULL, bool fAlreadyCheckedBlock = false);
+bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex** ppindex = NULL);
+
 
 class CBlockFileInfo
 {
@@ -565,18 +554,14 @@ private:
     std::string strRejectReason;
     unsigned char chRejectCode;
     bool corruptionPossible;
-    std::string strDebugMessage;
 
 public:
     CValidationState() : mode(MODE_VALID), nDoS(0), chRejectCode(0), corruptionPossible(false) {}
-    bool DoS(int level, bool ret = false,
-             unsigned char chRejectCodeIn = 0, std::string strRejectReasonIn = "",
-             bool corruptionIn = false,
-             const std::string &strDebugMessageIn="") {
+    bool DoS(int level, bool ret = false, unsigned char chRejectCodeIn = 0, std::string strRejectReasonIn = "", bool corruptionIn = false)
+    {
         chRejectCode = chRejectCodeIn;
         strRejectReason = strRejectReasonIn;
         corruptionPossible = corruptionIn;
-        strDebugMessage = strDebugMessageIn;
         if (mode == MODE_ERROR)
             return ret;
         nDoS += level;
@@ -584,9 +569,10 @@ public:
         return ret;
     }
     bool Invalid(bool ret = false,
-                 unsigned char _chRejectCode = 0, std::string _strRejectReason = "",
-                 const std::string &_strDebugMessage="") {
-        return DoS(0, ret, _chRejectCode, _strRejectReason, false, _strDebugMessage);
+        unsigned char _chRejectCode = 0,
+        std::string _strRejectReason = "")
+    {
+        return DoS(0, ret, _chRejectCode, _strRejectReason);
     }
     bool Error(std::string strRejectReasonIn = "")
     {
@@ -626,7 +612,6 @@ public:
     }
     unsigned char GetRejectCode() const { return chRejectCode; }
     std::string GetRejectReason() const { return strRejectReason; }
-    std::string GetDebugMessage() const { return strDebugMessage; }
 };
 
 /** RAII wrapper for VerifyDB: Verify consistency of the block and coin databases */
@@ -645,7 +630,7 @@ CBlockIndex* FindForkInGlobalIndex(const CChain& chain, const CBlockLocator& loc
 bool InvalidateBlock(CValidationState& state, CBlockIndex* pindex);
 
 /** Remove invalidity status from a block and its descendants. */
-bool ReconsiderBlock(CBlockIndex* pindex);
+bool ReconsiderBlock(CValidationState& state, CBlockIndex* pindex);
 
 /** The currently-connected chain of blocks. */
 extern CChain chainActive;

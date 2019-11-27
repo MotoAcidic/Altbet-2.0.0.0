@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,13 +17,13 @@
 #include "utilmoneystr.h"
 #include "wallet.h"
 #include "walletdb.h"
-#include "zsplchain.h"
+#include "zpivchain.h"
 
 #include <stdint.h>
 
 #include "libzerocoin/Coin.h"
 #include "spork.h"
-#include "zspl/deterministicmint.h"
+#include "zpiv/deterministicmint.h"
 #include <boost/assign/list_of.hpp>
 #include <boost/thread/thread.hpp>
 
@@ -83,7 +82,7 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw std::runtime_error(
             "getnewaddress ( \"account\" )\n"
-            "\nReturns a new Simplicity address for receiving payments.\n"
+            "\nReturns a new BECN address for receiving payments.\n"
             "If 'account' is specified (recommended), it is added to the address book \n"
             "so payments received with the address will be credited to 'account'.\n"
 
@@ -91,17 +90,13 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
             "1. \"account\"        (string, optional) The account name for the address to be linked to. if not provided, the default account \"\" is used. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"simplicityaddress\"    (string) The new simplicity address\n"
+            "\"beaconaddress\"    (string) The new beacon address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getnewaddress", "") + HelpExampleCli("getnewaddress", "\"\"") +
             HelpExampleCli("getnewaddress", "\"myaccount\"") + HelpExampleRpc("getnewaddress", "\"myaccount\""));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    // DS: fix GetAccountAddress not commiting new account to wallet file
-    CWalletDB walletdb(pwalletMain->strWalletFile);
-    CAccount account = CAccount();
 
     // Parse the account first so we don't generate a key if there's an error
     std::string strAccount;
@@ -111,15 +106,15 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
     if (!pwalletMain->IsLocked())
         pwalletMain->TopUpKeyPool();
 
-    // DS: fix GetAccountAddress not commiting new account to wallet file
     // Generate a new key that is added to wallet
-    if (!pwalletMain->GetKeyFromPool(account.vchPubKey))
+    CPubKey newKey;
+    if (!pwalletMain->GetKeyFromPool(newKey))
         throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
+    CKeyID keyID = newKey.GetID();
 
-    pwalletMain->SetAddressBook(account.vchPubKey.GetID(), strAccount, "receive");
-    walletdb.WriteAccount(strAccount, account);
+    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
 
-    return CBitcoinAddress(account.vchPubKey.GetID()).ToString();
+    return CBitcoinAddress(keyID).ToString();
 }
 
 
@@ -162,13 +157,13 @@ UniValue getaccountaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 1)
         throw std::runtime_error(
             "getaccountaddress \"account\"\n"
-            "\nReturns the current Simplicity address for receiving payments to this account.\n"
+            "\nReturns the current BECN address for receiving payments to this account.\n"
 
             "\nArguments:\n"
             "1. \"account\"       (string, required) The account name for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"simplicityaddress\"   (string) The account simplicity address\n"
+            "\"beaconaddress\"   (string) The account beacon address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getaccountaddress", "") + HelpExampleCli("getaccountaddress", "\"\"") +
@@ -191,7 +186,7 @@ UniValue getrawchangeaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw std::runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new Simplicity address, for receiving change.\n"
+            "\nReturns a new BECN address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
 
             "\nResult:\n"
@@ -222,11 +217,11 @@ UniValue setaccount(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw std::runtime_error(
-            "setaccount \"simplicityaddress\" \"account\"\n"
+            "setaccount \"beaconaddress\" \"account\"\n"
             "\nSets the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"  (string, required) The simplicity address to be associated with an account.\n"
+            "1. \"beaconaddress\"  (string, required) The beacon address to be associated with an account.\n"
             "2. \"account\"         (string, required) The account to assign the address to.\n"
 
             "\nExamples:\n" +
@@ -236,20 +231,23 @@ UniValue setaccount(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
 
 
     std::string strAccount;
     if (params.size() > 1)
         strAccount = AccountFromValue(params[1]);
 
-    // DS: setaccount returns an error if the address isn't in your wallet and won't create a new address
-    // Check if the address is in your wallet
-    if (!pwalletMain->mapAddressBook.count(address.Get()))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity receiving address");
-    if (IsMine(*pwalletMain, address.Get()))
+    // Only add the account if the address is yours.
+    if (IsMine(*pwalletMain, address.Get())) {
+        // Detect when changing the account of an address that is the 'unused current key' of another account:
+        if (pwalletMain->mapAddressBook.count(address.Get())) {
+            std::string strOldAccount = pwalletMain->mapAddressBook[address.Get()].name;
+            if (address == GetAccountAddress(strOldAccount))
+                GetAccountAddress(strOldAccount, true);
+        }
         pwalletMain->SetAddressBook(address.Get(), strAccount, "receive");
-    else
+    } else
         throw JSONRPCError(RPC_MISC_ERROR, "setaccount can only be used with own address");
 
     return NullUniValue;
@@ -260,11 +258,11 @@ UniValue getaccount(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw std::runtime_error(
-            "getaccount \"simplicityaddress\"\n"
+            "getaccount \"beaconaddress\"\n"
             "\nReturns the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"  (string, required) The simplicity address for account lookup.\n"
+            "1. \"beaconaddress\"  (string, required) The beacon address for account lookup.\n"
 
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
@@ -276,7 +274,7 @@ UniValue getaccount(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
 
     std::string strAccount;
     std::map<CTxDestination, CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
@@ -298,7 +296,7 @@ UniValue getaddressesbyaccount(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "[                     (json array of string)\n"
-            "  \"simplicityaddress\"  (string) a simplicity address associated with the given account\n"
+            "  \"beaconaddress\"  (string) a beacon address associated with the given account\n"
             "  ,...\n"
             "]\n"
 
@@ -336,7 +334,7 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse Simplicity address
+    // Parse BECN address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -356,13 +354,13 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw std::runtime_error(
-            "sendtoaddress \"simplicityaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddress \"beaconaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"  (string, required) The simplicity address to send to.\n"
-            "2. \"amount\"      (numeric, required) The amount in SPL to send. eg 0.1\n"
+            "1. \"beaconaddress\"  (string, required) The beacon address to send to.\n"
+            "2. \"amount\"      (numeric, required) The amount in BECN to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
@@ -381,7 +379,7 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -404,13 +402,13 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw std::runtime_error(
-            "sendtoaddressix \"simplicityaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddressix \"beaconaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"  (string, required) The simplicity address to send to.\n"
-            "2. \"amount\"      (numeric, required) The amount in SPL to send. eg 0.1\n"
+            "1. \"beaconaddress\"  (string, required) The beacon address to send to.\n"
+            "2. \"amount\"      (numeric, required) The amount in BECN to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
@@ -429,7 +427,7 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -448,59 +446,6 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
     return wtx.GetHash().GetHex();
 }
 
-UniValue burncoins(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() < 1 || params.size() > 2)
-        throw std::runtime_error(
-            "burncoins amount ( \"comment\" )\n"
-            "\nBurn an amount of coins. The amount is a real and is rounded to the nearest 0.00000001\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments:\n"
-            "1. \"amount\"      (numeric, required) The amount in SPL to burn. eg 0.1\n"
-            "2. \"comment\"     (string, optional) A comment embedded in the transaction on the blockchain.\n"
-
-            "\nResult:\n"
-            "\"transactionid\"  (string) The transaction id.\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("burncoins", "0.1") +
-            HelpExampleCli("burncoins", "0.1 \"hello world\"") +
-            HelpExampleRpc("burncoins", "0.1, \"hello world\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    // Amount
-    CAmount nAmount = AmountFromValue(params[0]);
-    if (nAmount > pwalletMain->GetBalance())
-        throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
-
-    // Comment
-    CWalletTx wtx;
-    CScript burnScript = CScript() << OP_RETURN;
-    if (params.size() > 1 && !params[1].isNull() && !params[1].get_str().empty()) {
-        if (params[1].get_str().length() > 80)
-            throw JSONRPCError(RPC_INVALID_PARAMETER, "Comment cannot be longer than 80 characters");
-        burnScript << ToByteVector(params[1].get_str());
-    }
-
-    EnsureWalletIsUnlocked();
-    CReserveKey reservekey(pwalletMain);
-    int64_t nFeeRequired;
-    std::string strError;
-
-    if (!pwalletMain->CreateTransaction(burnScript, nAmount, wtx, reservekey, nFeeRequired, strError)) {
-        if (nAmount + nFeeRequired > pwalletMain->GetBalance())
-            strError = strprintf("Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!", FormatMoney(nFeeRequired));
-        LogPrintf("BurnCoins() : %s\n", strError);
-        throw JSONRPCError(RPC_WALLET_ERROR, strError);
-    }
-    if (!pwalletMain->CommitTransaction(wtx, reservekey))
-        throw JSONRPCError(RPC_WALLET_ERROR, "Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.");
-
-    return wtx.GetHash().GetHex();
-}
-
 UniValue listaddressgroupings(const UniValue& params, bool fHelp)
 {
     if (fHelp)
@@ -514,8 +459,8 @@ UniValue listaddressgroupings(const UniValue& params, bool fHelp)
             "[\n"
             "  [\n"
             "    [\n"
-            "      \"simplicityaddress\",     (string) The simplicity address\n"
-            "      amount,                 (numeric) The amount in SPL\n"
+            "      \"beaconaddress\",     (string) The beacon address\n"
+            "      amount,                 (numeric) The amount in PIV\n"
             "      \"account\"             (string, optional) The account\n"
             "    ]\n"
             "    ,...\n"
@@ -551,12 +496,12 @@ UniValue signmessage(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
-            "signmessage \"simplicityaddress\" \"message\"\n"
+            "signmessage \"beaconaddress\" \"message\"\n"
             "\nSign a message with the private key of an address" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"  (string, required) The simplicity address to use for the private key.\n"
+            "1. \"beaconaddress\"  (string, required) The beacon address to use for the private key.\n"
             "2. \"message\"         (string, required) The message to create a signature of.\n"
 
             "\nResult:\n"
@@ -606,15 +551,15 @@ UniValue getreceivedbyaddress(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw std::runtime_error(
-            "getreceivedbyaddress \"simplicityaddress\" ( minconf )\n"
-            "\nReturns the total amount received by the given simplicityaddress in transactions with at least minconf confirmations.\n"
+            "getreceivedbyaddress \"beaconaddress\" ( minconf )\n"
+            "\nReturns the total amount received by the given beaconaddress in transactions with at least minconf confirmations.\n"
 
             "\nArguments:\n"
-            "1. \"simplicityaddress\"  (string, required) The simplicity address for transactions.\n"
+            "1. \"beaconaddress\"  (string, required) The beacon address for transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount   (numeric) The total amount in SPL received at this address.\n"
+            "amount   (numeric) The total amount in BECN received at this address.\n"
 
             "\nExamples:\n"
             "\nThe amount from transactions with at least 1 confirmation\n" +
@@ -628,10 +573,10 @@ UniValue getreceivedbyaddress(const UniValue& params, bool fHelp)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // simplicity address
+    // beacon address
     CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
     CScript scriptPubKey = GetScriptForDestination(address.Get());
     if (!IsMine(*pwalletMain, scriptPubKey))
         throw JSONRPCError(RPC_WALLET_ERROR, "Address not found in wallet");
@@ -670,7 +615,7 @@ UniValue getreceivedbyaccount(const UniValue& params, bool fHelp)
             "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in SPL received for this account.\n"
+            "amount              (numeric) The total amount in BECN received for this account.\n"
 
             "\nExamples:\n"
             "\nAmount received by the default account with at least 1 confirmation\n" +
@@ -759,7 +704,7 @@ UniValue getbalance(const UniValue& params, bool fHelp)
             "3. includeWatchonly (bool, optional, default=false) Also include balance in watchonly addresses (see 'importaddress')\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in SPL received for this account.\n"
+            "amount              (numeric) The total amount in BECN received for this account.\n"
 
             "\nExamples:\n"
             "\nThe total amount in the server across all accounts\n" +
@@ -842,7 +787,7 @@ UniValue movecmd(const UniValue& params, bool fHelp)
             "\nArguments:\n"
             "1. \"fromaccount\"   (string, required) The name of the account to move funds from. May be the default account using \"\".\n"
             "2. \"toaccount\"     (string, required) The name of the account to move funds to. May be the default account using \"\".\n"
-            "3. amount            (numeric, required) Quantity of SPL to move between accounts.\n"
+            "3. amount            (numeric, required) Quantity of BECN to move between accounts.\n"
             "4. minconf           (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"       (string, optional) An optional comment, stored in the wallet only.\n"
 
@@ -850,9 +795,9 @@ UniValue movecmd(const UniValue& params, bool fHelp)
             "true|false           (boolean) true if successful.\n"
 
             "\nExamples:\n"
-            "\nMove 0.01 SPL from the default account to the account named tabby\n" +
+            "\nMove 0.01 BECN from the default account to the account named tabby\n" +
             HelpExampleCli("move", "\"\" \"tabby\" 0.01") +
-            "\nMove 0.01 SPL from timotei to akiko with a comment\n" +
+            "\nMove 0.01 BECN from timotei to akiko with a comment\n" +
             HelpExampleCli("move", "\"timotei\" \"akiko\" 0.01 1 \"happy birthday!\"") +
             "\nAs a json rpc call\n" +
             HelpExampleRpc("move", "\"timotei\", \"akiko\", 0.01, 1, \"happy birthday!\""));
@@ -906,15 +851,15 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 6)
         throw std::runtime_error(
-            "sendfrom \"fromaccount\" \"tosimplicityaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
-            "\nSent an amount from an account to a simplicity address.\n"
+            "sendfrom \"fromaccount\" \"tobeaconaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
+            "\nSent an amount from an account to a beacon address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
             "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
-            "2. \"tosimplicityaddress\"  (string, required) The simplicity address to send funds to.\n"
-            "3. amount                (numeric, required) The amount in SPL. (transaction fee is added on top).\n"
+            "2. \"tobeaconaddress\"  (string, required) The beacon address to send funds to.\n"
+            "3. amount                (numeric, required) The amount in PIV. (transaction fee is added on top).\n"
             "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
             "                                     This is not part of the transaction, just kept in your wallet.\n"
@@ -926,7 +871,7 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
             "\"transactionid\"        (string) The transaction id.\n"
 
             "\nExamples:\n"
-            "\nSend 0.01 SPL from the default account to the address, must have at least 1 confirmation\n" +
+            "\nSend 0.01 BECN from the default account to the address, must have at least 1 confirmation\n" +
             HelpExampleCli("sendfrom", "\"\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01") +
             "\nSend 0.01 from the tabby account to the given address, funds must have at least 6 confirmations\n" +
             HelpExampleCli("sendfrom", "\"tabby\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01 6 \"donation\" \"seans outpost\"") +
@@ -938,7 +883,7 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
     std::string strAccount = AccountFromValue(params[0]);
     CBitcoinAddress address(params[1].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
     CAmount nAmount = AmountFromValue(params[2]);
     int nMinDepth = 1;
     if (params.size() > 3)
@@ -976,7 +921,7 @@ UniValue sendmany(const UniValue& params, bool fHelp)
             "1. \"fromaccount\"         (string, required) The account to send the funds from, can be \"\" for the default account\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The simplicity address is the key, the numeric amount in SPL is the value\n"
+            "      \"address\":amount   (numeric) The beacon address is the key, the numeric amount in BECN is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -1015,7 +960,7 @@ UniValue sendmany(const UniValue& params, bool fHelp)
     for (const std::string& name_ : keys) {
         CBitcoinAddress address(name_);
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Simplicity address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid BECN address: ")+name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ")+name_);
@@ -1057,20 +1002,20 @@ UniValue addmultisigaddress(const UniValue& params, bool fHelp)
         throw std::runtime_error(
             "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-            "Each key is a Simplicity address or hex-encoded public key.\n"
+            "Each key is a BECN address or hex-encoded public key.\n"
             "If 'account' is specified, assign address to that account.\n"
 
             "\nArguments:\n"
             "1. nrequired        (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-            "2. \"keysobject\"   (string, required) A json array of simplicity addresses or hex-encoded public keys\n"
+            "2. \"keysobject\"   (string, required) A json array of beacon addresses or hex-encoded public keys\n"
             "     [\n"
-            "       \"address\"  (string) simplicity address or hex-encoded public key\n"
+            "       \"address\"  (string) beacon address or hex-encoded public key\n"
             "       ...,\n"
             "     ]\n"
             "3. \"account\"      (string, optional) An account to assign the addresses to.\n"
 
             "\nResult:\n"
-            "\"simplicityaddress\"  (string) A simplicity address associated with the keys.\n"
+            "\"beaconaddress\"  (string) A beacon address associated with the keys.\n"
 
             "\nExamples:\n"
             "\nAdd a multisig address from 2 addresses\n" +
@@ -1165,8 +1110,7 @@ UniValue ListReceived(const UniValue& params, bool fByAccounts)
         const CBitcoinAddress& address = item.first;
         const std::string& strAccount = item.second.name;
         std::map<CBitcoinAddress, tallyitem>::iterator it = mapTally.find(address);
-        // DS: fix listreceivedbyaddress returning sending addresses from address book
-        if ((it == mapTally.end() && !fIncludeEmpty) || !IsMine(*pwalletMain, address.Get()))
+        if (it == mapTally.end() && !fIncludeEmpty)
             continue;
 
         CAmount nAmount = 0;
@@ -1203,40 +1147,6 @@ UniValue ListReceived(const UniValue& params, bool fByAccounts)
             }
             obj.push_back(Pair("txids", transactions));
             ret.push_back(obj);
-        }
-    }
-
-    // DS: RPC ListReceived will return change addresses not in the address book
-    // Add addresses from mapTally (this will include change addresses which aren't in the address book)
-    for (const PAIRTYPE(CBitcoinAddress, tallyitem)& item : mapTally) {
-        const CBitcoinAddress& address = item.first;
-        const std::string& strAccount = "(change)";
-        std::map<CTxDestination, CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
-        if (mi == pwalletMain->mapAddressBook.end()) {
-             if (!IsMine(*pwalletMain, address.Get()))
-                continue;
-            int64_t nAmount = 0;
-            int nConf = std::numeric_limits<int>::max();
-            int nBCConf = std::numeric_limits<int>::max();
-            nAmount = item.second.nAmount;
-            nConf = item.second.nConf;
-            nBCConf = item.second.nBCConf;
-            if (!fIncludeEmpty && nAmount == 0)
-                continue;
-            if (fByAccounts) {
-                tallyitem& item = mapAccountTally[strAccount];
-                item.nAmount += nAmount;
-                item.nConf = std::min(item.nConf, nConf);
-                item.nBCConf = std::min(item.nBCConf, nBCConf);
-            } else {
-                UniValue obj(UniValue::VOBJ);
-                obj.push_back(Pair("address",       address.ToString()));
-                obj.push_back(Pair("account",       strAccount));
-                obj.push_back(Pair("amount",        ValueFromAmount(nAmount)));
-                obj.push_back(Pair("confirmations", (nConf == std::numeric_limits<int>::max() ? 0 : nConf)));
-                obj.push_back(Pair("bcconfirmations", (nBCConf == std::numeric_limits<int>::max() ? 0 : nBCConf)));
-                ret.push_back(obj);
-            }
         }
     }
 
@@ -1277,7 +1187,7 @@ UniValue listreceivedbyaddress(const UniValue& params, bool fHelp)
             "    \"involvesWatchonly\" : \"true\",    (bool) Only returned if imported addresses were involved in transaction\n"
             "    \"address\" : \"receivingaddress\",  (string) The receiving address\n"
             "    \"account\" : \"accountname\",       (string) The account of the receiving address. The default account is \"\".\n"
-            "    \"amount\" : x.xxx,                  (numeric) The total amount in SPL received by the address\n"
+            "    \"amount\" : x.xxx,                  (numeric) The total amount in BECN received by the address\n"
             "    \"confirmations\" : n                (numeric) The number of confirmations of the most recent transaction included\n"
             "    \"bcconfirmations\" : n              (numeric) The number of blockchain confirmations of the most recent transaction included\n"
             "  }\n"
@@ -1382,7 +1292,7 @@ void ListTransactions(const CWalletTx& wtx, const std::string& strAccount, int n
                     else
                         entry.push_back(Pair("category", "generate"));
                 } else {
-                    entry.push_back(Pair("category", wtx.IsCoinStake() && pwalletMain->IsMine(wtx.vout[1]) ? "staked" : "receive"));
+                    entry.push_back(Pair("category", "receive"));
                 }
                 entry.push_back(Pair("amount", ValueFromAmount(r.amount)));
                 entry.push_back(Pair("vout", r.vout));
@@ -1429,17 +1339,17 @@ UniValue listtransactions(const UniValue& params, bool fHelp)
             "  {\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. \n"
             "                                                It will be \"\" for the default account.\n"
-            "    \"address\":\"simplicityaddress\",    (string) The simplicity address of the transaction. Not present for \n"
+            "    \"address\":\"beaconaddress\",    (string) The beacon address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
             "                                                transaction id or block. 'send' and 'receive' transactions are \n"
             "                                                associated with an address, transaction id and block details\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in SPL. This is negative for the 'send' category, and for the\n"
+            "    \"amount\": x.xxx,          (numeric) The amount in PIV. This is negative for the 'send' category, and for the\n"
             "                                         'move' category for moves outbound. It is positive for the 'receive' category,\n"
             "                                         and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in SPL. This is negative and only available for the \n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in PIV. This is negative and only available for the \n"
             "                                         'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and \n"
             "                                         'receive' category of transactions.\n"
@@ -1624,12 +1534,12 @@ UniValue listsinceblock(const UniValue& params, bool fHelp)
             "{\n"
             "  \"transactions\": [\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. Will be \"\" for the default account.\n"
-            "    \"address\":\"simplicityaddress\",    (string) The simplicity address of the transaction. Not present for move transactions (category = move).\n"
+            "    \"address\":\"beaconaddress\",    (string) The beacon address of the transaction. Not present for move transactions (category = move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in SPL. This is negative for the 'send' category, and for the 'move' category for moves \n"
+            "    \"amount\": x.xxx,          (numeric) The amount in PIV. This is negative for the 'send' category, and for the 'move' category for moves \n"
             "                                          outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in SPL. This is negative and only available for the 'send' category of transactions.\n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in PIV. This is negative and only available for the 'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"bcconfirmations\" : n,    (numeric) The number of blockchain confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"blockhash\": \"hashvalue\",     (string) The block hash containing the transaction. Available for 'send' and 'receive' category of transactions.\n"
@@ -1709,7 +1619,7 @@ UniValue gettransaction(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "{\n"
-            "  \"amount\" : x.xxx,        (numeric) The transaction amount in SPL\n"
+            "  \"amount\" : x.xxx,        (numeric) The transaction amount in PIV\n"
             "  \"confirmations\" : n,     (numeric) The number of confirmations\n"
             "  \"bcconfirmations\" : n,   (numeric) The number of blockchain confirmations\n"
             "  \"blockhash\" : \"hash\",  (string) The block hash\n"
@@ -1721,9 +1631,9 @@ UniValue gettransaction(const UniValue& params, bool fHelp)
             "  \"details\" : [\n"
             "    {\n"
             "      \"account\" : \"accountname\",  (string) The account name involved in the transaction, can be \"\" for the default account.\n"
-            "      \"address\" : \"simplicityaddress\",   (string) The simplicity address involved in the transaction\n"
+            "      \"address\" : \"beaconaddress\",   (string) The beacon address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, either 'send' or 'receive'\n"
-            "      \"amount\" : x.xxx                  (numeric) The amount in SPL\n"
+            "      \"amount\" : x.xxx                  (numeric) The amount in PIV\n"
             "      \"vout\" : n,                       (numeric) the vout value\n"
             "    }\n"
             "    ,...\n"
@@ -1844,7 +1754,7 @@ UniValue walletpassphrase(const UniValue& params, bool fHelp)
         throw std::runtime_error(
             "walletpassphrase \"passphrase\" timeout ( anonymizeonly )\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
-            "This is needed prior to performing transactions related to private keys such as sending SPLs\n"
+            "This is needed prior to performing transactions related to private keys such as sending PIVs\n"
 
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
@@ -2009,10 +1919,10 @@ UniValue encryptwallet(const UniValue& params, bool fHelp)
             "\nExamples:\n"
             "\nEncrypt you wallet\n" +
             HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
-            "\nNow set the passphrase to use the wallet, such as for signing or sending SPLs\n" +
+            "\nNow set the passphrase to use the wallet, such as for signing or sending PIVs\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
             "\nNow we can so something like sign\n" +
-            HelpExampleCli("signmessage", "\"simplicityaddress\" \"test message\"") +
+            HelpExampleCli("signmessage", "\"beaconaddress\" \"test message\"") +
             "\nNow lock the wallet again by removing the passphrase\n" +
             HelpExampleCli("walletlock", "") +
             "\nAs a json rpc call\n" +
@@ -2043,7 +1953,7 @@ UniValue encryptwallet(const UniValue& params, bool fHelp)
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys. So:
     StartShutdown();
-    return "wallet encrypted; simplicity server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
+    return "wallet encrypted; pivx server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
 }
 
 UniValue lockunspent(const UniValue& params, bool fHelp)
@@ -2053,7 +1963,7 @@ UniValue lockunspent(const UniValue& params, bool fHelp)
             "lockunspent unlock [{\"txid\":\"txid\",\"vout\":n},...]\n"
             "\nUpdates list of temporarily unspendable outputs.\n"
             "Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.\n"
-            "A locked transaction output will not be chosen by automatic coin selection, when spending SPLs.\n"
+            "A locked transaction output will not be chosen by automatic coin selection, when spending PIVs.\n"
             "Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list\n"
             "is always cleared (by virtue of process exit) when a node stops or fails.\n"
             "Also see the listunspent call\n"
@@ -2182,7 +2092,7 @@ UniValue settxfee(const UniValue& params, bool fHelp)
             "\nSet the transaction fee per kB.\n"
 
             "\nArguments:\n"
-            "1. amount         (numeric, required) The transaction fee in SPL/kB rounded to the nearest 0.00000001\n"
+            "1. amount         (numeric, required) The transaction fee in PIV/kB rounded to the nearest 0.00000001\n"
 
             "\nResult\n"
             "true|false        (boolean) Returns true if successful\n"
@@ -2210,14 +2120,14 @@ UniValue getwalletinfo(const UniValue& params, bool fHelp)
             "\nResult:\n"
             "{\n"
             "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total SPL balance of the wallet\n"
-            "  \"unconfirmed_balance\": xxx, (numeric) the total unconfirmed balance of the wallet in SPL\n"
-            "  \"immature_balance\": xxxxxx, (numeric) the total immature balance of the wallet in SPL\n"
+            "  \"balance\": xxxxxxx,         (numeric) the total BECN balance of the wallet\n"
+            "  \"unconfirmed_balance\": xxx, (numeric) the total unconfirmed balance of the wallet in PIV\n"
+            "  \"immature_balance\": xxxxxx, (numeric) the total immature balance of the wallet in PIV\n"
             "  \"txcount\": xxxxxxx,         (numeric) the total number of transactions in the wallet\n"
             "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
             "  \"unlocked_until\": ttt,      (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
-            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee configuration, set in SPL/kB\n"
+            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee configuration, set in PIV/kB\n"
             "  \"automintaddresses\": status (boolean) the status of automint addresses (true if enabled, false if disabled)\n"
             "}\n"
 
@@ -2296,7 +2206,7 @@ UniValue setstakesplitthreshold(const UniValue& params, bool fHelp)
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. value   (numeric, required) Threshold value between 1 and 9999999\n"
+            "1. value   (numeric, required) Threshold value between 1 and 999999\n"
 
             "\nResult:\n"
             "{\n"
@@ -2311,8 +2221,8 @@ UniValue setstakesplitthreshold(const UniValue& params, bool fHelp)
 
     uint64_t nStakeSplitThreshold = params[0].get_int();
 
-    if (nStakeSplitThreshold > 9999999)
-        throw std::runtime_error("Value out of range, max allowed is 9999999");
+    if (nStakeSplitThreshold > 999999)
+        throw std::runtime_error("Value out of range, max allowed is 999999");
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
     LOCK(pwalletMain->cs_wallet);
@@ -2358,7 +2268,7 @@ UniValue autocombinerewards(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || (fEnable && params.size() != 2) || params.size() > 2)
         throw std::runtime_error(
             "autocombinerewards enable ( threshold )\n"
-            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same Simplicity address\n"
+            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same BECN address\n"
             "When autocombinerewards runs it will create a transaction, and therefore will be subject to transaction fees.\n"
 
             "\nArguments:\n"
@@ -2567,7 +2477,7 @@ UniValue multisend(const UniValue& params, bool fHelp)
             "The MultiSend transaction is sent when the staked coins mature (100 confirmations)\n"
             "****************************************************************\n"
             "TO CREATE OR ADD TO THE MULTISEND VECTOR:\n"
-            "multisend <Simplicity Address> <percent>\n"
+            "multisend <PIVX Address> <percent>\n"
             "This will add a new address to the MultiSend vector\n"
             "Percent is a whole number 1 to 100.\n"
             "****************************************************************\n"
@@ -2586,7 +2496,7 @@ UniValue multisend(const UniValue& params, bool fHelp)
     std::string strAddress = params[0].get_str();
     CBitcoinAddress address(strAddress);
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SPL address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
     if (std::stoi(params[1].get_str().c_str()) < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, expected valid percentage");
     if (pwalletMain->IsLocked())
@@ -2631,11 +2541,11 @@ UniValue getzerocoinbalance(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw std::runtime_error(
             "getzerocoinbalance\n"
-            "\nReturn the wallet's total zSPL balance.\n" +
+            "\nReturn the wallet's total zBECN balance.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
-            "amount         (numeric) Total zSPL balance.\n"
+            "amount         (numeric) Total zBECN balance.\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getzerocoinbalance", "") + HelpExampleRpc("getzerocoinbalance", ""));
@@ -2659,7 +2569,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 2)
         throw std::runtime_error(
             "listmintedzerocoins (fVerbose) (fMatureOnly)\n"
-            "\nList all zSPL mints in the wallet.\n" +
+            "\nList all zBECN mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2677,7 +2587,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
             "  {\n"
             "    \"serial hash\": \"xxx\",   (string) Mint serial hash in hex format.\n"
             "    \"version\": n,   (numeric) Zerocoin version number.\n"
-            "    \"zSPL ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
+            "    \"zBECN ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
             "    \"denomination\": n,   (numeric) Coin denomination.\n"
             "    \"mint height\": n     (numeric) Height of the block containing this mint.\n"
             "    \"confirmations\": n   (numeric) Number of confirmations.\n"
@@ -2699,7 +2609,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
     EnsureWalletIsUnlocked(true);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    std::set<CMintMeta> setMints = pwalletMain->zsplTracker->ListMints(true, fMatureOnly, true);
+    std::set<CMintMeta> setMints = pwalletMain->zpivTracker->ListMints(true, fMatureOnly, true);
 
     int nBestHeight = chainActive.Height();
 
@@ -2710,7 +2620,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
             UniValue objMint(UniValue::VOBJ);
             objMint.push_back(Pair("serial hash", m.hashSerial.GetHex()));  // Serial hash
             objMint.push_back(Pair("version", m.nVersion));                 // Zerocoin version
-            objMint.push_back(Pair("zSPL ID", m.hashPubcoin.GetHex()));     // PubCoin
+            objMint.push_back(Pair("zBECN ID", m.hashPubcoin.GetHex()));     // PubCoin
             int denom = libzerocoin::ZerocoinDenominationToInt(m.denom);
             objMint.push_back(Pair("denomination", denom));                 // Denomination
             objMint.push_back(Pair("mint height", m.nHeight));              // Mint Height
@@ -2723,7 +2633,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
                     uint256 hashStake = mint.GetSerialNumber().getuint256();
                     hashStake = Hash(hashStake.begin(), hashStake.end());
                     m.hashStake = hashStake;
-                    pwalletMain->zsplTracker->UpdateState(m);
+                    pwalletMain->zpivTracker->UpdateState(m);
                 }
             }
             objMint.push_back(Pair("hash stake", m.hashStake.GetHex()));       // Confirmations
@@ -2764,7 +2674,7 @@ UniValue listzerocoinamounts(const UniValue& params, bool fHelp)
     EnsureWalletIsUnlocked(true);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    std::set<CMintMeta> setMints = pwalletMain->zsplTracker->ListMints(true, true, true);
+    std::set<CMintMeta> setMints = pwalletMain->zpivTracker->ListMints(true, true, true);
 
     std::map<libzerocoin::CoinDenomination, CAmount> spread;
     for (const auto& denom : libzerocoin::zerocoinDenomList)
@@ -2788,7 +2698,7 @@ UniValue listspentzerocoins(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw std::runtime_error(
             "listspentzerocoins\n"
-            "\nList all the spent zSPL mints in the wallet.\n" +
+            "\nList all the spent zBECN mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -2820,11 +2730,11 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw std::runtime_error(
             "mintzerocoin amount ( utxos )\n"
-            "\nMint the specified zSPL amount\n" +
+            "\nMint the specified zBECN amount\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. amount      (numeric, required) Enter an amount of Spl to convert to zSPL\n"
+            "1. amount      (numeric, required) Enter an amount of Piv to convert to zPIV\n"
             "2. utxos       (string, optional) A json array of objects.\n"
             "                   Each object needs the txid (string) and vout (numeric)\n"
             "  [\n"
@@ -2858,7 +2768,7 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
 
 
     if (Params().NetworkID() != CBaseChainParams::REGTEST)
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSPL minting is DISABLED");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zBECN minting is DISABLED");
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -2872,7 +2782,7 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
 
     int64_t nTime = GetTimeMillis();
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSPL is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zBECN is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked(true);
 
@@ -2935,7 +2845,7 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 4 || params.size() < 3)
         throw std::runtime_error(
             "spendzerocoin amount mintchange minimizechange ( \"address\" )\n"
-            "\nSpend zSPL to a SPL address.\n" +
+            "\nSpend zBECN to a BECN address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2962,8 +2872,8 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
             "  ],\n"
             "  \"outputs\": [                 (array) JSON array of output objects.\n"
             "    {\n"
-            "      \"value\": amount,         (numeric) Value in SPL.\n"
-            "      \"address\": \"xxx\"         (string) SPL address or \"zerocoinmint\" for reminted change.\n"
+            "      \"value\": amount,         (numeric) Value in PIV.\n"
+            "      \"address\": \"xxx\"         (string) BECN address or \"zerocoinmint\" for reminted change.\n"
             "    }\n"
             "    ,...\n"
             "  ]\n"
@@ -2976,14 +2886,14 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSPL is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zBECN is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked();
 
     CAmount nAmount = AmountFromValue(params[0]);   // Spending amount
-    bool fMintChange = params[1].get_bool();        // Mint change to zSPL
+    bool fMintChange = params[1].get_bool();        // Mint change to zPIV
     if (fMintChange && Params().NetworkID() != CBaseChainParams::REGTEST)
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSPL minting is DISABLED, cannot mint change");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zBECN minting is DISABLED, cannot mint change");
     bool fMinimizeChange = params[2].get_bool();    // Minimize change
     std::string address_str = params.size() > 3 ? params[3].get_str() : "";
     bool ispublicspend = params.size() > 4 ? params[3].get_bool() : true;
@@ -2991,10 +2901,10 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     std::vector<CZerocoinMint> vMintsSelected;
 
     if (!ispublicspend && Params().NetworkID() != CBaseChainParams::REGTEST) {
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSPL old spend only available in regtest for tests purposes");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zBECN old spend only available in regtest for tests purposes");
     }
 
-    return DoZsplSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str, ispublicspend);
+    return DoZpivSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str, ispublicspend);
 }
 
 
@@ -3003,7 +2913,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw std::runtime_error(
             "spendzerocoinmints mints_list (\"address\") \n"
-            "\nSpend zSPL mints to a SPL address.\n" +
+            "\nSpend zBECN mints to a BECN address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -3026,8 +2936,8 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
             "  ],\n"
             "  \"outputs\": [                 (array) JSON array of output objects.\n"
             "    {\n"
-            "      \"value\": amount,         (numeric) Value in SPL.\n"
-            "      \"address\": \"xxx\"         (string) SPL address or \"zerocoinmint\" for reminted change.\n"
+            "      \"value\": amount,         (numeric) Value in PIV.\n"
+            "      \"address\": \"xxx\"         (string) BECN address or \"zerocoinmint\" for reminted change.\n"
             "    }\n"
             "    ,...\n"
             "  ]\n"
@@ -3040,7 +2950,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSPL is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zBECN is currently disabled due to maintenance.");
 
     std::string address_str = "";
     if (params.size() > 1) {
@@ -3085,18 +2995,18 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
         // to avoid type confusion from the JSON interpreter
         address = CBitcoinAddress(params[3].get_str());
         if(!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
     }
 
-    return DoZsplSpend(nAmount, false, true, vMintsSelected, address_str);
+    return DoZpivSpend(nAmount, false, true, vMintsSelected, address_str);
 }
 
 
-extern UniValue DoZsplSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, std::vector<CZerocoinMint>& vMintsSelected, std::string address_str, bool ispublicspend)
+extern UniValue DoZpivSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, std::vector<CZerocoinMint>& vMintsSelected, std::string address_str, bool ispublicspend)
 {
     // zerocoin MINT is disabled. fMintChange should be false here. Double check
     if (fMintChange && Params().NetworkID() != CBaseChainParams::REGTEST)
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSPL minting is DISABLED, cannot mint change");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zBECN minting is DISABLED, cannot mint change");
 
     int64_t nTimeStart = GetTimeMillis();
     CBitcoinAddress address = CBitcoinAddress(); // Optional sending address. Dummy initialization here.
@@ -3107,7 +3017,7 @@ extern UniValue DoZsplSpend(const CAmount nAmount, bool fMintChange, bool fMinim
     if(address_str != "") { // Spend to supplied destination address
         address = CBitcoinAddress(address_str);
         if(!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Simplicity address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
         fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, &address, ispublicspend);
     } else                   // Spend to newly generated local address
         fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, nullptr, ispublicspend);
@@ -3188,8 +3098,8 @@ UniValue resetmintzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    CzSPLTracker* zsplTracker = pwalletMain->zsplTracker.get();
-    std::set<CMintMeta> setMints = zsplTracker->ListMints(false, false, true);
+    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
+    std::set<CMintMeta> setMints = zpivTracker->ListMints(false, false, true);
     std::vector<CMintMeta> vMintsToFind(setMints.begin(), setMints.end());
     std::vector<CMintMeta> vMintsMissing;
     std::vector<CMintMeta> vMintsToUpdate;
@@ -3200,14 +3110,14 @@ UniValue resetmintzerocoin(const UniValue& params, bool fHelp)
     // update the meta data of mints that were marked for updating
     UniValue arrUpdated(UniValue::VARR);
     for (CMintMeta meta : vMintsToUpdate) {
-        zsplTracker->UpdateState(meta);
+        zpivTracker->UpdateState(meta);
         arrUpdated.push_back(meta.hashPubcoin.GetHex());
     }
 
     // delete any mints that were unable to be located on the blockchain
     UniValue arrDeleted(UniValue::VARR);
     for (CMintMeta mint : vMintsMissing) {
-        zsplTracker->Archive(mint);
+        zpivTracker->Archive(mint);
         arrDeleted.push_back(mint.hashPubcoin.GetHex());
     }
 
@@ -3241,8 +3151,8 @@ UniValue resetspentzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    CzSPLTracker* zsplTracker = pwalletMain->zsplTracker.get();
-    std::set<CMintMeta> setMints = zsplTracker->ListMints(false, false, false);
+    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
+    std::set<CMintMeta> setMints = zpivTracker->ListMints(false, false, false);
     std::list<CZerocoinSpend> listSpends = walletdb.ListSpentCoins();
     std::list<CZerocoinSpend> listUnconfirmedSpends;
 
@@ -3264,7 +3174,7 @@ UniValue resetspentzerocoin(const UniValue& params, bool fHelp)
     for (CZerocoinSpend spend : listUnconfirmedSpends) {
         for (auto& meta : setMints) {
             if (meta.hashSerial == GetSerialHash(spend.GetSerial())) {
-                zsplTracker->SetPubcoinNotUsed(meta.hashPubcoin);
+                zpivTracker->SetPubcoinNotUsed(meta.hashPubcoin);
                 walletdb.EraseZerocoinSpendSerialEntry(spend.GetSerial());
                 RemoveSerialFromDB(spend.GetSerial());
                 UniValue obj(UniValue::VOBJ);
@@ -3346,12 +3256,12 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
 
             "\nArguments:\n"
             "1. \"include_spent\"        (bool, required) Include mints that have already been spent\n"
-            "2. \"denomination\"         (integer, optional) Export a specific denomination of zSPL\n"
+            "2. \"denomination\"         (integer, optional) Export a specific denomination of zPIV\n"
 
             "\nResult:\n"
             "[                   (array of json object)\n"
             "  {\n"
-            "    \"id\": \"serial hash\",  (string) the mint's zSPL serial hash \n"
+            "    \"id\": \"serial hash\",  (string) the mint's zBECN serial hash \n"
             "    \"d\": n,         (numeric) the mint's zerocoin denomination \n"
             "    \"p\": \"pubcoin\", (string) The public coin\n"
             "    \"s\": \"serial\",  (string) The secret serial number\n"
@@ -3359,8 +3269,8 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
             "    \"t\": \"txid\",    (string) The txid that the coin was minted in\n"
             "    \"h\": n,         (numeric) The height the tx was added to the blockchain\n"
             "    \"u\": used,      (boolean) Whether the mint has been spent\n"
-            "    \"v\": version,   (numeric) The version of the zSPL\n"
-            "    \"k\": \"privkey\"  (string) The zSPL private key (V2+ zSPL only)\n"
+            "    \"v\": version,   (numeric) The version of the zPIV\n"
+            "    \"k\": \"privkey\"  (string) The zBECN private key (V2+ zBECN only)\n"
             "  }\n"
             "  ,...\n"
             "]\n"
@@ -3379,8 +3289,8 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
     if (params.size() == 2)
         denomination = libzerocoin::IntToZerocoinDenomination(params[1].get_int());
 
-    CzSPLTracker* zsplTracker = pwalletMain->zsplTracker.get();
-    std::set<CMintMeta> setMints = zsplTracker->ListMints(!fIncludeSpent, false, false);
+    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
+    std::set<CMintMeta> setMints = zpivTracker->ListMints(!fIncludeSpent, false, false);
 
     UniValue jsonList(UniValue::VARR);
     for (const CMintMeta& meta : setMints) {
@@ -3431,7 +3341,7 @@ UniValue importzerocoins(const UniValue& params, bool fHelp)
             "\nResult:\n"
             "{\n"
             "  \"added\": n,        (numeric) The quantity of zerocoin mints that were added\n"
-            "  \"value\": amount    (numeric) The total zSPL value of zerocoin mints that were added\n"
+            "  \"value\": amount    (numeric) The total zBECN value of zerocoin mints that were added\n"
             "}\n"
 
             "\nExamples\n" +
@@ -3495,7 +3405,7 @@ UniValue importzerocoins(const UniValue& params, bool fHelp)
         CZerocoinMint mint(denom, bnValue, bnRandom, bnSerial, fUsed, nVersion, &privkey);
         mint.SetTxHash(txid);
         mint.SetHeight(nHeight);
-        pwalletMain->zsplTracker->Add(mint, true);
+        pwalletMain->zpivTracker->Add(mint, true);
         count++;
         nValue += libzerocoin::ZerocoinDenominationToAmount(denom);
     }
@@ -3511,7 +3421,7 @@ UniValue reconsiderzerocoins(const UniValue& params, bool fHelp)
     if(fHelp || !params.empty())
         throw std::runtime_error(
             "reconsiderzerocoins\n"
-            "\nCheck archived zSPL list to see if any mints were added to the blockchain.\n" +
+            "\nCheck archived zBECN list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -3557,30 +3467,30 @@ UniValue reconsiderzerocoins(const UniValue& params, bool fHelp)
     return arrRet;
 }
 
-UniValue setzsplseed(const UniValue& params, bool fHelp)
+UniValue setzpivseed(const UniValue& params, bool fHelp)
 {
     if(fHelp || params.size() != 1)
         throw std::runtime_error(
-            "setzsplseed \"seed\"\n"
-            "\nSet the wallet's deterministic zspl seed to a specific value.\n" +
+            "setzpivseed \"seed\"\n"
+            "\nSet the wallet's deterministic zpiv seed to a specific value.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"seed\"        (string, required) The deterministic zspl seed.\n"
+            "1. \"seed\"        (string, required) The deterministic zpiv seed.\n"
 
             "\nResult\n"
             "\"success\" : b,  (boolean) Whether the seed was successfully set.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("setzsplseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
-            HelpExampleRpc("setzsplseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
+            HelpExampleCli("setzpivseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
+            HelpExampleRpc("setzpivseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
 
     EnsureWalletIsUnlocked();
 
     uint256 seed;
     seed.SetHex(params[0].get_str());
 
-    CzSPLWallet* zwallet = pwalletMain->getZWallet();
+    CzPIVWallet* zwallet = pwalletMain->getZWallet();
     bool fSuccess = zwallet->SetMasterSeed(seed, true);
     if (fSuccess)
         zwallet->SyncWithChain();
@@ -3591,23 +3501,23 @@ UniValue setzsplseed(const UniValue& params, bool fHelp)
     return ret;
 }
 
-UniValue getzsplseed(const UniValue& params, bool fHelp)
+UniValue getzpivseed(const UniValue& params, bool fHelp)
 {
     if(fHelp || !params.empty())
         throw std::runtime_error(
-            "getzsplseed\n"
-            "\nCheck archived zSPL list to see if any mints were added to the blockchain.\n" +
+            "getzpivseed\n"
+            "\nCheck archived zBECN list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult\n"
-            "\"seed\" : s,  (string) The deterministic zSPL seed.\n"
+            "\"seed\" : s,  (string) The deterministic zBECN seed.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("getzsplseed", "") + HelpExampleRpc("getzsplseed", ""));
+            HelpExampleCli("getzpivseed", "") + HelpExampleRpc("getzpivseed", ""));
 
     EnsureWalletIsUnlocked();
 
-    CzSPLWallet* zwallet = pwalletMain->getZWallet();
+    CzPIVWallet* zwallet = pwalletMain->getZWallet();
     uint256 seed = zwallet->GetMasterSeed();
 
     UniValue ret(UniValue::VOBJ);
@@ -3621,12 +3531,12 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
     if(fHelp || params.size() != 2)
         throw std::runtime_error(
             "generatemintlist\n"
-            "\nShow mints that are derived from the deterministic zSPL seed.\n" +
+            "\nShow mints that are derived from the deterministic zBECN seed.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"  : n,  (numeric) Which sequential zSPL to start with.\n"
-            "2. \"range\"  : n,  (numeric) How many zSPL to generate.\n"
+            "1. \"count\"  : n,  (numeric) Which sequential zBECN to start with.\n"
+            "2. \"range\"  : n,  (numeric) How many zBECN to generate.\n"
 
             "\nResult:\n"
             "[\n"
@@ -3646,7 +3556,7 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
 
     int nCount = params[0].get_int();
     int nRange = params[1].get_int();
-    CzSPLWallet* zwallet = pwalletMain->zwalletMain;
+    CzPIVWallet* zwallet = pwalletMain->zwalletMain;
 
     UniValue arrRet(UniValue::VARR);
     for (int i = nCount; i < nCount + nRange; i++) {
@@ -3665,28 +3575,28 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
     return arrRet;
 }
 
-UniValue dzsplstate(const UniValue& params, bool fHelp) {
+UniValue dzpivstate(const UniValue& params, bool fHelp) {
     if (fHelp || params.size() != 0)
         throw std::runtime_error(
-                "dzsplstate\n"
-                        "\nThe current state of the mintpool of the deterministic zSPL wallet.\n" +
+                "dzpivstate\n"
+                        "\nThe current state of the mintpool of the deterministic zBECN wallet.\n" +
                 HelpRequiringPassphrase() + "\n"
 
                         "\nExamples\n" +
                 HelpExampleCli("mintpoolstatus", "") + HelpExampleRpc("mintpoolstatus", ""));
 
-    CzSPLWallet* zwallet = pwalletMain->zwalletMain;
+    CzPIVWallet* zwallet = pwalletMain->zwalletMain;
     UniValue obj(UniValue::VOBJ);
     int nCount, nCountLastUsed;
     zwallet->GetState(nCount, nCountLastUsed);
-    obj.push_back(Pair("dzspl_count", nCount));
+    obj.push_back(Pair("dzpiv_count", nCount));
     obj.push_back(Pair("mintpool_count", nCountLastUsed));
 
     return obj;
 }
 
 
-void static SearchThread(CzSPLWallet* zwallet, int nCountStart, int nCountEnd)
+void static SearchThread(CzPIVWallet* zwallet, int nCountStart, int nCountEnd)
 {
     LogPrintf("%s: start=%d end=%d\n", __func__, nCountStart, nCountEnd);
     CWalletDB walletDB(pwalletMain->strWalletFile);
@@ -3703,7 +3613,7 @@ void static SearchThread(CzSPLWallet* zwallet, int nCountStart, int nCountEnd)
             CBigNum bnSerial;
             CBigNum bnRandomness;
             CKey key;
-            zwallet->SeedToZSPL(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
+            zwallet->SeedToZPIV(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
 
             uint256 hashPubcoin = GetPubCoinHash(bnValue);
             zwallet->AddToMintPool(std::make_pair(hashPubcoin, i), true);
@@ -3716,21 +3626,21 @@ void static SearchThread(CzSPLWallet* zwallet, int nCountStart, int nCountEnd)
     }
 }
 
-UniValue searchdzspl(const UniValue& params, bool fHelp)
+UniValue searchdzpiv(const UniValue& params, bool fHelp)
 {
     if(fHelp || params.size() != 3)
         throw std::runtime_error(
-            "searchdzspl\n"
-            "\nMake an extended search for deterministically generated zSPL that have not yet been recognized by the wallet.\n" +
+            "searchdzpiv\n"
+            "\nMake an extended search for deterministically generated zBECN that have not yet been recognized by the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"       (numeric) Which sequential zSPL to start with.\n"
-            "2. \"range\"       (numeric) How many zSPL to generate.\n"
+            "1. \"count\"       (numeric) Which sequential zBECN to start with.\n"
+            "2. \"range\"       (numeric) How many zBECN to generate.\n"
             "3. \"threads\"     (numeric) How many threads should this operation consume.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("searchdzspl", "1, 100, 2") + HelpExampleRpc("searchdzspl", "1, 100, 2"));
+            HelpExampleCli("searchdzpiv", "1, 100, 2") + HelpExampleRpc("searchdzpiv", "1, 100, 2"));
 
     EnsureWalletIsUnlocked();
 
@@ -3744,9 +3654,9 @@ UniValue searchdzspl(const UniValue& params, bool fHelp)
 
     int nThreads = params[2].get_int();
 
-    CzSPLWallet* zwallet = pwalletMain->zwalletMain;
+    CzPIVWallet* zwallet = pwalletMain->zwalletMain;
 
-    boost::thread_group* dzsplThreads = new boost::thread_group();
+    boost::thread_group* dzpivThreads = new boost::thread_group();
     int nRangePerThread = nRange / nThreads;
 
     int nPrevThreadEnd = nCount - 1;
@@ -3754,12 +3664,12 @@ UniValue searchdzspl(const UniValue& params, bool fHelp)
         int nStart = nPrevThreadEnd + 1;;
         int nEnd = nStart + nRangePerThread;
         nPrevThreadEnd = nEnd;
-        dzsplThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
+        dzpivThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
     }
 
-    dzsplThreads->join_all();
+    dzpivThreads->join_all();
 
-    zwallet->RemoveMintsFromPool(pwalletMain->zsplTracker->GetSerialHashes());
+    zwallet->RemoveMintsFromPool(pwalletMain->zpivTracker->GetSerialHashes());
     zwallet->SyncWithChain(false);
 
     //todo: better response
@@ -3793,7 +3703,7 @@ UniValue createautomintaddress(const UniValue& params, bool fHelp)
                 HelpRequiringPassphrase() + "\n"
 
                 "\nResult\n"
-                "\"address\"     (string) Simplicity address for auto minting\n" +
+                "\"address\"     (string) BECN address for auto minting\n" +
                 HelpExampleCli("createautomintaddress", "") +
                 HelpExampleRpc("createautomintaddress", ""));
 
@@ -3815,7 +3725,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
             "2. \"randomnessHex\"    (string, required) A zerocoin randomness value (hex)\n"
             "3. denom                (numeric, required) A zerocoin denomination (decimal)\n"
             "4. \"priv key\"         (string, required) The private key associated with this coin (hex)\n"
-            "5. \"address\"          (string, optional) Simplicity address to spend to. If not specified, spend to change add.\n"
+            "5. \"address\"          (string, optional) BECN address to spend to. If not specified, spend to change add.\n"
 
             "\nResult:\n"
                 "\"txid\"             (string) The transaction txid in hex\n"
@@ -3827,7 +3737,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-            throw JSONRPCError(RPC_WALLET_ERROR, "zSPL is currently disabled due to maintenance.");
+            throw JSONRPCError(RPC_WALLET_ERROR, "zBECN is currently disabled due to maintenance.");
 
     CBigNum serial;
     serial.SetHex(params[0].get_str());
@@ -3861,7 +3771,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
     std::vector<CZerocoinMint> vMintsSelected = {mint};
     CAmount nAmount = mint.GetDenominationAsAmount();
 
-    return DoZsplSpend(nAmount, false, true, vMintsSelected, address_str);
+    return DoZpivSpend(nAmount, false, true, vMintsSelected, address_str);
 }
 
 UniValue clearspendcache(const UniValue& params, bool fHelp)
@@ -3869,7 +3779,7 @@ UniValue clearspendcache(const UniValue& params, bool fHelp)
     if(fHelp || params.size() != 0)
         throw std::runtime_error(
             "clearspendcache\n"
-            "\nClear the pre-computed zSPL spend cache, and database.\n" +
+            "\nClear the pre-computed zBECN spend cache, and database.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nExamples\n" +
@@ -3877,14 +3787,14 @@ UniValue clearspendcache(const UniValue& params, bool fHelp)
 
     EnsureWalletIsUnlocked();
 
-    CzSPLTracker* zsplTracker = pwalletMain->zsplTracker.get();
+    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
 
     {
         int nTries = 0;
         while (nTries < 100) {
-            TRY_LOCK(zsplTracker->cs_spendcache, fLocked);
+            TRY_LOCK(zpivTracker->cs_spendcache, fLocked);
             if (fLocked) {
-                if (zsplTracker->ClearSpendCache()) {
+                if (zpivTracker->ClearSpendCache()) {
                     fClearSpendCache = true;
                     CWalletDB walletdb("precomputes.dat", "cr+");
                     walletdb.EraseAllPrecomputes();

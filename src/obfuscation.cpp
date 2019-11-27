@@ -12,6 +12,7 @@
 #include "swifttx.h"
 #include "guiinterface.h"
 #include "util.h"
+#include "collateral.h"
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -97,7 +98,7 @@ void CObfuscationPool::UnlockCoins()
             MilliSleep(50);
             continue;
         }
-        for (CTxIn& v : lockedCoins)
+        for (CTxIn v : lockedCoins)
             pwalletMain->UnlockCoin(v.prevout);
         break;
     }
@@ -371,9 +372,9 @@ void CObfuscationPool::ChargeRandomFees()
 
                 Being that Obfuscation has "no fees" we need to have some kind of cost associated
                 with using it to stop abuse. Otherwise it could serve as an attack vector and
-                allow endless transaction that would bloat Simplicity and make it unusable. To
+                allow endless transaction that would bloat PIVX and make it unusable. To
                 stop these kinds of attacks 1 in 10 successful transactions are charged. This
-                adds up to a cost of 0.001 SPL per transaction on average.
+                adds up to a cost of 0.001 BECN per transaction on average.
             */
             if (r <= 10) {
                 LogPrintf("CObfuscationPool::ChargeRandomFees -- charging random fees. %u\n", i);
@@ -531,15 +532,12 @@ bool CObfuScationSigner::IsVinAssociatedWithPubkey(CTxIn& vin, CPubKey& pubkey)
 
     CTransaction txVin;
     uint256 hash;
-    if (!GetTransaction(vin.prevout.hash, txVin, hash, true))
-        return false;
-
-    for (const CTxOut& out : txVin.vout) {
-        if (!CMasternode::IsDepositCoins(out.nValue))
-            continue;
-
-        if (out.scriptPubKey == payee2)
-            return true;
+    if (GetTransaction(vin.prevout.hash, txVin, hash, true)) {
+        for (CTxOut out : txVin.vout) {
+            if (out.nValue == CollateralRequired()) {
+                if (out.scriptPubKey == payee2) return true;
+            }
+        }
     }
 
     return false;
@@ -672,7 +670,7 @@ void ThreadCheckObfuScationPool()
     if (fLiteMode) return; //disable all Obfuscation/Masternode related functionality
 
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("simplicity-obfuscation");
+    RenameThread("pivx-obfuscation");
 
     unsigned int c = 0;
 

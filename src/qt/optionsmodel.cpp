@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/simplicity-config.h"
+#include "config/beacon-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -62,7 +62,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::SPL);
+        settings.setValue("nDisplayUnit", BitcoinUnits::BECN);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -171,8 +171,8 @@ void OptionsModel::Init()
         SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
     if (settings.contains("nPreferredDenom"))
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-    if (settings.contains("nAnonymizeSimplicityAmount"))
-        SoftSetArg("-anonymizesimplicityamount", settings.value("nAnonymizeSimplicityAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeBeaconAmount"))
+        SoftSetArg("-anonymizepivxamount", settings.value("nAnonymizeBeaconAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -183,7 +183,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in simplicity.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in pivx.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())

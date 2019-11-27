@@ -1,15 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2016-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_SCRIPT_SCRIPT_H
 #define BITCOIN_SCRIPT_SCRIPT_H
-
-#include "crypto/common.h"
 
 #include <assert.h>
 #include <climits>
@@ -23,17 +20,7 @@
 
 typedef std::vector<unsigned char> valtype;
 
-// Maximum number of bytes pushable to the stack
 static const unsigned int MAX_SCRIPT_ELEMENT_SIZE = 520; // bytes
-
-// Maximum number of non-push operations per script
-static const int MAX_OPS_PER_SCRIPT = 500; // default 201
-
-// Maximum number of public keys per multisig
-static const int MAX_PUBKEYS_PER_MULTISIG = 20;
-
-// Maximum script length in bytes
-static const int MAX_SCRIPT_SIZE = 10000;
 
 // Threshold for nLockTime: below this value it is interpreted as block number,
 // otherwise as UNIX timestamp.
@@ -170,8 +157,8 @@ enum opcodetype
 
     // expansion
     OP_NOP1 = 0xb0,
-    OP_CHECKLOCKTIMEVERIFY = 0xb1,
-    OP_NOP2 = OP_CHECKLOCKTIMEVERIFY,
+    OP_NOP2 = 0xb1,
+    OP_CHECKLOCKTIMEVERIFY = OP_NOP2,
     OP_NOP3 = 0xb2,
     OP_NOP4 = 0xb3,
     OP_NOP5 = 0xb4,
@@ -185,9 +172,6 @@ enum opcodetype
     OP_ZEROCOINMINT = 0xc1,
     OP_ZEROCOINSPEND = 0xc2,
     OP_ZEROCOINPUBLICSPEND = 0xc3,
-
-    // The first op_code value after all defined opcodes
-    FIRST_UNDEFINED_OP_VALUE,
 
     // template matching params
     OP_SMALLINTEGER = 0xfa,
@@ -226,7 +210,7 @@ public:
     static const size_t nDefaultMaxNumSize = 4;
 
     explicit CScriptNum(const std::vector<unsigned char>& vch, bool fRequireMinimal,
-                        const size_t nMaxNumSize = nDefaultMaxNumSize)
+            const size_t nMaxNumSize = nDefaultMaxNumSize)
     {
         if (vch.size() > nMaxNumSize) {
             throw scriptnum_error("script number overflow");
@@ -274,11 +258,6 @@ public:
     inline CScriptNum& operator+=( const CScriptNum& rhs)       { return operator+=(rhs.m_value);  }
     inline CScriptNum& operator-=( const CScriptNum& rhs)       { return operator-=(rhs.m_value);  }
 
-    inline CScriptNum operator&(   const int64_t& rhs)    const { return CScriptNum(m_value & rhs);}
-    inline CScriptNum operator&(   const CScriptNum& rhs) const { return operator&(rhs.m_value);   }
-
-    inline CScriptNum& operator&=( const CScriptNum& rhs)       { return operator&=(rhs.m_value);  }
-
     inline CScriptNum operator-()                         const
     {
         assert(m_value != std::numeric_limits<int64_t>::min());
@@ -304,12 +283,6 @@ public:
         assert(rhs == 0 || (rhs > 0 && m_value >= std::numeric_limits<int64_t>::min() + rhs) ||
                            (rhs < 0 && m_value <= std::numeric_limits<int64_t>::max() + rhs));
         m_value -= rhs;
-        return *this;
-    }
-
-    inline CScriptNum& operator&=( const int64_t& rhs)
-    {
-        m_value &= rhs;
         return *this;
     }
 
@@ -381,15 +354,6 @@ private:
     int64_t m_value;
 };
 
-/*static const std::vector<unsigned char> burnScripts[] = {
-    ParseHex("76a914a996cc59f751964a8f4c60b0caca57724ad5e4c988ac"), //p2pkh 8WYZa29o2Kps14H9jSrr92pqHaPVFubbMY
-    ParseHex("76a9148d7446fbef8e5bc8df71b7c8aa283c6252ce38c288ac"), //p2pkh 8TyoJ6DCdbT3TYhS38XehGCtGXpmmZ2H5j
-    ParseHex("76a914ed29b5c96631e0de1052a472aafe07c03f3c377588ac"), //p2pkh yJbqydKwNnV5zisR7kRWDrQQeG9mBAzqM5
-    ParseHex("210216bed2efae032e597e123c73351cb75c0f3b95ccb2b8b8519e1812edf4237ea9ac"), //p2pk 0216bed2efae032e597e123c73351cb75c0f3b95ccb2b8b8519e1812edf4237ea9
-    ParseHex("2103599a7887343bcff97fa9d4236dabcdb02df80fa58fa19259e71b5db76fb53f6eac"), //p2pk 03599a7887343bcff97fa9d4236dabcdb02df80fa58fa19259e71b5db76fb53f6e
-    ParseHex("21031b2159dd67754730467761e11d7a2157baf88a82203d2da793c7fc1d60a4508fac"), //p2pk 031b2159dd67754730467761e11d7a2157baf88a82203d2da793c7fc1d60a4508f
-};*/
-
 /** Serialized script, used inside transaction inputs and outputs */
 class CScript : public std::vector<unsigned char>
 {
@@ -441,7 +405,7 @@ public:
     CScript& operator<<(opcodetype opcode)
     {
         if (opcode < 0 || opcode > 0xff)
-            throw std::runtime_error("CScript::operator<<(): invalid opcode");
+            throw std::runtime_error("CScript::operator<<() : invalid opcode");
         insert(end(), (unsigned char)opcode);
         return *this;
     }
@@ -649,19 +613,9 @@ public:
      * regardless of the initial stack. This allows outputs to be pruned
      * instantly when entering the UTXO set.
      */
-    bool IsUnspendable(/*bool includeBurnAddresses=true*/) const
+    bool IsUnspendable() const
     {
-        /*if ((size() > 0 && *begin() == OP_RETURN) || size() > MAX_SCRIPT_SIZE)
-            return true;
-        else if (!includeBurnAddresses)
-            return false;
-        else {
-            for (const std::vector<unsigned char>& burnScript : burnScripts)
-                if (*this == burnScript)
-                    return true;
-            return false;
-        }*/
-        return (size() > 0 && *begin() == OP_RETURN) || (size() > MAX_SCRIPT_SIZE);
+        return (size() > 0 && *begin() == OP_RETURN);
     }
 
     std::string ToString() const;

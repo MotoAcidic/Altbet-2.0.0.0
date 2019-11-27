@@ -5,8 +5,8 @@ Release Process
 
 ### Before every release candidate
 
-* Update translations (ping Fuzzbawls on Discord) see [translation_process.md](https://github.com/Simplicity-Project/Simplicity/blob/master/doc/translation_process.md#synchronising-translations).
-* Update manpages, see [gen-manpages.sh](https://github.com/simplicity-project/simplicity/blob/master/contrib/devtools/README.md#gen-manpagessh).
+* Update translations (ping Fuzzbawls on Discord) see [translation_process.md](https://github.com/PIVX-Project/PIVX/blob/master/doc/translation_process.md#synchronising-translations).
+* Update manpages, see [gen-manpages.sh](https://github.com/pivx-project/pivx/blob/master/contrib/devtools/README.md#gen-manpagessh).
 
 ### Before every major and minor release
 
@@ -48,12 +48,12 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/simplicity-project/gitian.sigs.git
-    git clone https://github.com/simplicity-project/simplicity-detached-sigs.git
+    git clone https://github.com/pivx-project/gitian.sigs.git
+    git clone https://github.com/pivx-project/pivx-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
-    git clone https://github.com/simplicity-project/simplicity.git
+    git clone https://github.com/pivx-project/pivx.git
 
-### Simplicity maintainers/release engineers, suggestion for writing release notes
+### PIVX maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -74,7 +74,7 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 
 Setup Gitian descriptors:
 
-    pushd ./simplicity
+    pushd ./pivx
     export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
     export VERSION=(new version, e.g. 0.8.0)
     git fetch
@@ -107,10 +107,10 @@ Create the macOS SDK tarball, see the [macOS build instructions](build-osx.md#de
 
 NOTE: Gitian is sometimes unable to download files. If you have errors, try the step below.
 
-By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in simplicity, then:
+By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in pivx, then:
 
     pushd ./gitian-builder
-    make -C ../simplicity/depends download SOURCES_PATH=`pwd`/cache/common
+    make -C ../pivx/depends download SOURCES_PATH=`pwd`/cache/common
     popd
 
 Only missing files will be fetched, so this is safe to re-run for each build.
@@ -118,50 +118,50 @@ Only missing files will be fetched, so this is safe to re-run for each build.
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 
     pushd ./gitian-builder
-    ./bin/gbuild --url simplicity=/path/to/simplicity,signature=/path/to/sigs {rest of arguments}
+    ./bin/gbuild --url pivx=/path/to/pivx,signature=/path/to/sigs {rest of arguments}
     popd
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign Simplicity for Linux, Windows, and macOS:
+### Build and sign PIVX Core for Linux, Windows, and macOS:
 
     pushd ./gitian-builder
-    ./bin/gbuild --num-make 2 --memory 3000 --commit simplicity=v${VERSION} ../simplicity/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../simplicity/contrib/gitian-descriptors/gitian-linux.yml
-    mv build/out/simplicity-*.tar.gz build/out/src/simplicity-*.tar.gz ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit pivx=v${VERSION} ../pivx/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../pivx/contrib/gitian-descriptors/gitian-linux.yml
+    mv build/out/pivx-*.tar.gz build/out/src/pivx-*.tar.gz ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit simplicity=v${VERSION} ../simplicity/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../simplicity/contrib/gitian-descriptors/gitian-win.yml
-    mv build/out/simplicity-*-win-unsigned.tar.gz inputs/simplicity-win-unsigned.tar.gz
-    mv build/out/simplicity-*.zip build/out/simplicity-*.exe ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit pivx=v${VERSION} ../pivx/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../pivx/contrib/gitian-descriptors/gitian-win.yml
+    mv build/out/pivx-*-win-unsigned.tar.gz inputs/pivx-win-unsigned.tar.gz
+    mv build/out/pivx-*.zip build/out/pivx-*.exe ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit simplicity=v${VERSION} ../simplicity/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../simplicity/contrib/gitian-descriptors/gitian-osx.yml
-    mv build/out/simplicity-*-osx-unsigned.tar.gz inputs/simplicity-osx-unsigned.tar.gz
-    mv build/out/simplicity-*.tar.gz build/out/simplicity-*.dmg ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit pivx=v${VERSION} ../pivx/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../pivx/contrib/gitian-descriptors/gitian-osx.yml
+    mv build/out/pivx-*-osx-unsigned.tar.gz inputs/pivx-osx-unsigned.tar.gz
+    mv build/out/pivx-*.tar.gz build/out/pivx-*.dmg ../
     popd
 
 Build output expected:
 
-  1. source tarball (`simplicity-${VERSION}.tar.gz`)
-  2. linux 32-bit and 64-bit dist tarballs (`simplicity-${VERSION}-linux[32|64].tar.gz`)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (`simplicity-${VERSION}-win[32|64]-setup-unsigned.exe`, `simplicity-${VERSION}-win[32|64].zip`)
-  4. macOS unsigned installer and dist tarball (`simplicity-${VERSION}-osx-unsigned.dmg`, `simplicity-${VERSION}-osx64.tar.gz`)
+  1. source tarball (`pivx-${VERSION}.tar.gz`)
+  2. linux 32-bit and 64-bit dist tarballs (`pivx-${VERSION}-linux[32|64].tar.gz`)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (`pivx-${VERSION}-win[32|64]-setup-unsigned.exe`, `pivx-${VERSION}-win[32|64].zip`)
+  4. macOS unsigned installer and dist tarball (`pivx-${VERSION}-osx-unsigned.dmg`, `pivx-${VERSION}-osx64.tar.gz`)
   5. Gitian signatures (in `gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
 Add other gitian builders keys to your gpg keyring, and/or refresh keys.
 
-    gpg --import simplicity/contrib/gitian-keys/*.pgp
+    gpg --import pivx/contrib/gitian-keys/*.pgp
     gpg --refresh-keys
 
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../simplicity/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../simplicity/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../simplicity/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../pivx/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../pivx/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../pivx/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
@@ -182,22 +182,22 @@ Codesigner only: Create Windows/macOS detached signatures:
 
 Codesigner only: Sign the macOS binary:
 
-    transfer simplicity-osx-unsigned.tar.gz to macOS for signing
-    tar xf simplicity-osx-unsigned.tar.gz
+    transfer pivx-osx-unsigned.tar.gz to macOS for signing
+    tar xf pivx-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID"
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf simplicity-win-unsigned.tar.gz
+    tar xf pivx-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 Codesigner only: Commit the detached codesign payloads:
 
-    cd ~/simplicity-detached-sigs
+    cd ~/pivx-detached-sigs
     checkout the appropriate branch for this release series
     rm -rf *
     tar xf signature-osx.tar.gz
@@ -210,25 +210,25 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/macOS detached signatures:
 
 - Once the Windows/macOS builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [simplicity-detached-sigs](https://github.com/simplicity-Project/simplicity-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [pivx-detached-sigs](https://github.com/pivx-Project/pivx-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed macOS binary:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../simplicity/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../simplicity/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../simplicity/contrib/gitian-descriptors/gitian-osx-signer.yml
-    mv build/out/simplicity-osx-signed.dmg ../simplicity-${VERSION}-osx.dmg
+    ./bin/gbuild -i --commit signature=v${VERSION} ../pivx/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../pivx/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../pivx/contrib/gitian-descriptors/gitian-osx-signer.yml
+    mv build/out/pivx-osx-signed.dmg ../pivx-${VERSION}-osx.dmg
     popd
 
 Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../simplicity/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../simplicity/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../simplicity/contrib/gitian-descriptors/gitian-win-signer.yml
-    mv build/out/simplicity-*win64-setup.exe ../simplicity-${VERSION}-win64-setup.exe
-    mv build/out/simplicity-*win32-setup.exe ../simplicity-${VERSION}-win32-setup.exe
+    ./bin/gbuild -i --commit signature=v${VERSION} ../pivx/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../pivx/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../pivx/contrib/gitian-descriptors/gitian-win-signer.yml
+    mv build/out/pivx-*win64-setup.exe ../pivx-${VERSION}-win64-setup.exe
+    mv build/out/pivx-*win32-setup.exe ../pivx-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed macOS/Windows binaries:
@@ -250,18 +250,18 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-simplicity-${VERSION}-aarch64-linux-gnu.tar.gz
-simplicity-${VERSION}-arm-linux-gnueabihf.tar.gz
-simplicity-${VERSION}-i686-pc-linux-gnu.tar.gz
-simplicity-${VERSION}-riscv64-linux-gnu.tar.gz
-simplicity-${VERSION}-x86_64-linux-gnu.tar.gz
-simplicity-${VERSION}-osx64.tar.gz
-simplicity-${VERSION}-osx.dmg
-simplicity-${VERSION}.tar.gz
-simplicity-${VERSION}-win32-setup.exe
-simplicity-${VERSION}-win32.zip
-simplicity-${VERSION}-win64-setup.exe
-simplicity-${VERSION}-win64.zip
+pivx-${VERSION}-aarch64-linux-gnu.tar.gz
+pivx-${VERSION}-arm-linux-gnueabihf.tar.gz
+pivx-${VERSION}-i686-pc-linux-gnu.tar.gz
+pivx-${VERSION}-riscv64-linux-gnu.tar.gz
+pivx-${VERSION}-x86_64-linux-gnu.tar.gz
+pivx-${VERSION}-osx64.tar.gz
+pivx-${VERSION}-osx.dmg
+pivx-${VERSION}.tar.gz
+pivx-${VERSION}-win32-setup.exe
+pivx-${VERSION}-win32.zip
+pivx-${VERSION}-win64-setup.exe
+pivx-${VERSION}-win64.zip
 ```
 The `*-debug*` files generated by the gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
@@ -283,10 +283,10 @@ Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spur
 
   - bitcointalk announcement thread
 
-  - Optionally twitter, reddit /r/simplicity, ... but this will usually sort out itself
+  - Optionally twitter, reddit /r/pivx, ... but this will usually sort out itself
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/Simplicity-Project/Simplicity/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/PIVX-Project/PIVX/releases/new) with a link to the archived release notes.
 
   - Celebrate

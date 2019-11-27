@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef SIMPLICITY_CONCURRENTQUEUE_H
-#define SIMPLICITY_CONCURRENTQUEUE_H
+#ifndef PIVX_CONCURRENTQUEUE_H
+#define PIVX_CONCURRENTQUEUE_H
 
 
 #include <mutex>
@@ -48,4 +48,4 @@ public:
     }
 };
 
-#endif //SIMPLICITY_CONCURRENTQUEUE_H
+#endif //PIVX_CONCURRENTQUEUE_H

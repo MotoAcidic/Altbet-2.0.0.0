@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -53,11 +53,10 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
         mTemplates.insert(std::make_pair(TX_MULTISIG, CScript() << OP_SMALLINTEGER << OP_PUBKEYS << OP_SMALLINTEGER << OP_CHECKMULTISIG));
     }
 
-    vSolutionsRet.clear();
-
     // Shortcut for pay-to-script-hash, which are more constrained than the other types:
     // it is always OP_HASH160 20 [20 byte hash] OP_EQUAL
-    if (scriptPubKey.IsPayToScriptHash()) {
+    if (scriptPubKey.IsPayToScriptHash())
+    {
         typeRet = TX_SCRIPTHASH;
         std::vector<unsigned char> hashBytes(scriptPubKey.begin()+2, scriptPubKey.begin()+22);
         vSolutionsRet.push_back(hashBytes);
@@ -316,11 +315,6 @@ CScript GetScriptForDestination(const CTxDestination& dest)
 
     boost::apply_visitor(CScriptVisitor(&script), dest);
     return script;
-}
-
-CScript GetScriptForRawPubKey(const CPubKey& pubKey)
-{
-    return CScript() << std::vector<unsigned char>(pubKey.begin(), pubKey.end()) << OP_CHECKSIG;
 }
 
 CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys)

@@ -1,7 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -166,13 +165,13 @@ public:
 
     bool IsDust(CFeeRate minRelayTxFee) const
     {
-        // "Dust" is defined in terms of CTransaction::minRelayTxFee, which has units uspl-per-kilobyte.
+        // "Dust" is defined in terms of CTransaction::minRelayTxFee, which has units upiv-per-kilobyte.
         // If you'd pay more than 1/3 in fees to spend something, then we consider it dust.
         // A typical txout is 34 bytes big, and will need a CTxIn of at least 148 bytes to spend
-        // i.e. total is 148 + 32 = 182 bytes. Default -minrelaytxfee is 10000 uspl per kB
-        // and that means that fee per txout is 182 * 10000 / 1000 = 1820 uspl.
-        // So dust is a txout less than 1820 *3 = 5460 uspl
-        // with default -minrelaytxfee = minRelayTxFee = 10000 uspl per kB.
+        // i.e. total is 148 + 32 = 182 bytes. Default -minrelaytxfee is 10000 upiv per kB
+        // and that means that fee per txout is 182 * 10000 / 1000 = 1820 upiv.
+        // So dust is a txout less than 1820 *3 = 5460 upiv
+        // with default -minrelaytxfee = minRelayTxFee = 10000 upiv per kB.
         size_t nSize = GetSerializeSize(SER_DISK,0)+148u;
         return (nValue < 3*minRelayTxFee.GetFee(nSize));
     }
@@ -208,7 +207,7 @@ private:
     void UpdateHash() const;
 
 public:
-    static const int32_t CURRENT_VERSION=3;
+    static const int32_t CURRENT_VERSION=1;
 
     // The local variables are made const to prevent unintended modification
     // without updating the cached hash value. However, CTransaction is not
@@ -216,7 +215,6 @@ public:
     // and bypass the constness. This is safe, as they update the entire
     // structure, including the hash.
     const int32_t nVersion;
-    const unsigned int nTime = 0;
     std::vector<CTxIn> vin;
     std::vector<CTxOut> vout;
     const uint32_t nLockTime;
@@ -236,8 +234,6 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(*const_cast<int32_t*>(&this->nVersion));
         nVersion = this->nVersion;
-        if (nVersion < 3) // increase if NSt8ios_base7failureB5cxx11E iostream error is encountered
-            READWRITE(*const_cast<unsigned int*>(&nTime));
         READWRITE(*const_cast<std::vector<CTxIn>*>(&vin));
         READWRITE(*const_cast<std::vector<CTxOut>*>(&vout));
         READWRITE(*const_cast<uint32_t*>(&nLockTime));
@@ -305,7 +301,6 @@ public:
 struct CMutableTransaction
 {
     int32_t nVersion;
-    unsigned int nTime = 0;
     std::vector<CTxIn> vin;
     std::vector<CTxOut> vout;
     uint32_t nLockTime;
@@ -319,8 +314,6 @@ struct CMutableTransaction
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(this->nVersion);
         nVersion = this->nVersion;
-        if (nVersion < 3) // increase if NSt8ios_base7failureB5cxx11E iostream error is encountered
-            READWRITE(nTime);
         READWRITE(vin);
         READWRITE(vout);
         READWRITE(nLockTime);

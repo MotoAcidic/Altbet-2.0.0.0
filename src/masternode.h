@@ -1,6 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2019 The Simplicity developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -59,7 +58,7 @@ public:
         READWRITE(vchSig);
     }
 
-    bool CheckAndUpdate(int& nDos, bool fRequireEnabled = true, bool fCheckSigTimeOnly = false, bool fSkipCheckPingTimeAndRelay = false);
+    bool CheckAndUpdate(int& nDos, bool fRequireEnabled = true, bool fCheckSigTimeOnly = false);
     bool Sign(CKey& keyMasternode, CPubKey& pubKeyMasternode);
     bool VerifySignature(CPubKey& pubKeyMasternode, int &nDos);
     void Relay();
@@ -101,7 +100,7 @@ public:
 };
 
 //
-// The Masternode Class. For managing the Obfuscation process. It contains the input of the 200000 SPL, signature to prove
+// The Masternode Class. For managing the Obfuscation process. It contains the input of the 10000 PIV, signature to prove
 // it's the one who own that ip address and code for calculating the payment election.
 //
 class CMasternode
@@ -113,7 +112,7 @@ private:
 
 public:
     enum state {
-        MASTERNODE_ACTIVE,
+        MASTERNODE_PRE_ENABLED,
         MASTERNODE_ENABLED,
         MASTERNODE_EXPIRED,
         MASTERNODE_OUTPOINT_SPENT,
@@ -121,14 +120,7 @@ public:
         MASTERNODE_WATCHDOG_EXPIRED,
         MASTERNODE_POSE_BAN,
         MASTERNODE_VIN_SPENT,
-        MASTERNODE_POS_ERROR,
-        MASTERNODE_MISSING
-    };
-
-    enum LevelValue : unsigned {
-        UNSPECIFIED = 0u,
-        MIN = 1u,
-        MAX = 3u,
+        MASTERNODE_POS_ERROR
     };
 
     CTxIn vin;
@@ -139,13 +131,13 @@ public:
     CPubKey pubKeyMasternode1;
     std::vector<unsigned char> sig;
     int activeState;
-    CAmount deposit;
     int64_t sigTime; //mnb message time
     int cacheInputAge;
     int cacheInputAgeBlock;
     bool unitTest;
     bool allowFreeTx;
     int protocolVersion;
+    int nActiveState;
     int64_t nLastDsq; //the dsq count from the last dsq broadcast of this node
     int nScanningErrorCount;
     int nLastScanningErrorBlockHeight;
@@ -153,15 +145,11 @@ public:
 
     int64_t nLastDsee;  // temporary, do not save. Remove after migration to v12
     int64_t nLastDseep; // temporary, do not save. Remove after migration to v12
-    static unsigned Level(CAmount vin_val, int blockHeight);
-    static unsigned Level(const CTxIn& vin, int blockHeight);
-
-    static bool IsDepositCoins(CAmount);
-    static bool IsDepositCoins(const CTxIn& vin, CAmount& vin_val);
 
     CMasternode();
     CMasternode(const CMasternode& other);
     CMasternode(const CMasternodeBroadcast& mnb);
+
 
     void swap(CMasternode& first, CMasternode& second) // nothrow
     {
@@ -176,7 +164,6 @@ public:
         swap(first.pubKeyMasternode, second.pubKeyMasternode);
         swap(first.sig, second.sig);
         swap(first.activeState, second.activeState);
-        swap(first.deposit, second.deposit);
         swap(first.sigTime, second.sigTime);
         swap(first.lastPing, second.lastPing);
         swap(first.cacheInputAge, second.cacheInputAge);
@@ -220,7 +207,6 @@ public:
         READWRITE(sigTime);
         READWRITE(protocolVersion);
         READWRITE(activeState);
-        READWRITE(deposit);
         READWRITE(lastPing);
         READWRITE(cacheInputAge);
         READWRITE(cacheInputAgeBlock);
@@ -262,49 +248,36 @@ public:
         lastPing = CMasternodePing();
     }
 
-    bool IsEnabled(bool withActive) const
+    bool IsEnabled()
     {
-        return (activeState == MASTERNODE_ENABLED) || (withActive && activeState == MASTERNODE_ACTIVE);
+        return activeState == MASTERNODE_ENABLED;
     }
 
     int GetMasternodeInputAge()
     {
-        auto chain_tip = chainActive.Tip();
-
-        if (!chain_tip)
-            return 0;
+        if (chainActive.Tip() == NULL) return 0;
 
         if (cacheInputAge == 0) {
             cacheInputAge = GetInputAge(vin);
-            cacheInputAgeBlock = chain_tip->nHeight;
+            cacheInputAgeBlock = chainActive.Tip()->nHeight;
         }
 
-        return cacheInputAge + (chain_tip->nHeight - cacheInputAgeBlock);
+        return cacheInputAge + (chainActive.Tip()->nHeight - cacheInputAgeBlock);
     }
 
     std::string GetStatus();
 
     std::string Status()
     {
-        std::string strStatus = "UNKNOWN";
+        std::string strStatus = "ACTIVE";
 
-        switch(activeState)
-        {
-            case CMasternode::MASTERNODE_ACTIVE:    strStatus = "ACTIVE";    break;
-            case CMasternode::MASTERNODE_ENABLED:   strStatus = "ENABLED";   break;
-            case CMasternode::MASTERNODE_EXPIRED:   strStatus = "EXPIRED";   break;
-            case CMasternode::MASTERNODE_VIN_SPENT: strStatus = "VIN_SPENT"; break;
-            case CMasternode::MASTERNODE_REMOVE:    strStatus = "REMOVE";    break;
-            case CMasternode::MASTERNODE_POS_ERROR: strStatus = "POS_ERROR"; break;
-            case CMasternode::MASTERNODE_MISSING:   strStatus = "MISSING";   break;
-        }
+        if (activeState == CMasternode::MASTERNODE_ENABLED) strStatus = "ENABLED";
+        if (activeState == CMasternode::MASTERNODE_EXPIRED) strStatus = "EXPIRED";
+        if (activeState == CMasternode::MASTERNODE_VIN_SPENT) strStatus = "VIN_SPENT";
+        if (activeState == CMasternode::MASTERNODE_REMOVE) strStatus = "REMOVE";
+        if (activeState == CMasternode::MASTERNODE_POS_ERROR) strStatus = "POS_ERROR";
 
         return strStatus;
-    }
-
-    unsigned Level()
-    {
-        return Level(deposit, chainActive.Height());
     }
 
     int64_t GetLastPaid();

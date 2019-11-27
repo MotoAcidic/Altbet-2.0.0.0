@@ -11,7 +11,7 @@
 #include "sync.h"
 #include "utilstrencodings.h"
 #include "utilmoneystr.h"
-#include "test/test_simplicity.h"
+#include "test/test_pivx.h"
 
 #include <stdint.h>
 #include <vector>

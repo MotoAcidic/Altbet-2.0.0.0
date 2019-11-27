@@ -9,9 +9,9 @@ Covers the scenario of a PoS block where the coinstake input prevout is already 
 
 from time import sleep
 
-from fake_stake.base_test import SIMPLICITY_FakeStakeTest
+from fake_stake.base_test import PIVX_FakeStakeTest
 
-class PoSFakeStake(SIMPLICITY_FakeStakeTest):
+class PoSFakeStake(PIVX_FakeStakeTest):
 
     def run_test(self):
         self.description = "Covers the scenario of a PoS block where the coinstake input prevout is already spent."

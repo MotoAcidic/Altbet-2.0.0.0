@@ -118,12 +118,12 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x90;
-        pchMessageStart[1] = 0xc4;
-        pchMessageStart[2] = 0xfd;
-        pchMessageStart[3] = 0xe9;
-        vAlertPubKey = ParseHex("023aeba7d6ff62b7761ef0185f113d159391e71f6f51c880214c8a88c5dfb1c97e");
-        nDefaultPort = 11115;
+        pchMessageStart[0] = 0x2a; // A
+        pchMessageStart[1] = 0x2b; // B
+        pchMessageStart[2] = 0x3e; // E
+        pchMessageStart[3] = 0x88; // T-8
+        vAlertPubKey = ParseHex("0435401a5693de702378a538ad939ea03b5e3b2826f68431ba840df5f418e3f3e8590ba4fb0c36097179bb55ffc4a4e065dc2ff87edb6f3ce4232a71d253ed7fff");
+        nDefaultPort = 8322;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -131,13 +131,13 @@ public:
         nRejectBlockOutdatedMajority = 8792; // 95%
         nToCheckBlockUpgradeMajority = 9255; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
-        nTargetSpacing = 1 * 70;
-        nMaturity = 15;
+        nTargetSpacing = 120;
+        nMaturity = 60;
         nStakeMinDepth = nMaturity; // input must be n confirms deep to stake
         nFutureTimeDriftPoW = 7200;
         nFutureTimeDriftPoS = 180;
         nMasternodeCountDrift = 20;
-        nMaxMoneyOut = 21000000 * COIN;
+        nMaxMoneyOut = 210000000 * COIN;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 500;
@@ -175,7 +175,7 @@ public:
          *  
          *    vMerkleTree:  8ed7deab5aa103fa843fe679b48d6d3f22099ee2060dde73a5de9615b5bb01b3
          */
-        const char* pszTimestamp = "altbet - done right";
+        const char* pszTimestamp = "Winner, winner chicken dinner.";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -196,16 +196,6 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x8ed7deab5aa103fa843fe679b48d6d3f22099ee2060dde73a5de9615b5bb01b3"));
 
         vSeeds.push_back(CDNSSeedData("1", "95.179.207.150"));
-        vSeeds.push_back(CDNSSeedData("2", "45.32.176.163"));
-        vSeeds.push_back(CDNSSeedData("3", "167.86.81.28"));
-        vSeeds.push_back(CDNSSeedData("4", "136.244.80.206"));
-        vSeeds.push_back(CDNSSeedData("5", "207.180.248.46"));
-        vSeeds.push_back(CDNSSeedData("6", "207.180.248.20"));
-        vSeeds.push_back(CDNSSeedData("7", "144.91.83.26"));
-        vSeeds.push_back(CDNSSeedData("8", "164.68.108.39"));
-        vSeeds.push_back(CDNSSeedData("9", "164.68.122.73"));
-        vSeeds.push_back(CDNSSeedData("10", "164.68.101.111"));
-        vSeeds.push_back(CDNSSeedData("11", "207.180.228.213"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 85); // b
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 25); // B

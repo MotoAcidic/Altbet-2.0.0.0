@@ -137,7 +137,7 @@ public:
         nFutureTimeDriftPoW = 7200;
         nFutureTimeDriftPoS = 180;
         nMasternodeCountDrift = 20;
-        nMaxMoneyOut = 210000000 * COIN;
+        nMaxMoneyOut = 21000000 * COIN;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 500;

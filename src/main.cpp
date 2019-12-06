@@ -1998,30 +1998,26 @@ int64_t GetBlockValue(int nHeight)
     unsigned int nPhase = 0;
 
     if (nHeight == 0)
-        return 1200000 * COIN;
+        return 2000000 * COIN;
 
-    if (nHeight <= 20000) nPhase = 1;
-    if (nHeight > 20000   && nHeight <= 123000)  nPhase = 2;
-    if (nHeight > 123000  && nHeight <= 226000)  nPhase = 3;
-    if (nHeight > 226000  && nHeight <= 329000)  nPhase = 4;
-    if (nHeight > 329000  && nHeight <= 432000)  nPhase = 5;
-    if (nHeight > 432000  && nHeight <= 880000)  nPhase = 6;
-    if (nHeight > 880000  && nHeight <= 1328000) nPhase = 7;
-    if (nHeight > 1328000 && nHeight <= 1776000) nPhase = 8;
-    if (nHeight > 1776000 && nHeight <= 2224000) nPhase = 9;
-    if (nHeight > 2224000) nPhase = 10;
+    if (nHeight <= 7200) nPhase = 1;
+    if (nHeight > 7200 && nHeight <= 72000) nPhase = 2;
+    if (nHeight > 72000 && nHeight <= 136800) nPhase = 3;
+    if (nHeight > 136800 && nHeight <= 266400) nPhase = 4;
+    if (nHeight > 266400 && nHeight <= 396000) nPhase = 5;
+    if (nHeight > 396000 && nHeight <= 655200) nPhase = 6;
+    if (nHeight > 655200 && nHeight <= 914400) nPhase = 7;
+    if (nHeight > 914400) nPhase = 8;
 
     switch (nPhase) {
-        case 1: nSubsidy = 0.2 * COIN; break;
-        case 2: nSubsidy =   1 * COIN; break;
-        case 3: nSubsidy = 0.8 * COIN; break;
-        case 4: nSubsidy = 0.7 * COIN; break;
-        case 5: nSubsidy = 0.6 * COIN; break;
-        case 6: nSubsidy = 0.5 * COIN; break;
-        case 7: nSubsidy = 0.4 * COIN; break;
-        case 8: nSubsidy = 0.35 * COIN; break;
-        case 9: nSubsidy = 0.3 * COIN; break;
-        case 10: nSubsidy = 0.25 * COIN; break;
+        case 1: nSubsidy = 0.25 * COIN; break;
+        case 2: nSubsidy = 2.6 * COIN; break;
+        case 3: nSubsidy = 2.5 * COIN; break;
+        case 4: nSubsidy = 2.4 * COIN; break;
+        case 5: nSubsidy = 2.3 * COIN; break;
+        case 6: nSubsidy = 2.2 * COIN; break;
+        case 7: nSubsidy = 2.1 * COIN; break;
+        case 8: nSubsidy = 2 * COIN; break;
         default: nSubsidy = 0 * COIN;
     }
 
@@ -2036,7 +2032,7 @@ int64_t GetBlockValue(int nHeight)
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool isZPIVStake)
 {
     if (nHeight > 500)
-        return blockValue * 0.60;
+        return blockValue * 0.90;
     return 0;
 }
 

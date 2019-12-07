@@ -53,7 +53,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (     0, uint256("0x0000014fdfd931fad0b7868d2e34e906a0f896547d8c00029afdb33cbe47f904"));
+    (     0, uint256("0x9c4a421d92422d3309b45d4062d56855b1f47839930d3dfe10f4339320a22535"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -192,12 +192,15 @@ public:
 
 
         hashGenesisBlock = genesis.GetHash();
-        printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-        printf("genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x0000014fdfd931fad0b7868d2e34e906a0f896547d8c00029afdb33cbe47f904"));
-        assert(genesis.hashMerkleRoot == uint256("0x9b41de7602e2ce1ccb056d2f09bc9d134889cfeae245598097c7b43bed03ac95"));
+        //printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        //printf("genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        assert(hashGenesisBlock == uint256("0x9c4a421d92422d3309b45d4062d56855b1f47839930d3dfe10f4339320a22535"));
+        assert(genesis.hashMerkleRoot == uint256("0x92894a98494613a913d4145d84cc5c7fa386ace5b8daff37e22e1ce274a127be"));
 
-        vSeeds.push_back(CDNSSeedData("1", "95.179.207.150"));
+	    vSeeds.push_back(CDNSSeedData("clubs.seed.altbet.io", "clubs.seed.altbet.io"));
+        vSeeds.push_back(CDNSSeedData("hearts.seed.altbet.io", "hearts.seed.altbet.io"));
+        vSeeds.push_back(CDNSSeedData("diamonds.seed.altbet.io", "diamonds.seed.altbet.io"));
+        vSeeds.push_back(CDNSSeedData("spades.seed.altbet.io", "spades.seed.altbet.io"));
 
 		base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23); // A
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 25); // B
@@ -306,7 +309,7 @@ public:
         genesis.nNonce = 1348219;
 
         hashGenesisBlock = genesis.GetHash();
-        // assert(hashGenesisBlock == uint256("0x0000014fdfd931fad0b7868d2e34e906a0f896547d8c00029afdb33cbe47f904"));
+        // assert(hashGenesisBlock == uint256("0x9c4a421d92422d3309b45d4062d56855b1f47839930d3dfe10f4339320a22535"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -395,7 +398,7 @@ public:
         genesis.nNonce = 1348219;
 
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x0000014fdfd931fad0b7868d2e34e906a0f896547d8c00029afdb33cbe47f904"));
+        //assert(hashGenesisBlock == uint256("0x9c4a421d92422d3309b45d4062d56855b1f47839930d3dfe10f4339320a22535"));
         //assert(hashGenesisBlock == uint256("0x0000014fdfd931fad0b7868d2e34e906a0f896547d8c00029afdb33cbe47f904"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.

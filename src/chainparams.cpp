@@ -53,11 +53,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (     0, uint256("0x9c4a421d92422d3309b45d4062d56855b1f47839930d3dfe10f4339320a22535"));
+    (     0, uint256("0x001"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1575598471, // * UNIX timestamp of last checkpoint block
+    0x1e0ffff0, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -69,7 +69,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
 
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1575598471,
+    1575831881,
     2501682,
     250};
 
@@ -77,7 +77,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1575598471,
+    1575831881,
     0,
     100};
 
@@ -164,39 +164,46 @@ public:
         nFakeSerialBlockheightEnd = NEVER;
         nSupplyBeforeFakeSerial = 0 * COIN;
 
-        /**
-         * Build the genesis block. Note that the output of the genesis coinbase cannot
-         * be spent as it did not originally exist in the database.
-         *
-         *  CBlock(hash=00000bc462fa6bd40aedcc322762784de988089c5b0ed9f60bed0ab4230e5e36, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8ed7deab5aa103fa843fe679b48d6d3f22099ee2060dde73a5de9615b5bb01b3, nTime=1573110224, nBits=1e0ffff0, nNonce=781587, vtx=1)
-         *    CTransaction(hash=8ed7deab5a, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-         *      CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d010419626561636f6e63727970746f202d20646f6e65207269676874)
-         *      CTxOut(nValue=0.00000000, scriptPubKey=04c10e83b2703ccf322f7dbd62dd58)
-         *  
-         *    vMerkleTree:  8ed7deab5aa103fa843fe679b48d6d3f22099ee2060dde73a5de9615b5bb01b3
-         */
-        const char* pszTimestamp = "Winner, winner chicken dinner.";
+       /*
+          Build the genesis block. Note that the output of the genesis coinbase cannot
+          be spent as it did not originally exist in the database.
+         
+           CBlock(hash=00000bc462fa6bd40aedcc322762784de988089c5b0ed9f60bed0ab4230e5e36, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8ed7deab5aa103fa843fe679b48d6d3f22099ee2060dde73a5de9615b5bb01b3, nTime=1575831881, nBits=1e0ffff0, nNonce=781587, vtx=1)
+             CTransaction(hash=8ed7deab5a, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+               CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d010419626561636f6e63727970746f202d20646f6e65207269676874)
+               CTxOut(nValue=0.00000000, scriptPubKey=04c10e83b2703ccf322f7dbd62dd58)
+           
+             vMerkleTree:  8ed7deab5aa103fa843fe679b48d6d3f22099ee2060dde73a5de9615b5bb01b3
+       */
+        const char* pszTimestamp = "Don't work for weekends, work for our goals.";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 0 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04e219a879b053d19f67f06f8f0b409d6dd3ce854db1c384c68990474ff1da4e6b2f55dd5ebeb176a8f271a11d898ee5f129066481b0ae8eeaab8d6c4a61d6e2fe") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1575598471; // 11/12/2019 @ 3:33pm (UTC)
-        genesis.nBits = 0x1e0ffff0;   // 00000ffff0000000000000000000000000000000000000000000000000000000
+        genesis.nTime = 1575935960; // 11/12/2019 @ 3:33pm (UTC)
+        genesis.nBits = 0x1e0ffff0; // 00000ffff0000000000000000000000000000000000000000000000000000000
         genesis.nNonce = 1348219;
 
 
         hashGenesisBlock = genesis.GetHash();
+
+        while (genesis.GetHash() > uint256("0x00000ffff0000000000000000000000000000000000000000000000000000000")) {
+            genesis.nNonce++;
+            if (genesis.nNonce % 128 == 0) printf("\rnonce %08x", genesis.nNonce);
+        }
         printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        printf("genesis is %s\n", genesis.ToString().c_str());
         printf("genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("genesis.nBits = %s\n", genesis.nBits);
-        assert(hashGenesisBlock == uint256("0x9c4a421d92422d3309b45d4062d56855b1f47839930d3dfe10f4339320a22535"));
-        assert(genesis.hashMerkleRoot == uint256("0x92894a98494613a913d4145d84cc5c7fa386ace5b8daff37e22e1ce274a127be"));
+
+        //assert(hashGenesisBlock == uint256("0x0000094716ad6dbe23b0763ee1fea451fff749e7776794d90d1e32fae9b86ce6"));
+        //assert(genesis.hashMerkleRoot == uint256("0x06bdcc7da238018ae7d1c81a5e17c22398415415d3c6e7ac2f8149abcb039217"));
+
 
 	    vSeeds.push_back(CDNSSeedData("clubs.seed.altbet.io", "clubs.seed.altbet.io"));
         vSeeds.push_back(CDNSSeedData("hearts.seed.altbet.io", "hearts.seed.altbet.io"));

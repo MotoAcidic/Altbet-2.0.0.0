@@ -1933,9 +1933,9 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/abet-project/abet-project-translations</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-https://www.transifex.com/pivx-project/pivx-project-translations </translation>
+https://www.transifex.com/abet-project/abet-project-translations </translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -4282,7 +4282,7 @@ Proszę być cierpliwym...</translation>
         <translation>Twórcy Dash Core</translation>
     </message>
     <message>
-        <source>The PIVX Core developers</source>
+        <source>The ABET Core developers</source>
         <translation>Twórcy Altbet</translation>
     </message>
     <message>
@@ -4909,9 +4909,9 @@ Proszę być cierpliwym...</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>abet-core</name>
     <message>
-        <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
+        <sabete>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = zachowaj tx meta dane np. Właściciel konta i informacje o żądaniu płatności, 2 = porzuć tx meta dane)</translation>
     </message>
     <message>
@@ -5295,8 +5295,8 @@ Proszę być cierpliwym...</translation>
         <translation>Copyright (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
-        <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
+        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
+        <translation>Copyright (C) 2015-%i The ABET Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>

@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_SERIALIZE_H
-#define PIVX_SERIALIZE_H
+#ifndef ABET_SERIALIZE_H
+#define ABET_SERIALIZE_H
 
 #include <algorithm>
 #include <assert.h>
@@ -936,4 +936,4 @@ public:
     }
 };
 
-#endif // PIVX_SERIALIZE_H
+#endif // ABET_SERIALIZE_H

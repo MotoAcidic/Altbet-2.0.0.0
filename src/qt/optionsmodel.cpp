@@ -172,7 +172,7 @@ void OptionsModel::Init()
     if (settings.contains("nPreferredDenom"))
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
     if (settings.contains("nAnonymizeAltbetAmount"))
-        SoftSetArg("-anonymizepivxamount", settings.value("nAnonymizeAltbetAmount").toString().toStdString());
+        SoftSetArg("-anonymizeabetamount", settings.value("nAnonymizeAltbetAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -183,7 +183,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in pivx.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in abet.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())

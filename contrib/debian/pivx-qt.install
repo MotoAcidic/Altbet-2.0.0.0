@@ -1,6 +1,6 @@
-usr/local/bin/pivx-qt usr/bin
-share/pixmaps/pivx32.xpm usr/share/pixmaps
-share/pixmaps/pivx16.xpm usr/share/pixmaps
-share/pixmaps/pivx128.png usr/share/pixmaps
-debian/pivx-qt.desktop usr/share/applications
-debian/pivx-qt.protocol usr/share/kde4/services/
+usr/local/bin/abet-qt usr/bin
+share/pixmaps/abet32.xpm usr/share/pixmaps
+share/pixmaps/abet16.xpm usr/share/pixmaps
+share/pixmaps/abet128.png usr/share/pixmaps
+debian/abet-qt.desktop usr/share/applications
+debian/abet-qt.protocol usr/share/kde4/services/

@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=PIVX Core
-Comment=PIVX P2P Cryptocurrency
-Comment[fr]=PIVX, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=PIVX, eşten eşe kriptografik sanal para birimi
-Exec=pivx-qt %u
+Name=ABET Core
+Comment=ABET P2P Cryptocurrency
+Comment[fr]=ABET, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=ABET, eşten eşe kriptografik sanal para birimi
+Exec=abet-qt %u
 Terminal=false
 Type=Application
-Icon=pivx128
-MimeType=x-scheme-handler/pivx;
+Icon=abet128
+MimeType=x-scheme-handler/abet;
 Categories=Office;Finance;
-StartupWMClass=Pivx-qt
+StartupWMClass=Abet-qt

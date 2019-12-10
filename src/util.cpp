@@ -88,7 +88,7 @@
 #include <openssl/rand.h>
 
 
-// PIVX only features
+// ABET only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";

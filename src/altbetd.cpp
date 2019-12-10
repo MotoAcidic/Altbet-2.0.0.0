@@ -28,8 +28,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called PIVX (http://www.pivx.org),
- * which enables instant payments to anyone, anywhere in the world. PIVX uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called ABET (http://www.abet.org),
+ * which enables instant payments to anyone, anywhere in the world. ABET uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -62,7 +62,7 @@ bool AppInit(int argc, char* argv[])
     //
     // Parameters
     //
-    // If Qt is used, parameters/altbet.conf are parsed in qt/pivx.cpp's main()
+    // If Qt is used, parameters/altbet.conf are parsed in qt/abet.cpp's main()
     ParseParameters(argc, argv);
 
     // Process help and version before taking care about datadir

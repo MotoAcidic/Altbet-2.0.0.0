@@ -54,7 +54,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 35
 
 #define QAPP_ORG_NAME "ABET"
-#define QAPP_ORG_DOMAIN "pivx.org"
+#define QAPP_ORG_DOMAIN "abet.org"
 #define QAPP_APP_NAME_DEFAULT "ABET-Qt"
 #define QAPP_APP_NAME_TESTNET "ABET-Qt-testnet"
 

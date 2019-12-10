@@ -566,7 +566,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and abet: URIs)</source>
-        <translation>請求付款 (會產生 QR Code跟 pivx 位址)</translation>
+        <translation>請求付款 (會產生 QR Code跟 abet 位址)</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -971,6 +971,6 @@
     <name>ZPivControlDialog</name>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>abet-core</name>
     </context>
 </TS>

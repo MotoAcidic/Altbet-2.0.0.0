@@ -13,7 +13,7 @@
 #include "collateral.h"
 
 //
-// Bootup the Masternode, look for a 10000 PIVX input and register on the network
+// Bootup the Masternode, look for a 10000 ABET input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {

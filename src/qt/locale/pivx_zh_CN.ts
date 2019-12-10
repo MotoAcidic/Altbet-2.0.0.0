@@ -578,7 +578,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and abet: URIs)</source>
-        <translation>请求支付（生成二维码和pivx：URIs）</translation>
+        <translation>请求支付（生成二维码和abet：URIs）</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
@@ -1555,7 +1555,7 @@ Address: %4
     <name>ZPivControlDialog</name>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>abet-core</name>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
         <translation>在收到相关警报时执行命令，或者看到一个很长的分叉（cmd中的%s被消息替换）</translation>

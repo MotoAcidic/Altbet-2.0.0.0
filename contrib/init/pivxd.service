@@ -5,19 +5,19 @@
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/pivx/pivx.conf
+# /etc/abet/abet.conf
 
 [Unit]
-Description=PIVX daemon
+Description=ABET daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/pivxd -daemon -conf=/etc/pivx/pivx.conf -pid=/run/pivxd/pivxd.pid
-# Creates /run/pivxd owned by pivx
-RuntimeDirectory=pivxd
-User=pivx
+ExecStart=/usr/bin/altbetd -daemon -conf=/etc/abet/abet.conf -pid=/run/altbetd/altbetd.pid
+# Creates /run/altbetd owned by abet
+RuntimeDirectory=altbetd
+User=abet
 Type=forking
-PIDFile=/run/pivxd/pivxd.pid
+PIDFile=/run/altbetd/altbetd.pid
 Restart=on-failure
 
 # Hardening measures

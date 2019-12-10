@@ -1,6 +1,6 @@
 [Protocol]
-exec=pivx-qt '%u'
-protocol=pivx
+exec=abet-qt '%u'
+protocol=abet
 input=none
 output=none
 helper=true

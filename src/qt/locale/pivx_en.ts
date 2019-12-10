@@ -1128,7 +1128,7 @@ Address: %4
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../pivx.cpp" line="+478"/>
+        <location filename="../abet.cpp" line="+478"/>
         <source>A fatal error occurred. ABET can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2479,7 +2479,7 @@ Please be patient after clicking import.</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/abet-project/abet-project-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3934,7 +3934,7 @@ Please be patient...</source>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <location filename="../pivx.cpp" line="+75"/>
+        <location filename="../abet.cpp" line="+75"/>
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
@@ -5529,7 +5529,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>The PIVX Core developers</source>
+        <source>The ABET Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6359,9 +6359,9 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>abet-core</name>
     <message>
-        <location filename="../pivxstrings.cpp" line="+15"/>
+        <location filename="../abetstrings.cpp" line="+15"/>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation type="unfinished">(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</translation>
     </message>
@@ -6852,7 +6852,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

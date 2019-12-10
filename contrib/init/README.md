@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: pivxd.service
-Upstart: pivxd.conf
-OpenRC:  pivxd.openrc
-         pivxd.openrcconf
-CentOS:  pivxd.init
-macOS:    org.pivx.pivxd.plist
+SystemD: altbetd.service
+Upstart: altbetd.conf
+OpenRC:  altbetd.openrc
+         altbetd.openrcconf
+CentOS:  altbetd.init
+macOS:    org.abet.altbetd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

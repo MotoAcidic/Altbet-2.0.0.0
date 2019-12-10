@@ -17,4 +17,4 @@ License
 Altbet Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
-Altbet uses components from PIVX Core, which uses components of both Bitcoin and DASH.
+Altbet uses components from ABET Core, which uses components of both Bitcoin and DASH.

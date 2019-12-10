@@ -327,9 +327,9 @@
     <name>ZPivControlDialog</name>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>abet-core</name>
     <message>
-        <source>Information</source>
+        <sabete>Information</source>
         <translation>जानकारी</translation>
     </message>
     <message>

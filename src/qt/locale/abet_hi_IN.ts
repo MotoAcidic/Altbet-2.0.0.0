@@ -329,7 +329,7 @@
 <context>
     <name>abet-core</name>
     <message>
-        <sabete>Information</source>
+        <source>Information</source>
         <translation>जानकारी</translation>
     </message>
     <message>

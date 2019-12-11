@@ -6,10 +6,10 @@ etc.
 There are currently two sets of tests in this directory:
 
 - [functional](/test/functional) which test the functionality of
-altbetd and abet-qt by interacting with them through the RPC and P2P
+altbetd and altbet-qt by interacting with them through the RPC and P2P
 interfaces.
 - [util](/test/util) which tests the abet utilities, currently only
-abet-tx.
+altbet-tx.
 
 The util tests are run as part of `make check` target. The functional
 tests are run by the travis continuous build process whenever a pull

@@ -374,7 +374,7 @@ SOURCES += src/activemasternode.cpp \
            src/obfuscation-relay.cpp \
            src/obfuscation.cpp \
            src/altbet-cli.cpp \
-           src/abet-tx.cpp \
+           src/altbet-tx.cpp \
            src/abet.cpp \
            src/db.cpp \
            src/eccryptoverify.cpp \

@@ -13,12 +13,12 @@ The following are some helpful notes on how to run ABET Core on your native plat
 
 Unpack the files into a directory and run:
 
-- `bin/abet-qt` (GUI) or
+- `bin/altbet-qt` (GUI) or
 - `bin/altbetd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run abet-qt.exe.
+Unpack the files into a directory, and then run altbet-qt.exe.
 
 ### macOS
 

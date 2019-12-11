@@ -29,11 +29,11 @@ Source10:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contri
 #man pages
 Source20:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/altbetd.1
 Source21:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/altbet-cli.1
-Source22:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/abet-qt.1
+Source22:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/altbet-qt.1
 
 #selinux
 Source30:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contrib/rpm/abet.te
-# Source31 - what about abet-tx and bench_abet ???
+# Source31 - what about altbet-tx and bench_abet ???
 Source31:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contrib/rpm/abet.fc
 Source32:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contrib/rpm/abet.if
 
@@ -142,7 +142,7 @@ This package provides several command line utilities for interacting with a
 abet-core daemon.
 
 The altbet-cli utility allows you to communicate and control a abet daemon
-over RPC, the abet-tx utility allows you to create a custom transaction, and
+over RPC, the altbet-tx utility allows you to create a custom transaction, and
 the bench_abet utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the abet-server package.
@@ -269,7 +269,7 @@ Name=Bitcoin
 Comment=Bitcoin P2P Cryptocurrency
 Comment[fr]=Bitcoin, monnaie virtuelle cryptographique pair à pair
 Comment[tr]=Bitcoin, eşten eşe kriptografik sanal para birimi
-Exec=abet-qt %u
+Exec=altbet-qt %u
 Terminal=false
 Type=Application
 Icon=abet128
@@ -284,7 +284,7 @@ touch -a -m -t 201511100546 %{buildroot}%{_datadir}/applications/abet-core.deskt
 mkdir -p %{buildroot}%{_datadir}/kde4/services
 cat <<EOF > %{buildroot}%{_datadir}/kde4/services/abet-core.protocol
 [Protocol]
-exec=abet-qt '%u'
+exec=altbet-qt '%u'
 protocol=abet
 input=none
 output=none
@@ -303,7 +303,7 @@ touch -a -m -t 201511100546 %{buildroot}%{_datadir}/kde4/services/abet-core.prot
 install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/altbetd.1
 install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/altbet-cli.1
 %if %{_buildqt}
-install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/abet-qt.1
+install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/altbet-qt.1
 %endif
 
 # nuke these, we do extensive testing of binaries in %%check before packaging
@@ -376,7 +376,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
 %doc COPYING abet.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_bindir}/abet-qt
+%attr(0755,root,root) %{_bindir}/altbet-qt
 %attr(0644,root,root) %{_datadir}/applications/abet-core.desktop
 %attr(0644,root,root) %{_datadir}/kde4/services/abet-core.protocol
 %attr(0644,root,root) %{_datadir}/pixmaps/*.ico
@@ -384,7 +384,7 @@ rm -rf %{buildroot}
 %attr(0644,root,root) %{_datadir}/pixmaps/*.svg
 %attr(0644,root,root) %{_datadir}/pixmaps/*.png
 %attr(0644,root,root) %{_datadir}/pixmaps/*.xpm
-%attr(0644,root,root) %{_mandir}/man1/abet-qt.1*
+%attr(0644,root,root) %{_mandir}/man1/altbet-qt.1*
 %endif
 
 %files libs
@@ -421,7 +421,7 @@ rm -rf %{buildroot}
 %license COPYING
 %doc COPYING abet.conf.example doc/README.md
 %attr(0755,root,root) %{_bindir}/altbet-cli
-%attr(0755,root,root) %{_bindir}/abet-tx
+%attr(0755,root,root) %{_bindir}/altbet-tx
 %attr(0755,root,root) %{_bindir}/bench_abet
 %attr(0644,root,root) %{_mandir}/man1/altbet-cli.1*
 

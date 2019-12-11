@@ -22,7 +22,7 @@ make
 make install # optional
 ```
 
-This will build abet-qt as well, if the dependencies are met.
+This will build altbet-qt as well, if the dependencies are met.
 
 Dependencies
 ---------------------
@@ -109,7 +109,7 @@ ZMQ dependencies (provides ZMQ API):
 
 GUI dependencies:
 
-If you want to build abet-qt, make sure that the required packages for Qt development
+If you want to build altbet-qt, make sure that the required packages for Qt development
 are installed. Qt 5 is necessary to build the GUI.
 To build without GUI pass `--without-gui`.
 
@@ -121,7 +121,7 @@ libqrencode (optional) can be installed with:
 
     sudo apt-get install libqrencode-dev
 
-Once these are installed, they will be found by configure and a abet-qt executable will be
+Once these are installed, they will be found by configure and a altbet-qt executable will be
 built by default.
 
 

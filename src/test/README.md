@@ -14,9 +14,9 @@ To add more altbetd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_FIXTURE_TEST_SUITE sections.
 
-To run the abet-qt tests manually, launch `src/qt/test/test_abet-qt`
+To run the altbet-qt tests manually, launch `src/qt/test/test_abet-qt`
 
-To add more abet-qt tests, add them to the `src/qt/test/` directory and
+To add more altbet-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.
 
 ### Running individual tests

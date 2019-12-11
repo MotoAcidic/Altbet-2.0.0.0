@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package altbetd/abet-qt
-for Debian-based Linux systems. If you compile altbetd/abet-qt yourself, there are some useful files here.
+This directory contains files used to package altbetd/altbet-qt
+for Debian-based Linux systems. If you compile altbetd/altbet-qt yourself, there are some useful files here.
 
 ## abet: URI support ##
 
 
-abet-qt.desktop  (Gnome / Open Desktop)
+altbet-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install abet-qt.desktop
+	sudo desktop-file-install altbet-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your abet-qt binary to `/usr/bin`
+the .desktop file or copy or symlink your altbet-qt binary to `/usr/bin`
 and the `../../share/pixmaps/abet128.png` to `/usr/share/pixmaps`
 
-abet-qt.protocol (KDE)
+altbet-qt.protocol (KDE)
 

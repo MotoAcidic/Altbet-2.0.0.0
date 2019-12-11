@@ -17,7 +17,7 @@ ABET Core v2.3.0 is a mandatory update for all users. This release contains vali
 How to Upgrade
 --------------
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/ABET-Qt (on Mac) or altbetd/abet-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/ABET-Qt (on Mac) or altbetd/altbet-qt (on Linux).
 
 
 Compatibility

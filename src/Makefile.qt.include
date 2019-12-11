@@ -366,7 +366,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/abet-qt-res.rc
+BITCOIN_RC = qt/res/altbet-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -395,7 +395,7 @@ $(qt_libbitcoinqt_a_OBJECTS) $(qt_altbet_qt_OBJECTS) : | $(QT_MOC)
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# abet-qt binary #
+# altbet-qt binary #
 qt_altbet_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 qt_altbet_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
@@ -450,9 +450,9 @@ CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda 
 CLEANFILES += $(CLEAN_QT)
 
 abet_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_altbet_qt_OBJECTS) qt/abet-qt$(EXEEXT) $(LIBBITCOINQT)
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_altbet_qt_OBJECTS) qt/altbet-qt$(EXEEXT) $(LIBBITCOINQT)
 
-abet_qt : qt/abet-qt$(EXEEXT)
+abet_qt : qt/altbet-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

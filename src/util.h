@@ -13,7 +13,7 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/altbet-config.h"
+#include "config/abet-config.h"
 #endif
 
 #include "compat.h"

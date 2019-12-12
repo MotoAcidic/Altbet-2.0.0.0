@@ -292,7 +292,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
                 return InvalidAmount;
             }
             total += subtotal;
-        } else { // User-entered altbet address / amount:
+        } else { // User-entered abet address / amount:
             if (!validateAddress(rcp.address)) {
                 return InvalidAddress;
             }

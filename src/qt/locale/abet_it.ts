@@ -641,8 +641,8 @@
         <translation>Schede degli strumenti</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Send coins to a ABET address</source>
@@ -665,12 +665,12 @@
         <translation>Esplora i masternodes</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
-        <translation>&amp;Informazioni Altbet</translation>
+        <source>&amp;About Abet</source>
+        <translation>&amp;Informazioni Abet</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
-        <translation>Visualizza informazioni su Altbet</translation>
+        <source>Show information about Abet</source>
+        <translation>Visualizza informazioni su Abet</translation>
     </message>
     <message>
         <source>Modify configuration options for ABET</source>
@@ -725,12 +725,12 @@
         <translation>Finestra Block Explorer</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
-        <translation>Mostra il messaggio di aiuto Altbet per ottenere un elenco con le possibili opzioni di riga di comando ABET</translation>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
+        <translation>Mostra il messaggio di aiuto Abet per ottenere un elenco con le possibili opzioni di riga di comando ABET</translation>
     </message>
     <message>
-        <source>Altbet client</source>
-        <translation>Altbet</translation>
+        <source>Abet client</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -864,8 +864,8 @@ MultiSend: %1</translation>
         <translation>Etichetta</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
-        <translation>Non tutte le transazioni verranno visualizzate. Per vedere tutte le transazioni è necessario aggiungere txindex=1 nel file di configurazione (altbet.conf)</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
+        <translation>Non tutte le transazioni verranno visualizzate. Per vedere tutte le transazioni è necessario aggiungere txindex=1 nel file di configurazione (abet.conf)</translation>
     </message>
 </context>
 <context>
@@ -1206,16 +1206,16 @@ MultiSend: %1</translation>
         <translation>versione</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Altbet</source>
-        <translation>Informazioni su Altbet</translation>
+        <source>About Abet</source>
+        <translation>Informazioni su Abet</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1261,16 +1261,16 @@ MultiSend: %1</translation>
         <translation>Benvenuto</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
+        <source>Welcome to Abet.</source>
         <translation>Benvenuto in ABETIX Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
-        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove Altbet salverà i propri dati.</translation>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
+        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove Abet salverà i propri dati.</translation>
     </message>
     <message>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Altbet scaricherà e salverà una copia della blockchain ABET. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Abet scaricherà e salverà una copia della blockchain ABET. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1281,8 +1281,8 @@ MultiSend: %1</translation>
         <translation>Utilizza una cartella dati personalizzata:</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1803,14 +1803,14 @@ Se il conio automatico è attivato questa percentuale si stabilizzerà all'incir
         <translation>Conio automatico è attivo e impostato su</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
-        <translation>Per disabilitare il conio automatico aggiungi 'enablezeromint=0' in altbet.conf.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in abet.conf.</source>
+        <translation>Per disabilitare il conio automatico aggiungi 'enablezeromint=0' in abet.conf.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in abet.conf</source>
         <translation>Conio automatico è correntemente disattivato.
-Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=1' in altbet.conf</translation>
+Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=1' in abet.conf</translation>
     </message>
 </context>
 <context>
@@ -1956,8 +1956,8 @@ Gli zABET sono maturi quando hanno più di 20 conferme E più di 2 conii della s
         <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to altbet.conf
-- disable: add 'enablezeromint=0' to altbet.conf
+- enable: add 'enablezeromint=1' to abet.conf
+- disable: add 'enablezeromint=0' to abet.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zABET
@@ -1965,8 +1965,8 @@ To change the percentage (no restart required):
 </source>
         <translation>Mostra lo stato corrente del conio automatico zABET.
 Per cambiare lo stato (riavvio necessario):
-- attivato: aggiungi 'enablezeromint=1' a altbet.conf
-- disattivato: aggiungi 'enablezeromint=0' a altbet.conf
+- attivato: aggiungi 'enablezeromint=1' a abet.conf
+- disattivato: aggiungi 'enablezeromint=0' a abet.conf
 
 Per cambiare la percentuale (riavvio non necessario):
 - menu Impostazioni-&gt;Opzioni-&gt;Percentuale di zABET da coniare automaticamente
@@ -2148,8 +2148,8 @@ Per cambiare la percentuale (riavvio non necessario):
         <translation>Ammontare</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>
@@ -2482,8 +2482,8 @@ Per cambiare la percentuale (riavvio non necessario):
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>

@@ -1,31 +1,31 @@
 #!/bin/bash
 #
-#  altbetd The ABET core server.
+#  abetd The ABET core server.
 #
 #
 # chkconfig: 345 80 20
-# description: altbetd
-# processname: altbetd
+# description: abetd
+# processname: abetd
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/altbetd, see below
-if [ -f /etc/sysconfig/altbetd ]; then
-        . /etc/sysconfig/altbetd
+# you can override defaults in /etc/sysconfig/abetd, see below
+if [ -f /etc/sysconfig/abetd ]; then
+        . /etc/sysconfig/abetd
 fi
 
 RETVAL=0
 
-prog=altbetd
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/altbetd
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/altbetd}
+prog=abetd
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/abetd
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/abetd}
 
-# altbetd defaults to /usr/bin/altbetd, override with BITCOIND_BIN
-bitcoind=${BITCOIND_BIN-/usr/bin/altbetd}
+# abetd defaults to /usr/bin/abetd, override with BITCOIND_BIN
+bitcoind=${BITCOIND_BIN-/usr/bin/abetd}
 
-# altbetd opts default to -disablewallet, override with BITCOIND_OPTS
+# abetd opts default to -disablewallet, override with BITCOIND_OPTS
 bitcoind_opts=${BITCOIND_OPTS}
 
 start() {

@@ -1,4 +1,4 @@
-# bash programmable completion for altbet-tx(1)
+# bash programmable completion for abet-tx(1)
 # Copyright (c) 2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -7,7 +7,7 @@ _abet_tx() {
     local cur prev words=() cword
     local abet_tx
 
-    # save and use original argument to invoke altbet-tx for -help
+    # save and use original argument to invoke abet-tx for -help
     # it might not be in $PATH
     abet_tx="$1"
 
@@ -27,7 +27,7 @@ _abet_tx() {
 
     if [[ "$cword" == 1 || ( "$prev" != "-create" && "$prev" == -* ) ]]; then
         # only options (or an uncompletable hex-string) allowed
-        # parse altbet-tx -help for options
+        # parse abet-tx -help for options
         local helpopts
         helpopts=$($abet_tx -help | sed -e '/^  -/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
@@ -46,7 +46,7 @@ _abet_tx() {
 
     return 0
 } &&
-complete -F _abet_tx altbet-tx
+complete -F _abet_tx abet-tx
 
 # Local variables:
 # mode: shell-script

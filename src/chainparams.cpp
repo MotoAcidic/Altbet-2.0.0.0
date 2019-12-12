@@ -141,8 +141,8 @@ public:
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 500;
-        nAltbetBadBlockTime = NEVER;
-        nAltbetBadBlocknBits = 0x1c056dac;
+        nAbetBadBlockTime = NEVER;
+        nAbetBadBlocknBits = 0x1c056dac;
         nModifierUpdateBlock = 64;
         nZerocoinStartHeight = NEVER;
         nZerocoinStartTime = NEVER;
@@ -203,10 +203,10 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x754b4511c728d57456e7e0e9c490b681b521f019ca0c7d6828127ccf60606ea1"));
 
 
-	    vSeeds.push_back(CDNSSeedData("clubs.seed.altbet.io", "clubs.seed.altbet.io"));
-        vSeeds.push_back(CDNSSeedData("hearts.seed.altbet.io", "hearts.seed.altbet.io"));
-        vSeeds.push_back(CDNSSeedData("diamonds.seed.altbet.io", "diamonds.seed.altbet.io"));
-        vSeeds.push_back(CDNSSeedData("spades.seed.altbet.io", "spades.seed.altbet.io"));
+	    vSeeds.push_back(CDNSSeedData("clubs.seed.abet.io", "clubs.seed.abet.io"));
+        vSeeds.push_back(CDNSSeedData("hearts.seed.abet.io", "hearts.seed.abet.io"));
+        vSeeds.push_back(CDNSSeedData("diamonds.seed.abet.io", "diamonds.seed.abet.io"));
+        vSeeds.push_back(CDNSSeedData("spades.seed.abet.io", "spades.seed.abet.io"));
 
 		base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23); // A
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 25); // B
@@ -284,8 +284,8 @@ public:
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // ABET: 1 minute
         nLastPOWBlock = 200;
-        nAltbetBadBlockTime = 1489001494; // Skip nBit validation of Block 259201 per PR #915
-        nAltbetBadBlocknBits = 0x1e0a20bd; // Skip nBit validation of Block 201 per PR #915
+        nAbetBadBlockTime = 1489001494; // Skip nBit validation of Block 259201 per PR #915
+        nAbetBadBlocknBits = 0x1e0a20bd; // Skip nBit validation of Block 201 per PR #915
         nMaturity = 15;
         nStakeMinDepth = 100;
         nMasternodeCountDrift = 4;
@@ -320,8 +320,8 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet altbet addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet altbet script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet abet addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet abet script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         // Testnet abet BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();

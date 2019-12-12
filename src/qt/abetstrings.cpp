@@ -32,7 +32,7 @@ QT_TRANSLATE_NOOP("abet-core", ""
 QT_TRANSLATE_NOOP("abet-core", ""
 "Calculated accumulator checkpoint is not what is recorded by block index"),
 QT_TRANSLATE_NOOP("abet-core", ""
-"Cannot obtain a lock on data directory %s. Altbet is probably already "
+"Cannot obtain a lock on data directory %s. Abet is probably already "
 "running."),
 QT_TRANSLATE_NOOP("abet-core", ""
 "Change automatic finalized budget voting behavior. mode=auto: Vote for only "
@@ -207,7 +207,7 @@ QT_TRANSLATE_NOOP("abet-core", ""
 "Total length of network version string (%i) exceeds maximum length (%i). "
 "Reduce the number or size of uacomments."),
 QT_TRANSLATE_NOOP("abet-core", ""
-"Unable to bind to %s on this computer. Altbet is probably already running."),
+"Unable to bind to %s on this computer. Abet is probably already running."),
 QT_TRANSLATE_NOOP("abet-core", ""
 "Unable to locate enough Obfuscation denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("abet-core", ""
@@ -227,7 +227,7 @@ QT_TRANSLATE_NOOP("abet-core", ""
 "pay if you send a transaction."),
 QT_TRANSLATE_NOOP("abet-core", ""
 "Warning: Please check that your computer's date and time are correct! If "
-"your clock is wrong Altbet will not work properly."),
+"your clock is wrong Abet will not work properly."),
 QT_TRANSLATE_NOOP("abet-core", ""
 "Warning: The network does not appear to fully agree! Some miners appear to "
 "be experiencing issues."),
@@ -311,7 +311,7 @@ QT_TRANSLATE_NOOP("abet-core", "Error initializing wallet database environment %
 QT_TRANSLATE_NOOP("abet-core", "Error loading block database"),
 QT_TRANSLATE_NOOP("abet-core", "Error loading wallet.dat"),
 QT_TRANSLATE_NOOP("abet-core", "Error loading wallet.dat: Wallet corrupted"),
-QT_TRANSLATE_NOOP("abet-core", "Error loading wallet.dat: Wallet requires newer version of Altbet"),
+QT_TRANSLATE_NOOP("abet-core", "Error loading wallet.dat: Wallet requires newer version of Abet"),
 QT_TRANSLATE_NOOP("abet-core", "Error opening block database"),
 QT_TRANSLATE_NOOP("abet-core", "Error reading from database, shutting down."),
 QT_TRANSLATE_NOOP("abet-core", "Error recovering public key."),
@@ -343,7 +343,7 @@ QT_TRANSLATE_NOOP("abet-core", "Imports blocks from external blk000??.dat file")
 QT_TRANSLATE_NOOP("abet-core", "Include IP addresses in debug output (default: %u)"),
 QT_TRANSLATE_NOOP("abet-core", "Incorrect or no genesis block found. Wrong datadir for network?"),
 QT_TRANSLATE_NOOP("abet-core", "Information"),
-QT_TRANSLATE_NOOP("abet-core", "Initialization sanity check failed. Altbet is shutting down."),
+QT_TRANSLATE_NOOP("abet-core", "Initialization sanity check failed. Abet is shutting down."),
 QT_TRANSLATE_NOOP("abet-core", "Insufficient funds"),
 QT_TRANSLATE_NOOP("abet-core", "Insufficient funds."),
 QT_TRANSLATE_NOOP("abet-core", "Invalid -onion address or hostname: '%s'"),
@@ -486,7 +486,7 @@ QT_TRANSLATE_NOOP("abet-core", "Value is below the smallest available denominati
 QT_TRANSLATE_NOOP("abet-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("abet-core", "Verifying wallet..."),
 QT_TRANSLATE_NOOP("abet-core", "Wallet %s resides outside data directory %s"),
-QT_TRANSLATE_NOOP("abet-core", "Wallet needed to be rewritten: restart Altbet to complete"),
+QT_TRANSLATE_NOOP("abet-core", "Wallet needed to be rewritten: restart Abet to complete"),
 QT_TRANSLATE_NOOP("abet-core", "Wallet options:"),
 QT_TRANSLATE_NOOP("abet-core", "Wallet window title"),
 QT_TRANSLATE_NOOP("abet-core", "Warning"),

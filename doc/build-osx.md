@@ -79,7 +79,7 @@ In this case there is no dependency on Berkeley DB 4.8.
 Running
 -------
 
-ABET Core is now available at `./src/altbetd`
+ABET Core is now available at `./src/abetd`
 
 Before running, you may create an empty configuration file:
 
@@ -89,7 +89,7 @@ Before running, you may create an empty configuration file:
 
     chmod 600 "/Users/${USER}/Library/Application Support/ABET/abet.conf"
 
-The first time you run altbetd, it will start downloading the blockchain. This process could take many hours, or even days on slower than average systems.
+The first time you run abetd, it will start downloading the blockchain. This process could take many hours, or even days on slower than average systems.
 
 You can monitor the download process by looking at the debug.log file:
 
@@ -98,9 +98,9 @@ You can monitor the download process by looking at the debug.log file:
 Other commands:
 -------
 
-    ./src/altbetd -daemon # Starts the abet daemon.
-    ./src/altbet-cli --help # Outputs a list of command-line options.
-    ./src/altbet-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/abetd -daemon # Starts the abet daemon.
+    ./src/abet-cli --help # Outputs a list of command-line options.
+    ./src/abet-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Notes
 -----

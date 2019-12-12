@@ -645,7 +645,7 @@
         <translation>Sekme tablosu</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET CORE</translation>
     </message>
     <message>
@@ -669,11 +669,11 @@
         <translation>Masternodları ara</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
+        <source>&amp;About Abet</source>
         <translation>Pıvx core Hakkında</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
+        <source>Show information about Abet</source>
         <translation>Pıvx Core hakkında bilgi göster</translation>
     </message>
     <message>
@@ -729,12 +729,12 @@
         <translation>Kaşif penceresini engelle</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
-        <translation>Olası ABET komut satırı seçeneklerine sahip bir liste almak için Altbet yardım mesajını gösterin</translation>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
+        <translation>Olası ABET komut satırı seçeneklerine sahip bir liste almak için Abet yardım mesajını gösterin</translation>
     </message>
     <message>
-        <source>Altbet client</source>
-        <translation>Altbet istemci</translation>
+        <source>Abet client</source>
+        <translation>Abet istemci</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -872,8 +872,8 @@ Adres: %4
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
-        <translation>Tüm işlemler gösterilmez. Tüm işlemleri görmek için yapılandırma dosyasında txindex = 1 ayarlamanız gerekir (altbet.conf).
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
+        <translation>Tüm işlemler gösterilmez. Tüm işlemleri görmek için yapılandırma dosyasında txindex = 1 ayarlamanız gerekir (abet.conf).
 </translation>
     </message>
 </context>
@@ -1219,7 +1219,7 @@ Adres: %4
         <translation>versiyon</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET CORE</translation>
     </message>
     <message>
@@ -1227,8 +1227,8 @@ Adres: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Altbet</source>
-        <translation>hakkında Altbet</translation>
+        <source>About Abet</source>
+        <translation>hakkında Abet</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1274,16 +1274,16 @@ Adres: %4
         <translation>Hoşgeldiniz</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
-        <translation>Altbet'a hoşgeldiniz.</translation>
+        <source>Welcome to Abet.</source>
+        <translation>Abet'a hoşgeldiniz.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
-        <translation>Program ilk başlatıldığında Altbet'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
+        <translation>Program ilk başlatıldığında Abet'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
     </message>
     <message>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Altbet, ABET blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecek. Cüzdan ayrıca bu dizinde saklanır.</translation>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Abet, ABET blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecek. Cüzdan ayrıca bu dizinde saklanır.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1294,7 +1294,7 @@ Adres: %4
         <translation>Özel bir veri dizini kullanın:</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET CORE</translation>
     </message>
     <message>
@@ -2162,14 +2162,14 @@ AutoMint etkinleştirilirse, bu yüzde, yapılandırılmış AutoMint yüzdesi e
         <translation>AutoMint şu anda etkinleştirilmiş ve</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
-        <translation>AutoMint kapatmak için ekle  'enablezeromint=0'  altbet.conf. dosyasına</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in abet.conf.</source>
+        <translation>AutoMint kapatmak için ekle  'enablezeromint=0'  abet.conf. dosyasına</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in abet.conf</source>
         <translation>AutoMint şu anda aktif değil.
- AutoMint aktive etmek için  değiştir 'enablezeromint=0' yazan kısmı 'enablezeromint=1' şeklinde altbet.conf dosyasında</translation>
+ AutoMint aktive etmek için  değiştir 'enablezeromint=0' yazan kısmı 'enablezeromint=1' şeklinde abet.conf dosyasında</translation>
     </message>
 </context>
 <context>
@@ -2196,7 +2196,7 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.con
     </message>
     <message>
         <source>Cannot start abet: click-to-pay handler</source>
-        <translation>Altbet başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
+        <translation>Abet başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid ABET address or malformed URI parameters.</source>
@@ -2611,8 +2611,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Sağlanan 'Ödeme Yapmak İçin' adresi yok, yerel ödeme oluşturun</translation>
     </message>
     <message>
-        <source>Invalid Altbet Address</source>
-        <translation>Geçersiz Altbet Adresi</translation>
+        <source>Invalid Abet Address</source>
+        <translation>Geçersiz Abet Adresi</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2729,7 +2729,7 @@ Lütfen sabırlı olun...</translation>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET CORE</translation>
     </message>
     </context>
@@ -3653,8 +3653,8 @@ Lütfen sabırlı olun...</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Altbet is shutting down...</source>
-        <translation>Altbet kapanıyor ...</translation>
+        <source>Abet is shutting down...</source>
+        <translation>Abet kapanıyor ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3803,7 +3803,7 @@ Lütfen sabırlı olun...</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET CORE</translation>
     </message>
     <message>
@@ -4412,8 +4412,8 @@ Lütfen sabırlı olun...</translation>
         <translation>Hesaplanan akümülatör kontrol noktası, blok indeksiyle kaydedilen kontrol noktası değildir.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
-        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. Altbet muhtemelen zaten çalışıyor.</translation>
+        <source>Cannot obtain a lock on data directory %s. Abet is probably already running.</source>
+        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. Abet muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>

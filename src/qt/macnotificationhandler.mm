@@ -14,7 +14,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.abet.Altbet-Qt";
+        return @"io.abet.Abet-Qt";
     } else {
         return [self __bundleIdentifier];
     }

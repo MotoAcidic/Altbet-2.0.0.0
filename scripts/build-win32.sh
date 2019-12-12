@@ -4,4 +4,4 @@ cd ..
 make
 cd src
 cd qt
-strip altbet-qt.exe
+strip abet-qt.exe

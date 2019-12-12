@@ -255,7 +255,7 @@
     </message>
     <message>
         <source>Enter a ABET Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Въведете Altbet адрес, който искате да криптиране с BIP 38. Въведете парола в средното поле. Натиснете 'криптирай', за да се изчисли криптирания таен ключ. </translation>
+        <translation>Въведете Abet адрес, който искате да криптиране с BIP 38. Въведете парола в средното поле. Натиснете 'криптирай', за да се изчисли криптирания таен ключ. </translation>
     </message>
     <message>
         <source>The ABET address to encrypt</source>
@@ -641,7 +641,7 @@
         <translation>Колан с инструменти</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ядро</translation>
     </message>
     <message>
@@ -665,11 +665,11 @@
         <translation>Разгледай мастърноудове</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
+        <source>&amp;About Abet</source>
         <translation>&amp;Относно ABET Ядрото</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
+        <source>Show information about Abet</source>
         <translation>Информациза за ABET Ядрото</translation>
     </message>
     <message>
@@ -725,11 +725,11 @@
         <translation>Прозорец на блок сондата</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
         <translation>Разкрийте Помощ за ABET Ядрото, за да видите списък с възможни писмени команди.</translation>
     </message>
     <message>
-        <source>Altbet client</source>
+        <source>Abet client</source>
         <translation>Клиент ABET Ядро</translation>
     </message>
     <message>
@@ -868,8 +868,8 @@ Address: %4
         <translation>ТекстовЕтикет</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
-        <translation>Не всички преводи ще бъдат показани. За да разгледате всички преводи, трябва да зададете txindex=1 в конфигурационния файл (altbet.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
+        <translation>Не всички преводи ще бъдат показани. За да разгледате всички преводи, трябва да зададете txindex=1 в конфигурационния файл (abet.conf).</translation>
     </message>
 </context>
 <context>
@@ -1218,7 +1218,7 @@ Address: %4
         <translation>версия</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ядро</translation>
     </message>
     <message>
@@ -1226,7 +1226,7 @@ Address: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Altbet</source>
+        <source>About Abet</source>
         <translation>Относно ABET Ядрото</translation>
     </message>
     <message>
@@ -1273,15 +1273,15 @@ Address: %4
         <translation>Привет</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
+        <source>Welcome to Abet.</source>
         <translation>Добре Дошли в ABET Ядрото</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
         <translation>Тъй като това е първия път, в който стартирате програмата, имате възможността да изберете къде ABET Ядрото ще съхранява своите данни.</translation>
     </message>
     <message>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>ABET Ядрото ще изтегли и запише копие на целия ABET блокчейн. Поне %1 гигабайта ще бъдат съхранявани в тази папка, като тенденцията е файла да расте. Портфейла също ще бъде запазен в тази папка.</translation>
     </message>
     <message>
@@ -1293,7 +1293,7 @@ Address: %4
         <translation>Задай своя папка за данни:</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ядро</translation>
     </message>
     <message>
@@ -2123,14 +2123,14 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>АвтоЕмисията е включена и настроена на</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
-        <translation>Да изключите АвтоЕмисия добавете  'enablezeromint=0' в altbet.conf файла.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in abet.conf.</source>
+        <translation>Да изключите АвтоЕмисия добавете  'enablezeromint=0' в abet.conf файла.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in abet.conf</source>
         <translation>АвтоЕмисия е изключено.
-За да включите АвтоЕмисия сменете 'enablezeromint=0' на 'enablezeromint=1' в altbet.conf файла.</translation>
+За да включите АвтоЕмисия сменете 'enablezeromint=0' на 'enablezeromint=1' в abet.conf файла.</translation>
     </message>
 </context>
 <context>
@@ -2407,8 +2407,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to altbet.conf
-- disable: add 'enablezeromint=0' to altbet.conf
+- enable: add 'enablezeromint=1' to abet.conf
+- disable: add 'enablezeromint=0' to abet.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zABET
@@ -2417,8 +2417,8 @@ To change the percentage (no restart required):
         <translation>Покажи състоянието на автоматичното zABET емитиране.
 
 За да пормените състоянието (изисква рестарт):
-- вклчване: добавете 'enablezeromint=1' в altbet.conf
-- изключване: добавете 'enablezeromint=0' в altbet.conf
+- вклчване: добавете 'enablezeromint=1' в abet.conf
+- изключване: добавете 'enablezeromint=0' в abet.conf
 
 За промяна в процентите (не изисква рестарт):
 - меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zABET
@@ -2709,7 +2709,7 @@ Please be patient...</source>
         <translation>Без 'Плати На' адрес, плащането е локално</translation>
     </message>
     <message>
-        <source>Invalid Altbet Address</source>
+        <source>Invalid Abet Address</source>
         <translation>Невалиден ABET адрес</translation>
     </message>
     <message>
@@ -2831,7 +2831,7 @@ Please be patient...</source>
         <translation>%1 милисек.</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ядро</translation>
     </message>
     </context>
@@ -3839,7 +3839,7 @@ Please be patient...</source>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Altbet is shutting down...</source>
+        <source>Abet is shutting down...</source>
         <translation>Изключване на ABET Ядрото...</translation>
     </message>
     <message>
@@ -3989,7 +3989,7 @@ Please be patient...</source>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ядро</translation>
     </message>
     <message>
@@ -4006,7 +4006,7 @@ Please be patient...</source>
     </message>
     <message>
         <source>The ABET Core developers</source>
-        <translation>Altbet разработчици</translation>
+        <translation>Abet разработчици</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4650,7 +4650,7 @@ Please be patient...</source>
         <translation>Изчисления чекпойнт на акумулатора не е същия като записания в блок индекса.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Abet is probably already running.</source>
         <translation>Не може да заключи папката с данни %s. ABET Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
@@ -4822,7 +4822,7 @@ Please be patient...</source>
         <translation>Този продукт включва софтуер разработен от OpenSSL Project &lt;https://www.openssl.org/&gt; и крипто софтуер написан от Ерик Юнг и UPnP софтуер от Томас Бернард.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Altbet is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Abet is probably already running.</source>
         <translation>Не може да се прикачи към %s на този компютър. ABET Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
@@ -4850,7 +4850,7 @@ Please be patient...</source>
         <translation>Внимание: -paytxfee е зададена твърде голяма! Това е преводната такса, която ще платите ако изпратите този превод.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Altbet will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Abet will not work properly.</source>
         <translation>Внимание: Проверете дали датата и часа на компютъра са верни! Ако Вашият часовник греши, ABET Портфейла няма да работи правилно.</translation>
     </message>
     <message>
@@ -4983,7 +4983,7 @@ Please be patient...</source>
     </message>
     <message>
         <source>Copyright (C) 2015-%i The ABET Core Developers</source>
-        <translation>Всички права запазени (c) 2015-%i Altbet разработчици</translation>
+        <translation>Всички права запазени (c) 2015-%i Abet разработчици</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5062,7 +5062,7 @@ Please be patient...</source>
         <translation>Грешка в зареждането на wallet.dat: Портфейла е повреден</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Abet</source>
         <translation>Грешка в зареждането на wallet.dat: Портфейла изисква по-нова версия</translation>
     </message>
     <message>
@@ -5150,7 +5150,7 @@ Please be patient...</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Altbet is shutting down.</source>
+        <source>Initialization sanity check failed. Abet is shutting down.</source>
         <translation>Стартирането на проверка на здравословното състояние на портфейла се провали. Изключваме Портфейла.</translation>
     </message>
     <message>
@@ -5826,7 +5826,7 @@ Please be patient...</source>
         <translation>Портфейла %s е извън папката с данни %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
+        <source>Wallet needed to be rewritten: restart Abet to complete</source>
         <translation>Портфейла трябва да се пренапише: рестартирайте програмата за завършване на процеса</translation>
     </message>
     <message>

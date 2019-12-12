@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: altbetd.service
-Upstart: altbetd.conf
-OpenRC:  altbetd.openrc
-         altbetd.openrcconf
-CentOS:  altbetd.init
-macOS:    org.abet.altbetd.plist
+SystemD: abetd.service
+Upstart: abetd.conf
+OpenRC:  abetd.openrc
+         abetd.openrcconf
+CentOS:  abetd.init
+macOS:    org.abet.abetd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

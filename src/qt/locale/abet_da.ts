@@ -641,7 +641,7 @@
         <translation>Værktøjslinier</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerne</translation>
     </message>
     <message>
@@ -665,11 +665,11 @@
         <translation>Vis masternoder</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
+        <source>&amp;About Abet</source>
         <translation>&amp;Om ABET kerne</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
+        <source>Show information about Abet</source>
         <translation>Vis information om ABET kerne</translation>
     </message>
     <message>
@@ -725,11 +725,11 @@
         <translation>Blockexplorer vindue</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
         <translation>Vis hjelpetekster fra ABET kernen for at få en liste med mulige ABET kommandolinie-startparametre</translation>
     </message>
     <message>
-        <source>Altbet client</source>
+        <source>Abet client</source>
         <translation>ABET kerneklient</translation>
     </message>
     <message>
@@ -868,8 +868,8 @@ Adresse: %4
         <translation>Tekstmærke</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
-        <translation>Ikke alle transaktioner vil blive vist. For at vise alle transaktioner må De sætte "txindex=1" i konfigurationsfilen (altbet.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
+        <translation>Ikke alle transaktioner vil blive vist. For at vise alle transaktioner må De sætte "txindex=1" i konfigurationsfilen (abet.conf).</translation>
     </message>
 </context>
 <context>
@@ -1218,7 +1218,7 @@ Adresse: %4
         <translation>version</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerne</translation>
     </message>
     <message>
@@ -1226,7 +1226,7 @@ Adresse: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Altbet</source>
+        <source>About Abet</source>
         <translation>om ABET kerne</translation>
     </message>
     <message>
@@ -1273,15 +1273,15 @@ Adresse: %4
         <translation>Velkommen</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
+        <source>Welcome to Abet.</source>
         <translation>Velkommen til ABET kerne</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
         <translation>Da det er første gang programmet startes, kan De vælge hvor ABET kernen skal lagre sine data</translation>
     </message>
     <message>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>ABET kernen vil nu hente og gemme en kopi af ABET blockchain. Der skal være mindst %1GB ledigt på lagermediet, og behovet vil stige efterhånden som tiden går. Selve tegnebogen vil også blive gemt her.</translation>
     </message>
     <message>
@@ -1293,7 +1293,7 @@ Adresse: %4
         <translation>Anvend en mappe valgt af brugeren</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerne</translation>
     </message>
     <message>
@@ -2148,14 +2148,14 @@ Hvis AutoMint er aktiveret, vil denne procentdel sætte sig omkring den konfigur
         <translation>AutoMint er i øjeblikket aktiveret og indstillet til</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
-        <translation>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in abet.conf.</source>
+        <translation>To disable AutoMint add 'enablezeromint=0' in abet.conf.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in abet.conf</source>
         <translation>AutoMint er for øjeblikket deaktiveret
-For at aktivere AutoMint-ændring 'enablezeromint = 0' til 'enablezeromint = 1' i altbet.conf</translation>
+For at aktivere AutoMint-ændring 'enablezeromint = 0' til 'enablezeromint = 1' i abet.conf</translation>
     </message>
 </context>
 <context>
@@ -2432,8 +2432,8 @@ Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at d
         <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to altbet.conf
-- disable: add 'enablezeromint=0' to altbet.conf
+- enable: add 'enablezeromint=1' to abet.conf
+- disable: add 'enablezeromint=0' to abet.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zABET
@@ -2442,8 +2442,8 @@ To change the percentage (no restart required):
         <translation>Vis den aktuelle status for automatisk zABET minting.øj
 
 For at ændre status (genstart kræves):.
-- aktiver: tilføj 'enablezeromint = 1' til altbet.conf
-- deaktiver: tilføj 'enablezeromint = 0' til altbet.conf
+- aktiver: tilføj 'enablezeromint = 1' til abet.conf
+- deaktiver: tilføj 'enablezeromint = 0' til abet.conf
 
 For at ændre procentdelen (ingen genstart kræves):.
 - menu Indstillinger-&gt; Indstillinger-&gt; Procentdel af automatiseret zABET
@@ -2734,7 +2734,7 @@ Vær tålmodig...</translation>
         <translation>Ingen 'Betal til' adresse, der er oprettet, skaber lokal betaling</translation>
     </message>
     <message>
-        <source>Invalid Altbet Address</source>
+        <source>Invalid Abet Address</source>
         <translation> Ugyldig ABET adresse</translation>
     </message>
     <message>
@@ -2856,7 +2856,7 @@ Vær tålmodig...</translation>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerne</translation>
     </message>
     </context>
@@ -3868,7 +3868,7 @@ Vær tålmodig...</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Altbet is shutting down...</source>
+        <source>Abet is shutting down...</source>
         <translation>ABET kernen lukker ned</translation>
     </message>
     <message>
@@ -4018,7 +4018,7 @@ Vær tålmodig...</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerne</translation>
     </message>
     <message>
@@ -4679,7 +4679,7 @@ Vær tålmodig...</translation>
         <translation>Beregnet akkumulator kontrolpunkt er ikke det, der er registreret af blok indeks</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Abet is probably already running.</source>
         <translation>Kan ikke låse datamappen %s. ABET core kører sandsynligvis allerede.</translation>
     </message>
     <message>
@@ -4852,7 +4852,7 @@ Vær tålmodig...</translation>
         <translation>Dette produkt anvender software udviklet i OpenSSL projektet til brug i OpenSSL værktøjssættet &lt;https://www.openssl.org/&gt; og kryptosoftware skrevet afEric Young og UPnP software skrevet af Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Altbet is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Abet is probably already running.</source>
         <translation>Det var ikke muligt at forbinde %s på denne computer. ABET kører sandsynligvis allerede.</translation>
     </message>
     <message>
@@ -4880,7 +4880,7 @@ Vær tålmodig...</translation>
         <translation>Advarsel! -paytxfee er sat meget højt. Det er dette gebyr De kommer til at betale for transaktionen, hvis De gennemfører. </translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Altbet will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Abet will not work properly.</source>
         <translation>Advarsel! Kontroller at computerens dato og tid er korrekt indstillet. Hvis tiden ikke er rigtig, vil ABET core ikke fungere ordentligt.</translation>
     </message>
     <message>
@@ -5092,7 +5092,7 @@ Vær tålmodig...</translation>
         <translation>Fejl ved indlæsning af wallet.dat: Tegnebogen er beskadiget</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Abet</source>
         <translation>Fejl ved indlæsning af wallet.dat: Tegnebogen kræver en nyere version af ABET core</translation>
     </message>
     <message>
@@ -5188,7 +5188,7 @@ Vær tålmodig...</translation>
         <translation>Info:</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Altbet is shutting down.</source>
+        <source>Initialization sanity check failed. Abet is shutting down.</source>
         <translation>Initiering af sanitetskontrollen fejlede. ABET core lukker ned. </translation>
     </message>
     <message>
@@ -5864,7 +5864,7 @@ Vær tålmodig...</translation>
         <translation>Tegnbogen %s befinder sig udenfor datamappen %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
+        <source>Wallet needed to be rewritten: restart Abet to complete</source>
         <translation>Tegnebogen måtte genskrives. Genstart ABET core for at gøre færdig</translation>
     </message>
     <message>

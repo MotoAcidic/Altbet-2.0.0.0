@@ -10,8 +10,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between altbet-cli and altbetd)
- * of a given instance of the Altbet system.
+ * CBaseChainParams defines the base parameters (shared between abet-cli and abetd)
+ * of a given instance of the Abet system.
  */
 class CBaseChainParams
 {

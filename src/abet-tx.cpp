@@ -45,10 +45,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("Altbet Core altbet-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("Abet Core abet-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  altbet-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded abet transaction") + "\n" +
-                               "  altbet-tx [options] -create [commands]   " + _("Create hex-encoded abet transaction") + "\n" +
+                               "  abet-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded abet transaction") + "\n" +
+                               "  abet-tx [options] -create [commands]   " + _("Create hex-encoded abet transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());

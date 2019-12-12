@@ -645,8 +645,8 @@
         <translation>탭 도구 모음</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Send coins to a ABET address</source>
@@ -669,12 +669,12 @@
         <translation>마스터노드 검색</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
-        <translation>Altbet &amp;정보</translation>
+        <source>&amp;About Abet</source>
+        <translation>Abet &amp;정보</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
-        <translation>Altbet에 대한 정보 표시</translation>
+        <source>Show information about Abet</source>
+        <translation>Abet에 대한 정보 표시</translation>
     </message>
     <message>
         <source>Modify configuration options for ABET</source>
@@ -729,12 +729,12 @@
         <translation>블록 탐색 창</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
-        <translation>Altbet 도움말 메세지를 표시하여 사용 가능한 ABET 명령행 옵션 목록 표시</translation>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
+        <translation>Abet 도움말 메세지를 표시하여 사용 가능한 ABET 명령행 옵션 목록 표시</translation>
     </message>
     <message>
-        <source>Altbet client</source>
-        <translation>Altbet 클라이언트</translation>
+        <source>Abet client</source>
+        <translation>Abet 클라이언트</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -872,8 +872,8 @@ Address: %4
         <translation>텍스트라벨</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
-        <translation>모든 트랜잭션이 표시되지는 않습니다. 모든 트랜잭션을 보려면 구성 파일 (altbet.conf)에 txindex = 1을 설정해야합니다.</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
+        <translation>모든 트랜잭션이 표시되지는 않습니다. 모든 트랜잭션을 보려면 구성 파일 (abet.conf)에 txindex = 1을 설정해야합니다.</translation>
     </message>
 </context>
 <context>
@@ -1222,16 +1222,16 @@ Address: %4
         <translation>버전</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Altbet</source>
-        <translation>Altbet 정보</translation>
+        <source>About Abet</source>
+        <translation>Abet 정보</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1277,16 +1277,16 @@ Address: %4
         <translation>환영합니다</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
-        <translation>Altbet에 오신 것을 환영합니다.</translation>
+        <source>Welcome to Abet.</source>
+        <translation>Abet에 오신 것을 환영합니다.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
-        <translation>이 프로그램이 처음 실행되었으므로 Altbet가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
+        <translation>이 프로그램이 처음 실행되었으므로 Abet가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
     </message>
     <message>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Altbet는 ABET 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Abet는 ABET 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1297,8 +1297,8 @@ Address: %4
         <translation>사용자 지정 데이터 디렉토리 사용:</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2134,12 +2134,12 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
         <translation>자동 생성기능이 현재 작동중 그리고 </translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
-        <translation>자동생성 기능을 사용하지 않으시려면, altbet.conf 화일에 enablezeromint=0 를 추가하세요.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in abet.conf.</source>
+        <translation>자동생성 기능을 사용하지 않으시려면, abet.conf 화일에 enablezeromint=0 를 추가하세요.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in abet.conf</source>
         <translation>자동 저장 기능이 현재 사용 중지되었습니다 .
 자동 변환을 사용하려면 pivotx.conf에서 'enablezeromint = 0'에서 'enablezeromint = 1'로 변경하십시오.</translation>
     </message>
@@ -2418,8 +2418,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to altbet.conf
-- disable: add 'enablezeromint=0' to altbet.conf
+- enable: add 'enablezeromint=1' to abet.conf
+- disable: add 'enablezeromint=0' to abet.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zABET
@@ -2428,8 +2428,8 @@ To change the percentage (no restart required):
         <translation>현재 zABET 자동 생성 상태를 보여줍니다.
 
 자동생성 상태를 변경하시려면 (지갑 재시작 필요함):
-- 활성화: 'enablezeromint=1' 를 altbet.conf 파일에 추가
-- 비활성화: 'enablezeromint=0' 를 altbet.conf 파일에 추가
+- 활성화: 'enablezeromint=1' 를 abet.conf 파일에 추가
+- 비활성화: 'enablezeromint=0' 를 abet.conf 파일에 추가
 
 자동 생성 비율 변경하시려면 (지갑 재시작 필요없음):
 - 메뉴 설정-&gt;옵션-&gt;zABET 자동생성 비율
@@ -2721,7 +2721,7 @@ Please be patient...</source>
         <translation>주소를 입력하지 않아, 신규 주소를 생성합니다.</translation>
     </message>
     <message>
-        <source>Invalid Altbet Address</source>
+        <source>Invalid Abet Address</source>
         <translation>잘못된 ABET 주소</translation>
     </message>
     <message>
@@ -2843,8 +2843,8 @@ Please be patient...</source>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>
@@ -3852,8 +3852,8 @@ Please be patient...</source>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Altbet is shutting down...</source>
-        <translation>Altbet가 종료됩니다...</translation>
+        <source>Abet is shutting down...</source>
+        <translation>Abet가 종료됩니다...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4002,8 +4002,8 @@ Please be patient...</source>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4019,7 +4019,7 @@ Please be patient...</source>
     </message>
     <message>
         <source>The ABET Core developers</source>
-        <translation>Altbet 개발자</translation>
+        <translation>Abet 개발자</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4664,8 +4664,8 @@ Please be patient...</source>
         <translation>계산된 누산기 체크포인트는 블록 인덱스에 의해 기록되는 것이 아닙니다.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
-        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. Altbet는 이미 실행 중입니다.</translation>
+        <source>Cannot obtain a lock on data directory %s. Abet is probably already running.</source>
+        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. Abet는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4836,8 +4836,8 @@ Please be patient...</source>
         <translation>이 제품은 OpenSSL이 개발한 Open SSL 툴킷 &lt;https://www.openssl.org/&gt; 에서 사용하기 위한 프로젝트 소프트웨어, Eric Young이 개발한 암호화 소프트웨어, Thomas Bernard가 개발한 UPnP 소프트웨어가 포함되어 있습니다.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Altbet is probably already running.</source>
-        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. Altbet는 이미 실행 중입니다.</translation>
+        <source>Unable to bind to %s on this computer. Abet is probably already running.</source>
+        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. Abet는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -4864,7 +4864,7 @@ Please be patient...</source>
         <translation>경고 : -paytxfee가 매우 높게 설정되었습니다! 이것은 전송할 경우 지불 할 트랜잭션 수수료입니다.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Altbet will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Abet will not work properly.</source>
         <translation>경고: 컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 ABET 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
     </message>
     <message>
@@ -4997,7 +4997,7 @@ Please be patient...</source>
     </message>
     <message>
         <source>Copyright (C) 2015-%i The ABET Core Developers</source>
-        <translation>Copyright (C) 2015-%i The Altbet 개발자</translation>
+        <translation>Copyright (C) 2015-%i The Abet 개발자</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5076,7 +5076,7 @@ Please be patient...</source>
         <translation>wallet.dat을 불러오는 중 오류가 발생했습니다: 지갑 손상됨</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Abet</source>
         <translation>wallet.dat를 로드하는 중 오류가 발생했습니다. 지갑에 최신 버전의 ABET 코어가 필요합니다.</translation>
     </message>
     <message>
@@ -5172,8 +5172,8 @@ Please be patient...</source>
         <translation>정보</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Altbet is shutting down.</source>
-        <translation>초기화 정확성 검사에 실패 했습니다. Altbet가 종료됩니다.</translation>
+        <source>Initialization sanity check failed. Abet is shutting down.</source>
+        <translation>초기화 정확성 검사에 실패 했습니다. Abet가 종료됩니다.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5848,7 +5848,7 @@ Please be patient...</source>
         <translation>지갑 %s 가 데이터 디렉토리 외부에 존재합니다 %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
+        <source>Wallet needed to be rewritten: restart Abet to complete</source>
         <translation>지갑을 다시 작성해야 합니다: 완료하려면 ABET 코어를 재시작해야 합니다</translation>
     </message>
     <message>

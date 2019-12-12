@@ -1,5 +1,5 @@
 [Protocol]
-exec=altbet-qt '%u'
+exec=abet-qt '%u'
 protocol=abet
 input=none
 output=none

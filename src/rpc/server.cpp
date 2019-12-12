@@ -362,35 +362,35 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
-        /* Altbet features */
-        {"altbet", "listmasternodes", &listmasternodes, true, true, false},
-        {"altbet", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"altbet", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"altbet", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"altbet", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"altbet", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"altbet", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"altbet", "masternodedebug", &masternodedebug, true, true, false},
-        {"altbet", "startmasternode", &startmasternode, true, true, false},
-        {"altbet", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"altbet", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"altbet", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"altbet", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"altbet", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"altbet", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"altbet", "preparebudget", &preparebudget, true, true, false},
-        {"altbet", "submitbudget", &submitbudget, true, true, false},
-        {"altbet", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"altbet", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"altbet", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"altbet", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"altbet", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"altbet", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"altbet", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"altbet", "checkbudgets", &checkbudgets, true, true, false},
-        {"altbet", "mnsync", &mnsync, true, true, false},
-        {"altbet", "spork", &spork, true, true, false},
-        {"altbet", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* Abet features */
+        {"abet", "listmasternodes", &listmasternodes, true, true, false},
+        {"abet", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"abet", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"abet", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"abet", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"abet", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"abet", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"abet", "masternodedebug", &masternodedebug, true, true, false},
+        {"abet", "startmasternode", &startmasternode, true, true, false},
+        {"abet", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"abet", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"abet", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"abet", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"abet", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"abet", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"abet", "preparebudget", &preparebudget, true, true, false},
+        {"abet", "submitbudget", &submitbudget, true, true, false},
+        {"abet", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"abet", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"abet", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"abet", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"abet", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"abet", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"abet", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"abet", "checkbudgets", &checkbudgets, true, true, false},
+        {"abet", "mnsync", &mnsync, true, true, false},
+        {"abet", "spork", &spork, true, true, false},
+        {"abet", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -630,7 +630,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> altbet-cli " + methodname + " " + args + "\n";
+    return "> abet-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

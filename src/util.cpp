@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/altbet-config.h"
+#include "config/abet-config.h"
 #endif
 
 #include "util.h"
@@ -219,8 +219,8 @@ bool LogAcceptCategory(const char* category)
             const std::vector<std::string>& categories = mapMultiArgs["-debug"];
             ptrCategory.reset(new std::set<std::string>(categories.begin(), categories.end()));
             // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "altbet" is a composite category enabling all ABET-related debug output
-            if (ptrCategory->count(std::string("altbet"))) {
+            // "abet" is a composite category enabling all ABET-related debug output
+            if (ptrCategory->count(std::string("abet"))) {
                 ptrCategory->insert(std::string("obfuscation"));
                 ptrCategory->insert(std::string("swiftx"));
                 ptrCategory->insert(std::string("masternode"));
@@ -387,7 +387,7 @@ static std::string FormatException(std::exception* pex, const char* pszThread)
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "altbet";
+    const char* pszModule = "abet";
 #endif
     if (pex)
         return strprintf(
@@ -408,13 +408,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\Altbet
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\Altbet
-// Mac: ~/Library/Application Support/Altbet
-// Unix: ~/.altbet
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\Abet
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\Abet
+// Mac: ~/Library/Application Support/Abet
+// Unix: ~/.abet
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Altbet";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Abet";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -426,10 +426,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Altbet";
+    return pathRet / "Abet";
 #else
     // Unix
-    return pathRet / ".altbet";
+    return pathRet / ".abet";
 #endif
 #endif
 }
@@ -476,7 +476,7 @@ void ClearDatadirCache()
 
 boost::filesystem::path GetConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-conf", "altbet.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-conf", "abet.conf"));
     if (!pathConfigFile.is_complete())
         pathConfigFile = GetDataDir(false) / pathConfigFile;
 
@@ -495,7 +495,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty altbet.conf if it does not exist
+        // Create empty abet.conf if it does not exist
         FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -506,7 +506,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override altbet.conf
+        // Don't overwrite existing settings so command line settings override abet.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);
@@ -521,7 +521,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 #ifndef WIN32
 boost::filesystem::path GetPidFile()
 {
-    boost::filesystem::path pathPidFile(GetArg("-pid", "altbetd.pid"));
+    boost::filesystem::path pathPidFile(GetArg("-pid", "abetd.pid"));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }

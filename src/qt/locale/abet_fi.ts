@@ -565,7 +565,7 @@
         <translation>&amp;Apua</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ydin</translation>
     </message>
     <message>
@@ -585,11 +585,11 @@
         <translation>Selaa masternodeja</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
-        <translation>Altbet &amp;ytimestä</translation>
+        <source>&amp;About Abet</source>
+        <translation>Abet &amp;ytimestä</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
+        <source>Show information about Abet</source>
         <translation>Näytä tietoja ABET Ytimestä</translation>
     </message>
     <message>
@@ -645,11 +645,11 @@
         <translation>Lohkon tutkija näkymä</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
         <translation>Näytä ABET Ydin apuviesti saadaksesi lista mahdollisista ABET komentolinja komennoista.</translation>
     </message>
     <message>
-        <source>Altbet client</source>
+        <source>Abet client</source>
         <translation>ABET Ydin asiakasohjelma</translation>
     </message>
     <message>
@@ -919,7 +919,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ydin</translation>
     </message>
     <message>
@@ -938,11 +938,11 @@
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
+        <source>Welcome to Abet.</source>
         <translation>Tervetuloa ABET Ytimeen.</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ydin</translation>
     </message>
     <message>
@@ -1391,7 +1391,7 @@
         <translation>Määrä</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ydin</translation>
     </message>
     </context>
@@ -1979,7 +1979,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Altbet is shutting down...</source>
+        <source>Abet is shutting down...</source>
         <translation>ABET core sammuu...</translation>
     </message>
     <message>
@@ -2121,7 +2121,7 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET Ydin</translation>
     </message>
     <message>
@@ -2486,8 +2486,8 @@
         <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko korruptoitunut</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
-        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version Altbetsta</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Abet</source>
+        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version Abetsta</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>

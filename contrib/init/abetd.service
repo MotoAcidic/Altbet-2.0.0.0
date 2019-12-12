@@ -1,7 +1,7 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit altbetd.service
+# $ systemctl edit bitcoind.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
@@ -12,12 +12,12 @@ Description=ABET daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/altbetd -daemon -datadir=/var/lib/abet -conf=/etc/abet/abet.conf -pid=/run/altbetd/altbetd.pid
-# Creates /run/altbetd owned by abet
-RuntimeDirectory=altbetd
+ExecStart=/usr/bin/abetd -daemon -conf=/etc/abet/abet.conf -pid=/run/abetd/abetd.pid
+# Creates /run/abetd owned by abet
+RuntimeDirectory=abetd
 User=abet
 Type=forking
-PIDFile=/run/altbetd/altbetd.pid
+PIDFile=/run/abetd/abetd.pid
 Restart=on-failure
 
 # Hardening measures
@@ -38,8 +38,7 @@ NoNewPrivileges=true
 PrivateDevices=true
 
 # Deny the creation of writable and executable memory mappings.
-# Commented out as it's not supported on Debian 8 or Ubuntu 16.04 LTS
-#MemoryDenyWriteExecute=true
+MemoryDenyWriteExecute=true
 
 [Install]
 WantedBy=multi-user.target

@@ -112,7 +112,7 @@ bool isObscured(QWidget* w);
 // Open debug.log
 void openDebugLogfile();
 
-// Open altbet.conf
+// Open abet.conf
 void openConfigfile();
 
 // Open masternode.conf

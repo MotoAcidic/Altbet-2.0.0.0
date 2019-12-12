@@ -557,8 +557,8 @@
         <translation>Tabs 工具列</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Send coins to a ABET address</source>
@@ -577,12 +577,12 @@
         <translation>瀏覽 Masternodes</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
-        <translation>&amp;關於 Altbet</translation>
+        <source>&amp;About Abet</source>
+        <translation>&amp;關於 Abet</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
-        <translation>顯示 Altbet 相關資訊</translation>
+        <source>Show information about Abet</source>
+        <translation>顯示 Abet 相關資訊</translation>
     </message>
     <message>
         <source>Modify configuration options for ABET</source>
@@ -637,12 +637,12 @@
         <translation>區塊鏈瀏覽視窗</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
-        <translation>顯示 Altbet 幫助訊息以取得 ABET 命令列表選項</translation>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
+        <translation>顯示 Abet 幫助訊息以取得 ABET 命令列表選項</translation>
     </message>
     <message>
-        <source>Altbet client</source>
-        <translation>Altbet 客戶端</translation>
+        <source>Abet client</source>
+        <translation>Abet 客戶端</translation>
     </message>
     </context>
 <context>
@@ -674,15 +674,15 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>
@@ -754,8 +754,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>
@@ -904,8 +904,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>

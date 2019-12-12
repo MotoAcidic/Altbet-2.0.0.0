@@ -1181,8 +1181,8 @@
         <translation>carteira %s reside fora do diretório %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
-        <translation>Carteira precisa ser reescrita: reinicie o Altbet para completar.</translation>
+        <source>Wallet needed to be rewritten: restart Abet to complete</source>
+        <translation>Carteira precisa ser reescrita: reinicie o Abet para completar.</translation>
     </message>
     <message>
         <source>Wallet options:</source>

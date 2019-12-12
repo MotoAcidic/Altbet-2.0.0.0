@@ -165,9 +165,9 @@ add_custom_target(translations_target ALL DEPENDS ${QM})
 QT5_ADD_RESOURCES(QRC_RESOURCE abet.qrc)
 QT5_ADD_RESOURCES(QRC_LOCALE_RESOURCE abet_locale.qrc)
 
-add_executable(altbet-qt abet.cpp ${QM} ${QRC_RESOURCE} ${QRC_LOCALE_RESOURCE})
-add_dependencies(altbet-qt translations_target libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
-target_link_libraries(altbet-qt
+add_executable(abet-qt abet.cpp ${QM} ${QRC_RESOURCE} ${QRC_LOCALE_RESOURCE})
+add_dependencies(abet-qt translations_target libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
+target_link_libraries(abet-qt
         qt_stuff
         univalue
         SERVER_A UTIL_A WALLET_A CLI_A COMMON_A BITCOIN_CRYPTO_A ZEROCOIN_A
@@ -176,24 +176,24 @@ target_link_libraries(altbet-qt
         pthread
         )
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(altbet-qt "-framework Cocoa")
+    target_link_libraries(abet-qt "-framework Cocoa")
 endif()
 if(GMP_FOUND)
-    target_link_libraries(altbet-qt ${GMP_LIBRARY})
+    target_link_libraries(abet-qt ${GMP_LIBRARY})
 endif()
 if(ZMQ_FOUND)
-    target_link_libraries(altbet-qt ZMQ_A ${ZMQ_LIB})
+    target_link_libraries(abet-qt ZMQ_A ${ZMQ_LIB})
 endif()
 if (QRCODE_FOUND)
-    target_link_libraries(altbet-qt ${QRCODE_LIB})
+    target_link_libraries(abet-qt ${QRCODE_LIB})
 endif()
 
-QT5_USE_Modules(altbet-qt Gui)
-QT5_USE_Modules(altbet-qt Coabet
-QT5_USE_Modules(altbet-qt Widgets)
-QT5_USE_Modules(altbet-qt Test)
-QT5_USE_Modules(altbet-qt Prabetupport)
-QT5_USE_Modules(altbet-qt Network)
+QT5_USE_Modules(abet-qt Gui)
+QT5_USE_Modules(abet-qt Coabet
+QT5_USE_Modules(abet-qt Widgets)
+QT5_USE_Modules(abet-qt Test)
+QT5_USE_Modules(abet-qt Prabetupport)
+QT5_USE_Modules(abet-qt Network)
 if (Qt5DBus_FOUND)
     QT5_USE_Moduabetabet-qt DBus)
 endif()

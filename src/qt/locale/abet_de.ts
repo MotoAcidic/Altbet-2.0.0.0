@@ -645,8 +645,8 @@
         <translation>Registerkartenleiste</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Send coins to a ABET address</source>
@@ -669,12 +669,12 @@
         <translation>Masternodes durchsuchen</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
-        <translation>Über Altbet</translation>
+        <source>&amp;About Abet</source>
+        <translation>Über Abet</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
-        <translation>Zeigt Informationen über Altbet</translation>
+        <source>Show information about Abet</source>
+        <translation>Zeigt Informationen über Abet</translation>
     </message>
     <message>
         <source>Modify configuration options for ABET</source>
@@ -729,12 +729,12 @@
         <translation>Blockchain Betrachter Fenster</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
         <translation>Zeige die ABET-Core Hilfe, um mögliche ABET Kommando-Zeilen-Optionen anzuzeigen</translation>
     </message>
     <message>
-        <source>Altbet client</source>
-        <translation>Altbet Client</translation>
+        <source>Abet client</source>
+        <translation>Abet Client</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -871,8 +871,8 @@ Adresse: %4</translation>
         <translation>TextEtikett</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
-        <translation>Nicht alle Transaktionen können anzezeigt werden. Um alle Transaktionen zu sehen, müssen sie die Option  "txindex=1" in der "altbet.conf" Konfigurationsdatei hinzufügen.</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
+        <translation>Nicht alle Transaktionen können anzezeigt werden. Um alle Transaktionen zu sehen, müssen sie die Option  "txindex=1" in der "abet.conf" Konfigurationsdatei hinzufügen.</translation>
     </message>
 </context>
 <context>
@@ -1221,16 +1221,16 @@ Adresse: %4</translation>
         <translation>Version</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-Bit)</translation>
     </message>
     <message>
-        <source>About Altbet</source>
-        <translation>Über Altbet</translation>
+        <source>About Abet</source>
+        <translation>Über Abet</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1276,16 +1276,16 @@ Adresse: %4</translation>
         <translation>Willkommen</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
-        <translation>Willkommen zu Altbet.</translation>
+        <source>Welcome to Abet.</source>
+        <translation>Willkommen zu Abet.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
-        <translation>Da dies das erste Mal ist, dass Sie Altbet starten, legen Sie jetzt bitte fest, an welchem Ort die Daten gespeichert werden sollen.</translation>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
+        <translation>Da dies das erste Mal ist, dass Sie Abet starten, legen Sie jetzt bitte fest, an welchem Ort die Daten gespeichert werden sollen.</translation>
     </message>
     <message>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Altbet wird die Blockchain laden und lokal speichern. Dafür sind mindestens %1GB freier Speicherplatz erforderlich. Der Speicherbedarf wird mit der Zeit anwachsen. Die Wallet wird ebenfalls in diesem Verzeichnis gespeichert.</translation>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Abet wird die Blockchain laden und lokal speichern. Dafür sind mindestens %1GB freier Speicherplatz erforderlich. Der Speicherbedarf wird mit der Zeit anwachsen. Die Wallet wird ebenfalls in diesem Verzeichnis gespeichert.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1296,8 +1296,8 @@ Adresse: %4</translation>
         <translation>Ein benutzerdefiniertes Datenverzeichnis verwenden:</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2130,14 +2130,14 @@ Falls das automatische Prägen aktiviert ist, wird sich dieser Prozentsatz um de
         <translation>Automatisches Prägen ist aktiv und eingestellt auf </translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in altbet.conf.</source>
-        <translation>Um das automatische Prägen zu deaktivieren, füge 'enablezeromint=0' in altbet.conf ein.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in abet.conf.</source>
+        <translation>Um das automatische Prägen zu deaktivieren, füge 'enablezeromint=0' in abet.conf ein.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in altbet.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in abet.conf</source>
         <translation>Das automatische Prägen ist deaktiviert.
-Um das automatische Prägen zu aktivieren ändere 'enablezeromint=0' zu 'enablezeromint=1' in altbet.conf</translation>
+Um das automatische Prägen zu aktivieren ändere 'enablezeromint=0' zu 'enablezeromint=1' in abet.conf</translation>
     </message>
 </context>
 <context>
@@ -2414,8 +2414,8 @@ Unreif: Bestätigt, aber keine Prägung in der selben Stückelung seit erfolgter
         <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to altbet.conf
-- disable: add 'enablezeromint=0' to altbet.conf
+- enable: add 'enablezeromint=1' to abet.conf
+- disable: add 'enablezeromint=0' to abet.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zABET
@@ -2424,8 +2424,8 @@ To change the percentage (no restart required):
         <translation>Zeigt den aktuellen Status der automatischen zABET-Prägung an
 
 Um den Status zu ändern (Neustart erforderlich): 
-- enable: füge 'enablezeromint = 1' zu altbet.conf hinzu
-- disable: füge 'enablezeromint = 0' zu altbet.conf hinzu
+- enable: füge 'enablezeromint = 1' zu abet.conf hinzu
+- disable: füge 'enablezeromint = 0' zu abet.conf hinzu
 
 Um den Prozentsatz zu ändern (kein Neustart erforderlich): 
 - Menü Einstellungen-&gt; Optionen-&gt; Prozentsatz der autom. zABET
@@ -2716,7 +2716,7 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Keine "Pay To"-Adresse zur Verfügung. Erstelle lokale Zahlung</translation>
     </message>
     <message>
-        <source>Invalid Altbet Address</source>
+        <source>Invalid Abet Address</source>
         <translation>Ungültige ABET-Adresse </translation>
     </message>
     <message>
@@ -2838,8 +2838,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>%1 Ms</translation>
     </message>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     </context>
 <context>
@@ -3846,8 +3846,8 @@ Bitte haben Sie etwas Geduld...</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Altbet is shutting down...</source>
-        <translation>Altbet wird beendet...</translation>
+        <source>Abet is shutting down...</source>
+        <translation>Abet wird beendet...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3996,8 +3996,8 @@ Bitte haben Sie etwas Geduld...</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
-        <translation>Altbet</translation>
+        <source>Abet</source>
+        <translation>Abet</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4013,7 +4013,7 @@ Bitte haben Sie etwas Geduld...</translation>
     </message>
     <message>
         <source>The ABET Core developers</source>
-        <translation>Die Altbet Entwickler</translation>
+        <translation>Die Abet Entwickler</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4657,8 +4657,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Der berechnete Akkumulator-Checkpoint stimmt nicht mit dem vom Blockindex aufgezeichneten überein</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
-        <translation>Kann keine Sperre für das Datenverzeichnis %s erhalten. Altbet läuft wahrscheinlich bereits.</translation>
+        <source>Cannot obtain a lock on data directory %s. Abet is probably already running.</source>
+        <translation>Kann keine Sperre für das Datenverzeichnis %s erhalten. Abet läuft wahrscheinlich bereits.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4829,8 +4829,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Dieses Produkt beinhaltet Software, die vom OpenSSL Projekt für die Nutzung im OpenSSL Toolkit &lt;https://www.openssl.org/&gt; entwickelt wurde. Desweiteren kryptografische Software , die von Eric Young, und UPnP Software, die von Thomas Bernard, geschrieben wurde.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Altbet is probably already running.</source>
-        <translation>Fehler: Port %s ist bereits belegt! Läuft bereits eine andere Altbet Wallet ?</translation>
+        <source>Unable to bind to %s on this computer. Abet is probably already running.</source>
+        <translation>Fehler: Port %s ist bereits belegt! Läuft bereits eine andere Abet Wallet ?</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -4857,8 +4857,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Warnung: -paytxfee ist sehr hoch eingestellt! Diese Transaktionsgebühr werden Ihnen abgebucht, falls Sie die Transaktion überweisen.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Altbet will not work properly.</source>
-        <translation>Warnung: Bitte stellen Sie sicher, das vom Computer verwendete Zeit und Datumangaben korrekt sind! Wenn ihr System falsche Zeitangaben nutzt, wird Altbet nicht korrekt funktionieren.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Abet will not work properly.</source>
+        <translation>Warnung: Bitte stellen Sie sicher, das vom Computer verwendete Zeit und Datumangaben korrekt sind! Wenn ihr System falsche Zeitangaben nutzt, wird Abet nicht korrekt funktionieren.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5069,8 +5069,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Fehler beim Laden von wallet.dat : Wallet beschädigt</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
-        <translation>Fehler beim Laden der wallet.dat: Neuere Altbet Version benötigt</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Abet</source>
+        <translation>Fehler beim Laden der wallet.dat: Neuere Abet Version benötigt</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5165,8 +5165,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Hinweis</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Altbet is shutting down.</source>
-        <translation>Initialisierung Sanity-Check fehlgeschlagen. Altbet schaltet ab.</translation>
+        <source>Initialization sanity check failed. Abet is shutting down.</source>
+        <translation>Initialisierung Sanity-Check fehlgeschlagen. Abet schaltet ab.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5841,8 +5841,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Wallet %s liegt außerhalb des Datenverzeichnisses %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
-        <translation>Wallet musste neu geschrieben werden: Bitte Altbet neu starten</translation>
+        <source>Wallet needed to be rewritten: restart Abet to complete</source>
+        <translation>Wallet musste neu geschrieben werden: Bitte Abet neu starten</translation>
     </message>
     <message>
         <source>Wallet options:</source>

@@ -1,4 +1,4 @@
 cd ..
 cd src
-strip altbet{d,-cli}
-tar cvzf ALTBET-linux.tar.gz altbetd altbet-cli
+strip abet{d,-cli}
+tar cvzf ABET-linux.tar.gz abetd abet-cli

@@ -1,20 +1,20 @@
-Altbet Core integration/staging tree
+Abet Core integration/staging tree
 ====================================
 
 
-What is Altbet?
+What is Abet?
 ----------------
 
-Altbet is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Altbet uses peer-to-peer technology to operate
+Abet is an experimental digital currency that enables instant payments to
+anyone, anywhere in the world. Abet uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Altbet Core is the name of open source
+out collectively by the network. Abet Core is the name of open source
 software which enables the use of this currency.
 
 License
 -------
 
-Altbet Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Abet Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
-Altbet uses components from ABET Core, which uses components of both Bitcoin and DASH.
+Abet uses components from ABET Core, which uses components of both Bitcoin and DASH.

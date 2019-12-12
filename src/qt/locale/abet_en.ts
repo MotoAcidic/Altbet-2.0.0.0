@@ -841,7 +841,7 @@
     <message>
         <location line="-448"/>
         <location line="+938"/>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -871,12 +871,12 @@
     </message>
     <message>
         <location line="+43"/>
-        <source>&amp;About Altbet</source>
+        <source>&amp;About Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about Altbet</source>
+        <source>Show information about Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -946,12 +946,12 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+234"/>
-        <source>Altbet client</source>
+        <source>Abet client</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -1167,7 +1167,7 @@ Address: %4
     </message>
     <message>
         <location filename="../blockexplorer.cpp" line="+480"/>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1650,7 +1650,7 @@ Address: %4
     </message>
     <message>
         <location line="+0"/>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1661,7 +1661,7 @@ Address: %4
     </message>
     <message>
         <location line="+4"/>
-        <source>About Altbet</source>
+        <source>About Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1719,17 +1719,17 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Welcome to Altbet.</source>
+        <source>Welcome to Abet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1744,7 +1744,7 @@ Address: %4
     </message>
     <message>
         <location filename="../intro.cpp" line="+77"/>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2905,13 +2905,13 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
     </message>
     <message>
         <location line="+1"/>
-        <source>To disable AutoMint add &apos;enablezeromint=0&apos; in altbet.conf.</source>
+        <source>To disable AutoMint add &apos;enablezeromint=0&apos; in abet.conf.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
         <source>AutoMint is currently disabled.
-To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1&apos; in altbet.conf</source>
+To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1&apos; in abet.conf</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3289,8 +3289,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <source>Show the current status of automatic zABET minting.
 
 To change the status (restart required):
-- enable: add &apos;enablezeromint=1&apos; to altbet.conf
-- disable: add &apos;enablezeromint=0&apos; to altbet.conf
+- enable: add &apos;enablezeromint=1&apos; to abet.conf
+- disable: add &apos;enablezeromint=0&apos; to abet.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zABET
@@ -3690,7 +3690,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Invalid Altbet Address</source>
+        <source>Invalid Abet Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3938,7 +3938,7 @@ Please be patient...</source>
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3963,7 +3963,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+40"/>
-        <source>Altbet didn&apos;t yet exit safely...</source>
+        <source>Abet didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5314,7 +5314,7 @@ Please be patient...</source>
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+75"/>
-        <source>Altbet is shutting down...</source>
+        <source>Abet is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5509,7 +5509,7 @@ Please be patient...</source>
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+36"/>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6392,7 +6392,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Cannot obtain a lock on data directory %s. Altbet is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Abet is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6637,7 +6637,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to bind to %s on this computer. Altbet is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Abet is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6672,7 +6672,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Altbet will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Abet will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6962,7 +6962,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Altbet</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Abet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7082,7 +7082,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. Altbet is shutting down.</source>
+        <source>Initialization sanity check failed. Abet is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7984,7 +7984,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart Altbet to complete</source>
+        <source>Wallet needed to be rewritten: restart Abet to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

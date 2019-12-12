@@ -27,13 +27,13 @@ Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 Source10:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contrib/debian/examples/abet.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/altbetd.1
-Source21:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/altbet-cli.1
-Source22:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/altbet-qt.1
+Source20:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/abetd.1
+Source21:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/abet-cli.1
+Source22:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/doc/man/abet-qt.1
 
 #selinux
 Source30:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contrib/rpm/abet.te
-# Source31 - what about altbet-tx and bench_abet ???
+# Source31 - what about abet-tx and bench_abet ???
 Source31:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contrib/rpm/abet.fc
 Source32:	https://raw.githubusercontent.com/abet-project/abet/v%{version}/contrib/rpm/abet.if
 
@@ -141,8 +141,8 @@ Group:		Applications/System
 This package provides several command line utilities for interacting with a
 abet-core daemon.
 
-The altbet-cli utility allows you to communicate and control a abet daemon
-over RPC, the altbet-tx utility allows you to create a custom transaction, and
+The abet-cli utility allows you to communicate and control a abet daemon
+over RPC, the abet-tx utility allows you to create a custom transaction, and
 the bench_abet utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the abet-server package.
@@ -182,12 +182,12 @@ popd
 make install DESTDIR=%{buildroot}
 
 mkdir -p -m755 %{buildroot}%{_sbindir}
-mv %{buildroot}%{_bindir}/altbetd %{buildroot}%{_sbindir}/altbetd
+mv %{buildroot}%{_bindir}/abetd %{buildroot}%{_sbindir}/abetd
 
 # systemd stuff
 mkdir -p %{buildroot}%{_tmpfilesdir}
 cat <<EOF > %{buildroot}%{_tmpfilesdir}/abet.conf
-d /run/altbetd 0750 abet abet -
+d /run/abetd 0750 abet abet -
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/abet.conf
 
@@ -202,7 +202,7 @@ OPTIONS=""
 # Don't change these unless you know what you're doing.
 CONFIG_FILE="%{_sysconfdir}/abet/abet.conf"
 DATA_DIR="%{_localstatedir}/lib/abet"
-PID_FILE="/run/altbetd/altbetd.pid"
+PID_FILE="/run/abetd/abetd.pid"
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_sysconfdir}/sysconfig/abet
 
@@ -214,7 +214,7 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=%{_sbindir}/altbetd -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
+ExecStart=%{_sbindir}/abetd -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
 EnvironmentFile=%{_sysconfdir}/sysconfig/abet
 User=abet
 Group=abet
@@ -269,7 +269,7 @@ Name=Bitcoin
 Comment=Bitcoin P2P Cryptocurrency
 Comment[fr]=Bitcoin, monnaie virtuelle cryptographique pair à pair
 Comment[tr]=Bitcoin, eşten eşe kriptografik sanal para birimi
-Exec=altbet-qt %u
+Exec=abet-qt %u
 Terminal=false
 Type=Application
 Icon=abet128
@@ -284,7 +284,7 @@ touch -a -m -t 201511100546 %{buildroot}%{_datadir}/applications/abet-core.deskt
 mkdir -p %{buildroot}%{_datadir}/kde4/services
 cat <<EOF > %{buildroot}%{_datadir}/kde4/services/abet-core.protocol
 [Protocol]
-exec=altbet-qt '%u'
+exec=abet-qt '%u'
 protocol=abet
 input=none
 output=none
@@ -300,10 +300,10 @@ touch -a -m -t 201511100546 %{buildroot}%{_datadir}/kde4/services/abet-core.prot
 %endif
 
 # man pages
-install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/altbetd.1
-install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/altbet-cli.1
+install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/abetd.1
+install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/abet-cli.1
 %if %{_buildqt}
-install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/altbet-qt.1
+install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/abet-qt.1
 %endif
 
 # nuke these, we do extensive testing of binaries in %%check before packaging
@@ -376,7 +376,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
 %doc COPYING abet.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_bindir}/altbet-qt
+%attr(0755,root,root) %{_bindir}/abet-qt
 %attr(0644,root,root) %{_datadir}/applications/abet-core.desktop
 %attr(0644,root,root) %{_datadir}/kde4/services/abet-core.protocol
 %attr(0644,root,root) %{_datadir}/pixmaps/*.ico
@@ -384,7 +384,7 @@ rm -rf %{buildroot}
 %attr(0644,root,root) %{_datadir}/pixmaps/*.svg
 %attr(0644,root,root) %{_datadir}/pixmaps/*.png
 %attr(0644,root,root) %{_datadir}/pixmaps/*.xpm
-%attr(0644,root,root) %{_mandir}/man1/altbet-qt.1*
+%attr(0644,root,root) %{_mandir}/man1/abet-qt.1*
 %endif
 
 %files libs
@@ -407,23 +407,23 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
 %doc COPYING abet.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_sbindir}/altbetd
+%attr(0755,root,root) %{_sbindir}/abetd
 %attr(0644,root,root) %{_tmpfilesdir}/abet.conf
 %attr(0644,root,root) %{_unitdir}/abet.service
 %dir %attr(0750,abet,abet) %{_sysconfdir}/abet
 %dir %attr(0750,abet,abet) %{_localstatedir}/lib/abet
 %config(noreplace) %attr(0600,root,root) %{_sysconfdir}/sysconfig/abet
 %attr(0644,root,root) %{_datadir}/selinux/*/*.pp
-%attr(0644,root,root) %{_mandir}/man1/altbetd.1*
+%attr(0644,root,root) %{_mandir}/man1/abetd.1*
 
 %files utils
 %defattr(-,root,root,-)
 %license COPYING
 %doc COPYING abet.conf.example doc/README.md
-%attr(0755,root,root) %{_bindir}/altbet-cli
-%attr(0755,root,root) %{_bindir}/altbet-tx
+%attr(0755,root,root) %{_bindir}/abet-cli
+%attr(0755,root,root) %{_bindir}/abet-tx
 %attr(0755,root,root) %{_bindir}/bench_abet
-%attr(0644,root,root) %{_mandir}/man1/altbet-cli.1*
+%attr(0644,root,root) %{_mandir}/man1/abet-cli.1*
 
 
 

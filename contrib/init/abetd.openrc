@@ -5,23 +5,23 @@
 if [ -d "/var/lib/abet/.abet" ]; then
 	BITCOIND_DEFAULT_DATADIR="/var/lib/abet/.abet"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/altbetd"
+	BITCOIND_DEFAULT_DATADIR="/var/lib/abetd"
 fi
 
 BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/abet/abet.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/altbetd}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/altbetd.pid}
+BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/abetd}
+BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/abetd.pid}
 BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
 BITCOIND_USER=${BITCOIND_USER:-${BITCOIN_USER:-abet}
 BITCOIND_GROUP=${BITCOIND_GROUP:-abet}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/altbetd}
+BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/abetd}
 BITCOIND_NICE=${BITCOIND_NICE:-${abetLEVEL:-0}}
 BITCOIND_OPTS="${BITCOIND_OPTS:-${BITCOIN_OPTS}}"
 
 name="ABET Core Daemon"
 description="ABET crypto-currency p2p network daemon"
 
-command="/usr/bin/altbetd"
+command="/usr/bin/abetd"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
 		-conf=\"${BITCOIND_CONFIGFILE}\" \
 		-datadir=\"${BITCOIND_DATADIR}\" \
@@ -71,7 +71,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run altbetd."
+		eerror "ERROR: You must set a secure rpcpassword to run abetd."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "

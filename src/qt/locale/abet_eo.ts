@@ -641,7 +641,7 @@
         <translation>Iloj langeto</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerno</translation>
     </message>
     <message>
@@ -665,11 +665,11 @@
         <translation>Foliumi mastro-nodo</translation>
     </message>
     <message>
-        <source>&amp;About Altbet</source>
+        <source>&amp;About Abet</source>
         <translation>&amp;Pri ABET Kerno</translation>
     </message>
     <message>
-        <source>Show information about Altbet</source>
+        <source>Show information about Abet</source>
         <translation>Montri informon pri ABET Kerno</translation>
     </message>
     <message>
@@ -725,11 +725,11 @@
         <translation>Bloko esplorilo fenestro</translation>
     </message>
     <message>
-        <source>Show the Altbet help message to get a list with possible ABET command-line options</source>
+        <source>Show the Abet help message to get a list with possible ABET command-line options</source>
         <translation>Montri la ABET Kore help-mesaĝo por havi liston de havebla ABET komandlinion opciojn</translation>
     </message>
     <message>
-        <source>Altbet client</source>
+        <source>Abet client</source>
         <translation>ABET Kerno kliento</translation>
     </message>
     <message>
@@ -868,8 +868,8 @@ Muktisendi: %1</translation>
         <translation>Tekstetikedo</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (altbet.conf).</source>
-        <translation>Ĉiuj transakcio ne estos montri. Peor vidi ĉiuj transakcio bezonas agordi txindekso=1 en la agordo dosiero (altbet.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (abet.conf).</source>
+        <translation>Ĉiuj transakcio ne estos montri. Peor vidi ĉiuj transakcio bezonas agordi txindekso=1 en la agordo dosiero (abet.conf).</translation>
     </message>
 </context>
 <context>
@@ -1210,7 +1210,7 @@ Muktisendi: %1</translation>
         <translation>versio</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerno</translation>
     </message>
     <message>
@@ -1218,7 +1218,7 @@ Muktisendi: %1</translation>
         <translation>(%1-bajto)</translation>
     </message>
     <message>
-        <source>About Altbet</source>
+        <source>About Abet</source>
         <translation>Pri ABET Kerno</translation>
     </message>
     <message>
@@ -1261,15 +1261,15 @@ Muktisendi: %1</translation>
         <translation>Bonvenon</translation>
     </message>
     <message>
-        <source>Welcome to Altbet.</source>
+        <source>Welcome to Abet.</source>
         <translation>Bonvenon al la ABET Kerno.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Altbet will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Abet will store its data.</source>
         <translation>Ĉar estas la unuan fojon ke la programo estas lanĉita, vi povas elekti kie ABET kernk storigis sian datumojn. </translation>
     </message>
     <message>
-        <source>Altbet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Abet will download and store a copy of the ABET block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>ABET kerno elŝutos kaj konservi kopion de la ABET blokĉeno. Almenaŭ %1GB datumoj stokitos en ĉi tiun dosierujo, kaj ĝi kresko kun la tempo. Monujo stokitos en ĉi tiun dosierujo.</translation>
     </message>
     <message>
@@ -1281,7 +1281,7 @@ Muktisendi: %1</translation>
         <translation>Uzi kutimon datumojn dosierujo:</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerno</translation>
     </message>
     <message>
@@ -1894,8 +1894,8 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>&lt;b&gt;malebligita&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>Invalid Altbet Address</source>
-        <translation>Nevalida Altbet adreso</translation>
+        <source>Invalid Abet Address</source>
+        <translation>Nevalida Abet adreso</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -1928,7 +1928,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>NEKONATA</translation>
     </message>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerno</translation>
     </message>
     </context>
@@ -2304,7 +2304,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Altbet is shutting down...</source>
+        <source>Abet is shutting down...</source>
         <translation>ABET kerno fermanta...</translation>
     </message>
     </context>
@@ -2358,7 +2358,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Altbet</source>
+        <source>Abet</source>
         <translation>ABET kerno</translation>
     </message>
     <message>

@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Altbet"
-            VALUE "FileDescription",    "altbet-tx (CLI ABET transaction editor utility)"
+            VALUE "CompanyName",        "Abet"
+            VALUE "FileDescription",    "Abet-cli (OSS RPC client for Abet)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "altbet-tx"
+            VALUE "InternalName",       "abet-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
-            VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "altbet-tx.exe"
-            VALUE "ProductName",        "altbet-tx"
+            VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
+            VALUE "OriginalFilename",   "abet-cli.exe"
+            VALUE "ProductName",        "Abet-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

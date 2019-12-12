@@ -5,18 +5,18 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the altbetd tests manually, launch `src/test/test_abet`. To recompile
+To run the abetd tests manually, launch `src/test/test_abet`. To recompile
 after a test file was modified, run `make` and then run the test again. If you
 modify a non-test file, use `make -C src/test` to recompile only what's needed
-to run the altbetd tests.
+to run the abetd tests.
 
-To add more altbetd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more abetd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_FIXTURE_TEST_SUITE sections.
 
-To run the altbet-qt tests manually, launch `src/qt/test/test_abet-qt`
+To run the abet-qt tests manually, launch `src/qt/test/test_abet-qt`
 
-To add more altbet-qt tests, add them to the `src/qt/test/` directory and
+To add more abet-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.
 
 ### Running individual tests

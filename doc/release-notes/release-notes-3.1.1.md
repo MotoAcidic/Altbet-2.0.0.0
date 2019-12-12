@@ -12,7 +12,7 @@ ABET Core v3.1.1 is a non-mandatory update to address bugs and introduce minor e
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/ABET-Qt (on Mac) or altbetd/altbet-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/ABET-Qt (on Mac) or abetd/abet-qt (on Linux).
 
 
 Compatibility

@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/altbet-config.h"
+#include "config/abet-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -171,8 +171,8 @@ void OptionsModel::Init()
         SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
     if (settings.contains("nPreferredDenom"))
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-    if (settings.contains("nAnonymizeAltbetAmount"))
-        SoftSetArg("-anonymizeabetamount", settings.value("nAnonymizeAltbetAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeAbetAmount"))
+        SoftSetArg("-anonymizeabetamount", settings.value("nAnonymizeAbetAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }

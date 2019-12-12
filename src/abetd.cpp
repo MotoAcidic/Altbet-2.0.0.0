@@ -62,18 +62,18 @@ bool AppInit(int argc, char* argv[])
     //
     // Parameters
     //
-    // If Qt is used, parameters/altbet.conf are parsed in qt/abet.cpp's main()
+    // If Qt is used, parameters/abet.conf are parsed in qt/abet.cpp's main()
     ParseParameters(argc, argv);
 
     // Process help and version before taking care about datadir
     if (mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("Altbet Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Abet Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
 
         if (mapArgs.count("-version")) {
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  altbetd [options]                     " + _("Start Altbet Core Daemon") + "\n";
+                        "  abetd [options]                     " + _("Start Abet Core Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -113,7 +113,7 @@ bool AppInit(int argc, char* argv[])
                 fCommandLine = true;
 
         if (fCommandLine) {
-            fprintf(stderr, "Error: There is no RPC client functionality in altbetd anymore. Use the altbet-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in abetd anymore. Use the abet-cli utility instead.\n");
             exit(1);
         }
 #ifndef WIN32
@@ -161,7 +161,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect altbetd signal handlers
+    // Connect abetd signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);

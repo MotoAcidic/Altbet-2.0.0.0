@@ -1,3 +1,0 @@
-usr/local/bin/altbetd usr/bin
-usr/local/bin/altbet-cli usr/bin
-debian/examples/abet.conf etc/abet

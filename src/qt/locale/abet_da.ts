@@ -4912,8 +4912,8 @@ Vær tålmodig...</translation>
         <translation>Der skal angives en masternodeprivkey i konfigurationen. For mere information, se i dokumentationen.</translation>
     </message>
     <message>
-        <source>(8322 could be used only on mainnet)</source>
-        <translation>(8322 kunne kun bruges på hovednettet)</translation>
+        <source>(2238 could be used only on mainnet)</source>
+        <translation>(2238 kunne kun bruges på hovednettet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4924,8 +4924,8 @@ Vær tålmodig...</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 8322 for mainnet)</source>
-        <translation>(skal være 8322 for hovednettet)</translation>
+        <source>(must be 2238 for mainnet)</source>
+        <translation>(skal være 2238 for hovednettet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

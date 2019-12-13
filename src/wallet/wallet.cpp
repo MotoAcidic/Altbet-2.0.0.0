@@ -1662,13 +1662,13 @@ void CWallet::AvailableCoins(
                 if (nCoinType == ONLY_DENOMINATED) {
                     found = IsDenominatedAmount(pcoin->vout[i].nValue);
                 } else if (nCoinType == ONLY_NOT10000IFMN) {
-                    found = !(fMasterNode && pcoin->vout[i].nValue == CollateralRequired());
+                    found = !(fMasterNode && pcoin->vout[i].nValue == GetCurrentCollateral());
                 } else if (nCoinType == ONLY_NONDENOMINATED_NOT10000IFMN) {
                     if (IsCollateralAmount(pcoin->vout[i].nValue)) continue; // do not use collateral amounts
                     found = !IsDenominatedAmount(pcoin->vout[i].nValue);
-                    if (found && fMasterNode) found = pcoin->vout[i].nValue != CollateralRequired(); // do not use Hot MN funds
+                    if (found && fMasterNode) found = pcoin->vout[i].nValue != GetCurrentCollateral(); // do not use Hot MN funds
                 } else if (nCoinType == ONLY_10000) {
-                    found = pcoin->vout[i].nValue == CollateralRequired();
+                    found = pcoin->vout[i].nValue == GetCurrentCollateral();
                 } else {
                     found = true;
                 }

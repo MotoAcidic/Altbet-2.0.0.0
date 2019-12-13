@@ -250,10 +250,10 @@ QT_TRANSLATE_NOOP("abet-core", ""
 QT_TRANSLATE_NOOP("abet-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("abet-core", "(8322 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("abet-core", "(2238 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("abet-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("abet-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("abet-core", "(must be 8322 for mainnet)"),
+QT_TRANSLATE_NOOP("abet-core", "(must be 2238 for mainnet)"),
 QT_TRANSLATE_NOOP("abet-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("abet-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("abet-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),

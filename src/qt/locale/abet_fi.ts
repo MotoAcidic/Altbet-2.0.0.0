@@ -2137,7 +2137,7 @@
         <translation>Dash Core kehittäjät</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>ABET core kehittäjät</translation>
     </message>
     <message>

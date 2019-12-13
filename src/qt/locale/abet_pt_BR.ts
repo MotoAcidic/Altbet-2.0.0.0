@@ -3007,7 +3007,7 @@ https://www.transifex.com/abet-project/abet-project-translations</translation>
         <translation>Os desenvolvedores do Dash Core</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>Os desenvolvedores do Abet</translation>
     </message>
     <message>
@@ -3608,8 +3608,8 @@ https://www.transifex.com/abet-project/abet-project-translations</translation>
         <translation>Você deve especificar uma masternodeprivkey na configuração. Favor verificar o manual para obter ajuda.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 could be used only on mainnet)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 could be used only on mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3620,8 +3620,8 @@ https://www.transifex.com/abet-project/abet-project-translations</translation>
         <translation>(padrão: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(deve ser 11115 para mainnet)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(deve ser 8322 para mainnet)</translation>
     </message>
     <message>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
@@ -3660,7 +3660,7 @@ https://www.transifex.com/abet-project/abet-project-translations</translation>
         <translation>Todos os direitos reservados (C) 2014-%i aos Desenvolvedores do Dash Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Todos os direitos reservados (C) 2015-%i aos Desenvolvedores do Abet</translation>
     </message>
     <message>

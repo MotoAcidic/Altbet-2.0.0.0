@@ -4005,7 +4005,7 @@ Please be patient...</source>
         <translation>Dash Core разработчици</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>Abet разработчици</translation>
     </message>
     <message>
@@ -4882,8 +4882,8 @@ Please be patient...</source>
         <translation>Трябва да зададете masternodeprivkey в конфигурационния файл. Консултирайте се с документацията за повече помощ.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 може да се ползва само в mainnet)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 може да се ползва само в mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4894,8 +4894,8 @@ Please be patient...</source>
         <translation>(по подразбиране: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(трябва да е 11115 за mainnet)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(трябва да е 8322 за mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -4982,7 +4982,7 @@ Please be patient...</source>
         <translation>Всички права запазени (c) 2014-%i Dash Core разработчици</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Всички права запазени (c) 2015-%i Abet разработчици</translation>
     </message>
     <message>

@@ -10,10 +10,9 @@
 #include "masternodeman.h"
 #include "protocol.h"
 #include "spork.h"
-#include "collateral.h"
 
 //
-// Bootup the Masternode, look for a 10000 ABET input and register on the network
+// Bootup the Masternode, look for a 1000 ABET input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {

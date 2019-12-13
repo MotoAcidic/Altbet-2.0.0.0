@@ -5529,7 +5529,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6712,8 +6712,8 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation type="unfinished">(11115 could be used only on mainnet)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation type="unfinished">(8322 could be used only on mainnet)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6727,7 +6727,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>(must be 11115 for mainnet)</source>
+        <source>(must be 8322 for mainnet)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6852,7 +6852,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

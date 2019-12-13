@@ -4016,7 +4016,7 @@ Please be patient...</source>
         <translation>Разработчики Dash Core</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>Разработчики Abet</translation>
     </message>
     <message>
@@ -4893,8 +4893,8 @@ Please be patient...</source>
         <translation>Вы должны указать в  строке приложенный ключ. Пожалуйста, обратитесь к документации для получения справки</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 можно использовать только в сети)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 можно использовать только в сети)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4905,8 +4905,8 @@ Please be patient...</source>
         <translation>(неуплата: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(должен быть 11115 для mainet)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(должен быть 8322 для mainet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -4993,7 +4993,7 @@ Please be patient...</source>
         <translation>Copyright (C) 2014-%i Разработчики Dash Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Copyright (C) 2015-%i Разработчики Abet</translation>
     </message>
     <message>

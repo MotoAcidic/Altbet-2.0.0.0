@@ -4207,7 +4207,7 @@ Wees alsjeblieft geduldig...</translation>
         <translation>De Dash Kernontwikkelaars</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>De ABET Kernontwikkelaars</translation>
     </message>
     <message>
@@ -5092,8 +5092,8 @@ Wees alsjeblieft geduldig...</translation>
         <translation>Je moet een masternodeprivkey opgeven in de configuratie. Raadpleeg de documentatie voor hulp.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 kan alleen op mainnet worden gebruikt)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 kan alleen op mainnet worden gebruikt)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5104,8 +5104,8 @@ Wees alsjeblieft geduldig...</translation>
         <translation>(standaard: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(moet 11115 voor mainnet zijn)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(moet 8322 voor mainnet zijn)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5196,7 +5196,7 @@ Wees alsjeblieft geduldig...</translation>
         <translation>Copyright (C) 2014-%i The Dash Kernontwikkelaars</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Copyright (C) 2015-%i The ABET Kernontwikkelaars</translation>
     </message>
     <message>

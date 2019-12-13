@@ -4012,7 +4012,7 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Die Dash Core Entwickler</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>Die Abet Entwickler</translation>
     </message>
     <message>
@@ -4889,8 +4889,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Sie müssen einen privaten Masternode-Schlüssel in der Konfiguration festlegen. Bitte nutzen Sie die Dokumentation zwecks Hilfe.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 kann nur im Mainnet verwendet werden)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 kann nur im Mainnet verwendet werden)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4901,8 +4901,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(muss im Mainnet 11115 sein)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(muss im Mainnet 8322 sein)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -4989,8 +4989,8 @@ Bitte haben Sie etwas Geduld...</translation>
         <translation>Copyright (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
-        <translation>Copyright (C) 2015-%i The ABET Core Developers</translation>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>

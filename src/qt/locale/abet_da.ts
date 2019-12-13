@@ -4034,7 +4034,7 @@ Vær tålmodig...</translation>
         <translation>DASH "core" udviklerne</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>ABET "core" udviklerne</translation>
     </message>
     <message>
@@ -4912,8 +4912,8 @@ Vær tålmodig...</translation>
         <translation>Der skal angives en masternodeprivkey i konfigurationen. For mere information, se i dokumentationen.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 kunne kun bruges på hovednettet)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 kunne kun bruges på hovednettet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4924,8 +4924,8 @@ Vær tålmodig...</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(skal være 11115 for hovednettet)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(skal være 8322 for hovednettet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5012,8 +5012,8 @@ Vær tålmodig...</translation>
         <translation>Copyright (C) 2014-%i The Dash Core Developers </translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
-        <translation>Copyright (C) 2015-%i The ABET Core Developers</translation>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>

@@ -4286,7 +4286,7 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Les développeurs Dash Core</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>Les développeurs Abet</translation>
     </message>
     <message>
@@ -5195,8 +5195,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Vous devez spécifier une masternodeprivkey dans la configuration. Veuillez consulter la documentation pour obtenir de l'aide.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 ne peut être utilisé que pour le mainnet)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 ne peut être utilisé que pour le mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5207,8 +5207,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(doit être 11115 pour le mainnet)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(doit être 8322 pour le mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5303,7 +5303,7 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Copyright (C) 2014-%i Les développeurs de DASH Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Copyright (C) 2015-%i Les développeurs de Abet</translation>
     </message>
     <message>

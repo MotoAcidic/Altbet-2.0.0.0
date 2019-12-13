@@ -4018,7 +4018,7 @@ Please be patient...</source>
         <translation>Dash Core programeri</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>Abet programeri</translation>
     </message>
     <message>
@@ -4896,8 +4896,8 @@ Please be patient...</source>
         <translation>Morate odrediti masternodeprivkey u konfiguraciji. Za pomoć pogledajte dokumentaciju.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 se može koristiti samo na mainnetu)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 se može koristiti samo na mainnetu)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4908,8 +4908,8 @@ Please be patient...</source>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(mora biti 11115 za glavnu mrežu)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(mora biti 8322 za glavnu mrežu)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -4996,8 +4996,8 @@ Please be patient...</source>
         <translation>Autorska prava (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
-        <translation>Autorska prava (C) 2015-%i The ABET Core Developers</translation>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <translation>Autorska prava (C) 2015-%i The PIVX Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>

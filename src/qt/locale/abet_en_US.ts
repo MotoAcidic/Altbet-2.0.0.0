@@ -3292,8 +3292,8 @@ https://www.transifex.com/abet-project/abet-project-translations</translation>
         <translation>The Dash Core developers</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
-        <translation>The ABET Core developers</translation>
+        <source>The PIVX Core Developers</source>
+        <translation>The PIVX Core Developers</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4166,8 +4166,8 @@ for example: alertnotify=echo %%s | mail -s "ABET Alert" admin@foo.com
         <translation>You must specify a masternodeprivkey in the configuration. Please see documentation for help.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 could be used only on mainnet)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 could be used only on mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4178,8 +4178,8 @@ for example: alertnotify=echo %%s | mail -s "ABET Alert" admin@foo.com
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(must be 11115 for mainnet)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(must be 8322 for mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -4282,8 +4282,8 @@ for example: alertnotify=echo %%s | mail -s "ABET Alert" admin@foo.com
         <translation>Copyright (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
-        <translation>Copyright (C) 2015-%i The ABET Core Developers</translation>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>

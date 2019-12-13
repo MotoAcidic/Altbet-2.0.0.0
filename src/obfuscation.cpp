@@ -12,7 +12,6 @@
 #include "swifttx.h"
 #include "guiinterface.h"
 #include "util.h"
-#include "collateral.h"
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>

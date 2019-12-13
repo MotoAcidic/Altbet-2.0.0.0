@@ -10,7 +10,6 @@
 #include "obfuscation.h"
 #include "spork.h"
 #include "util.h"
-#include "collateral.h"
 #include <boost/filesystem.hpp>
 
 #define MN_WINNER_MINIMUM_AGE 8000    // Age in seconds. This should be > MASTERNODE_REMOVAL_SECONDS to avoid misconfigured new nodes in the list.
@@ -925,8 +924,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         }
 
         if (Params().NetworkID() == CBaseChainParams::MAIN) {
-            if (addr.GetPort() != 11115) return;
-        } else if (addr.GetPort() == 11115)
+            if (addr.GetPort() != 8322) return;
+        } else if (addr.GetPort() == 8322)
             return;
 
         //search existing Masternode list, this is where we update existing Masternodes with new dsee broadcasts

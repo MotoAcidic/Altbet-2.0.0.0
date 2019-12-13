@@ -250,10 +250,10 @@ QT_TRANSLATE_NOOP("abet-core", ""
 QT_TRANSLATE_NOOP("abet-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("abet-core", "(11115 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("abet-core", "(8322 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("abet-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("abet-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("abet-core", "(must be 11115 for mainnet)"),
+QT_TRANSLATE_NOOP("abet-core", "(must be 8322 for mainnet)"),
 QT_TRANSLATE_NOOP("abet-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("abet-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("abet-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
@@ -282,7 +282,7 @@ QT_TRANSLATE_NOOP("abet-core", "Connect to a node to retrieve peer addresses, an
 QT_TRANSLATE_NOOP("abet-core", "Connection options:"),
 QT_TRANSLATE_NOOP("abet-core", "Copyright (C) 2009-%i The Bitcoin Core Developers"),
 QT_TRANSLATE_NOOP("abet-core", "Copyright (C) 2014-%i The Dash Core Developers"),
-QT_TRANSLATE_NOOP("abet-core", "Copyright (C) 2015-%i The ABET Core Developers"),
+QT_TRANSLATE_NOOP("abet-core", "Copyright (C) 2015-%i The PIVX Core Developers"),
 QT_TRANSLATE_NOOP("abet-core", "Corrupted block database detected"),
 QT_TRANSLATE_NOOP("abet-core", "Could not parse masternode.conf"),
 QT_TRANSLATE_NOOP("abet-core", "Couldn't generate the accumulator witness"),

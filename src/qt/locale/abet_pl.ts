@@ -4282,7 +4282,7 @@ Proszę być cierpliwym...</translation>
         <translation>Twórcy Dash Core</translation>
     </message>
     <message>
-        <source>The ABET Core developers</source>
+        <source>The PIVX Core Developers</source>
         <translation>Twórcy Abet</translation>
     </message>
     <message>
@@ -5183,8 +5183,8 @@ Proszę być cierpliwym...</translation>
         <translation>Musisz określić masternodeprivkey w konfiguracji. Aby uzyskać pomoc, zapoznaj się z dokumentacją.</translation>
     </message>
     <message>
-        <source>(11115 could be used only on mainnet)</source>
-        <translation>(11115 może być używany tylko w sieci mainnet)</translation>
+        <source>(8322 could be used only on mainnet)</source>
+        <translation>(8322 może być używany tylko w sieci mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5195,8 +5195,8 @@ Proszę być cierpliwym...</translation>
         <translation>(domyślnie: 1)</translation>
     </message>
     <message>
-        <source>(must be 11115 for mainnet)</source>
-        <translation>(musi być 11115 dla mainnetu)</translation>
+        <source>(must be 8322 for mainnet)</source>
+        <translation>(musi być 8322 dla mainnetu)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5295,8 +5295,8 @@ Proszę być cierpliwym...</translation>
         <translation>Copyright (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
-        <translation>Copyright (C) 2015-%i The ABET Core Developers</translation>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>

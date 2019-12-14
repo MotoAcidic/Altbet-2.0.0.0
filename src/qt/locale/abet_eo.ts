@@ -2370,7 +2370,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>La Dash kerno programistoj</translation>
     </message>
     <message>
-        <source>The PIVX Core Developers</source>
+        <source>The ABET Core developers</source>
         <translation>La ABET kerno programistoj</translation>
     </message>
     </context>

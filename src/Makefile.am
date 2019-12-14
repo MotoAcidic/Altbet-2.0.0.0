@@ -121,6 +121,7 @@ BITCOIN_CORE_H = \
   leveldbwrapper.h \
   limitedmap.h \
   main.h \
+  collateral.h \
   masternode.h \
   masternode-payments.h \
   masternode-budget.h \
@@ -253,6 +254,7 @@ endif
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_wallet_a_SOURCES = \
+  collateral.cpp \
   activemasternode.cpp \
   bip38.cpp \
   denomination_functions.cpp \

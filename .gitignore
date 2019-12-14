@@ -42,6 +42,7 @@
 .vs/Altbet-2.0.0.0/v16/ipch/AutoPCH/978bf6c0732fa8bb/MAIN.ipch
 
 .vs/Altbet-2.0.0.0/v16/ipch/AutoPCH/ae34a14b21d9903c/MASTERNODE.ipch
+<<<<<<< HEAD
 
 .vs/Altbet-2.0.0.0/v15/.suo
 
@@ -74,3 +75,5 @@
 .vs/Altbet-2.0.0.0/v16/ipch/AutoPCH/ce3089e022bad078/ACTIVEMASTERNODE.ipch
 
 .vs/slnx.sqlite-journal
+=======
+>>>>>>> parent of 7b7a1c1... Renames / Ports

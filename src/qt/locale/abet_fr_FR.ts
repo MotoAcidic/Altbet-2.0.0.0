@@ -4286,7 +4286,7 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Les développeurs Dash Core</translation>
     </message>
     <message>
-        <source>The PIVX Core Developers</source>
+        <source>The ABET Core developers</source>
         <translation>Les développeurs Abet</translation>
     </message>
     <message>
@@ -5303,7 +5303,7 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Copyright (C) 2014-%i Les développeurs de DASH Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
         <translation>Copyright (C) 2015-%i Les développeurs de Abet</translation>
     </message>
     <message>

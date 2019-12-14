@@ -3819,8 +3819,8 @@ Lütfen sabırlı olun...</translation>
         <translation>The Dash Core developers</translation>
     </message>
     <message>
-        <source>The PIVX Core Developers</source>
-        <translation>The PIVX Core Developers</translation>
+        <source>The ABET Core developers</source>
+        <translation>The ABET Core developers</translation>
     </message>
     <message>
         <source>[testnet]</source>

@@ -3007,7 +3007,7 @@ https://www.transifex.com/abet-project/abet-project-translations</translation>
         <translation>Os desenvolvedores do Dash Core</translation>
     </message>
     <message>
-        <source>The PIVX Core Developers</source>
+        <source>The ABET Core developers</source>
         <translation>Os desenvolvedores do Abet</translation>
     </message>
     <message>
@@ -3660,7 +3660,7 @@ https://www.transifex.com/abet-project/abet-project-translations</translation>
         <translation>Todos os direitos reservados (C) 2014-%i aos Desenvolvedores do Dash Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <source>Copyright (C) 2015-%i The ABET Core Developers</source>
         <translation>Todos os direitos reservados (C) 2015-%i aos Desenvolvedores do Abet</translation>
     </message>
     <message>

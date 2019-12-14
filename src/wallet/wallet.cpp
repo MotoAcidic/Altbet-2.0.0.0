@@ -26,6 +26,8 @@
 #include "utilmoneystr.h"
 #include "zpivchain.h"
 
+#include "collateral.h"
+
 #include "denomination_functions.h"
 #include "libzerocoin/Denominations.h"
 #include "zpiv/zpivwallet.h"

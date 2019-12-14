@@ -69,6 +69,7 @@
 .vs/Altbet-2.0.0.0/v15/ipch/AutoPCH/d3b88066898f0810/ACTIVEMASTERNODE.ipch
 
 .vs/Altbet-2.0.0.0/v15/ipch/AutoPCH/fe79224965e11e23/MAIN.ipch
+<<<<<<< HEAD
 
 .vs/Altbet-2.0.0.0/v16/Browse.VC.opendb
 
@@ -77,3 +78,5 @@
 .vs/slnx.sqlite-journal
 =======
 >>>>>>> parent of 7b7a1c1... Renames / Ports
+=======
+>>>>>>> parent of e85b05c... Collat / P2P Port

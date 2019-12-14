@@ -457,7 +457,7 @@ std::vector<COutput> CActiveMasternode::SelectCoinsMasternode()
 
     // Filter
     for (const COutput& out : vCoins) {
-        if (out.tx->vout[out.i].nValue == GetCurrentCollateral()) { //exactly
+        if (out.tx->vout[out.i].nValue == CollateralRequired()) { //exactly
             filteredCoins.push_back(out);
         }
     }

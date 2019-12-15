@@ -272,6 +272,9 @@ RES_ICONS = \
   qt/res/icons/unit_tuabet.png \
   qt/res/icons/yesvote.png \
   qt/res/icons/novote.png \
+  qt/res/icons/toolbarbg.png \
+  qt/res/icons/logo.png \
+  qt/res/icons/balancebg.png \
   qt/res/icons/abstainvote.png
 
 BITCOIN_QT_BASE_CPP = \

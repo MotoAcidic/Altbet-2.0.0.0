@@ -24,8 +24,8 @@
 #include <QSettings>
 #include <QTimer>
 
-#define DECORATION_SIZE 48
-#define ICON_OFFSET 16
+#define DECORATION_SIZE 58
+#define ICON_OFFSET 0
 #define NUM_ITEMS 9
 
 extern CWallet* pwalletMain;
@@ -46,6 +46,7 @@ public:
         QRect mainRect = option.rect;
         mainRect.moveLeft(ICON_OFFSET);
         QRect decorationRect(mainRect.topLeft(), QSize(DECORATION_SIZE, DECORATION_SIZE));
+        decorationRect.setWidth(595);
         int xspace = DECORATION_SIZE + 8;
         int ypad = 6;
         int halfheight = (mainRect.height() - 2 * ypad) / 2;
@@ -226,18 +227,18 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelWatchTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nTotalWatchBalance, false, BitcoinUnits::separatorAlways));
 
     // zABET labels
-    ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureZerocoinBalance, false, BitcoinUnits::separatorAlways));
+    // ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
+    // ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
+    // ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
+    // ui->labelzBalanceImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureZerocoinBalance, false, BitcoinUnits::separatorAlways));
 
     // Combined labels
-    ui->labelBalancez->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, availableTotalBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelTotalz->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, sumTotalBalance, false, BitcoinUnits::separatorAlways));
+    // ui->labelBalancez->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, availableTotalBalance, false, BitcoinUnits::separatorAlways));
+    // ui->labelTotalz->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, sumTotalBalance, false, BitcoinUnits::separatorAlways));
 
     // Percentage labels
     ui->labelABETPercent->setText(sPercentage);
-    ui->labelzABETPercent->setText(szPercentage);
+    // ui->labelzABETPercent->setText(szPercentage);
 
     // Adjust bubble-help according to AutoMint settings
     QString automintHelp = tr("Current percentage of zABET.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
@@ -293,17 +294,17 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     bool showzABETAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
     bool showzABETUnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
     bool showzABETImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
-    ui->labelzBalanceMature->setVisible(showzABETAvailable);
-    ui->labelzBalanceMatureText->setVisible(showzABETAvailable);
-    ui->labelzBalanceUnconfirmed->setVisible(showzABETUnconfirmed);
-    ui->labelzBalanceUnconfirmedText->setVisible(showzABETUnconfirmed);
-    ui->labelzBalanceImmature->setVisible(showzABETImmature);
-    ui->labelzBalanceImmatureText->setVisible(showzABETImmature);
+    // ui->labelzBalanceMature->setVisible(showzABETAvailable);
+    // ui->labelzBalanceMatureText->setVisible(showzABETAvailable);
+    // ui->labelzBalanceUnconfirmed->setVisible(showzABETUnconfirmed);
+    // ui->labelzBalanceUnconfirmedText->setVisible(showzABETUnconfirmed);
+    // ui->labelzBalanceImmature->setVisible(showzABETImmature);
+    // ui->labelzBalanceImmatureText->setVisible(showzABETImmature);
 
     // Percent split
     bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
     ui->labelABETPercent->setVisible(showPercentages);
-    ui->labelzABETPercent->setVisible(showPercentages);
+    // ui->labelzABETPercent->setVisible(showPercentages);
 
     static int cachedTxLocks = 0;
 

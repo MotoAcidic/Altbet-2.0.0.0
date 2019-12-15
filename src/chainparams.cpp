@@ -53,11 +53,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (     0, uint256("0x001"));
+    (     0, uint256("0x00000726e77c06349eb9ca117cb1b0f06a783890ae561af1abcc11dcf043ad15"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1575935960, // * UNIX timestamp of last checkpoint block
+	1575935960, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -69,15 +69,15 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
 
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1575831881,
-    2501682,
+	1575935960,
+    0,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1575831881,
+	1575935960,
     0,
     100};
 
@@ -168,13 +168,12 @@ public:
           Build the genesis block. Note that the output of the genesis coinbase cannot
           be spent as it did not originally exist in the database.
          
-			CBlock(hash=00000726e77c06349eb9ca117cb1b0f06a783890ae561af1abcc11dcf043ad15, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=754b4511c728d57456e7e0e9c490b681b521f019ca0c7d6828127ccf60606ea1, nTime=1575935960, nBits=1e0ffff0, nNonce=2389631, vtx=1)
-			CTransaction(hash=754b4511c7, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-			CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01042c446f6e277420776f726b20666f72207765656b656e64732c20776f726b20666f72206f757220676f616c732e)
-			CTxOut(nValue=0.00000000, scriptPubKey=04678afdb0fe5548271967f1a67130)
+		  genesis is CBlock(hash=00000726e77c06349eb9ca117cb1b0f06a783890ae561af1abcc11dcf043ad15, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=754b4511c728d57456e7e0e9c490b681b521f019ca0c7d6828127ccf60606ea1, nTime=1575935960, nBits=1e0ffff0, nNonce=2389631, vtx=1)
+		  CTransaction(hash=754b4511c7, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+		  CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01042c446f6e277420776f726b20666f72207765656b656e64732c20776f726b20666f72206f757220676f616c732e)
+		  CTxOut(nValue=0.00000000, scriptPubKey=04678afdb0fe5548271967f1a67130)
 
-			vMerkleTree:  754b4511c728d57456e7e0e9c490b681b521f019ca0c7d6828127ccf60606ea1
-
+          vMerkleTree:  754b4511c728d57456e7e0e9c490b681b521f019ca0c7d6828127ccf60606ea1
        */
         const char* pszTimestamp = "Don't work for weekends, work for our goals.";
         CMutableTransaction txNew;
@@ -191,16 +190,17 @@ public:
         genesis.nBits = 0x1e0ffff0; // 00000ffff0000000000000000000000000000000000000000000000000000000
         genesis.nNonce = 2389631;
 
-		
+		/*
         while (genesis.GetHash() > uint256("0x00000ffff0000000000000000000000000000000000000000000000000000000")) {
             genesis.nNonce++;
             if (genesis.nNonce % 128 == 0) printf("\rnonce %08x", genesis.nNonce);
         }
         printf("genesis is %s\n", genesis.ToString().c_str());
-		
+		*/
+
         hashGenesisBlock = genesis.GetHash();
-       // assert(hashGenesisBlock == uint256("0x00000726e77c06349eb9ca117cb1b0f06a783890ae561af1abcc11dcf043ad15"));
-       // assert(genesis.hashMerkleRoot == uint256("0x754b4511c728d57456e7e0e9c490b681b521f019ca0c7d6828127ccf60606ea1"));
+        assert(hashGenesisBlock == uint256("0x00000726e77c06349eb9ca117cb1b0f06a783890ae561af1abcc11dcf043ad15"));
+        assert(genesis.hashMerkleRoot == uint256("0x754b4511c728d57456e7e0e9c490b681b521f019ca0c7d6828127ccf60606ea1"));
 
 
 	    vSeeds.push_back(CDNSSeedData("clubs.seed.abet.io", "clubs.seed.abet.io"));

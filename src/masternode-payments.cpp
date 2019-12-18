@@ -310,8 +310,8 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
         }
     }
 
-    CAmount blockValue = GetBlockValue(pindexPrev->nHeight);
-    CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight, blockValue, 0, fZPIVStake);
+    CAmount blockValue = GetBlockValue(pindexPrev->nHeight + 1);
+    CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight + 1, blockValue, 0, fZPIVStake);
 
     if (hasPayment) {
         if (fProofOfStake) {
@@ -571,10 +571,11 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
         bool found = false;
         for (CTxOut out : txNew.vout) {
             if (payee.scriptPubKey == out.scriptPubKey) {
-                if(out.nValue >= requiredMasternodePayment)
+                if(out.nValue == requiredMasternodePayment)
                     found = true;
                 else
-                    LogPrint("masternode","Masternode payment is out of drift range. Paid=%s Min=%s\n", FormatMoney(out.nValue).c_str(), FormatMoney(requiredMasternodePayment).c_str());
+                    LogPrintf("%s : Masternode payment value (%s) different from required value (%s).\n",
+                        __func__, FormatMoney(out.nValue).c_str(), FormatMoney(requiredMasternodePayment).c_str());
             }
         }
 
